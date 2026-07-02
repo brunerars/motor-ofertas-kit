@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="w-mod-js w-mod-ix w-mod-ix3 wf-anton-n4-active wf-archivo-n4-active wf-archivo-n5-active wf-archivo-n7-active wf-geist-n4-active wf-hostgrotesk-n4-active wf-active" lang="pt-BR" data-wf-domain="haus-portfolio-template.webflow.io">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Nippon Speed Co. — Design System</title>
+<meta name="description" content="Design system vivo da Nippon Speed Co., clonado fielmente do template Haus (Webflow)."/>
+
+<!-- Fonts (mesmo asset do original) -->
+<link href="./assets/4239a7400ee8e906_css.css" media="all" rel="stylesheet"/>
+<script src="./assets/81016ac6be850b72_webfont.js" type="text/javascript"></script>
+<script type="text/javascript">WebFont.load({ google: { families: ["Anton:300,400,500,600,700","Archivo:300,400,500,600,700","Geist:300,400,500,600,700","Host Grotesk:300,400,500,600,700"] }});</script>
+
+<!-- CSS principal (mesmo asset do original) -->
+<link href="./assets/330994468e15a298_haus-portfolio-template.webflo.css" rel="stylesheet" type="text/css"/>
+<link href="./assets/0f2bda5118542bf2_69a70cebd3da4280554e6889_Favic.png" rel="shortcut icon" type="image/x-icon"/>
+
+<!--
+  ============================================================================
+  DOC-CHROME ONLY. Este bloco estiliza APENAS o esqueleto de documentação
+  (nav de âncoras, linhas de spec, grades do showcase). NENHUM componente,
+  cor, tipografia ou animação DA MARCA é redefinido aqui — todos reusam as
+  classes e tokens do CSS original acima. Hovers ao vivo reproduzem o
+  END-STATE das interações IX2 do original (o timing exato mora no
+  webflow.js referenciado); duração aproximada p/ fins de demonstração.
+  ============================================================================
+-->
+<style id="ds-doc">
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  .ds-topnav{ position:fixed; inset:0 0 auto 0; z-index:1000; display:flex; align-items:center; justify-content:space-between;
+    gap:16px; height:52px; padding:0 24px; background:var(--neutral-color--white);
+    border-bottom:2px solid var(--neutral-color--grey-200); }
+  .ds-topnav-links{ display:flex; gap:4px; flex-wrap:wrap; align-items:center; }
+  .ds-topnav a{ text-decoration:none; padding:6px 10px; border:1px solid transparent; border-radius:4px; }
+  .ds-topnav a:hover{ border-color:var(--neutral-color--grey-200); background:var(--neutral-color--grey-50); }
+  .ds-wordmark{ display:flex; align-items:center; gap:10px; }
+  .ds-wordmark img{ height:22px; width:auto; display:block; }
+
+  .ds-doc{ max-width:var(--_sizing---max-width-secondary); margin:0 auto; padding:0 var(--_sizing---section-padding); }
+  .ds-section{ padding:100px 0; border-top:2px solid var(--neutral-color--grey-200); }
+  .ds-section:first-of-type{ border-top:0; }
+  .ds-section-head{ display:flex; flex-direction:column; gap:18px; margin-bottom:56px; }
+  .ds-index{ display:flex; justify-content:space-between; width:100%; max-width:240px; }
+  .ds-note{ max-width:640px; }
+
+  /* Typography spec table */
+  .ds-spec{ display:flex; flex-direction:column; }
+  .ds-spec-row{ display:grid; grid-template-columns:200px 1fr 130px; gap:24px; align-items:center;
+    padding:26px 0; border-top:1px solid var(--neutral-color--grey-200); }
+  .ds-spec-row:last-child{ border-bottom:1px solid var(--neutral-color--grey-200); }
+  .ds-spec-name{ display:flex; flex-direction:column; gap:6px; }
+  .ds-spec-preview{ overflow-x:auto; }
+  .ds-spec-size{ text-align:right; display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+
+  /* Colors */
+  .ds-swatch-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; }
+  .ds-swatch .color{ height:96px; }
+  .ds-swatch-meta{ display:flex; flex-direction:column; gap:4px; margin-top:10px; }
+
+  /* Component + motion stages */
+  .ds-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:28px; }
+  .ds-card{ border:1px solid var(--neutral-color--grey-200); background:var(--neutral-color--grey-50);
+    border-radius:6px; padding:26px; display:flex; flex-direction:column; gap:20px;
+    position:relative; overflow:hidden; }
+  .ds-card-label{ display:flex; justify-content:space-between; gap:12px; }
+  .ds-stage{ display:flex; gap:40px; align-items:center; flex-wrap:wrap; min-height:64px; }
+  .ds-stage.center{ justify-content:center; }
+  .ds-caption{ margin-top:8px; }
+
+  /* Live hover = END-STATE das interações IX2 (timing aproximado) */
+  .ds-hov{ cursor:pointer; }
+  .ds-hov .nav-link-animation{ transition:height .45s cubic-bezier(.625,.05,0,1); }
+  .ds-hov:hover .nav-link-animation{ height:100%; }
+  .ds-hov .primary-button-text-anim > .button-b-l{ transition:transform .45s cubic-bezier(.625,.05,0,1); }
+  .ds-hov:hover .primary-button-text-anim > .button-b-l{ transform:translate3d(0,-1.4em,0); }
+  .ds-hov .button-block-animated{ width:0%; transition:width .45s cubic-bezier(.625,.05,0,1); }
+  .ds-hov:hover .button-block-animated{ width:100%; }
+  .ds-hov .button-icon, .ds-hov .button-icon-hover{ transition:opacity .3s ease; }
+  .ds-hov:hover .button-icon{ opacity:0; }
+  .ds-hov:hover .button-icon-hover{ opacity:1; }
+  .ds-hov .footer-nav-link{ transition:transform .45s cubic-bezier(.625,.05,0,1); }
+  .ds-hov:hover .footer-nav-link{ transform:translate3d(0,-1em,0); }
+  .ds-hov .nav-icon-normal, .ds-hov .nav-icon-hover{ transition:opacity .3s ease; }
+  .ds-hov:hover .nav-icon-normal{ opacity:0; }
+  .ds-hov:hover .nav-icon-hover{ opacity:1; }
+
+  /* Gallery item name overlay = hover reveal (.item-name-wrapper is opacity:0 in brand CSS) */
+  .ds-hov .item-name-wrapper{ transition:opacity .4s ease; }
+  .ds-hov:hover .item-name-wrapper{ opacity:1; }
+
+  /* Gallery demo only: the brand component is position:absolute + skew(25deg) for a collage.
+     Neutralize position/skew here so the standalone card shows it upright and contained. */
+  .ds-card .item-gallery-wrapper{ position:relative; left:auto; transform:none; }
+  .ds-card .item-gallery-image-item-name{ width:100%; min-width:0; height:220px; }
+
+  /* ---- Cursor: native pointer (custom-cursor element removed; overrides body{cursor:none}) ---- */
+  body{ cursor:auto; }
+
+  /* ---- Doc content is an opaque sheet layered over the sticky 100vh hero
+     (clean slide-up reveal instead of transparent bleed-through) ---- */
+  main.ds-doc{ position:relative; z-index:3; background:var(--background-color--bg-white); }
+
+  /* ---- Robust reveal-on-scroll: IntersectionObserver + CSS, progressive enhancement.
+     Base state is VISIBLE. Only when JS confirms support (html.ds-js) do elements start
+     hidden, then .is-in fades them in. No JS / reduced-motion / print => fully visible. */
+  .ds-js .ds-section-head,
+  .ds-js .ds-spec-row,
+  .ds-js .ds-card,
+  .ds-js .ds-swatch,
+  .ds-js .ds-icon-cell,
+  .ds-js [data-ds-reveal]{ opacity:0; transform:translateY(16px); }
+  .ds-section-head.is-in,
+  .ds-spec-row.is-in,
+  .ds-card.is-in,
+  .ds-swatch.is-in,
+  .ds-icon-cell.is-in,
+  [data-ds-reveal].is-in{ opacity:1; transform:none;
+    transition:opacity .55s ease, transform .55s ease; }
+
+  @media (prefers-reduced-motion: reduce){
+    .ds-js .ds-section-head,
+    .ds-js .ds-spec-row,
+    .ds-js .ds-card,
+    .ds-js .ds-swatch,
+    .ds-js .ds-icon-cell,
+    .ds-js [data-ds-reveal]{ opacity:1 !important; transform:none !important; transition:none !important; }
+  }
+
+  /* reuse do @keyframes spin do CSS original */
+  .ds-spin{ width:40px; height:40px; border:3px solid var(--neutral-color--grey-200);
+    border-top-color:var(--neutral-color--black); border-radius:50%; animation:spin 1.1s linear infinite; }
+
+  /* icons */
+  .ds-icon-row{ display:flex; gap:36px; align-items:flex-end; flex-wrap:wrap; }
+  .ds-icon-cell{ display:flex; flex-direction:column; gap:10px; align-items:center; }
+
+  /* layout patterns */
+  .ds-layout-demo{ border:1px dashed var(--neutral-color--grey-300); border-radius:6px; padding:20px;
+    background:var(--neutral-color--grey-50); }
+  .ds-bars{ display:flex; flex-direction:column; gap:12px; }
+  .ds-bar{ height:34px; background:var(--neutral-color--grey-100); border:1px solid var(--neutral-color--grey-200);
+    display:flex; align-items:center; padding:0 12px; }
+  .ds-line{ display:block; }
+
+  @media screen and (max-width:767px){
+    .ds-spec-row{ grid-template-columns:1fr; gap:12px; }
+    .ds-spec-size{ text-align:left; align-items:flex-start; }
+    .ds-topnav-links{ display:none; }
+  }
+</style>
+<!-- Set the JS flag synchronously (before first paint) so reveal-hidden state never flashes.
+     If this script never runs, content stays visible by default. -->
+<script>document.documentElement.classList.add('ds-js');</script>
+</head>
+
+<body>
+
+<!-- ===================== NAV HORIZONTAL (âncoras) ===================== -->
+<nav class="ds-topnav">
+  <div class="ds-wordmark">
+    <img loading="lazy" src="./assets/e70c1b874af1ed35_69a65d522f649fabc29a14f6_Logo_.svg" alt="Nippon Speed Co."/>
+    <div class="style-guide-b-s">Nippon Speed Co. — Design System</div>
+  </div>
+  <div class="ds-topnav-links">
+    <a href="#hero"><div class="navbar-b-m">Hero</div></a>
+    <a href="#type"><div class="navbar-b-m">Type</div></a>
+    <a href="#colors"><div class="navbar-b-m">Colors</div></a>
+    <a href="#components"><div class="navbar-b-m">UI</div></a>
+    <a href="#layout"><div class="navbar-b-m">Layout</div></a>
+    <a href="#motion"><div class="navbar-b-m">Motion</div></a>
+    <a href="#icons"><div class="navbar-b-m">Icons</div></a>
+  </div>
+</nav>
+
+<!-- ===================== 0) HERO (clone exato, texto NSC) ===================== -->
+<section class="section-hero" id="hero">
+  <div class="hero-title-container">
+    <div class="h-hero-full-widht-wrapper">
+      <div class="h-hero-full-widht" style="filter: invert(0%);">
+        <div class="h-left" style="opacity:1;">
+          <h1 class="hero-h1-dl">Nippon</h1>
+          <div class="r-mark"><img alt="" loading="lazy" src="./assets/23403829912a6fa7_69a63d97a107f9948101e6e8__C2_A.svg"/></div>
+        </div>
+        <div class="h-right" style="opacity:1;">
+          <h2 class="hero-h1-dl">speed</h2>
+        </div>
+      </div>
+    </div>
+    <div class="w-layout-blockcontainer container-hero w-container">
+      <div class="hero-content-wrapper">
+        <div class="hero-left">
+          <div class="hero-subheading hide" style="opacity:1;">
+            <div aria-label="THIS IS A DESIGN SYSTEM" class="hero-b-l uppercase">
+              <div class="gsap_split_line-mask"><div class="gsap_split_line">THIS IS A DESIGN </div></div>
+              <div class="gsap_split_line-mask"><div class="gsap_split_line">SYSTEM</div></div>
+            </div>
+          </div>
+          <div class="hero-left-text-block" style="opacity:1;">
+            <div class="hero-text-block-label">
+              <div aria-label="INDEX" class="hero-b-l _2"><div class="gsap_split_line-mask"><div class="gsap_split_line">INDEX</div></div></div>
+              <div aria-label="00 / DS" class="hero-b-l _2"><div class="gsap_split_line-mask"><div class="gsap_split_line">00 / DS</div></div></div>
+            </div>
+            <div class="hero-text-index">
+              <p class="hero-b-m">The Nippon Speed Co. system is a study in restraint and velocity. Anton condensed display, Archivo body, a monochrome surface set, and motion built on line-mask reveals. Documented as living reference — form, contrast, and presence over decoration.</p>
+            </div>
+          </div>
+          <div class="hero-button-wrapper" style="opacity:1;">
+            <div class="hero-button">
+              <a class="primary-button w-inline-block ds-hov" href="#type">
+                <div class="primary-button-wrapper"><div class="button-b-l">[</div></div>
+                <div class="primary-button-text-anim">
+                  <div class="button-b-l">explore system</div>
+                  <div class="button-b-l">explore system</div>
+                </div>
+                <div class="primary-button-wrapper"><div class="button-b-l">]</div></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-mid-right">
+          <div class="hero-mid">
+            <div class="hero-subheading show-in-mobile">
+              <div aria-label="THIS IS A DESIGN SYSTEM" class="hero-b-l uppercase">
+                <div class="gsap_split_line-mask"><div class="gsap_split_line">THIS IS A DESIGN SYSTEM</div></div>
+              </div>
+            </div>
+            <div class="hero-image-wrapper">
+              <div class="hero-image-frame">
+                <div class="hero-image-anim" style="opacity:1;">
+                  <img alt="Editorial motorsport reference image." class="image-hero" loading="lazy"
+                       sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px"
+                       src="./assets/5428ef016440bda3_69a9087cc1f92d54107bfcef_Image.png"
+                       srcset="./assets/a238e866059ca676_69a9087cc1f92d54107bfcef_Image.png 500w, ./assets/ed08d90f161fae33_69a9087cc1f92d54107bfcef_Image.png 800w, ./assets/3afe7ac18a515e0e_69a9087cc1f92d54107bfcef_Image.png 1080w, ./assets/3610273b059ba71e_69a9087cc1f92d54107bfcef_Image.png 1600w, ./assets/5428ef016440bda3_69a9087cc1f92d54107bfcef_Image.png 3000w"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-right" style="opacity:1;">
+            <div class="hero-right-text-block">
+              <div aria-label="ABOUT NSC" class="hero-b-l uppercase">
+                <div class="gsap_split_line-mask"><div class="gsap_split_line">ABOUT NSC</div></div>
+              </div>
+              <p class="hero-b-m">Nippon Speed Co. presents its brand as a curated archive. This is a space for tokens, components, and visual direction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="ds-doc">
+
+  <!-- ===================== 1) TYPOGRAPHY ===================== -->
+  <section class="ds-section" id="type">
+    <div class="ds-section-head">
+      <div class="ds-index"><div class="hero-single-b-s">Typography</div><div class="hero-single-b-s">01</div></div>
+      <h2>Typography</h2>
+      <p class="style-guide-b-m ds-note">Escala real do sistema. Anton (display/headings), Archivo (corpo). Cada preview usa o elemento e a classe exatos do CSS original — sem inline styles, sem normalização. Tamanho / line-height à direita.</p>
+    </div>
+
+    <div class="ds-spec">
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Heading 1</div><div class="style-guide-b-s style-guide">Anton · 400</div></div>
+        <div class="ds-spec-preview"><h1>Grand Prix</h1></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">80px / 80px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Heading 2</div><div class="style-guide-b-s style-guide">Anton · 400</div></div>
+        <div class="ds-spec-preview"><h2>Circuit Line</h2></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">64px / 64px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Heading 3</div><div class="style-guide-b-s style-guide">Anton · 400</div></div>
+        <div class="ds-spec-preview"><h3>Victory Lap</h3></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">56px / 56px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Heading 4</div><div class="style-guide-b-s style-guide">Anton · 400</div></div>
+        <div class="ds-spec-preview"><h4>Pole Position</h4></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">48px / 48px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Heading 5</div><div class="style-guide-b-s style-guide">Anton · 400</div></div>
+        <div class="ds-spec-preview"><h5>Fast Lane Import</h5></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">36px / 36px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Heading 6</div><div class="style-guide-b-s style-guide">Anton · 400</div></div>
+        <div class="ds-spec-preview"><h6>Nippon Speed Company Tokyo</h6></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">24px / 24px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Bold L</div><div class="style-guide-b-s style-guide">Anton · 500</div></div>
+        <div class="ds-spec-preview"><div class="style-guide-b-l">Body large — Anton uppercase</div></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">20px / 24px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Bold S</div><div class="style-guide-b-s style-guide">Archivo · 700</div></div>
+        <div class="ds-spec-preview"><div class="style-guide-b-s">Body small bold — labels &amp; specs</div></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">14px / 17px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Caption</div><div class="style-guide-b-s style-guide">Archivo · 700</div></div>
+        <div class="ds-spec-preview"><div class="style-guide-caption">Caption — metadata, indices, counters</div></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">14px / 17px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Paragraph</div><div class="style-guide-b-s style-guide">Archivo · 500</div></div>
+        <div class="ds-spec-preview"><div class="style-guide-b-m">Body medium — the default paragraph voice. Nippon Speed Co. curates vintage motorsport memorabilia imported from Japan: Grand Prix caps, Schumacher-era pieces, and racing archive.</div></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">16px / 19px</div></div>
+      </div>
+      <div class="ds-spec-row">
+        <div class="ds-spec-name"><div class="style-guide-b-s">Regular S</div><div class="style-guide-b-s style-guide">Archivo · 500</div></div>
+        <div class="ds-spec-preview"><div class="style-guide-b-s style-guide">Body small — captions and compact copy</div></div>
+        <div class="ds-spec-size"><div class="style-guide-b-s">14px / 17px</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2) COLORS & SURFACES ===================== -->
+  <section class="ds-section" id="colors">
+    <div class="ds-section-head">
+      <div class="ds-index"><div class="hero-single-b-s">Colours &amp; Surfaces</div><div class="hero-single-b-s">02</div></div>
+      <h2>Colours &amp; Surfaces</h2>
+      <p class="style-guide-b-m ds-note">Paleta monocromática do sistema (o template de referência não define acentos cromáticos nem gradientes). Swatches usando o componente <code>.color</code> original. Contraste vem do preto puro sobre superfícies claras + a técnica <em>mix-blend-mode: difference</em>.</p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:56px;">
+      <div>
+        <div class="ds-index" style="max-width:100%; margin-bottom:20px;"><div class="hero-single-b-s">Base</div><div class="hero-single-b-s">bg-white / black</div></div>
+        <div class="ds-swatch-grid">
+          <div class="ds-swatch"><div class="color"><div class="style-guide-b-s">#F5F5F5</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Background</div><div class="style-guide-b-s style-guide">--background-color--bg-white</div></div></div>
+          <div class="ds-swatch"><div class="color v2"><div class="style-guide-b-s v2">#000000</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Ink</div><div class="style-guide-b-s style-guide">--neutral-color--black</div></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ds-index" style="max-width:100%; margin-bottom:20px;"><div class="hero-single-b-s">Neutral scale</div><div class="hero-single-b-s">Monochrome</div></div>
+        <div class="ds-swatch-grid">
+          <div class="ds-swatch"><div class="color white"><div class="style-guide-b-s">#F5F5F5</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">White</div><div class="style-guide-b-s style-guide">--neutral-color--white</div></div></div>
+          <div class="ds-swatch"><div class="color grey---50"><div class="style-guide-b-s">#F1F1F1</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Grey 50</div><div class="style-guide-b-s style-guide">--neutral-color--grey-50</div></div></div>
+          <div class="ds-swatch"><div class="color grey---100"><div class="style-guide-b-s">#EFEFEF</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Grey 100</div><div class="style-guide-b-s style-guide">--neutral-color--grey-100</div></div></div>
+          <div class="ds-swatch"><div class="color grey---300"><div class="style-guide-b-s">#D4D4D4</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Grey 200</div><div class="style-guide-b-s style-guide">--neutral-color--grey-200</div></div></div>
+          <div class="ds-swatch"><div class="color grey---300"><div class="style-guide-b-s">#A2A2A2</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Grey 300</div><div class="style-guide-b-s style-guide">--neutral-color--grey-300</div></div></div>
+          <div class="ds-swatch"><div class="color black"><div class="style-guide-b-s v2">#000000</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Black</div><div class="style-guide-b-s style-guide">--neutral-color--black</div></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ds-index" style="max-width:100%; margin-bottom:20px;"><div class="hero-single-b-s">Accent</div><div class="hero-single-b-s">Monochrome</div></div>
+        <div class="ds-swatch-grid">
+          <div class="ds-swatch"><div class="color accent"><div class="style-guide-b-s">#F5F5F5</div></div><div class="ds-swatch-meta"><div class="style-guide-b-s">Accent</div><div class="style-guide-b-s style-guide">--neutral-color--accent-color</div></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ds-index" style="max-width:100%; margin-bottom:20px;"><div class="hero-single-b-s">Surfaces &amp; overlays</div><div class="hero-single-b-s">Components</div></div>
+        <div class="ds-grid">
+          <div class="ds-card"><div class="ds-card-label"><div class="style-guide-b-s">Menu / panel</div><div class="style-guide-b-s style-guide">white + grey-200 border</div></div><div class="style-guide-b-m">Superfície de menu (<code>.navbar-menu</code>): fundo white, borda esquerda 2px grey-200.</div></div>
+          <div class="ds-card"><div class="ds-card-label"><div class="style-guide-b-s">Card / link</div><div class="style-guide-b-s style-guide">grey-50 + grey-200</div></div><div class="style-guide-b-m">Cartão de link (<code>.nav-link</code>): fundo grey-50, borda grey-200, radius 4px.</div></div>
+          <div class="ds-card"><div class="ds-card-label"><div class="style-guide-b-s">Overlay fill</div><div class="style-guide-b-s style-guide">black</div></div><div class="style-guide-b-m">Preenchimentos animados (<code>.nav-link-animation</code>, <code>.button-block-animated</code>): preto puro que revela texto via <em>difference</em>.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3) UI COMPONENTS ===================== -->
+  <section class="ds-section" id="components">
+    <div class="ds-section-head">
+      <div class="ds-index"><div class="hero-single-b-s">UI Components</div><div class="hero-single-b-s">03</div></div>
+      <h2>UI Components</h2>
+      <p class="style-guide-b-m ds-note">Markup e classes exatos do original. Passe o mouse para ver o <strong>end-state</strong> das interações IX2 (fill, wipe, roll, swap de ícone). O template não define estados <em>focus</em>, <em>active</em> ou <em>disabled</em> próprios — só default + hover (IX2) — e não há inputs de formulário, então essas variações são omitidas por fidelidade.</p>
+    </div>
+
+    <div class="ds-grid">
+      <!-- Primary -->
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Primary Button</div><div class="style-guide-b-s style-guide">roll · hover</div></div>
+        <div class="ds-stage">
+          <a class="primary-button w-inline-block ds-hov" href="#components">
+            <div class="primary-button-wrapper"><div class="button-b-l">[</div></div>
+            <div class="primary-button-text-anim">
+              <div class="button-b-l">this is button</div>
+              <div class="button-b-l">this is button</div>
+            </div>
+            <div class="primary-button-wrapper"><div class="button-b-l">]</div></div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">.primary-button · .primary-button-text-anim (height 1.4em, overflow clip)</div>
+      </div>
+
+      <!-- Secondary -->
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Secondary Button</div><div class="style-guide-b-s style-guide">wipe + icon swap</div></div>
+        <div class="ds-stage">
+          <a class="secondary-button w-inline-block ds-hov" href="#components" style="min-width:220px;">
+            <div class="button-block-animated"></div>
+            <div class="button-b-m">this is button</div>
+            <div class="button-icon-wrapper">
+              <div class="button-icon"><img loading="lazy" src="./assets/c923ffc3a017711d_69a65fe9c4538417df2c0b75_arrow.svg" alt=""/></div>
+              <div class="button-icon-hover"><img loading="lazy" src="./assets/666a6755d3955cfb_69a668959c2898f80caf7e29_arrow.svg" alt=""/></div>
+            </div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">.secondary-button · .button-block-animated (width 0→100%) · text via mix-blend difference</div>
+      </div>
+
+      <!-- Tertiary -->
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Tertiary Button</div><div class="style-guide-b-s style-guide">roll · hover</div></div>
+        <div class="ds-stage">
+          <a class="footer-nav-button w-inline-block ds-hov" href="#components">
+            <div class="footer-nav-link">this is button</div>
+            <div class="footer-nav-link">this is button</div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">.footer-nav-button (height 1em, overflow clip) · Archivo 700 uppercase</div>
+      </div>
+
+      <!-- Nav link card -->
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Nav Link</div><div class="style-guide-b-s style-guide">fill · hover</div></div>
+        <div class="ds-stage">
+          <a class="nav-link w-inline-block ds-hov" href="#components" style="width:100%; max-width:320px;">
+            <div class="nav-link-animation" style="height:0%;"></div>
+            <div class="navbar-b-m">collections</div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">.nav-link · .nav-link-animation (height 0→100%) · texto invertido por difference</div>
+      </div>
+
+      <!-- Social icon buttons -->
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Social Icon</div><div class="style-guide-b-s style-guide">swap · hover</div></div>
+        <div class="ds-stage">
+          <a class="nav-social-media w-inline-block ds-hov" href="#components">
+            <div class="nav-icon-social-media">
+              <div class="nav-icon-hover _2"><img class="icon-social-media" loading="lazy" src="./assets/872e6c8896a30086_69a66b118caa9c517fc0316d_Path-.svg" alt=""/></div>
+              <div class="nav-icon-normal"><img class="icon-social-media" loading="lazy" src="./assets/1f0d0dee505d08ef_69a65e89cd6eeffff162a432_Path.svg" alt=""/></div>
+            </div>
+          </a>
+          <a class="nav-social-media w-inline-block ds-hov" href="#components">
+            <div class="nav-icon-social-media">
+              <div class="nav-icon-hover _2"><img class="icon-social-media" loading="lazy" src="./assets/9d450ea1cee14e8d_69a66b1156d2410b124a7626_Path-.svg" alt=""/></div>
+              <div class="nav-icon-normal"><img class="icon-social-media" loading="lazy" src="./assets/a07a26bab390e3a5_69a65e8919678eed5d9fa941_Path_.svg" alt=""/></div>
+            </div>
+          </a>
+          <a class="nav-social-media w-inline-block ds-hov" href="#components">
+            <div class="nav-icon-social-media">
+              <div class="nav-icon-hover _2"><img class="icon-social-media" loading="lazy" src="./assets/4a4a0e3f5f8de5c0_69a66b0921d194bd03e00194_ig.svg" alt=""/></div>
+              <div class="nav-icon-normal"><img class="icon-social-media" loading="lazy" src="./assets/6cdaee07123bc4e8_69a65e89c47bce656869b8d5_Path_.svg" alt=""/></div>
+            </div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">.nav-social-media 24px · opacity swap normal/hover</div>
+      </div>
+
+      <!-- Gallery item card -->
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Gallery Item</div><div class="style-guide-b-s style-guide">reveal · hover</div></div>
+        <div class="ds-stage center">
+          <div class="item-gallery-wrapper" style="width:200px;">
+            <div class="item-gallery-image-item-name">
+              <div class="item-gallery"><img class="item-gallery-image" loading="lazy" src="./assets/e0955baef3ef8b52_69a50b3777165cf717d82997_COBAL.png" alt="Item de galeria."/></div>
+              <div class="item-name-wrapper"><div class="item-name"><div class="background-item-name"><div class="item-gallery-b-l">COBALT GLAZE TRENCH</div></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">.item-gallery-wrapper · imagem + nome (.item-gallery-b-l)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4) LAYOUT & SPACING ===================== -->
+  <section class="ds-section" id="layout">
+    <div class="ds-section-head">
+      <div class="ds-index"><div class="hero-single-b-s">Layout &amp; Spacing</div><div class="hero-single-b-s">04</div></div>
+      <h2>Layout &amp; Spacing</h2>
+      <p class="style-guide-b-m ds-note">Containers, padding de seção e grids reais do sistema. Tokens extraídos do <code>:root</code> do CSS original.</p>
+    </div>
+
+    <div class="ds-spec" style="margin-bottom:56px;">
+      <div class="ds-spec-row"><div class="ds-spec-name"><div class="style-guide-b-s">Container — block</div></div><div class="ds-spec-preview"><div class="style-guide-b-m">Container padrão Webflow, centralizado (940 / 728 / fluido nos breakpoints).</div></div><div class="ds-spec-size"><div class="style-guide-b-s">940px</div></div></div>
+      <div class="ds-spec-row"><div class="ds-spec-name"><div class="style-guide-b-s">Max-width — primary</div></div><div class="ds-spec-preview"><div class="style-guide-b-m">Hero / galeria (full-bleed editorial).</div></div><div class="ds-spec-size"><div class="style-guide-b-s">1600px</div></div></div>
+      <div class="ds-spec-row"><div class="ds-spec-name"><div class="style-guide-b-s">Max-width — secondary</div></div><div class="ds-spec-preview"><div class="style-guide-b-m">Style guide / conteúdo de leitura.</div></div><div class="ds-spec-size"><div class="style-guide-b-s">1200px</div></div></div>
+      <div class="ds-spec-row"><div class="ds-spec-name"><div class="style-guide-b-s">Section padding</div></div><div class="ds-spec-preview"><div class="style-guide-b-m">Gutter horizontal padrão de seção.</div></div><div class="ds-spec-size"><div class="style-guide-b-s">24px</div></div></div>
+      <div class="ds-spec-row"><div class="ds-spec-name"><div class="style-guide-b-s">Style-guide section</div></div><div class="ds-spec-preview"><div class="style-guide-b-m">Padding vertical de seção documental.</div></div><div class="ds-spec-size"><div class="style-guide-b-s">130 / 100px</div></div></div>
+    </div>
+
+    <div class="ds-grid">
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Hero split</div><div class="style-guide-b-s style-guide">left / mid / right</div></div>
+        <div class="ds-layout-demo"><div class="ds-bars" style="flex-direction:row; gap:12px;">
+          <div class="ds-bar" style="flex:1; height:90px;"><div class="style-guide-b-s">left</div></div>
+          <div class="ds-bar" style="flex:1.2; height:90px;"><div class="style-guide-b-s">image</div></div>
+          <div class="ds-bar" style="flex:.8; height:90px;"><div class="style-guide-b-s">right</div></div>
+        </div></div>
+        <div class="style-guide-b-s style-guide ds-caption">.hero-content-wrapper (flex) · left absoluto ao rodapé, mid-right com padding-left 30%</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Stacked doc</div><div class="style-guide-b-s style-guide">130px gap</div></div>
+        <div class="ds-layout-demo"><div class="ds-bars">
+          <div class="ds-bar">colours</div><div class="ds-bar">typography</div><div class="ds-bar">button</div>
+        </div></div>
+        <div class="style-guide-b-s style-guide ds-caption">.style-guide-content-wrapper · flex column, row-gap 130px</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Neutral grid</div><div class="style-guide-b-s style-guide">5 columns</div></div>
+        <div class="ds-layout-demo"><div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px;">
+          <div class="ds-bar" style="height:44px;"></div><div class="ds-bar" style="height:44px;"></div><div class="ds-bar" style="height:44px;"></div><div class="ds-bar" style="height:44px;"></div><div class="ds-bar" style="height:44px;"></div>
+        </div></div>
+        <div class="style-guide-b-s style-guide ds-caption">.neutral-color · grid 1fr×5, gap 10px</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5) MOTION & INTERACTION ===================== -->
+  <section class="ds-section" id="motion">
+    <div class="ds-section-head">
+      <div class="ds-index"><div class="hero-single-b-s">Motion &amp; Interaction</div><div class="hero-single-b-s">05</div></div>
+      <h2>Motion &amp; Interaction</h2>
+      <p class="style-guide-b-m ds-note">Comportamentos de motion do sistema. O <strong>reveal de entrada</strong> roda ao vivo via IntersectionObserver + transições CSS (translate/opacity suave), com <em>progressive enhancement</em>: o conteúdo é visível por padrão e a animação só entra se o JS rodar. Os hovers reproduzem o end-state das interações IX2.</p>
+    </div>
+
+    <div class="ds-grid">
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Line-mask reveal</div><div class="style-guide-b-s style-guide">SplitText · scroll</div></div>
+        <div class="ds-stage"><h4 data-ds-reveal>Form. Material.<br/>Presence.</h4></div>
+        <div class="style-guide-b-s style-guide ds-caption">IntersectionObserver + transition translateY/opacity — entra quando a seção aparece</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Button roll</div><div class="style-guide-b-s style-guide">hover</div></div>
+        <div class="ds-stage">
+          <a class="primary-button w-inline-block ds-hov" href="#motion">
+            <div class="primary-button-wrapper"><div class="button-b-l">[</div></div>
+            <div class="primary-button-text-anim"><div class="button-b-l">hover me</div><div class="button-b-l">hover me</div></div>
+            <div class="primary-button-wrapper"><div class="button-b-l">]</div></div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">translateY(-1.4em) dentro do clip</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Link fill</div><div class="style-guide-b-s style-guide">hover</div></div>
+        <div class="ds-stage">
+          <a class="nav-link w-inline-block ds-hov" href="#motion" style="width:100%; max-width:320px;">
+            <div class="nav-link-animation" style="height:0%;"></div>
+            <div class="navbar-b-m">hover me</div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">height 0→100% + mix-blend difference</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Block wipe</div><div class="style-guide-b-s style-guide">hover</div></div>
+        <div class="ds-stage">
+          <a class="secondary-button w-inline-block ds-hov" href="#motion" style="min-width:220px;">
+            <div class="button-block-animated"></div>
+            <div class="button-b-m">hover me</div>
+            <div class="button-icon-wrapper">
+              <div class="button-icon"><img loading="lazy" src="./assets/c923ffc3a017711d_69a65fe9c4538417df2c0b75_arrow.svg" alt=""/></div>
+              <div class="button-icon-hover"><img loading="lazy" src="./assets/666a6755d3955cfb_69a668959c2898f80caf7e29_arrow.svg" alt=""/></div>
+            </div>
+          </a>
+        </div>
+        <div class="style-guide-b-s style-guide ds-caption">width 0→100% + icon opacity swap</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Spin loader</div><div class="style-guide-b-s style-guide">@keyframes spin</div></div>
+        <div class="ds-stage center"><div class="ds-spin"></div></div>
+        <div class="style-guide-b-s style-guide ds-caption">animation: spin 1.1s linear infinite (keyframe do CSS original)</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-label"><div class="style-guide-b-s">Cursor</div><div class="style-guide-b-s style-guide">native</div></div>
+        <div class="ds-stage center"><div class="style-guide-b-m" style="text-align:center;">Cursor nativo do sistema — o cursor customizado foi removido para manter a leitura limpa. A intenção de motion vem dos <em>hover states</em> dos componentes.</div></div>
+        <div class="style-guide-b-s style-guide ds-caption">cursor nativo · sem elemento flutuante · hovers carregam o motion</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6) ICONS ===================== -->
+  <section class="ds-section" id="icons">
+    <div class="ds-section-head">
+      <div class="ds-index"><div class="hero-single-b-s">Icons</div><div class="hero-single-b-s">06</div></div>
+      <h2>Icons</h2>
+      <p class="style-guide-b-m ds-note">Sistema de ícones do template: SVGs inline via <code>&lt;img&gt;</code>, cada um com variante normal/hover trocada por opacity. Tamanhos herdados do container (24 / 14 / 13px). Markup e classes originais.</p>
+    </div>
+
+    <div class="ds-card" style="background:var(--neutral-color--white);">
+      <div class="ds-icon-row">
+        <div class="ds-icon-cell"><img style="height:24px;" src="./assets/e70c1b874af1ed35_69a65d522f649fabc29a14f6_Logo_.svg" alt="Logo"/><div class="style-guide-b-s">Logo</div><div class="style-guide-b-s style-guide">140×40</div></div>
+        <div class="ds-icon-cell"><img style="height:24px;" src="./assets/23403829912a6fa7_69a63d97a107f9948101e6e8__C2_A.svg" alt="R mark"/><div class="style-guide-b-s">® mark</div><div class="style-guide-b-s style-guide">r-mark</div></div>
+        <div class="ds-icon-cell"><img style="height:20px;" src="./assets/ab33e16bdee2798e_69cb87d31e0a5864423624fd_menu_.svg" alt="Menu"/><div class="style-guide-b-s">Menu</div><div class="style-guide-b-s style-guide">open</div></div>
+        <div class="ds-icon-cell"><img style="height:20px;" src="./assets/75971904da857823_69cb87d4b03948ae45ad28ca_x_20_.svg" alt="Close"/><div class="style-guide-b-s">Close</div><div class="style-guide-b-s style-guide">x</div></div>
+        <div class="ds-icon-cell"><img style="height:14px;" src="./assets/c923ffc3a017711d_69a65fe9c4538417df2c0b75_arrow.svg" alt="Arrow"/><div class="style-guide-b-s">Arrow</div><div class="style-guide-b-s style-guide">14px</div></div>
+        <div class="ds-icon-cell"><img style="height:14px;" src="./assets/1f0d0dee505d08ef_69a65e89cd6eeffff162a432_Path.svg" alt="Social"/><div class="style-guide-b-s">Social</div><div class="style-guide-b-s style-guide">path</div></div>
+        <div class="ds-icon-cell"><img style="height:14px;" src="./assets/a07a26bab390e3a5_69a65e8919678eed5d9fa941_Path_.svg" alt="Social"/><div class="style-guide-b-s">Social</div><div class="style-guide-b-s style-guide">path 1</div></div>
+        <div class="ds-icon-cell"><img style="height:14px;" src="./assets/4a4a0e3f5f8de5c0_69a66b0921d194bd03e00194_ig.svg" alt="Instagram"/><div class="style-guide-b-s">Instagram</div><div class="style-guide-b-s style-guide">ig</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Motion layer: IntersectionObserver reveals + CSS hovers only.
+     No animation library needed — content is visible by default; JS just enhances entry.
+     (GSAP / SplitText / ScrollTrigger were removed: the reveal now runs on IO + CSS.) -->
+<script>
+(function () {
+  var docEl = document.documentElement;
+  var SEL = '.ds-section-head, .ds-spec-row, .ds-card, .ds-swatch, .ds-icon-cell, [data-ds-reveal]';
+  var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function revealAll(){ els.forEach(function (el){ el.classList.add('is-in'); }); }
+
+  // Fallbacks: reduced motion or no IntersectionObserver => drop the hidden state, show all.
+  if (reduce || !('IntersectionObserver' in window)) {
+    docEl.classList.remove('ds-js');
+    revealAll();
+    return;
+  }
+
+  // Gentle stagger within each parent group (capped so nothing lags far behind).
+  els.forEach(function (el){
+    var sibs = el.parentNode ? el.parentNode.children : [el];
+    var i = Array.prototype.indexOf.call(sibs, el);
+    el.style.transitionDelay = (Math.min(i, 6) * 55) + 'ms';
+  });
+
+  var io = new IntersectionObserver(function (entries){
+    entries.forEach(function (e){
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+  els.forEach(function (el){ io.observe(el); });
+
+  // Safety net: never leave anything stuck hidden if the observer stalls.
+  setTimeout(revealAll, 2500);
+})();
+</script>
+
+</body>
+</html>

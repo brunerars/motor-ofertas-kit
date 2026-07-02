@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Nippon Speed Co. — Memorabilia de Fórmula 1 garimpada no Japão</title>
+<meta name="description" content="Nippon Speed Co. — memorabilia de Fórmula 1 e automobilismo vintage, garimpada no Japão e importada pro Brasil. Peças de coleção 1962 → 2000."/>
+
+<!-- Fonts: Anton (display) + Archivo (body) via Google Fonts CDN -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<style>
+  /* ============================= TOKENS ============================= */
+  :root{
+    --bg:#0B0B0C;
+    --surface:#141416;
+    --border:rgba(255,255,255,.08);
+    --border-strong:rgba(255,255,255,.16);
+    --text:#F5F5F5;
+    --muted:#A2A2A2;
+    --red:#E10600;
+    --red-hover:#ff1a0d;
+    --max:1280px;
+    --pad:clamp(20px,5vw,64px);
+    --anton:'Anton',sans-serif;
+    --archivo:'Archivo',sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:var(--archivo);font-weight:500;
+    line-height:1.5;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  h1,h2,h3,h4{font-family:var(--anton);font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.01em}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  .eyebrow{font-family:var(--archivo);font-weight:700;text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--muted)}
+  .eyebrow .dot{color:var(--red)}
+
+  /* checkered hairline motif */
+  .checker{height:8px;width:100%;
+    background-image:
+      linear-gradient(45deg,var(--red) 25%,transparent 25%),
+      linear-gradient(-45deg,var(--red) 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,var(--red) 75%),
+      linear-gradient(-45deg,transparent 75%,var(--red) 75%);
+    background-size:16px 16px;
+    background-position:0 0,0 8px,8px -8px,-8px 0;
+    opacity:.9;
+  }
+
+  /* ============================= BUTTONS ============================= */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--archivo);font-weight:700;text-transform:uppercase;
+    letter-spacing:.08em;font-size:14px;
+    padding:15px 26px;border-radius:2px;cursor:pointer;
+    transition:transform .3s ease,background-color .3s ease,box-shadow .3s ease;
+    border:1px solid transparent;white-space:nowrap;
+  }
+  .btn-red{background:var(--red);color:#fff;box-shadow:0 0 0 rgba(225,6,0,0)}
+  .btn-red:hover{background:var(--red-hover);transform:translateY(-2px);box-shadow:0 10px 30px rgba(225,6,0,.35)}
+  .btn-red .arrow{transition:transform .3s ease}
+  .btn-red:hover .arrow{transform:translateX(4px)}
+  .btn-big{font-size:16px;padding:20px 40px}
+  .btn-ghost{border-color:var(--border-strong);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--red);color:var(--red)}
+
+  /* ============================= NAV ============================= */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:20px;height:68px;padding:0 var(--pad);
+    background:rgba(11,11,12,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo img{height:26px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-links a{font-family:var(--archivo);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--muted);transition:color .25s ease}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{display:flex;align-items:center}
+  .nav .lbl-short{display:none}
+  @media(max-width:860px){
+    .nav-links{display:none}
+    .nav-cta .btn{padding:12px 16px;font-size:12px}
+  }
+  @media(max-width:480px){
+    .nav .lbl-full{display:none}
+    .nav .lbl-short{display:inline}
+  }
+
+  /* ============================= HERO ============================= */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;
+    padding-top:120px;padding-bottom:64px;overflow:hidden}
+  /* Cap hero height only on abnormally tall viewports (headless capture);
+     real screens (<1000px tall) keep the full 100vh feel untouched. */
+  @media(min-height:1000px){ .hero{min-height:900px} }
+  .hero-bg{position:absolute;inset:0;z-index:0;
+    background:url('assets/img/hero-bg.jpg') center/cover no-repeat;}
+  .hero-overlay{position:absolute;inset:0;z-index:1;
+    background:
+      linear-gradient(180deg,rgba(11,11,12,.55) 0%,rgba(11,11,12,.72) 55%,rgba(11,11,12,.96) 100%),
+      rgba(11,11,12,.72);
+  }
+  .hero .wrap{position:relative;z-index:2;width:100%}
+  .hero-inner{display:flex;flex-direction:column;gap:26px;max-width:900px}
+  .hinomaru{width:54px;height:54px;border-radius:50%;background:var(--red);
+    box-shadow:0 0 60px rgba(225,6,0,.55);flex:none}
+  .hero h1{font-size:clamp(56px,13vw,168px);letter-spacing:.005em}
+  .hero h1 .co{color:var(--red)}
+  .hero-sub{font-size:clamp(17px,2.2vw,23px);color:var(--text);max-width:620px;font-weight:500;line-height:1.35}
+  .hero-micro{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    font-family:var(--archivo);font-weight:700;text-transform:uppercase;letter-spacing:.16em;
+    font-size:13px;color:var(--muted)}
+  .hero-micro .sep{width:26px;height:2px;background:var(--red);display:inline-block}
+  .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:6px}
+  .hero-checker{position:absolute;bottom:0;left:0;right:0;z-index:2}
+
+  /* ============================= SECTION SHELL ============================= */
+  section.block{padding:clamp(72px,10vw,130px) 0;position:relative}
+  .sec-head{display:flex;flex-direction:column;gap:18px;margin-bottom:56px;max-width:760px}
+  .sec-head h2{font-size:clamp(34px,6vw,72px)}
+  .sec-head p{color:var(--muted);font-size:17px;max-width:620px}
+  .index-line{display:flex;align-items:center;gap:14px;font-family:var(--archivo);font-weight:700;
+    text-transform:uppercase;letter-spacing:.2em;font-size:12px;color:var(--muted)}
+  .index-line .num{color:var(--red)}
+
+  /* ============================= FEATURED ITEM ============================= */
+  #peca{border-top:1px solid var(--border);background:
+    radial-gradient(1200px 600px at 85% -10%,rgba(225,6,0,.08),transparent 60%)}
+  .item-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:start}
+  .gallery{display:flex;flex-direction:column;gap:16px;position:sticky;top:96px}
+  .gallery-main{background:var(--surface);border:1px solid var(--border);border-radius:4px;
+    overflow:hidden;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+  .gallery-main img{width:100%;height:100%;object-fit:cover}
+  .thumbs{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+  .thumb{background:var(--surface);border:1px solid var(--border);border-radius:3px;overflow:hidden;
+    aspect-ratio:1/1;cursor:pointer;padding:0;transition:border-color .25s ease,transform .25s ease}
+  .thumb img{width:100%;height:100%;object-fit:cover;opacity:.65;transition:opacity .25s ease}
+  .thumb:hover img{opacity:1}
+  .thumb.active{border-color:var(--red)}
+  .thumb.active img{opacity:1}
+
+  .item-info{display:flex;flex-direction:column;gap:22px}
+  .item-brand{font-family:var(--archivo);font-weight:700;text-transform:uppercase;letter-spacing:.2em;
+    font-size:13px;color:var(--red)}
+  .item-info h2{font-size:clamp(32px,5vw,56px)}
+  .item-desc{color:var(--muted);font-size:17px;line-height:1.6;max-width:520px}
+  .badges{display:flex;flex-wrap:wrap;gap:10px}
+  .badge{display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--archivo);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12px;
+    padding:8px 14px;border:1px solid var(--border-strong);border-radius:2px;color:var(--text)}
+  .badge .b-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
+  .price-line{border:1px solid var(--border);background:var(--surface);border-radius:4px;
+    padding:22px 24px;display:flex;flex-direction:column;gap:6px}
+  .price-line .label{font-family:var(--archivo);font-weight:700;text-transform:uppercase;letter-spacing:.16em;
+    font-size:11px;color:var(--muted)}
+  .price-line .value{font-family:var(--anton);text-transform:uppercase;font-size:26px;line-height:1.1}
+  .price-line .value b{color:var(--red);font-weight:400}
+  .item-meta{display:flex;gap:28px;flex-wrap:wrap;padding-top:4px}
+  .item-meta .m{display:flex;flex-direction:column;gap:3px}
+  .item-meta .m span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .item-meta .m strong{font-family:var(--archivo);font-weight:600;font-size:15px}
+
+  /* ============================= COMO FUNCIONA ============================= */
+  #como{border-top:1px solid var(--border)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+    display:flex;flex-direction:column;transition:border-color .3s ease,transform .3s ease}
+  .step:hover{border-color:var(--border-strong);transform:translateY(-4px)}
+  .step-img{aspect-ratio:4/3;overflow:hidden;background:#000}
+  .step-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .step:hover .step-img img{transform:scale(1.04)}
+  .step-body{padding:26px 24px 30px;display:flex;flex-direction:column;gap:12px}
+  .step-num{font-family:var(--anton);font-size:15px;letter-spacing:.05em;color:var(--red)}
+  .step-body h3{font-size:24px}
+  .step-body p{color:var(--muted);font-size:15px;line-height:1.55}
+
+  /* ============================= TIMELINE / ANOS ============================= */
+  #anos{border-top:1px solid var(--border);background:var(--surface)}
+  .years{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .year{position:relative;border:1px solid var(--border);border-radius:4px;overflow:hidden;aspect-ratio:3/4;
+    background:#000}
+  .year img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:opacity .4s ease,transform .6s ease}
+  .year:hover img{opacity:1;transform:scale(1.05)}
+  .year .yr{position:absolute;left:0;bottom:0;right:0;padding:14px 14px;z-index:2;
+    background:linear-gradient(180deg,transparent,rgba(11,11,12,.9));
+    font-family:var(--anton);font-size:26px;color:#fff}
+  .year .yr b{color:var(--red);font-weight:400}
+
+  /* ============================= VITRINE / ACERVO ============================= */
+  #vitrine{border-top:1px solid var(--border)}
+  .vit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .vit-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+    display:flex;flex-direction:column;transition:border-color .3s ease,transform .3s ease}
+  .vit-card:hover{border-color:var(--red);transform:translateY(-4px)}
+  .vit-img{aspect-ratio:1/1;overflow:hidden;background:#000}
+  .vit-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .vit-card:hover .vit-img img{transform:scale(1.05)}
+  .vit-body{padding:22px;display:flex;flex-direction:column;gap:9px}
+  .vit-tag{font-family:var(--archivo);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--red)}
+  .vit-body h3{font-size:22px}
+  .vit-price{font-family:var(--archivo);font-weight:600;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .vit-cta{align-items:center;justify-content:center;text-align:center;gap:16px;padding:36px;border-style:dashed}
+  .vit-cta .hinomaru{width:42px;height:42px}
+  .vit-cta h3{font-size:24px}
+  .vit-cta .arrow{color:var(--red)}
+  @media(max-width:820px){.vit-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.vit-grid{grid-template-columns:1fr}}
+
+  /* ============================= CTA FINAL ============================= */
+  #cta{position:relative;border-top:1px solid var(--border);overflow:hidden;
+    background:radial-gradient(900px 500px at 50% 120%,rgba(225,6,0,.18),transparent 60%)}
+  .cta-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px;
+    padding:clamp(60px,9vw,110px) 0}
+  .cta-inner .hinomaru{margin-bottom:4px}
+  .cta-inner h2{font-size:clamp(38px,7vw,88px);max-width:14ch}
+  .cta-inner h2 .red{color:var(--red)}
+  .cta-inner p{color:var(--muted);font-size:18px;max-width:520px}
+
+  /* ============================= FOOTER ============================= */
+  footer{border-top:1px solid var(--border);background:var(--bg)}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    padding:44px 0}
+  .foot-logo img{height:26px}
+  .foot-tag{font-family:var(--archivo);font-weight:700;text-transform:uppercase;letter-spacing:.16em;
+    font-size:12px;color:var(--muted)}
+  .foot-tag b{color:var(--red);font-weight:700}
+  .foot-year{font-family:var(--archivo);font-weight:600;font-size:12px;color:var(--muted);letter-spacing:.1em}
+
+  /* ============================= RESPONSIVE ============================= */
+  @media(max-width:960px){
+    .item-grid{grid-template-columns:1fr}
+    .gallery{position:static;top:auto}
+    .steps{grid-template-columns:1fr}
+    .years{grid-template-columns:repeat(3,1fr)}
+  }
+  @media(max-width:560px){
+    .years{grid-template-columns:repeat(2,1fr)}
+    .thumbs{grid-template-columns:repeat(4,1fr)}
+    .item-meta{gap:18px}
+    .hero{min-height:92vh}
+  }
+
+  /* ============================= MOTION ============================= */
+  /* Resting state is ALWAYS visible (opacity:1). The reveal plays as a Web
+     Animation ON TOP when an element scrolls into view — it never persists a
+     hidden state, so content can never get stuck invisible (no JS / reduced
+     motion / early capture => fully visible). */
+  .reveal{opacity:1}
+</style>
+</head>
+
+<body>
+<!-- CTA de teste: WhatsApp direto (número de teste do Bruno, 11974052313). Trocar pelo convite do grupo quando existir. -->
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <a class="nav-logo" href="#top" aria-label="Nippon Speed Co."><img src="assets/img/logo-mark.png" alt="Nippon Speed Co."/></a>
+  <div class="nav-links">
+    <a href="#peca">Peças</a>
+    <a href="#como">Como funciona</a>
+    <a href="#cta">Grupo</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-red" href="https://wa.me/5511974052313?text=Oi!%20Quero%20acompanhar%20as%20pe%C3%A7as%20da%20Nippon%20Speed%20Co." target="_blank" rel="noopener"><span class="lbl-full">Entrar no grupo</span><span class="lbl-short">Grupo</span></a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="hero-bg" role="img" aria-label="Grid de largada de Fórmula 1 — carros que marcaram época"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hinomaru reveal" aria-hidden="true"></div>
+      <div class="eyebrow reveal">Memorabilia de automobilismo <span class="dot">•</span> garimpada no Japão</div>
+      <h1 class="reveal">Nippon<br/>Speed <span class="co">Co.</span></h1>
+      <p class="hero-sub reveal">Memorabilia de Fórmula 1 e automobilismo vintage, garimpada no Japão e importada pro Brasil.</p>
+      <div class="hero-micro reveal">
+        <span>1962</span><span class="sep"></span><span>2000</span>
+        <span class="sep"></span><span>Tóquio</span><span class="sep"></span><span>Brasil</span>
+      </div>
+      <div class="hero-actions reveal">
+        <a class="btn btn-red btn-big" href="https://wa.me/5511974052313?text=Oi!%20Quero%20acompanhar%20as%20pe%C3%A7as%20da%20Nippon%20Speed%20Co." target="_blank" rel="noopener">Entrar no grupo <span class="arrow">→</span></a>
+        <a class="btn btn-ghost btn-big" href="#peca">Ver a peça em destaque</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-checker checker" aria-hidden="true"></div>
+</header>
+
+<!-- ===================== PEÇA EM DESTAQUE ===================== -->
+<section class="block" id="peca">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="index-line"><span class="num">01</span> <span>Peça em destaque</span></div>
+      <h2>Da grid japonesa<br/>pro seu acervo</h2>
+      <p>Uma peça de cada vez, garimpada à mão no Japão. Esta é a que está no grupo agora.</p>
+    </div>
+
+    <div class="item-grid">
+      <!-- Galeria -->
+      <div class="gallery reveal">
+        <div class="gallery-main">
+          <img id="mainPhoto" src="assets/produto/1.jpg" alt="Benetton Formula 1 Racing Team — Boné Vermelho, foto principal"/>
+        </div>
+        <div class="thumbs" id="thumbs">
+          <button class="thumb active" data-src="assets/produto/1.jpg" aria-label="Foto 1"><img src="assets/produto/1.jpg" alt="Boné Benetton F1 — foto 1"/></button>
+          <button class="thumb" data-src="assets/produto/2.jpg" aria-label="Foto 2"><img src="assets/produto/2.jpg" alt="Boné Benetton F1 — foto 2"/></button>
+          <button class="thumb" data-src="assets/produto/3.jpg" aria-label="Foto 3"><img src="assets/produto/3.jpg" alt="Boné Benetton F1 — foto 3"/></button>
+          <button class="thumb" data-src="assets/produto/4.jpg" aria-label="Foto 4"><img src="assets/produto/4.jpg" alt="Boné Benetton F1 — foto 4"/></button>
+          <button class="thumb" data-src="assets/produto/5.jpg" aria-label="Foto 5"><img src="assets/produto/5.jpg" alt="Boné Benetton F1 — foto 5"/></button>
+          <button class="thumb" data-src="assets/produto/6.jpg" aria-label="Foto 6"><img src="assets/produto/6.jpg" alt="Boné Benetton F1 — foto 6"/></button>
+          <button class="thumb" data-src="assets/produto/7.jpg" aria-label="Foto 7"><img src="assets/produto/7.jpg" alt="Boné Benetton F1 — foto 7"/></button>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="item-info reveal">
+        <div class="item-brand">United Colors of Benetton</div>
+        <h2>Benetton Formula 1<br/>Racing Team — Boné Vermelho</h2>
+        <div class="badges">
+          <span class="badge"><span class="b-dot"></span>Vintage anos 80–90</span>
+          <span class="badge"><span class="b-dot"></span>Sem danos aparentes</span>
+          <span class="badge"><span class="b-dot"></span>Uso mínimo</span>
+        </div>
+        <p class="item-desc">Boné da Benetton Formula 1 Racing Team. Item vintage da equipe que marcou a Fórmula 1 do fim dos anos 80 aos anos 90. Há uma pequena mancha preta na aba, mas quase imperceptível.</p>
+
+        <div class="item-meta">
+          <div class="m"><span>Categoria</span><strong>Boné / Cap</strong></div>
+          <div class="m"><span>Equipe</span><strong>Benetton F1</strong></div>
+          <div class="m"><span>Origem</span><strong>Japão → Brasil</strong></div>
+        </div>
+
+        <div class="price-line">
+          <div class="label">Investimento</div>
+          <div class="value">Valor e frete <b>sob consulta no grupo</b></div>
+        </div>
+
+        <div>
+          <a class="btn btn-red btn-big" href="https://wa.me/5511974052313?text=Oi!%20Quero%20essa%20pe%C3%A7a%3A%20Benetton%20F1%20Racing%20Team%20%E2%80%94%20Bon%C3%A9%20Vermelho%20(ref%20m71370664392).%20Valor%20e%20frete%3F" target="_blank" rel="noopener">Quero essa peça <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMO FUNCIONA ===================== -->
+<section class="block" id="como">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="index-line"><span class="num">02</span> <span>Como funciona</span></div>
+      <h2>Do Japão pro Brasil,<br/>sem atravessador</h2>
+      <p>Curadoria na origem, importação com nota fiscal e oferta direto no grupo. Simples e rastreável.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step reveal">
+        <div class="step-img"><img src="assets/img/como-funciona-01.png" alt="Curadoria de peças no Japão"/></div>
+        <div class="step-body">
+          <div class="step-num">Passo 01</div>
+          <h3>Garimpo no Japão</h3>
+          <p>Caçamos peças de coleção nos leilões e brechós japoneses — bonés de equipe, itens de Grand Prix e memorabilia que marcou época. Curadoria à mão, uma por uma.</p>
+        </div>
+      </article>
+      <article class="step reveal">
+        <div class="step-img"><img src="assets/img/como-funciona-02.png" alt="Importação e nota fiscal"/></div>
+        <div class="step-body">
+          <div class="step-num">Passo 02</div>
+          <h3>Importação legal</h3>
+          <p>Trazemos pro Brasil com logística própria e nota fiscal. Cada peça chega conferida, fotografada e com a história registrada. Sem pegadinha, sem cinza.</p>
+        </div>
+      </article>
+      <article class="step reveal">
+        <div class="step-img"><img src="assets/img/como-funciona-03.png" alt="Oferta no grupo de WhatsApp"/></div>
+        <div class="step-body">
+          <div class="step-num">Passo 03</div>
+          <h3>Oferta no grupo</h3>
+          <p>A peça entra no grupo do WhatsApp com fotos e detalhes. Quem está dentro vê primeiro e fecha valor e frete direto com a gente. Quem gosta, leva.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAIXA DE ANOS ===================== -->
+<section class="block" id="anos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="index-line"><span class="num">03</span> <span>Linha do tempo</span></div>
+      <h2>As eras que<br/>garimpamos</h2>
+      <p>De 1988 à virada dos anos 2000 — a Fórmula 1 que virou lenda, em peças que sobreviveram.</p>
+    </div>
+
+    <div class="years">
+      <div class="year reveal"><img src="assets/img/1988.png" alt="Memorabilia F1 de 1988"/><div class="yr"><b>'</b>88</div></div>
+      <div class="year reveal"><img src="assets/img/1992.png" alt="Memorabilia F1 de 1992"/><div class="yr"><b>'</b>92</div></div>
+      <div class="year reveal"><img src="assets/img/1994.png" alt="Memorabilia F1 de 1994"/><div class="yr"><b>'</b>94</div></div>
+      <div class="year reveal"><img src="assets/img/1998.png" alt="Memorabilia F1 de 1998"/><div class="yr"><b>'</b>98</div></div>
+      <div class="year reveal"><img src="assets/img/2000.png" alt="Memorabilia F1 de 2000"/><div class="yr"><b>'</b>00</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VITRINE / ACERVO ===================== -->
+<section class="block" id="vitrine">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="index-line"><span class="num">04</span> <span>No acervo</span></div>
+      <h2>Também garimpados,<br/>também no grupo</h2>
+      <p>Uma amostra do que passa pelo grupo. Peça única — quando some, some.</p>
+    </div>
+    <div class="vit-grid">
+      <a class="vit-card reveal" href="https://wa.me/5511974052313?text=Oi!%20Quero%20saber%20sobre%20o%20bon%C3%A9%20Suzuka%20Circuit%20F1%20GP%20Jap%C3%A3o%20'90%20(ref%20m23690681862)." target="_blank" rel="noopener">
+        <div class="vit-img"><img src="assets/acervo/suzuka90.jpg" alt="Boné Suzuka Circuit F1 GP Japão 1990"/></div>
+        <div class="vit-body"><div class="vit-tag">Boné · GP Japão</div><h3>Suzuka Circuit '90</h3><span class="vit-price">Sob consulta no grupo</span></div>
+      </a>
+      <a class="vit-card reveal" href="https://wa.me/5511974052313?text=Oi!%20Quero%20saber%20sobre%20o%20bon%C3%A9%20Red%20Bull%20Honda%20F1%20GP%20Jap%C3%A3o%202019%20(ref%20m50127608359)." target="_blank" rel="noopener">
+        <div class="vit-img"><img src="assets/acervo/redbull2019.jpg" alt="Boné Red Bull Honda F1 GP Japão 2019"/></div>
+        <div class="vit-body"><div class="vit-tag">Boné · Red Bull Honda</div><h3>GP Japão 2019</h3><span class="vit-price">Sob consulta no grupo</span></div>
+      </a>
+      <a class="vit-card vit-cta reveal" href="https://wa.me/5511974052313?text=Oi!%20Quero%20acompanhar%20as%20pe%C3%A7as%20da%20Nippon%20Speed%20Co." target="_blank" rel="noopener">
+        <div class="hinomaru" aria-hidden="true"></div>
+        <h3>Tem mais no grupo</h3>
+        <span class="vit-price">Novidades toda semana <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section id="cta">
+  <div class="checker" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cta-inner">
+      <div class="hinomaru reveal" aria-hidden="true"></div>
+      <h2 class="reveal">Entre no grupo e receba as peças <span class="red">antes de todo mundo</span></h2>
+      <p class="reveal">Curadoria semanal de memorabilia de F1 e automobilismo, direto do Japão. Sem spam — só as peças e a chance de fechar primeiro.</p>
+      <a class="btn btn-red btn-big reveal" href="https://wa.me/5511974052313?text=Oi!%20Quero%20acompanhar%20as%20pe%C3%A7as%20da%20Nippon%20Speed%20Co." target="_blank" rel="noopener">Entrar no grupo <span class="arrow">→</span></a>
+    </div>
+  </div>
+  <div class="checker" aria-hidden="true"></div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap foot">
+    <div class="foot-logo"><img src="assets/img/logo-mark.png" alt="Nippon Speed Co."/></div>
+    <div class="foot-tag">Nippon Speed Co. — Japão <b>→</b> Brasil</div>
+    <div class="foot-year">© 2026 · Nippon Speed Co.</div>
+  </div>
+</footer>
+
+<!-- ===================== JS: galeria + reveal ===================== -->
+<script>
+(function(){
+  /* ---- Galeria: troca imagem principal ao clicar na miniatura ---- */
+  var main = document.getElementById('mainPhoto');
+  var thumbs = document.querySelectorAll('#thumbs .thumb');
+  thumbs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var src = t.getAttribute('data-src');
+      if(main) main.src = src;
+      thumbs.forEach(function(x){ x.classList.remove('active'); });
+      t.classList.add('active');
+    });
+  });
+
+  /* ---- Reveal on scroll: IntersectionObserver + Web Animations API ----
+     Resting state stays visible; the reveal is played as an animation on top.
+     No persistent hidden state => content is never trapped invisible. */
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(reduce || !('IntersectionObserver' in window) || !document.body.animate){
+    return; /* content already visible; skip motion */
+  }
+
+  /* No fill: outside the active window the element uses its resting (visible)
+     state, so it is never held invisible during the stagger delay. */
+  function play(el, delay){
+    el.animate(
+      [{opacity:0, transform:'translateY(16px)'},{opacity:1, transform:'none'}],
+      {duration:550, delay:delay||0, easing:'cubic-bezier(.2,.6,.2,1)', fill:'none'}
+    );
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var sibs = e.target.parentNode ? e.target.parentNode.children : [e.target];
+        var i = Array.prototype.indexOf.call(sibs, e.target);
+        play(e.target, Math.min(i,6) * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

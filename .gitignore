@@ -1,0 +1,22 @@
+# Segredos — NUNCA versionar
+.env
+*.env
+!.env.example
+.credentials.json
+bw-jwt.txt
+
+# Vercel / build
+.vercel/
+lp/.vercel/
+node_modules/
+*.local
+
+# Firecrawl — dumps brutos intermediários
+marca/acervo/**/_raw.json
+lp/**/_raw.json
+
+# Temp / OS / editor
+*.tmp
+_verify_tmp.html
+.DS_Store
+Thumbs.db
