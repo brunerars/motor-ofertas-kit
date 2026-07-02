@@ -15,6 +15,9 @@ node_modules/
 marca/acervo/**/_raw.json
 lp/**/_raw.json
 
+# Referência de design (input do /marca, pesada, regenerável — não runtime)
+marca/referencia/
+
 # Temp / OS / editor
 *.tmp
 _verify_tmp.html
