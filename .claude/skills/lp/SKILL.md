@@ -22,8 +22,19 @@ Gera a landing de uma loja de logística Mercari e sobe na Vercel pra teste ráp
 1. Montar `<projeto>/lp/` **self-contained**: `index.html` (fontes Anton+Archivo via Google Fonts CDN; CSS inline), `assets/img/` (marca), `assets/produto/` + `assets/acervo/` (fotos locais — **nada de hotlink**).
 2. Estrutura (do `roteiro-lp.md`): nav · hero (bg de época **sem texto embutido** — recortar) · peça em destaque (galeria) · como funciona (3 passos de `logistica-mercari.md`) · vitrine (cards do `acervo/index.json`, cada um linkando `wa.me` com texto citando a peça) · timeline (opcional) · CTA final · footer.
 3. **Pele dark + acento** (opção 2). **Motion**: progressive enhancement (IntersectionObserver, conteúdo visível por padrão, sem `opacity:0` preso). Preço = "sob consulta no grupo".
-4. **Verificar** headless (Edge profile isolado): desktop 1440 + mobile 390. Nota: em headless o viewport CSS pode ser mais largo que a imagem (clipping falso na direita) — se um botão parecer cortado, checar geometria com probe de `getBoundingClientRect` antes de "consertar" (às vezes é artefato de captura, não bug).
+4. **Gate de qualidade (OBRIGATÓRIO antes do deploy)** — ver [[lp-mobile-first-standard]]:
+   - `npx -y impeccable@latest detect <projeto>/lp/index.html` → **0 anti-patterns** (residual só com waiver documentado: comentário `<!-- impeccable-disable <regra> -- motivo -->`). Gotchas do detector em [[impeccable-detector-gotchas]] (clamp lido como padding 0; sem 01/02/03; ≤2 em-dashes no corpo; tracking largo só em label curto).
+   - Screenshots headless Edge (profile isolado) em **390×844 (iPhone) E 1440 (desktop)**, com `--virtual-time-budget=5000` (deixa a animação assentar; sem isso o hero sai "vazio" na captura, falso alarme). Conferir 1ª dobra + página inteira nos dois.
+   - Sem overflow horizontal: `overflow-x:hidden` no body + probe `scrollWidth` vs viewport antes de "consertar" clipping (headless pode reportar clipping falso à direita).
 5. **Deploy Vercel** (ver rotina abaixo). Verificar `curl` 200 + assets antes de mandar link.
+
+## Responsivo (mobile-first — OBRIGATÓRIO) — ver [[lp-mobile-first-standard]]
+Toda LP nasce mobile-first, não desktop-first-com-remendo (senão aperta no iPhone: tipo grande demais, CTA sem full-width, hero com sobra vazia).
+- **Base = mobile; `min-width` ADICIONA desktop.** Tipo fluido `clamp()` com mínimo testado em ~360px (headline não pode forçar 51px no 390). Hero `min-height:100svh` (não `100vh` — evita o pulo da barra do Safari + sobra vazia).
+- **Alvo de toque:** CTAs full-width e centralizados no mobile, altura ≥44px. Nav compacto (label curto tipo "Grupo").
+- **Ritmo escala:** seções/gutters encolhem no mobile (não 112px fixo); grids 2→1 col; thumbs/badges com `flex-wrap`; imagens `max-width:100%`+`object-fit`.
+- **Bloco `@media (max-width:600px)` dedicado** recalibrando tipo/espaço/CTA. Media query só afeta abaixo do breakpoint → dá pra otimizar mobile SEM tocar no desktop já aprovado.
+- Motion respeita `prefers-reduced-motion` (iOS "Reduzir movimento"/Baixo Consumo pausa animação — não é bug).
 
 ## Rotina de deploy Vercel (não-interativa) — ver [[vercel-deploy-lp-gotchas]]
 ```bash
@@ -51,4 +62,4 @@ Editar `lp/` → rodar deploy + `alias set` (o alias NÃO segue prod sozinho) �
 - Não fechar preço (padrão "sob consulta no grupo").
 
 ## Relacionado
-`roteiro-lp.md` · `logistica-mercari.md` · skills `/marca`, `/acervo`. Memórias: [[vercel-deploy-lp-gotchas]], [[design-system-extract-motion-gotcha]], [[motor-ofertas-nsc]].
+`roteiro-lp.md` · `logistica-mercari.md` · skills `/marca`, `/acervo`. Memórias: [[lp-mobile-first-standard]], [[vercel-deploy-lp-gotchas]], [[design-system-extract-motion-gotcha]], [[impeccable-detector-gotchas]], [[motor-ofertas-nsc]].

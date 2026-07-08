@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hero Lab — Nippon Speed Co.</title>
+<!-- PROTÓTIPO isolado do hero scroll-driven. Não é a LP. Quando validar, porta pro lp/index.html.
+     Dev: adicione ?p=0.7 na URL pra congelar o efeito num ponto (0..1) e conferir cada fase. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#111111; --paper:#f5f5f5; --whitesmoke:#f0efec;
+  --dark-grey:#5d5d5d; --red:#c82a2a; --red-ink:#a31f1f;
+  --ease-out-expo:cubic-bezier(.16,1,.3,1);
+}
+*{ box-sizing:border-box; margin:0; line-height:1.6; }
+html{ -webkit-text-size-adjust:100%; }
+body{ background:var(--paper); color:var(--ink); font-family:"Archivo",system-ui,sans-serif;
+  line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+img{ max-width:100%; display:block; }
+
+/* ---------- SCENE: tall track the sticky stage scrubs through ---------- */
+.scene{ position:relative; height:200vh; }
+.stage{ position:sticky; top:0; height:100vh; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--whitesmoke) 100%); }
+/* soft signal glow */
+.stage::before{ content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(ellipse 55% 45% at 80% 20%, rgba(200,42,42,.10), transparent 70%); }
+
+/* ---------- WORDMARK ---------- */
+.wordmark{ position:absolute; left:50%; top:50%; z-index:3; width:100%; padding:0 6vw;
+  transform:translate(-50%,-50%); text-align:center; will-change:transform,opacity; }
+.wordmark .eyebrow{ font-weight:700; text-transform:uppercase; letter-spacing:.24em;
+  font-size:clamp(.7rem,1.4vw,.9rem); color:var(--red); display:block; margin-bottom:2.2vh; }
+.wm-h1{ font-family:"Anton",sans-serif; font-weight:400; text-transform:uppercase;
+  font-size:clamp(3rem,13vw,11rem); line-height:.86; letter-spacing:-.01em; }
+.wm-h1 .co{ color:var(--red); }
+.wm-h1 .outline{ color:transparent; -webkit-text-stroke:2px var(--ink); }
+
+/* ---------- CAR ---------- */
+.car{ position:absolute; left:50%; top:52%; z-index:4; width:min(920px,82vw); height:auto;
+  transform:translate(-50%,-50%); opacity:0; will-change:transform,opacity;
+  /* white JPEG backdrop vanishes over the light stage */
+  mix-blend-mode:multiply; }
+
+/* ---------- SPEED LINES (behind the car during exit) ---------- */
+.speed{ position:absolute; left:50%; top:52%; z-index:3; width:min(1100px,96vw); height:200px;
+  transform:translate(-46%,-50%) scaleX(.15); transform-origin:right center; opacity:0; pointer-events:none;
+  background:
+    linear-gradient(90deg, transparent, var(--red) 60%, transparent) center 34% /100% 5px no-repeat,
+    linear-gradient(90deg, transparent, var(--ink) 55%, transparent) center 50% /100% 3px no-repeat,
+    linear-gradient(90deg, transparent, var(--red) 60%, transparent) center 66% /100% 5px no-repeat; }
+
+/* ---------- SCROLL HINT ---------- */
+.hint{ position:absolute; left:50%; bottom:5vh; z-index:5; transform:translateX(-50%);
+  font-weight:700; text-transform:uppercase; letter-spacing:.18em; font-size:.72rem; color:var(--dark-grey);
+  display:flex; align-items:center; gap:10px; }
+.hint .a{ animation:bob 1.4s ease-in-out infinite; }
+@keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(4px);} }
+
+/* ---------- AFTER (rest of the page starts here) ---------- */
+.after{ border-top:2px solid var(--ink); padding:100px 6vw; max-width:1200px; margin:0 auto; }
+.after .k{ font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--red); font-size:.85rem; }
+.after h2{ font-family:"Anton",sans-serif; font-weight:400; text-transform:uppercase; line-height:1.4;
+  font-size:clamp(2rem,5vw,3.2rem); margin:14px 0 16px; }
+.after p{ color:var(--dark-grey); max-width:60ch; font-size:1.1rem; line-height:1.7; }
+
+/* ---------- REDUCED MOTION / NO-JS: static hero, no long scroll ---------- */
+.reduced .scene{ height:100vh; }
+.reduced .car{ opacity:1; transform:translate(-64%,-50%) scale(.9); }
+.reduced .wordmark{ opacity:1 !important; }
+.reduced .hint{ display:none; }
+@media (prefers-reduced-motion: reduce){
+  .hint .a{ animation:none; }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:600px){
+  .car{ width:94vw; top:50%; }
+  .wm-h1{ font-size:clamp(2.6rem,15vw,5rem); line-height:.9; }
+  .wm-h1 .outline{ -webkit-text-stroke-width:1.5px; }
+  .speed{ width:96vw; height:120px; }
+  .after{ padding:70px 7vw; }
+}
+</style>
+</head>
+<body>
+
+  <section class="scene" id="scene">
+    <div class="stage">
+      <div class="wordmark" id="wordmark">
+        <span class="eyebrow">Garimpo no Japão</span>
+        <h1 class="wm-h1">Nippon<br/><span class="co">Speed</span> <span class="outline">Co.</span></h1>
+      </div>
+      <div class="speed" id="speed" aria-hidden="true"></div>
+      <img class="car" id="car" src="assets/img/hero-car-mp48.jpg" alt="McLaren MP4/8, ilustração editorial"/>
+      <div class="hint" id="hint"><span>role para acelerar</span><span class="a">↓</span></div>
+    </div>
+  </section>
+
+  <section class="after">
+    <span class="k">Depois do hero</span>
+    <h2>E a partir daqui<br/>segue a loja</h2>
+    <p>Quando o carro sai de cena, o resto da landing começa. Este é só o laboratório do efeito, isolado da LP no ar. Quando aprovar, porto esse hero pro <code>lp/index.html</code> com o mesmo motion do design system.</p>
+  </section>
+
+<script>
+(function(){
+  var scene = document.getElementById('scene');
+  var wm = document.getElementById('wordmark');
+  var car = document.getElementById('car');
+  var speed = document.getElementById('speed');
+  var hint = document.getElementById('hint');
+
+  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+  function easeInOut(t){ return t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+  function easeIn(t){ return t*t*t; }   // accelerate away
+  function easeInQuad(t){ return t*t; }  // punchier launch
+
+  // Render the whole hero for a normalised scroll progress p in [0,1].
+  function render(p){
+    // Phase 1 — wordmark condenses + fades out fast (0 -> 0.26)
+    var wp = clamp(p/0.26, 0, 1);
+    wm.style.opacity = (1 - wp).toFixed(3);
+    wm.style.transform = 'translate(-50%,-50%) scale(' + (1 - 0.18*wp).toFixed(3) + ')';
+    // Phase 2 — car hands off / fades in (0.16 -> 0.36)
+    var cin = clamp((p - 0.16)/0.20, 0, 1);
+    // Phase 3 — car LAUNCHES out to the LEFT (0.38 -> 0.80): early, accelerating, gone with scroll to spare
+    var cout = easeInQuad(clamp((p - 0.38)/0.42, 0, 1));
+    var x = -150 * cout;               // vw travelled left
+    var sc = (1 + 0.06*cin) * (1 + 0.05*cout);
+    car.style.opacity = cin.toFixed(3);
+    car.style.transform = 'translate(calc(-50% + ' + x.toFixed(2) + 'vw), -50%) scale(' + sc.toFixed(3) + ')';
+    // Speed streaks swell during the launch then fade — final state is clean paper for the next section
+    var sp = Math.sin(clamp((p - 0.40)/0.40, 0, 1) * Math.PI);
+    speed.style.opacity = (sp * 0.85).toFixed(3);
+    speed.style.transform = 'translate(-46%,-50%) scaleX(' + (0.15 + cout*1.1).toFixed(3) + ')';
+    // Hint fades out immediately
+    hint.style.opacity = (1 - clamp(p/0.12, 0, 1)).toFixed(3);
+  }
+
+  function progressFromScroll(){
+    var total = scene.offsetHeight - window.innerHeight;
+    if(total <= 0) return 0;
+    var top = scene.getBoundingClientRect().top;   // 0 at start, negative as we scroll in
+    return clamp(-top/total, 0, 1);
+  }
+
+  // Dev hook: ?p=0.7 freezes the effect at that progress (for headless review).
+  var forced = new URLSearchParams(location.search).get('p');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(forced !== null){ render(clamp(parseFloat(forced)||0, 0, 1)); return; }
+  if(reduce){ document.documentElement.classList.add('reduced'); return; }
+
+  var ticking = false;
+  function onScroll(){
+    if(!ticking){ requestAnimationFrame(function(){ render(progressFromScroll()); ticking = false; }); ticking = true; }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  render(progressFromScroll());
+})();
+</script>
+</body>
+</html>

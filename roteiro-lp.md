@@ -41,6 +41,7 @@ Utilitário leve, desacoplado de `/lp` e `/agenda`: recebe URL(s) do Mercari →
 - **Self-contained** pra Vercel: fontes via Google Fonts CDN; imagens locais em `assets/`; nada de hotlink.
 - **Imagens de card:** não jogar screenshot cru como foto de passo — usar imagem tratada/gerada (ver nota abaixo). Recortar logos/heros pra bounding box (evitar canvas transparente gigante = elemento minúsculo).
 - **Motion:** progressive enhancement — conteúdo `opacity:1` por padrão, reveal via IntersectionObserver, nunca preso invisível. Ver [[design-system-extract-motion-gotcha]].
+- **Mobile-first (obrigatório):** base = mobile, `min-width` adiciona desktop; `clamp()` testado em ~360px; hero `100svh`; CTAs full-width ≥44px; bloco `@media (max-width:600px)` dedicado; sem overflow lateral. Gate antes do deploy: `impeccable detect`=0 + screenshots headless 390 e 1440. Ver [[lp-mobile-first-standard]].
 - **CTA:** todos apontam pro grupo. Placeholder `REPLACE_ME` até ter o link real.
 - **Preço:** "sob consulta no grupo" (padrão atual).
 
