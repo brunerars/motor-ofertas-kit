@@ -21,9 +21,9 @@ Todo mundo pergunta como a gente traz essas peças do Japão. Então bora do com
 
 A gente garimpa item por item lá no Japão: boné de equipe, peça de Grand Prix, colecionável que marcou época. Escolha de colecionador pra colecionador, nada de esteira.
 
-Depois é logística própria. Seu pedido vem junto com as encomendas do grupo, e cada peça chega conferida, fotografada e com a história registrada.
+Depois é logística própria. Seu pedido vem junto com as encomendas do grupo, e frete internacional e imposto entram por nossa conta, sem dor de cabeça pra você.
 
-Aqui no Brasil você retira com a gente ou recebe por Correios ou transportadora. Frete internacional e imposto já entram por nossa conta, sem dor de cabeça pra você.
+Aqui no Brasil você retira com a gente ou recebe por Correios ou transportadora. Cada peça chega conferida, fotografada e com a história registrada.
 
 Peça nova cai primeiro no grupo, toda semana. O link pra entrar tá na bio.
 
@@ -40,6 +40,6 @@ Peça nova cai primeiro no grupo, toda semana. O link pra entrar tá na bio.
 ## Roteiro dos slides (referência)
 1. **Capa** — "Como funciona · Do garimpo no Japão à sua porta no Brasil" + rota JP→BR.
 2. **Passo 1 · Origem** — Garimpo no Japão (ícone lupa).
-3. **Passo 2 · Importação** — Logística própria (ícone caixa).
-4. **Passo 3 · Entrega** — Entrega no Brasil, frete e impostos por nossa conta (ícone casa).
+3. **Passo 2 · Importação** — Logística própria, frete e impostos por nossa conta (ícone caixa).
+4. **Passo 3 · Entrega** — Entrega no Brasil, peça conferida e fotografada (ícone casa).
 5. **CTA** — Peças novas toda semana no grupo · Link na bio · @.

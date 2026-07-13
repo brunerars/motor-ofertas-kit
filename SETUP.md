@@ -42,8 +42,8 @@ motor-ofertas/
 ├─ CLAUDE.md              # cérebro da loja (adaptável)
 ├─ .env.example           # guia de setup humano (tokens)
 ├─ .gitignore
-├─ .claude/skills/        # O KIT (6 skills)
-├─ marca/                 # design system + acervo de fotos
+├─ .claude/skills/        # O KIT (8 skills)
+├─ marca/                 # a marca por tópico: acervo/ campanha/ conteudo/ referencia/
 ├─ lp/                    # landing page
 ├─ n8n/                   # workflow de disparo + guia de import
 ├─ baserow-disparador-schema.md

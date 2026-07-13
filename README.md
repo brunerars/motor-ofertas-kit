@@ -77,11 +77,15 @@ flowchart LR
 ## Organização (rumo a produto)
 ```
 .claude/skills/            # O KIT — reutilizável entre lojas
-  marca/ acervo/ lp/ agenda/ dispara-oferta/ confere-ofertas/
+  marca/ acervo/ lp/ agenda/ dispara-oferta/ confere-ofertas/ post-feed/ post-stories/
 projetos/motor-ofertas/    # A INSTÂNCIA (Nippon Speed Co.)
   CLAUDE.md                # cérebro da loja (adaptável)
   .env  /  .env.example    # tokens (humano preenche)
-  marca/                   # design system + acervo de fotos
+  marca/                   # tudo da marca, por tópico:
+    acervo/                #   fotos das peças (do Mercari, via /acervo)
+    campanha/              #   Meta Ads: brief + criativos
+    conteudo/              #   Instagram: storytelling/ stories/ destaques/ + ideias-feed.md
+    referencia/            #   design system + assets do Caio (fora do git)
   lp/                      # landing page
   n8n/nsc-dispara-ofertas.json   # workflow de disparo (importar no n8n)
   baserow-disparador-schema.md   # schema da fila

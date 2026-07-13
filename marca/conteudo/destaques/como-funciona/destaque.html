@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080, initial-scale=1"/>
+<title>Nippon Speed Co. · Destaque "Como funciona" (stories 9:16)</title>
+<!-- impeccable-disable tight-leading repeated-section-kickers -- Anton is a condensed poster face (~1.28x); tight display leading is intentional for oversized editorial type (same waiver as the LP). The per-screen eyebrow (Origem / Importação / Entrega) is the V1 section-head pattern with distinct labels per step, not an AI kicker scaffold. Body copy 1.5-1.6. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   NIPPON SPEED CO. — DESTAQUE "COMO FUNCIONA" · stories 9:16
+   Design system V1 "Editorial Garage". Mesmos tokens/ícones do
+   post 4:5 (marca/conteudo/como-funciona/) e da LP.
+   Canvas: capa + 5 telas @ 1080x1920. Render estático.
+   Safe area do Instagram: ~250px no topo e ~250px embaixo ficam
+   sob a UI do app — todo conteúdo vive no miolo.
+   ============================================================ */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
+  --dark-grey:#5d5d5d; --mid-grey:#676763; --hair:#ddddd7;
+  --red:#c82a2a; --red-ink:#a31f1f; --red-bright:#ff5347;
+  --radius-md:12px; --radius-pill:9999px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#2a2a2a; }
+body{ font-family:"Archivo", system-ui, sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased; }
+
+.slide{ width:1080px; height:1920px; position:relative; overflow:hidden; display:none; flex-direction:column; }
+.slide:target{ display:flex; }
+body:not(:has(.slide:target)) #capa{ display:flex; }
+
+/* miolo: respeita a safe area do app (topo/base) */
+.slide-inner{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column;
+  justify-content:space-between; padding:250px 96px; }
+
+.slide-ink{ background:var(--ink); color:var(--paper); }
+.slide-paper{ background:linear-gradient(180deg, var(--paper) 0%, var(--whitesmoke) 100%); color:var(--ink); }
+
+.grain{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.45;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size:256px 256px; }
+.glow{ position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 62% 42% at 84% 14%, rgba(255,83,71,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 10% 86%, rgba(255,255,255,.06) 0%, transparent 70%); }
+
+h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
+.eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
+  letter-spacing:.22em; font-size:28px; color:var(--red); margin:0; }
+.eyebrow-bright{ color:var(--red-bright); }
+
+.brandline{ display:flex; align-items:center; gap:20px; }
+.brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:34px; letter-spacing:.04em; line-height:1; }
+.brandline .step-of{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700;
+  text-transform:uppercase; letter-spacing:.14em; font-size:26px; color:var(--mid-grey); }
+.slide-ink .brandline .step-of{ color:#b8b8b2; }
+.flag{ width:46px; height:32px; flex:0 0 auto; border:2px solid currentColor;
+  background:conic-gradient(currentColor 90deg,transparent 90deg 180deg,currentColor 180deg 270deg,transparent 270deg) 0 0/23px 16px; }
+.slide-paper .flag{ color:var(--ink); } .slide-ink .flag{ color:var(--paper); }
+
+/* ---- Capa do destaque: ícone centralizado (o app recorta em círculo) ---- */
+.cover-mark{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:52px; }
+.mark-ring{ width:520px; height:520px; border-radius:50%; border:6px solid var(--red-bright);
+  display:flex; align-items:center; justify-content:center; }
+.mark-ring svg{ width:250px; height:250px; color:var(--paper); }
+.mark-label{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:96px;
+  line-height:.92; letter-spacing:.02em; color:var(--paper); text-align:center; }
+
+/* ---- Abertura / CTA ---- */
+.cover-mid{ display:flex; flex-direction:column; gap:38px; }
+.cover-title{ font-size:196px; line-height:.9; letter-spacing:.005em; }
+.cta-title{ font-size:140px; line-height:.94; }
+.cover-sub{ margin:0; font-size:42px; line-height:1.5; max-width:860px; color:rgba(245,245,245,.82); }
+
+.route{ display:flex; align-items:center; gap:24px; width:100%; max-width:620px; }
+.route-end{ font-family:"Anton",sans-serif; font-size:34px; letter-spacing:.06em; color:var(--red-bright); }
+.route-line{ position:relative; flex:1; height:3px; background:rgba(245,245,245,.4); border-radius:3px; }
+.route-dot{ position:absolute; top:50%; left:64%; width:20px; height:20px; margin-top:-10px;
+  border-radius:50%; background:var(--red-bright); box-shadow:0 0 0 7px var(--ink); transform:translateX(-50%); }
+
+/* ---- Tela de passo ---- */
+.step-mid{ display:flex; flex-direction:column; align-items:flex-start; gap:36px; }
+.big-icon{ width:200px; height:200px; flex:none; border:3px solid var(--ink); border-radius:var(--radius-md);
+  display:flex; align-items:center; justify-content:center; background:var(--white); color:var(--ink);
+  box-shadow:0 18px 44px rgba(17,17,17,.10); margin-bottom:16px; }
+.big-icon svg{ width:104px; height:104px; }
+.step-title{ font-size:130px; line-height:.94; margin:0; }
+.step-desc{ margin:0; font-size:40px; line-height:1.55; color:var(--dark-grey); max-width:920px; }
+.step-desc b{ color:var(--ink); font-weight:700; }
+
+.dots{ display:flex; gap:18px; align-items:center; }
+.dot{ width:18px; height:18px; border-radius:50%; border:2.5px solid var(--ink); background:transparent; }
+.dot.on{ background:var(--red); border-color:var(--red); }
+
+/* ---- CTA ---- */
+.cta-foot{ display:flex; flex-direction:column; gap:34px; align-items:flex-start; }
+.cta-pill{ display:inline-flex; align-items:center; gap:.6em;
+  font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+  font-size:34px; color:var(--ink); background:var(--red-bright);
+  border-radius:var(--radius-pill); padding:26px 50px; }
+.cta-handle{ font-family:"Anton",sans-serif; text-transform:lowercase;
+  font-size:68px; letter-spacing:.01em; line-height:1; color:var(--paper); }
+</style>
+</head>
+<body>
+
+<!-- ===================== CAPA DO DESTAQUE (o app recorta em círculo) ===================== -->
+<section class="slide slide-ink" id="capa">
+  <div class="glow"></div>
+  <div class="grain"></div>
+  <!-- Só o ícone, centrado: o app recorta um círculo no meio da imagem e escreve o nome do destaque por fora. -->
+  <div class="cover-mark">
+    <div class="mark-ring">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 7v10l8 4 8-4V7"/><path d="M12 11v10"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TELA 1 · ABERTURA ===================== -->
+<section class="slide slide-ink" id="s1">
+  <div class="glow"></div>
+  <div class="grain"></div>
+  <div class="slide-inner">
+    <div class="brandline">
+      <span class="flag" aria-hidden="true"></span>
+      <span class="brandline-txt">Nippon Speed Co.</span>
+    </div>
+    <div class="cover-mid">
+      <p class="eyebrow eyebrow-bright">Do Japão pro Brasil</p>
+      <h1 class="cover-title">Como<br/>funciona</h1>
+      <p class="cover-sub">Do garimpo no Japão à sua porta no Brasil, sem complicação.</p>
+    </div>
+    <div class="route" aria-hidden="true">
+      <span class="route-end">JP</span>
+      <span class="route-line"><span class="route-dot"></span></span>
+      <span class="route-end">BR</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TELA 2 · ORIGEM ===================== -->
+<section class="slide slide-paper" id="s2">
+  <div class="slide-inner">
+    <div class="brandline">
+      <span class="flag" aria-hidden="true"></span>
+      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="step-of">Passo 1 de 3</span>
+    </div>
+    <div class="step-mid">
+      <div class="big-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg>
+      </div>
+      <p class="eyebrow">Origem</p>
+      <h2 class="step-title">Garimpo<br/>no Japão</h2>
+      <p class="step-desc">Em nosso grupo, enviamos uma curadoria única de artigos novos e seminovos anunciados no Japão. Bonés de equipe, itens de Grand Prix e colecionáveis que marcaram época. <b>De colecionador para colecionador.</b></p>
+    </div>
+    <div class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+  </div>
+</section>
+
+<!-- ===================== TELA 3 · IMPORTAÇÃO ===================== -->
+<section class="slide slide-paper" id="s3">
+  <div class="slide-inner">
+    <div class="brandline">
+      <span class="flag" aria-hidden="true"></span>
+      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="step-of">Passo 2 de 3</span>
+    </div>
+    <div class="step-mid">
+      <div class="big-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 7v10l8 4 8-4V7"/><path d="M12 11v10"/></svg>
+      </div>
+      <p class="eyebrow">Importação</p>
+      <h2 class="step-title">Logística<br/>própria</h2>
+      <p class="step-desc">Despachamos seu pedido junto às encomendas do grupo por logística própria e com <b>frete internacional e impostos por nossa conta.</b></p>
+    </div>
+    <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot on"></span><span class="dot"></span></div>
+  </div>
+</section>
+
+<!-- ===================== TELA 4 · ENTREGA ===================== -->
+<section class="slide slide-paper" id="s4">
+  <div class="slide-inner">
+    <div class="brandline">
+      <span class="flag" aria-hidden="true"></span>
+      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="step-of">Passo 3 de 3</span>
+    </div>
+    <div class="step-mid">
+      <div class="big-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg>
+      </div>
+      <p class="eyebrow">Entrega</p>
+      <h2 class="step-title">Entrega<br/>no Brasil</h2>
+      <p class="step-desc">Você retira com a gente ou recebe por Correios ou transportadora. Cada peça chega <b>conferida, fotografada e com a história registrada.</b></p>
+    </div>
+    <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot on"></span></div>
+  </div>
+</section>
+
+<!-- ===================== TELA 5 · CTA (grupo) ===================== -->
+<section class="slide slide-ink" id="s5">
+  <div class="glow"></div>
+  <div class="grain"></div>
+  <div class="slide-inner">
+    <div class="brandline">
+      <span class="flag" aria-hidden="true"></span>
+      <span class="brandline-txt">Nippon Speed Co.</span>
+    </div>
+    <div class="cover-mid">
+      <p class="eyebrow eyebrow-bright">Entre no grupo</p>
+      <h2 class="cover-title cta-title">Peças novas<br/>toda semana</h2>
+      <p class="cover-sub">A curadoria de Fórmula 1 e automobilismo vintage vai primeiro pro grupo. Peça é única: quando some, some.</p>
+    </div>
+    <div class="cta-foot">
+      <span class="cta-pill">Toca no link do grupo</span>
+      <span class="cta-handle">@nipponspeedco</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

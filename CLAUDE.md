@@ -36,7 +36,7 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 - `/marca <ref>` → `design-system2.html` (método Extract + motion + recorte logo/hero embutidos; prompt Extract copiado na skill).
 - `/acervo <url_mercari...>` → baixa fotos pro `marca/acervo/`. Leve, desacoplado. NÃO traduz/precifica.
 - `/lp <produto>` → LP self-contained + deploy Vercel (rotina completa). Consome `marca/acervo/`. Padrões: `roteiro-lp.md` + `logistica-mercari.md`.
-- **Posts (estratégia 2 canais, 08/07)** → skills dedicadas **`/post-feed`** (carrossel NARRATIVO = autoridade/branding: história 1º + produto só no fim como CTA, SEM badge) e **`/post-stories`** (cartão de peça = venda: badge VERDE "sob encomenda" + "fala com a gente"). Ambas: design system V1 → HTML→PNG 4:5 (1080×1350), 0 token de imagem. Banco de temas em `conteudo/ideias-feed.md`; templates em `.claude/skills/post-*/template.html`. Ver [[nsc-conteudo-dois-canais]]. (Evolução do plano antigo de usar só `/conteudo`+`/nanobanana`.)
+- **Posts (estratégia 2 canais, 08/07)** → skills dedicadas **`/post-feed`** (carrossel NARRATIVO = autoridade/branding: história 1º + produto só no fim como CTA, SEM badge) e **`/post-stories`** (cartão de peça = venda: badge VERDE "sob encomenda" + "fala com a gente"). Ambas: design system V1 → HTML→PNG 4:5 (1080×1350), 0 token de imagem. Banco de temas em `marca/conteudo/ideias-feed.md`; templates em `.claude/skills/post-*/template.html`. Ver [[nsc-conteudo-dois-canais]]. (Evolução do plano antigo de usar só `/conteudo`+`/nanobanana`.)
 
 > **Desacoplamento (decisão 2026-07-02):** Firecrawl pesado (traduz/preço/estado) é SÓ do `/agenda`, no agendamento. `/lp` e vitrine usam fotos do acervo (`/acervo`). Sem acoplamento cruzado.
 

@@ -18,9 +18,9 @@ status: teste do workflow · pronto para revisão
 
 Suzuka, 1990. O título mundial decidido na primeira curva. E de propósito.
 
-Um ano antes, o Prost tinha tirado o Senna de pista ali mesmo e ficado com o título. Em 90 os dois voltaram pra decisão. Senna cravou a pole, mas não deixaram ele largar do lado limpo da pista. Ele avisou que ia pra primeira curva de qualquer jeito, e foi. Tocou no Prost, os dois pararam na brita, e o Senna era bicampeão antes da segunda curva.
+Um ano antes, Prost tinha tirado Senna de pista ali mesmo e ficado com o título. Em 90 os dois voltaram pra decisão. Senna cravou a pole, mas não deixaram ele largar do lado limpo da pista. Avisou que ia pra primeira curva de qualquer jeito, e foi. Tocou no francês, os dois pararam na brita, e era bicampeão antes da segunda curva.
 
-Um ano depois ele admitiu: foi proposital, resposta ao que rolou em 89. Até hoje divide opinião. Gênio pra uns, vilão pra outros.
+Um ano depois ele mesmo admitiu: foi proposital, resposta ao que rolou em 89. Até hoje divide opinião. Gênio pra uns, vilão pra outros.
 
 O boné comemorativo daquele Grande Prêmio tem o traçado do circuito bordado em dourado. História que dá pra vestir.
 

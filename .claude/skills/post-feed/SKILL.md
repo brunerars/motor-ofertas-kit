@@ -14,7 +14,7 @@ O FEED conta HISTÓRIA. A marca vira referência de cultura de automobilismo; a 
 > - **Curadoria/licenciamento de foto é HUMANA** (Bruno+Caio). Foto de arquivo de terceiros (Pinterest etc.) = risco de copyright em feed comercial → só entra se o Bruno curar/liberar. Foto da própria peça é sempre segura. Sem foto, o capítulo vira design-system puro (line-art/tipografia).
 
 ## Input
-- **Tema** da história (ex: "Suzuka 1990", "Senna x Prost", "era vermelha da Ferrari"). Pode sair do banco `conteudo/ideias-feed.md`.
+- **Tema** da história (ex: "Suzuka 1990", "Senna x Prost", "era vermelha da Ferrari"). Pode sair do banco `marca/conteudo/ideias-feed.md`.
 - **Peça de amarração** (opcional mas recomendado): id do acervo (`marca/acervo/<id>/`) que fecha a história no último slide.
 - **Fotos por fase** (opcional): imagens curadas pelo Bruno, uma por capítulo. Sem elas, os capítulos ficam design-system puro.
 
@@ -23,7 +23,7 @@ O FEED conta HISTÓRIA. A marca vira referência de cultura de automobilismo; a 
 1. **Escrever o arco** (história primeiro): capa (gancho) → 3-4 capítulos (cada um: kicker + título Anton + 2-3 linhas punchy) → slide da peça + CTA. Fato checado.
 2. **Montar o HTML** a partir de `template.html` (design system V1). Cada capítulo:
    - **com foto**: foto sangra do topo (`.ph`, ~58%) + texto na faixa tinta de baixo. Ajustar `object-position` por foto pra enquadrar o essencial. Copiar as fotos curadas pra pasta do post (`s2.jpg`, `s3.jpg`...).
-   - **sem foto**: slide tipográfico puro (`.slide-ink`: kicker + título + corpo), opcional line-art (traçado, diagrama) como no editorial `conteudo/suzuka-8/`.
+   - **sem foto**: slide tipográfico puro (`.slide-ink`: kicker + título + corpo), opcional line-art (traçado do circuito, diagrama) dentro do `.story-block`.
    Dots de progresso por slide (NUNCA marcadores "01/02/03" → aciona o impeccable).
 3. **Slide da peça** (último): foto da peça (`marca/acervo/<id>/`) emoldurada em **fundo ESCURO** (`slide-ink` — é entretenimento, não card de venda; branco é só `/post-stories`) + amarração ("essa peça carrega essa história") + CTA pro grupo (`link na bio · @handle`). **Sem badge.**
 4. **Render** headless (comando abaixo) → `slide-1..N.png`. Conferir enquadramento/legibilidade abrindo os PNGs.
@@ -32,7 +32,8 @@ O FEED conta HISTÓRIA. A marca vira referência de cultura de automobilismo; a 
 7. **Entregar pro Bruno revisar**. Publicação é manual dele.
 
 ## Saída
-`<projeto>/conteudo/<slug>/` com `post.html` + `s2..N.jpg` (fotos de arquivo) + `foto.jpg` (peça) + `slide-1..N.png` + `legenda.md`.
+`<projeto>/marca/conteudo/storytelling/<NN>-<slug>/` com `post.html` + `s2..N.jpg` (fotos de arquivo) + `foto.jpg` (peça) + `slide-1..N.png` + `legenda.md`.
+> Nome da pasta: prefixo numérico e **sem `#` nem espaço** — o `#` quebra a URL `file:///...#s1` do render.
 
 ## Render (por slide)
 ```bash
@@ -46,8 +47,9 @@ done
 ```
 > `--virtual-time-budget=6000` deixa fontes (Google CDN) e grão assentarem. Slides isolados por `#s1..#sN` (CSS `.slide:target`).
 
-## Referência (post aprovado 08/07)
-`conteudo/story-suzuka1990-storrytelling/` — o Suzuka 1990 (capa + 3 capítulos com foto + peça + CTA). É o molde vivo, além do `template.html`.
+## Referência (post aprovado 08/07, revisado 13/07)
+`marca/conteudo/storytelling/01-suzuka1990/` — o Suzuka 1990 (capa + 3 capítulos com foto + peça + CTA). É o molde vivo, além do `template.html`.
+> **Voz:** nome de piloto sem artigo ("Senna avisou", não "o Senna avisou") e retomada variada (o francês, o brasileiro, ele). Artigo antes do nome soa oral demais e desumaniza o texto.
 
 ## NÃO fazer
 - Nada de badge/preço/venda no feed (isso é `/post-stories`).
@@ -55,4 +57,4 @@ done
 - Não inventar fato histórico.
 
 ## Relacionado
-`conteudo/ideias-feed.md` (banco de temas) · skill `/post-stories` (venda) · memórias [[nsc-conteudo-dois-canais]] · [[producao-conteudo-direcao]] · [[impeccable-detector-gotchas]] · [[voz-bruno-redondo]].
+`marca/conteudo/ideias-feed.md` (banco de temas) · skill `/post-stories` (venda) · memórias [[nsc-conteudo-dois-canais]] · [[producao-conteudo-direcao]] · [[impeccable-detector-gotchas]] · [[voz-bruno-redondo]].

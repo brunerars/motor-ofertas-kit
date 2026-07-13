@@ -12,11 +12,11 @@ Curadoria de peças de coleção no **Mercari (Japão)** → compra e **importa�
 Em nosso grupo, enviamos uma curadoria única de artigos novos e seminovos anunciados no Japão. Bonés de equipes, itens de Grand Prix e colecionáveis que marcaram época. De colecionador para colecionador.
 
 **Passo 02 — Importação / Logística própria.**
-Despachamos seu pedido para o Brasil junto a outras encomendas do grupo através de logística própria. **Frete internacional e impostos por nossa conta.** Cada peça chega conferida, fotografada e com a história registrada.
+Despachamos seu pedido junto às encomendas do grupo por logística própria e com **frete internacional e impostos por nossa conta**.
 - **(confirmar c/ Caio):** prazo médio Japão→Brasil e o que exatamente a ferramenta do primo automatiza (tracking, custos).
 
 **Passo 03 — Entrega no Brasil.**
-Ao recebermos a remessa, você pode retirar conosco ou optar por um envio via Correios ou transportadora de sua preferência.
+Você retira com a gente ou recebe por Correios ou transportadora. Cada peça chega conferida, fotografada e com a história registrada.
 
 ## Regras de precificação (padrão atual)
 - LP e ofertas **não fecham preço**: exibem "valor e frete **sob consulta no grupo**". Fechamento no 1:1.

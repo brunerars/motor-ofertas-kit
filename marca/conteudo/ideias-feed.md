@@ -24,7 +24,7 @@ Banco de histórias de F1 pra popular o feed. A F1 tem material infinito; aqui a
 Cada superfície tem um papel diferente:
 
 - **FEED (Instagram) = autoridade + branding.** Carrossel NARRATIVO: a história vem primeiro (capa + capítulos), o produto entra só no ÚLTIMO slide, como desfecho + CTA pro grupo. **SEM badge de venda.** Formato de referência: `story-suzuka1990/`. → futura skill **`/post-feed`**.
-- **STORIES + FIXADOS do grupo + WhatsApp = venda.** Cartão de peça: foto emoldurada + história curta + badge **VERDE "SOB ENCOMENDA"** + "fala com a gente". Formato de referência: `story-suzuka90/`, `story-dekra-schumacher/`, `story-west-mclaren/`. → futura skill **`/post-stories`**.
+- **STORIES + FIXADOS do grupo + WhatsApp = venda.** Cartão de peça: foto emoldurada + história curta + badge **VERDE "SOB ENCOMENDA"** + "fala com a gente". Formato de referência: `stories/story-dekra-schumacher/` e `stories/story-west-mclaren/`. → skill **`/post-stories`**.
 
 > Curadoria de foto é **humana (Bruno + Caio)**. Foto de arquivo de terceiros (Pinterest) = risco de copyright em feed comercial → só referência/mood ou banco licenciado. Foto da própria peça é sempre segura.
 
@@ -49,7 +49,7 @@ Ordem pensada pro grid abrir coeso (alterna tinta/papel, editorial/storytelling)
 | 8 | **Camisa de pit West McLaren-Mercedes** — a prata dos anos 90/2000 | STORYTELLING | Sim — `acervo/m81651185430` | ✅ produzido · revisão |
 | 9 | **Como reconhecer uma peça vintage de verdade** (original × réplica) | EDITORIAL | Editorial puro (checklist visual) | 💡 |
 
-> ⚠️ **Revisão 08/07 (dois canais):** o FEED agora é só **editorial + narrativo** (branding). Os cartões de peça com badge que estavam nas linhas #4/#6/#8 **migraram pro canal STORIES/FIXADOS/WPP** (badge verde "sob encomenda") — não são mais tiles de feed. A grade de feed precisa ser recomposta só com editorial/narrativo (fazer quando o Bruno validar o post do feed). Produzidos no feed (narrativo): **`story-suzuka1990`** (100%, capa com imagem da batida) · **`story-ferrari-vermelha`** (Schumacher/DEKRA) · **`story-honda-japao`** (Honda/Japão, Red Bull-Honda 2019). Editorial line-art: `suzuka-8`. Capa dos posts de entretenimento = **imagem de impacto curada pelo Bruno** (padrão escuro); os 2 últimos estão com capa tipográfica aguardando a imagem.
+> ⚠️ **Revisão 08/07 (dois canais):** o FEED agora é só **editorial + narrativo** (branding). Os cartões de peça com badge que estavam nas linhas #4/#6/#8 **migraram pro canal STORIES/FIXADOS/WPP** (badge verde "sob encomenda") — não são mais tiles de feed. A grade de feed precisa ser recomposta só com editorial/narrativo (fazer quando o Bruno validar o post do feed). Produzidos no feed (narrativo, em `storytelling/`): **`01-suzuka1990`** (100%, capa com imagem da batida) · **`02-ferrari-vermelha`** (Schumacher/DEKRA) · **`03-honda-japao`** (Honda/Japão, Red Bull-Honda 2019). Capa dos posts de entretenimento = **imagem de impacto curada pelo Bruno** (padrão escuro); os 2 últimos estão com capa tipográfica aguardando a imagem.
 
 ---
 

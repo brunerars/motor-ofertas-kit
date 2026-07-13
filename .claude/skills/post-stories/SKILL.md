@@ -18,7 +18,7 @@ STORIES, FIXADOS do grupo e WhatsApp são os canais de VENDA. Aqui a peça é a 
 
 ## Fluxo
 1. **Ver as fotos** da peça (`marca/acervo/<id>/*.jpg`), escolher o melhor hero e **confirmar o que é** (pra história factual — não confiar só no título do vendedor).
-2. Copiar a foto escolhida → `conteudo/<slug>/foto.jpg`.
+2. Copiar a foto escolhida → `marca/conteudo/stories/<slug>/foto.jpg`.
 3. Preencher `template.html`: `.tag`, `<h1 class="name">`, `.story`, e o `object-position` da `.frame img` (enquadramento). O badge já é verde "Sob encomenda".
 4. **Render** headless (comando abaixo) → `post.png`. Conferir enquadramento abrindo o PNG.
 5. **Legenda** (`legenda.md`): tom de venda ("essa é sob encomenda, garimpamos no Japão, chama a gente pra garantir a sua") + hashtags de nicho.
@@ -26,7 +26,7 @@ STORIES, FIXADOS do grupo e WhatsApp são os canais de VENDA. Aqui a peça é a 
 7. Entregar pro Bruno.
 
 ## Saída
-`<projeto>/conteudo/<slug>/` com `post.html` + `foto.jpg` + `post.png` + `legenda.md`.
+`<projeto>/marca/conteudo/stories/<slug>/` com `post.html` + `foto.jpg` + `post.png` + `legenda.md`.
 
 ## Render
 ```bash
@@ -38,7 +38,7 @@ DIR="<caminho-absoluto-da-pasta-do-post>"
 ```
 
 ## Referência (aprovado 08/07)
-`conteudo/story-suzuka90/`, `conteudo/story-dekra-schumacher/`, `conteudo/story-west-mclaren/` (badge verde), além do `template.html`.
+`marca/conteudo/stories/story-dekra-schumacher/` e `marca/conteudo/stories/story-west-mclaren/` (badge verde), além do `template.html`.
 
 ## NÃO fazer
 - Não usar esse formato no feed (feed = `/post-feed`, narrativo, sem badge).
