@@ -20,9 +20,17 @@ Banco de histórias de F1 pra popular o feed. A F1 tem material infinito; aqui a
 ## Legenda de status
 `💡 ideia` · `📷 foto ok` (Caio curou) · `🛠️ em produção` · `✅ publicado`
 
-## Pilares
-- **EDITORIAL** — história/curiosidade da F1. Constrói cultura de colecionador e alcance. Pode ser **design-system puro** (sem foto) ou com foto de arquivo.
-- **STORYTELLING** — 1 peça + a história dela. **REGRA DURA:** deixar explícito que **a peça mostrada NÃO está à venda** (é acervo/ilustrativa). Selo padrão no post: _"Peça de acervo · não está à venda. Novidades toda semana no grupo."_
+## Dois canais, duas skills (estratégia travada 08/07)
+Cada superfície tem um papel diferente:
+
+- **FEED (Instagram) = autoridade + branding.** Carrossel NARRATIVO: a história vem primeiro (capa + capítulos), o produto entra só no ÚLTIMO slide, como desfecho + CTA pro grupo. **SEM badge de venda.** Formato de referência: `story-suzuka1990/`. → futura skill **`/post-feed`**.
+- **STORIES + FIXADOS do grupo + WhatsApp = venda.** Cartão de peça: foto emoldurada + história curta + badge **VERDE "SOB ENCOMENDA"** + "fala com a gente". Formato de referência: `story-suzuka90/`, `story-dekra-schumacher/`, `story-west-mclaren/`. → futura skill **`/post-stories`**.
+
+> Curadoria de foto é **humana (Bruno + Caio)**. Foto de arquivo de terceiros (Pinterest) = risco de copyright em feed comercial → só referência/mood ou banco licenciado. Foto da própria peça é sempre segura.
+
+## Pilares de conteúdo (feed)
+- **EDITORIAL/HISTÓRIA** — curiosidade da F1 em design-system puro (line-art, tipografia) ou foto licenciada. Ex.: "Suzuka, o circuito em forma de 8".
+- **STORYTELLING NARRATIVO** — um GP, uma rivalidade, um momento, amarrado numa peça no fim. Ex.: "Suzuka 1990".
 
 ---
 
@@ -41,7 +49,7 @@ Ordem pensada pro grid abrir coeso (alterna tinta/papel, editorial/storytelling)
 | 8 | **Camisa de pit West McLaren-Mercedes** — a prata dos anos 90/2000 | STORYTELLING | Sim — `acervo/m81651185430` | ✅ produzido · revisão |
 | 9 | **Como reconhecer uma peça vintage de verdade** (original × réplica) | EDITORIAL | Editorial puro (checklist visual) | 💡 |
 
-Mix: **5 editorial / 4 storytelling**. Dos 9, **2 são produzíveis já sem foto** (#1, #9), 1 amostra em produção (#1). Os storytelling (#4, #6, #8) já têm foto no acervo — só validar a curadoria com o Caio. Os editoriais com foto de arquivo (#2, #5, #7) esperam o Caio achar a imagem certa (ou viram editorial puro).
+> ⚠️ **Revisão 08/07 (dois canais):** o FEED agora é só **editorial + narrativo** (branding). Os cartões de peça com badge que estavam nas linhas #4/#6/#8 **migraram pro canal STORIES/FIXADOS/WPP** (badge verde "sob encomenda") — não são mais tiles de feed. A grade de feed precisa ser recomposta só com editorial/narrativo (fazer quando o Bruno validar o post do feed). Produzidos no feed (narrativo): **`story-suzuka1990`** (100%, capa com imagem da batida) · **`story-ferrari-vermelha`** (Schumacher/DEKRA) · **`story-honda-japao`** (Honda/Japão, Red Bull-Honda 2019). Editorial line-art: `suzuka-8`. Capa dos posts de entretenimento = **imagem de impacto curada pelo Bruno** (padrão escuro); os 2 últimos estão com capa tipográfica aguardando a imagem.
 
 ---
 
@@ -81,6 +89,6 @@ Cada peça do acervo vira um mini-post de história. Foto já existe; falta a cu
 ## Regras de produção (herdadas)
 - Design system **V1 "Editorial Garage"** (tokens/ícones/grão da LP). Formato **4:5 (1080×1350)**. `impeccable detect = 0`.
 - Voz do Bruno: **sem travessão, redondo e direto** ([[voz-bruno-redondo]]).
-- Storytelling **sempre** com o selo _"peça de acervo · não está à venda"_.
+- **FEED**: sem badge de venda; produto só no fim, como CTA pro grupo. **STORIES/FIXADOS/WPP**: badge **verde "SOB ENCOMENDA"** + "fala com a gente".
 - CTA padrão: **Link na bio · @nipponspeedco** (trocar quando o @ oficial existir).
 - Render: Edge headless `--window-size=1080,1350 --virtual-time-budget=6000`.

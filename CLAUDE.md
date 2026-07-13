@@ -36,7 +36,7 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 - `/marca <ref>` → `design-system2.html` (método Extract + motion + recorte logo/hero embutidos; prompt Extract copiado na skill).
 - `/acervo <url_mercari...>` → baixa fotos pro `marca/acervo/`. Leve, desacoplado. NÃO traduz/precifica.
 - `/lp <produto>` → LP self-contained + deploy Vercel (rotina completa). Consome `marca/acervo/`. Padrões: `roteiro-lp.md` + `logistica-mercari.md`.
-- **Posts "como funciona" + campanhas** (do brief do Bruno) → usar skills de conteúdo JÁ existentes (`/conteudo` + `/nanobanana` + `/ghostwriter`) alimentadas pelo design system + acervo. **NÃO criar `/posts` novo** (redundante).
+- **Posts (estratégia 2 canais, 08/07)** → skills dedicadas **`/post-feed`** (carrossel NARRATIVO = autoridade/branding: história 1º + produto só no fim como CTA, SEM badge) e **`/post-stories`** (cartão de peça = venda: badge VERDE "sob encomenda" + "fala com a gente"). Ambas: design system V1 → HTML→PNG 4:5 (1080×1350), 0 token de imagem. Banco de temas em `conteudo/ideias-feed.md`; templates em `.claude/skills/post-*/template.html`. Ver [[nsc-conteudo-dois-canais]]. (Evolução do plano antigo de usar só `/conteudo`+`/nanobanana`.)
 
 > **Desacoplamento (decisão 2026-07-02):** Firecrawl pesado (traduz/preço/estado) é SÓ do `/agenda`, no agendamento. `/lp` e vitrine usam fotos do acervo (`/acervo`). Sem acoplamento cruzado.
 
@@ -99,7 +99,7 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - [x] Item piloto extraído → `lp/item-piloto.json` (Benetton F1 boné vermelho, ¥2.500, vintage anos 90).
 - [x] **LP pronta** (`lp/index.html`, dark+vermelho, self-contained): hero (bg F1 sem texto) · Benetton em destaque com galeria · "como funciona" com artes do Caio · timeline · CTA grupo. Validada desktop+mobile.
   - Correções pós-subagente: `capa03` tinha texto embutido → recorte central `hero-bg.jpg`; logo era lockup em canvas gigante (invisível) → recorte justo `logo-mark.png`; "botão cortado no mobile" era artefato de captura headless (vw 476 vs img 390), não bug.
-  - [x] **NO AR (público):** https://nippon-speed-co.vercel.app · projeto Vercel `nippon-speed-co` (id prj_Zvxcj57IQYi3LfW8goOAddrqoFsK, team_UAxVjXgJHIfUnZ6lMN8fevvq). CTAs = WhatsApp teste 5511974052313 (o "Quero essa peça" com texto pré-preenchido citando o item).
+  - [x] **NO AR (público):** https://nippon-speed-co.vercel.app · projeto Vercel `nippon-speed-co` (id prj_Zvxcj57IQYi3LfW8goOAddrqoFsK, team_UAxVjXgJHIfUnZ6lMN8fevvq). CTAs = WhatsApp OFICIAL da loja 5511914563609 (o "Quero essa peça" com texto pré-preenchido citando o item).
   - **Rotina de deploy** (token no `.env`): `npx vercel deploy lp --prod --yes --scope brunoconstantinou-4051s-projects --token=$VERCEL_TOKEN` → depois `vercel alias set <deploy-url> nippon-speed-co.vercel.app` (o alias NÃO segue prod sozinho). SSO Deployment Protection vem LIGADO por padrão → desligar: `PATCH api.vercel.com/v10/projects/nippon-speed-co {"ssoProtection":null}`. Ver [[vercel-deploy-lp-gotchas]].
   - Pendentes de polish: trocar número de teste pelo convite do grupo real; gerar 3 imagens dos passos via `/nanobanana` (precisa GEMINI_API_KEY); melhorar qualidade do design system + usar imagens hi-res (Pinterest) na origem.
 - **Preço na LP/ofertas = "valor e frete sob consulta no grupo"** (não fecha R$; CTA → grupo WhatsApp).

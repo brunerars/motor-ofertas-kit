@@ -1,0 +1,28 @@
+
+organize a pasta conteudo do projeto que agora esta dentro de `marca`, para organizacao mental faz mt mais sentido e concateno toda a marca na mesma pasta organizada por topicos. uma para acervo, outro sobre campanhas, outro para os conteudos de rede social, refencia de design system e etc. 
+
+lp suba tudo na versao teste do link. 
+
+sesssao de correcoes para o go live: 
+
+correcao de posts em conteudo, eh o storytelling #1, que deixamos pronto para ser o molde de visual dos outros: 
+- corrigir storrytelling prost x senna para parar de refernciar ambos como `o prost, o senna`, fica pouco humanizado.
+
+correcao de lps:
+- link oficial do grupo nippon-speed https://chat.whatsapp.com/GvYbIleIhNu2S7mG6AsJMI
+- colocar o whatsapp na LP (CRIAR GRUPO PARA ADICIONAR PESSOAS, LÓGICA DE "QUERO ESSA PEÇA" DIRECIONA PARA MIM ESTA ERRADA, TODO LINK DEVE DIRECIONAR PARA ENTRAR NO GRUPO DE OFERTAS ENVIADO ACIMA. OU SEJA, ALGO COMO ~QUERO ESSA PECA~ NAO FAZ SENTIDO COMO CTA DIRECIONAMENTE PARA NOS.) 📌
+- alterar CTA na LP (mesma trilha acima)
+
+falta criar para o instagram pasta de DESTAQUES:
+- destaque - FAQ
+- destaque - COMO FUNCIONA 
+
+alteracoes POST COMO FUNCIONA: 
+Alterar o texto de baixo na sessão *origem* para:
+- Em nosso grupo, enviamos uma curadoria única de artigos novos e seminovos anunciados no Japão. Bonés de equipe, itens de Grand Prix e colecionáveis que marcaram época. De colecionador para colecionador.
+
+Alterar o texto de baixo na sessão importação para:
+- Despachamos seu pedido junto às encomendas do grupo por logística própria e com frete internacional e impostos por nossa conta.
+
+Alterar o texto de baixo na sessão entrega para:
+- Você retira com a gente ou recebe por Correios ou transportadora. Cada peça chega conferida, fotografada e com a história registrada.

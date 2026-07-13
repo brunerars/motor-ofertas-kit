@@ -3,60 +3,46 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=1080, initial-scale=1"/>
-<title>Nippon Speed Co. · Storytelling "Suzuka '90" (4:5)</title>
+<title>Nippon Speed Co. · Storytelling "Ferrari DEKRA" (4:5)</title>
 <!-- impeccable-disable tight-leading repeated-section-kickers -- Anton is a condensed poster face (intrinsic metrics ~1.28x); tight display leading is intentional, same waiver as the LP. Single kicker, distinct label. Body copy uses 1.5. -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-/* ============================================================
-   NIPPON SPEED CO. — POST STORYTELLING (template) · 4:5 1080x1350
-   Design system V1 "Editorial Garage" (light/paper).
-   Peça do acervo + história. REGRA: selo "não está à venda".
-   Trocar por post: foto.jpg, .tag, <h1>, .story. Nada mais.
-   ============================================================ */
+/* NIPPON SPEED CO. — POST STORYTELLING (template) · 4:5 1080x1350 · design system V1 */
 :root{
   --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
   --dark-grey:#5d5d5d; --mid-grey:#676763; --hair:#ddddd7;
   --red:#c82a2a; --red-ink:#a31f1f; --red-bright:#ff5347;
+  --green:#17914d;   /* "sob encomenda" badge (stories/fixados = venda) */
   --radius-md:12px; --radius-pill:9999px;
 }
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; background:#2a2a2a; }
 body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
-
 .slide{ width:1080px; height:1350px; position:relative; overflow:hidden; display:flex; flex-direction:column;
   background:linear-gradient(180deg, var(--paper) 0%, var(--whitesmoke) 100%); color:var(--ink); }
 .slide-inner{ flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:80px 84px; }
-
 h1{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
-
-/* Brandline */
 .brandline{ display:flex; align-items:center; gap:18px; }
 .brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; letter-spacing:.04em; line-height:1; }
 .brandline .tag{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
   letter-spacing:.14em; font-size:21px; color:var(--mid-grey); }
 .flag{ width:42px; height:29px; flex:0 0 auto; border:2px solid var(--ink);
   background:conic-gradient(var(--ink) 90deg,transparent 90deg 180deg,var(--ink) 180deg 270deg,transparent 270deg) 0 0/21px 15px; }
-
-/* Photo frame */
 .frame{ position:relative; width:100%; height:600px; border:3px solid var(--ink); border-radius:var(--radius-md);
   overflow:hidden; background:var(--white); box-shadow:0 20px 48px rgba(17,17,17,.12); }
-.frame img{ width:100%; height:100%; object-fit:cover; object-position:center 42%; display:block; }
+.frame img{ width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block; }
 .seal{ position:absolute; left:20px; bottom:20px; display:inline-flex; align-items:center; gap:.55em;
   font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:19px;
-  color:var(--white); background:var(--red); border-radius:var(--radius-pill); padding:11px 20px;
+  color:var(--white); background:var(--green); border-radius:var(--radius-pill); padding:11px 20px;
   box-shadow:0 6px 18px rgba(17,17,17,.28); }
-
-/* Meta + story */
 .meta{ display:flex; flex-direction:column; gap:14px; }
 .eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
   letter-spacing:.2em; font-size:24px; color:var(--red); margin:0; }
 .name{ font-size:92px; line-height:.92; }
 .story{ margin:0; font-size:33px; line-height:1.5; color:var(--dark-grey); max-width:920px; }
 .story b{ color:var(--ink); font-weight:700; }
-
-/* Byline */
 .byline{ display:flex; align-items:center; gap:16px; padding-top:24px; border-top:2px solid var(--hair); }
 .byline .handle{ font-family:"Anton",sans-serif; text-transform:lowercase; font-size:32px; letter-spacing:.01em; }
 .byline .sep{ color:var(--red); font-size:24px; }
@@ -64,36 +50,28 @@ h1{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:u
 </style>
 </head>
 <body>
-
 <section class="slide">
   <div class="slide-inner">
-
     <div class="brandline">
       <span class="flag" aria-hidden="true"></span>
       <span class="brandline-txt">Nippon Speed Co.</span>
       <span class="tag">Do acervo</span>
     </div>
-
     <div class="frame">
-      <img src="foto.jpg" alt="Boné comemorativo Suzuka Circuit GP Japão 1990"/>
-      <span class="seal">Não está à venda</span>
+      <img src="foto.jpg" alt="Boné Ferrari DEKRA do Michael Schumacher, vermelho com laurel branco"/>
+      <span class="seal">Sob encomenda</span>
     </div>
-
     <div class="meta">
-      <p class="eyebrow">Boné · GP Japão 1990</p>
-      <h1 class="name">Suzuka '90</h1>
+      <p class="eyebrow">Boné · Schumacher</p>
+      <h1 class="name">Ferrari DEKRA</h1>
     </div>
-
-    <p class="story">Boné comemorativo do GP do Japão de 1990, com o traçado do circuito bordado em dourado. Foi nesse fim de semana que <b>Senna cravou o título logo na primeira curva</b>, no toque com o Prost que até hoje rende discussão. O GP mais polêmico da história, num boné.</p>
-
+    <p class="story">A DEKRA acompanhou o <b>Michael Schumacher por anos</b>, bordada no boné e no macacão dele. No vermelho, é a fase Ferrari, a era dos cinco títulos seguidos. Logo e laurel bordados, do jeito que colecionador gosta.</p>
     <div class="byline">
       <span class="handle">@nipponspeedco</span>
       <span class="sep">◆</span>
-      <span class="note">Peça de acervo · novidades toda semana no grupo</span>
+      <span class="note">Garimpado no Japão · fala com a gente</span>
     </div>
-
   </div>
 </section>
-
 </body>
 </html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080, initial-scale=1"/>
+<title>Nippon Speed Co. · Storytelling narrativo "Suzuka 1990" (carrossel 4:5)</title>
+<!-- impeccable-disable tight-leading repeated-section-kickers -- Anton is a condensed poster face (~1.28x); tight display leading intentional (same waiver as LP). Per-slide kickers are the narrative's chapter labels (distinct: O duelo / A largada / O que ficou...), not AI scaffolding. Body copy 1.5-1.55. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   NIPPON SPEED CO. — STORYTELLING NARRATIVO · carrossel 4:5 (feed)
+   Feed = história primeiro. Slides de narrativa = FOTO sangrando do
+   topo + texto na faixa tinta de baixo. Produto só no ÚLTIMO slide,
+   como CTA pro grupo (sem badge de venda). Design system V1.
+   ============================================================ */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
+  --dark-grey:#5d5d5d; --mid-grey:#676763; --hair:#ddddd7;
+  --red:#c82a2a; --red-ink:#a31f1f; --red-bright:#ff5347;
+  --radius-md:12px; --radius-pill:9999px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#2a2a2a; }
+body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+
+.slide{ width:1080px; height:1350px; position:relative; overflow:hidden; display:none; flex-direction:column; }
+.slide:target{ display:flex; }
+body:not(:has(.slide:target)) #s1{ display:flex; }
+.slide-inner{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:96px 88px; }
+
+.slide-ink{ background:var(--ink); color:var(--paper); }
+.slide-photo{ background:var(--ink); color:var(--paper); }
+.slide-paper{ background:linear-gradient(180deg, var(--paper) 0%, var(--whitesmoke) 100%); color:var(--ink); }
+
+.glow{ position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 62% 44% at 84% 12%, rgba(255,83,71,.17) 0%, transparent 70%),
+    radial-gradient(ellipse 52% 52% at 8% 90%, rgba(255,255,255,.05) 0%, transparent 70%); }
+.grain{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.42;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size:256px 256px; }
+
+/* Foto sangrando do topo + fade pra tinta */
+.ph{ position:absolute; top:0; left:0; width:100%; height:58%; object-fit:cover; z-index:0; }
+.ph-fade{ position:absolute; top:0; left:0; width:100%; height:62%; z-index:1; pointer-events:none;
+  background:linear-gradient(180deg, rgba(17,17,17,.5) 0%, rgba(17,17,17,.05) 16%, rgba(17,17,17,0) 48%, rgba(17,17,17,.85) 84%, var(--ink) 100%); }
+
+h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
+
+.brandline{ display:flex; align-items:center; gap:18px; }
+.brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; letter-spacing:.04em; line-height:1; }
+.brandline .chap{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
+  letter-spacing:.14em; font-size:21px; color:#e6e6e2; text-shadow:0 1px 8px rgba(0,0,0,.6); }
+.slide-paper .brandline .chap{ color:var(--mid-grey); text-shadow:none; }
+.flag{ width:42px; height:29px; flex:0 0 auto; border:2px solid currentColor;
+  background:conic-gradient(currentColor 90deg,transparent 90deg 180deg,currentColor 180deg 270deg,transparent 270deg) 0 0/21px 15px; }
+.slide-ink .flag, .slide-photo .flag, .slide-cover .flag{ color:var(--paper); } .slide-paper .flag{ color:var(--ink); }
+.slide-photo .brandline-txt, .slide-cover .brandline-txt{ text-shadow:0 1px 10px rgba(0,0,0,.6); }
+
+.eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.2em;
+  font-size:26px; color:var(--red-bright); margin:0; }
+.slide-paper .eyebrow{ color:var(--red); }
+
+/* Cover (com imagem de impacto curada pelo Bruno; padrão escuro) */
+.slide-cover{ background:var(--ink); color:var(--paper); }
+.cover-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+.cover-scrim{ position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(180deg, rgba(17,17,17,.5) 0%, rgba(17,17,17,.2) 30%, rgba(17,17,17,.5) 58%, rgba(17,17,17,.96) 100%); }
+.cover-mid{ display:flex; flex-direction:column; gap:24px; }
+.cover-title{ font-size:190px; line-height:.86; text-shadow:0 3px 34px rgba(0,0,0,.55); }
+.cover-sub{ margin:0; font-size:38px; line-height:1.4; max-width:840px; color:rgba(245,245,245,.92); text-shadow:0 2px 16px rgba(0,0,0,.55); }
+.cover-foot{ display:flex; align-items:center; gap:18px; }
+.rule{ height:3px; width:96px; background:var(--red-bright); border-radius:3px; }
+.cover-foot .yr{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.14em; font-size:24px; color:#dcdcd8; text-shadow:0 1px 10px rgba(0,0,0,.6); }
+
+/* Story slide (com foto) */
+.story-block{ display:flex; flex-direction:column; gap:22px; }
+.story-title{ font-size:96px; line-height:.92; text-shadow:0 2px 24px rgba(0,0,0,.45); }
+.story-body{ margin:0; font-size:34px; line-height:1.5; color:rgba(245,245,245,.9); max-width:920px; }
+.story-body b{ color:var(--paper); font-weight:700; }
+.dots{ display:flex; gap:14px; align-items:center; margin-top:6px; }
+.dot{ width:14px; height:14px; border-radius:50%; border:2.5px solid rgba(245,245,245,.45); background:transparent; }
+.dot.on{ background:var(--red-bright); border-color:var(--red-bright); }
+
+/* Piece slide (final) */
+.frame{ position:relative; width:100%; height:560px; border:3px solid var(--ink); border-radius:var(--radius-md);
+  overflow:hidden; background:var(--white); box-shadow:0 20px 48px rgba(17,17,17,.12); }
+.frame img{ width:100%; height:100%; object-fit:cover; object-position:center 42%; display:block; }
+/* slide da peça no ESCURO (feed/entretenimento) */
+.slide-ink .frame{ border-color:rgba(245,245,245,.22); background:var(--ink); box-shadow:0 20px 48px rgba(0,0,0,.45); }
+.slide-ink .piece-body{ color:rgba(245,245,245,.82); }
+.slide-ink .piece-body b{ color:var(--paper); }
+.slide-ink .cta{ border-top-color:rgba(245,245,245,.2); }
+.slide-ink .cta-line{ color:var(--paper); }
+.slide-ink .cta-line b{ color:var(--red-bright); }
+.slide-ink .cta-handle{ color:var(--paper); }
+.piece-meta{ display:flex; flex-direction:column; gap:12px; }
+.piece-name{ font-size:82px; line-height:.94; }
+.piece-body{ margin:0; font-size:32px; line-height:1.5; color:var(--dark-grey); max-width:900px; }
+.piece-body b{ color:var(--ink); font-weight:700; }
+.cta{ display:flex; flex-direction:column; gap:14px; padding-top:22px; border-top:2px solid var(--hair); }
+.cta-line{ margin:0; font-size:29px; line-height:1.4; color:var(--ink); font-weight:600; }
+.cta-line b{ color:var(--red); }
+.cta-handle{ font-family:"Anton",sans-serif; text-transform:lowercase; font-size:38px; letter-spacing:.01em; color:var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 · CAPA (imagem de impacto curada pelo Bruno) -->
+<section class="slide slide-cover" id="s1">
+  <img class="cover-bg" src="capa.jpg" style="object-position:center 42%" alt="O momento da batida entre Senna e Prost em Suzuka, 1990"/>
+  <div class="cover-scrim"></div>
+  <div class="slide-inner">
+    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span></div>
+    <div class="cover-mid">
+      <p class="eyebrow">Japão · 21 de outubro de 1990</p>
+      <h1 class="cover-title">Suzuka<br/>1990</h1>
+      <p class="cover-sub">O título mundial decidido na primeira curva. E de propósito.</p>
+    </div>
+    <div class="cover-foot"><span class="rule"></span><span class="yr">Uma história · arrasta →</span></div>
+  </div>
+</section>
+
+<!-- SLIDE 2 · O DUELO -->
+<section class="slide slide-photo" id="s2">
+  <img class="ph" src="s2.jpg" style="object-position:center 34%" alt="Senna e Prost caminhando de volta depois do toque, os dois de vermelho Marlboro"/>
+  <div class="ph-fade"></div>
+  <div class="slide-inner">
+    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">O duelo</span></div>
+    <div class="story-block">
+      <p class="eyebrow">Senna x Prost</p>
+      <h2 class="story-title">Conta<br/>antiga</h2>
+      <p class="story-body">Um ano antes, o Prost tirou o Senna de pista ali mesmo e ficou com o título. Em 90, os dois voltaram pra decidir de novo. E o Senna avisou: <b>ia pra primeira curva de qualquer jeito.</b></p>
+      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3 · A LARGADA -->
+<section class="slide slide-photo" id="s3">
+  <img class="ph" src="s3.jpg" style="object-position:center 66%" alt="Vista aérea da primeira curva de Suzuka: o grid passando e dois carros parados na brita com fumaça"/>
+  <div class="ph-fade"></div>
+  <div class="slide-inner">
+    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">A largada</span></div>
+    <div class="story-block">
+      <p class="eyebrow">12 segundos</p>
+      <h2 class="story-title">Primeira<br/>curva</h2>
+      <p class="story-body">Luzes apagam, Prost sai melhor, e o Senna não tira o pé. Os dois param na brita antes da segunda curva. <b>E com isso, o Senna era bicampeão mundial.</b></p>
+      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4 · O QUE FICOU -->
+<section class="slide slide-photo" id="s4">
+  <img class="ph" src="s4.jpg" style="object-position:center 40%" alt="Ayrton Senna no cockpit da McLaren-Honda, capacete amarelo, céu azul"/>
+  <div class="ph-fade"></div>
+  <div class="slide-inner">
+    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">O que ficou</span></div>
+    <div class="story-block">
+      <p class="eyebrow">Até hoje</p>
+      <h2 class="story-title">Amor e<br/>ódio</h2>
+      <p class="story-body">Um ano depois, o próprio Senna admitiu: foi de propósito, resposta ao que rolou em 89. Virou <b>a decisão de título mais discutida da história da F1.</b></p>
+      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5 · A PEÇA + CTA (padrão ESCURO — é entretenimento, não card de venda) -->
+<section class="slide slide-ink" id="s5">
+  <div class="glow"></div><div class="grain"></div>
+  <div class="slide-inner">
+    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">A peça</span></div>
+    <div class="frame">
+      <img src="foto.jpg" alt="Boné comemorativo do GP do Japão de 1990, Suzuka, com o traçado bordado em dourado"/>
+    </div>
+    <div class="piece-meta">
+      <p class="eyebrow">O boné oficial daquele GP</p>
+      <h2 class="piece-name">Suzuka '90</h2>
+    </div>
+    <p class="piece-body">Esse é o boné comemorativo daquele Grande Prêmio, com o <b>traçado do circuito bordado em dourado</b>. A história inteira cabe numa peça só.</p>
+    <div class="cta">
+      <p class="cta-line">Peças com história assim, garimpadas no Japão, aparecem <b>toda semana no nosso grupo.</b></p>
+      <span class="cta-handle">link na bio · @nipponspeedco</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 tipo: conteudo
 projeto: motor-ofertas
 formato: post único Instagram 4:5 (1080x1350)
-post: "West McLaren" (STORYTELLING · acervo m81651185430)
+post: "West McLaren" (CARTÃO DE PEÇA · stories/fixados/wpp = venda · acervo m81651185430)
 status: pronto para revisão
 ---
 
@@ -16,7 +16,7 @@ Camisa de pit da West McLaren-Mercedes, começo dos anos 2000. West, Mercedes, M
 
 Isso é roupa de quem trabalhava no box, não réplica de arquibancada. Detalhe de equipe de verdade, do tipo que não se acha em qualquer lugar.
 
-Peça do nosso acervo, não está à venda. Peça pra levar pra casa cai no grupo toda semana. O link tá na bio.
+Essa é sob encomenda. Garimpamos no Japão e trazemos pra você. Chama a gente pra garantir a sua.
 
 📍 @nipponspeedco
 
