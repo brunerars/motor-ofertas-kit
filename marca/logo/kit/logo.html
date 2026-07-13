@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1500, initial-scale=1"/>
+<title>Nippon Speed Co. · Kit de logo</title>
+<!-- impeccable-disable tight-leading em-dash-overuse -- Anton is a condensed poster face (~1.28x) and the whole point of this wordmark is the tight two-line block (measured 10px gap on a 100px cap height in Caio's art). Em-dashes counted by the detector are CSS custom properties (--ink, --red), not body copy. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   KIT DE LOGO — Nippon Speed Co.
+   Bloco do Caio reconstruído em tipografia viva (Anton).
+   Medido no original: tinta #111111, disco #fe0000,
+   cap-height 100px, gap entre linhas 10px.
+   Gramática: círculo vermelho (Japão) × quadrado preto (xadrez).
+   ============================================================ */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#fff; --hair:#ddddd7;
+  --dark-grey:#5d5d5d; --mid-grey:#8a8a86;
+  --red:#c82a2a;        /* o vermelho do site */
+  --red-logo:#e60000;   /* o hinomaru da logo antiga do Caio */
+  --red-pure:#fe0000;   /* o disco desta arte nova */
+  --red-bright:#ff5347; /* acento sobre tinta */
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+.wrap{ max-width:1400px; margin:0 auto; padding:64px 48px 96px; }
+h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
+h1{ font-size:60px; line-height:1; }
+h2{ font-size:32px; line-height:1.05; }
+.eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
+  letter-spacing:.2em; font-size:13px; color:var(--red); margin:0 0 10px; }
+.lede{ margin:14px 0 0; font-size:18px; line-height:1.6; color:var(--dark-grey); max-width:880px; }
+.note{ margin:8px 0 0; font-size:14px; line-height:1.6; color:var(--mid-grey); max-width:920px; }
+.sec{ margin-top:68px; }
+.sec-head{ border-top:2px solid var(--ink); padding-top:20px; margin-bottom:30px; }
+
+/* ============================================================
+   A LOGO (é isto que vira SVG)
+   ============================================================ */
+/* Medidas tiradas da arte do Caio (cap-height 100px). Anton tem cap 0.88em,
+   logo cap 100 = font-size 113.6. Convertido pra em: disco .757 · gap .15 ·
+   tracking da linha 1 .022 (ele abriu 5% acima do Anton padrão) · linha 2 .045
+   (fecha a largura da de cima) · quadrado .17 · distância entre linhas .97em. */
+.logo{ display:inline-flex; flex-direction:column; font-family:"Anton",sans-serif;
+  text-transform:uppercase; line-height:.97; color:var(--ink);
+  font-size:100px;  /* tudo escala por aqui */ }
+.logo .l1, .logo .l2{ display:flex; align-items:center; white-space:nowrap; }
+.logo .l1{ letter-spacing:.022em; }
+.logo .l2{ letter-spacing:.037em; }
+.logo .disc{ width:.757em; height:.757em; border-radius:50%; background:var(--red-pure);
+  flex:0 0 auto; margin-left:.15em; }
+.logo .sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto; margin-left:.02em;
+  align-self:flex-end; margin-bottom:.04em; }
+
+/* variantes */
+.logo.on-ink{ color:var(--paper); }
+.logo.mono .disc{ background:currentColor; }
+
+/* palcos */
+.stage{ display:flex; align-items:center; justify-content:center; padding:56px 32px; border-radius:10px; }
+.st-paper{ background:var(--paper); border:1px solid var(--hair); }
+.st-ink{ background:var(--ink); }
+.st-white{ background:var(--white); border:1px solid var(--hair); }
+.duo{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.trio{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+
+/* comparação com o original */
+.cmp{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:stretch; }
+.cmp .box{ border:1px solid var(--hair); border-radius:10px; background:var(--white); overflow:hidden; }
+.cmp .box-h{ padding:12px 18px; border-bottom:1px solid var(--hair);
+  font-family:"Archivo",sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.12em; }
+.cmp .box-b{ padding:36px; display:flex; align-items:center; justify-content:center; min-height:230px; }
+.cmp img{ max-width:100%; }
+/* sobreposição: o original por baixo, a reconstrução por cima em vermelho translúcido */
+.overlay{ position:relative; width:587px; height:323px; }
+.overlay img{ position:absolute; inset:0; width:587px; height:323px; }
+.overlay .logo{ position:absolute; left:82px; top:57px; font-size:113.6px; opacity:.5; color:#0aa; }
+.overlay .logo .disc{ background:#0aa; }
+.overlay .logo .sq{ background:#0aa; }
+
+/* horizontal */
+.logo-h{ display:inline-flex; align-items:center; gap:.28em; font-family:"Anton",sans-serif;
+  text-transform:uppercase; font-size:44px; letter-spacing:.02em; color:var(--ink); white-space:nowrap; }
+.logo-h .disc{ width:.5em; height:.5em; border-radius:50%; background:var(--red-pure); flex:0 0 auto; }
+.logo-h .sq{ width:.16em; height:.16em; background:currentColor; flex:0 0 auto; align-self:flex-end; margin-bottom:.1em; margin-left:-.16em; }
+.logo-h.on-ink{ color:var(--paper); }
+.logo-h.mono .disc{ background:currentColor; }
+
+/* ============================================================
+   MARKS (avatar / favicon)
+   ============================================================ */
+.mgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.mcard{ border:1px solid var(--hair); border-radius:10px; background:var(--white); overflow:hidden; }
+.mcard-h{ display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--hair); }
+.mcard-n{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:18px; letter-spacing:.02em; }
+.mcard-b{ display:flex; align-items:center; gap:20px; padding:24px 18px; flex-wrap:wrap; }
+.mcard-f{ padding:12px 18px; border-top:1px solid var(--hair); font-size:12.5px; line-height:1.5; color:var(--dark-grey); }
+.sizes{ display:flex; align-items:flex-end; gap:16px; }
+.sz{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+.sz span{ font-size:9px; text-transform:uppercase; letter-spacing:.1em; color:var(--mid-grey); font-weight:700; }
+.chip{ background:var(--ink); display:flex; align-items:center; justify-content:center; flex:0 0 auto; overflow:hidden; }
+.chip.round{ border-radius:50%; }
+.s180{ width:120px; height:120px; } .s110{ width:76px; height:76px; }
+.s64{ width:64px; height:64px; border-radius:10px; } .s32{ width:32px; height:32px; border-radius:6px; }
+
+/* mark 1 — disco + quadrado (as duas formas da logo, sozinhas) */
+.mk-formas{ display:flex; align-items:center; }
+.mk-formas .disc{ border-radius:50%; background:var(--red-pure); }
+.mk-formas .sq{ background:var(--paper); align-self:flex-end; }
+.s180 .mk-formas{ gap:8px } .s180 .mk-formas .disc{ width:52px; height:52px } .s180 .mk-formas .sq{ width:18px; height:18px }
+.s110 .mk-formas{ gap:5px } .s110 .mk-formas .disc{ width:33px; height:33px } .s110 .mk-formas .sq{ width:11px; height:11px }
+.s64  .mk-formas{ gap:4px } .s64  .mk-formas .disc{ width:28px; height:28px } .s64  .mk-formas .sq{ width:10px; height:10px }
+.s32  .mk-formas{ gap:2px } .s32  .mk-formas .disc{ width:15px; height:15px } .s32  .mk-formas .sq{ width:6px;  height:6px  }
+
+/* mark 2 — NS / C + disco (o bloco reduzido ao núcleo) */
+.mk-nsc{ font-family:"Anton",sans-serif; text-transform:uppercase; color:var(--paper);
+  line-height:.86; display:flex; flex-direction:column; align-items:center; }
+.mk-nsc .r2{ display:flex; align-items:center; gap:.08em; }
+.mk-nsc .disc{ width:.42em; height:.42em; border-radius:50%; background:var(--red-pure); }
+.s180 .mk-nsc{ font-size:42px } .s110 .mk-nsc{ font-size:27px }
+.s64  .mk-nsc{ font-size:23px } .s32  .mk-nsc{ font-size:12px }
+
+/* mark 3 — N + disco */
+.mk-n{ font-family:"Anton",sans-serif; text-transform:uppercase; color:var(--paper);
+  display:flex; align-items:center; gap:.1em; }
+.mk-n .disc{ width:.34em; height:.34em; border-radius:50%; background:var(--red-pure); }
+.s180 .mk-n{ font-size:58px } .s110 .mk-n{ font-size:38px }
+.s64  .mk-n{ font-size:32px } .s32  .mk-n{ font-size:17px }
+
+/* paleta */
+.pal{ display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+.sw{ width:160px; border:1px solid var(--hair); border-radius:8px; overflow:hidden; background:var(--white); }
+.sw-c{ height:56px; } .sw-t{ padding:9px 11px; font-size:11px; line-height:1.5; }
+.sw-t b{ display:block; font-size:12px; }
+.mono-t{ font-family:ui-monospace,Menlo,monospace; color:var(--dark-grey); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Nippon Speed Co. · kit</p>
+    <h1>A logo</h1>
+    <p class="lede">O bloco do Caio, reconstruído em <b>tipografia viva</b> (Anton, a fonte que a LP e os posts já usam). Nada aqui é imagem: é texto e duas formas. A gramática é <b>círculo vermelho contra quadrado preto</b>, o Japão contra o xadrez.</p>
+    <p class="note">Medido na arte original: tinta <b>#111111</b> (que já é o <span class="mono-t">--ink</span> do design system), disco <b>#fe0000</b>, altura de letra 100px com 10px entre as linhas.</p>
+  </header>
+
+  <!-- ============ FIDELIDADE ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Conferência</p>
+      <h2>Reconstrução × original</h2>
+      <p class="note">À esquerda a arte do Caio. À direita a mesma coisa em Anton, e por cima dela, em ciano translúcido, a reconstrução sobreposta ao original: se os traços coincidem, a fonte é a mesma.</p>
+    </div>
+    <div class="cmp">
+      <div class="box">
+        <div class="box-h">Original do Caio (JPEG)</div>
+        <div class="box-b"><img src="../fontes/caio-bloco-2026-07-13.jpeg" alt="Arte original do Caio"/></div>
+      </div>
+      <div class="box">
+        <div class="box-h">Sobreposição (ciano = reconstrução)</div>
+        <div class="box-b">
+          <div class="overlay">
+            <img src="../fontes/caio-bloco-2026-07-13.jpeg" alt=""/>
+            <div class="logo">
+              <span class="l1">Nippon<span class="disc"></span></span>
+              <span class="l2">Speed Co<span class="sq"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRIMÁRIA ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Primária</p>
+      <h2>O bloco</h2>
+      <p class="note">Duas linhas fechando na mesma largura. O disco preenche a medida que sobrava depois de NIPPON, e o quadrado fecha o CO. Use grande: capa, hero, assinatura, camiseta.</p>
+    </div>
+    <div class="trio">
+      <div class="stage st-paper"><div class="logo" style="font-size:64px"><span class="l1">Nippon<span class="disc"></span></span><span class="l2">Speed Co<span class="sq"></span></span></div></div>
+      <div class="stage st-ink"><div class="logo on-ink" style="font-size:64px"><span class="l1">Nippon<span class="disc"></span></span><span class="l2">Speed Co<span class="sq"></span></span></div></div>
+      <div class="stage st-white"><div class="logo mono" style="font-size:64px"><span class="l1">Nippon<span class="disc"></span></span><span class="l2">Speed Co<span class="sq"></span></span></div></div>
+    </div>
+    <p class="note">Papel · tinta · <b>mono 1 cor</b> (a da direita é a que vai pro bordado e pro carimbo: o disco vira tinta).</p>
+  </section>
+
+  <!-- ============ HORIZONTAL ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Secundária</p>
+      <h2>A horizontal</h2>
+      <p class="note">Para onde o bloco é alto demais: barra de navegação, rodapé, a assinatura no topo dos posts e dos stories. O disco vira o separador, exatamente como na opção E.</p>
+    </div>
+    <div class="duo">
+      <div class="stage st-paper"><div class="logo-h">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></div></div>
+      <div class="stage st-ink"><div class="logo-h on-ink">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></div></div>
+    </div>
+  </section>
+
+  <!-- ============ MARKS ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">O sinal</p>
+      <h2>Avatar e favicon</h2>
+      <p class="note">O bloco inteiro não sobrevive a 32px (cada letra de SPEED CO. ficaria com menos de 3px). Aqui estão os três candidatos, nos tamanhos reais em que vão ser vistos. Olhe a coluna de 32px: é ela que decide.</p>
+    </div>
+
+    <div class="mgrid">
+      <div class="mcard">
+        <div class="mcard-h"><span class="mcard-n">Disco + quadrado</span></div>
+        <div class="mcard-b">
+          <div class="sizes">
+            <div class="sz"><div class="chip round s180"><span class="mk-formas"><span class="disc"></span><span class="sq"></span></span></div><span>Avatar</span></div>
+            <div class="sz"><div class="chip round s110"><span class="mk-formas"><span class="disc"></span><span class="sq"></span></span></div><span>Feed</span></div>
+            <div class="sz"><div class="chip s64"><span class="mk-formas"><span class="disc"></span><span class="sq"></span></span></div><span>64px</span></div>
+            <div class="sz"><div class="chip s32"><span class="mk-formas"><span class="disc"></span><span class="sq"></span></span></div><span>32px</span></div>
+          </div>
+        </div>
+        <p class="mcard-f">As duas formas da logo, sozinhas. Não tem letra pra borrar: <b>lê em qualquer tamanho</b>. O risco é ser abstrato demais sem o nome do lado.</p>
+      </div>
+
+      <div class="mcard">
+        <div class="mcard-h"><span class="mcard-n">NS / C + disco</span></div>
+        <div class="mcard-b">
+          <div class="sizes">
+            <div class="sz"><div class="chip round s180"><span class="mk-nsc"><span>NS</span><span class="r2">C<span class="disc"></span></span></span></div><span>Avatar</span></div>
+            <div class="sz"><div class="chip round s110"><span class="mk-nsc"><span>NS</span><span class="r2">C<span class="disc"></span></span></span></div><span>Feed</span></div>
+            <div class="sz"><div class="chip s64"><span class="mk-nsc"><span>NS</span><span class="r2">C<span class="disc"></span></span></span></div><span>64px</span></div>
+            <div class="sz"><div class="chip s32"><span class="mk-nsc"><span>NS</span><span class="r2">C<span class="disc"></span></span></span></div><span>32px</span></div>
+          </div>
+        </div>
+        <p class="mcard-f">O bloco reduzido ao núcleo: <b>mesma estrutura de duas linhas</b>, mesmo disco vermelho. É a redução mais fiel à primária.</p>
+      </div>
+
+      <div class="mcard">
+        <div class="mcard-h"><span class="mcard-n">N + disco</span></div>
+        <div class="mcard-b">
+          <div class="sizes">
+            <div class="sz"><div class="chip round s180"><span class="mk-n">N<span class="disc"></span></span></div><span>Avatar</span></div>
+            <div class="sz"><div class="chip round s110"><span class="mk-n">N<span class="disc"></span></span></div><span>Feed</span></div>
+            <div class="sz"><div class="chip s64"><span class="mk-n">N<span class="disc"></span></span></div><span>64px</span></div>
+            <div class="sz"><div class="chip s32"><span class="mk-n">N<span class="disc"></span></span></div><span>32px</span></div>
+          </div>
+        </div>
+        <p class="mcard-f">Inicial e disco. O mais legível de todos, e o <b>menos ownable</b>: um N sozinho é de qualquer um.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ O VERMELHO ============ -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Decisão pendente</p>
+      <h2>Qual vermelho é o oficial</h2>
+      <p class="note">A tinta do Caio já bate com a do site (#111111). O vermelho não: o disco dele é puro (#fe0000), e o site usa um vermelho mais fechado (#c82a2a). Rodar os dois faz a marca parecer duas marcas.</p>
+    </div>
+    <div class="pal">
+      <div class="sw"><div class="sw-c" style="background:#fe0000"></div><div class="sw-t"><b>Disco do Caio</b><span class="mono-t">#fe0000</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#e60000"></div><div class="sw-t"><b>Hinomaru (logo antiga)</b><span class="mono-t">#e60000</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#c82a2a"></div><div class="sw-t"><b>--red (site hoje)</b><span class="mono-t">#c82a2a</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#bc002d"></div><div class="sw-t"><b>Hinomaru oficial</b><span class="mono-t">#bc002d</span></div></div>
+    </div>
+    <div class="trio" style="margin-top:24px">
+      <div class="stage st-paper"><div class="logo" style="font-size:52px"><span class="l1">Nippon<span class="disc" style="background:#fe0000"></span></span><span class="l2">Speed Co<span class="sq"></span></span></div></div>
+      <div class="stage st-paper"><div class="logo" style="font-size:52px"><span class="l1">Nippon<span class="disc" style="background:#e60000"></span></span><span class="l2">Speed Co<span class="sq"></span></span></div></div>
+      <div class="stage st-paper"><div class="logo" style="font-size:52px"><span class="l1">Nippon<span class="disc" style="background:#c82a2a"></span></span><span class="l2">Speed Co<span class="sq"></span></span></div></div>
+    </div>
+    <p class="note">Puro · hinomaru · o do site. Minha leitura: o <b>#e60000</b> segura o impacto do disco sem berrar como o puro, e é o vermelho que o próprio Caio já tinha usado na primeira logo.</p>
+  </section>
+
+</div>
+</body>
+</html>
