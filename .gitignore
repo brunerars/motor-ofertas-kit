@@ -18,6 +18,9 @@ lp/**/_raw.json
 # Referência de design (input do /marca, pesada, regenerável — não runtime)
 marca/referencia/
 
+# Cache do quality gate (regenerável)
+.impeccable/
+
 # Temp / OS / editor
 *.tmp
 _verify_tmp.html

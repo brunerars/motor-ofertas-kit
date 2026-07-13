@@ -8,8 +8,8 @@ description: Monta uma landing page de loja (self-contained, dark+acento) a part
 Gera a landing de uma loja de logística Mercari e sobe na Vercel pra teste rápido. Consome o design system (`/marca`) e as fotos do acervo (`/acervo`). **Não scrapeia item** (isso é `/agenda`).
 
 ## Antes de montar — LER
-- `<projeto>/roteiro-lp.md` — tom de voz + estrutura padrão de 7 seções + regras técnicas.
-- `<projeto>/logistica-mercari.md` — copy canônica do "como funciona" (3 passos).
+- `<projeto>/docs/roteiro-lp.md` — tom de voz + estrutura padrão de 7 seções + regras técnicas.
+- `<projeto>/docs/logistica-mercari.md` — copy canônica do "como funciona" (3 passos).
 - `<projeto>/marca/acervo/index.json` — fotos de produto pra vitrine (preenchido pelo `/acervo`).
 
 ## Input
@@ -20,7 +20,7 @@ Gera a landing de uma loja de logística Mercari e sobe na Vercel pra teste ráp
 
 ## Fluxo
 1. Montar `<projeto>/lp/` **self-contained**: `index.html` (fontes Anton+Archivo via Google Fonts CDN; CSS inline), `assets/img/` (marca), `assets/produto/` + `assets/acervo/` (fotos locais — **nada de hotlink**).
-2. Estrutura (do `roteiro-lp.md`): nav · hero (bg de época **sem texto embutido** — recortar) · peça em destaque (galeria) · como funciona (3 passos de `logistica-mercari.md`) · vitrine (cards do `acervo/index.json`, cada um linkando `wa.me` com texto citando a peça) · timeline (opcional) · CTA final · footer.
+2. Estrutura (do `docs/roteiro-lp.md`): nav · hero (bg de época **sem texto embutido** — recortar) · peça em destaque (galeria) · como funciona (3 passos de `docs/logistica-mercari.md`) · vitrine (cards do `acervo/index.json`, cada um linkando `wa.me` com texto citando a peça) · timeline (opcional) · CTA final · footer.
 3. **Pele dark + acento** (opção 2). **Motion**: progressive enhancement (IntersectionObserver, conteúdo visível por padrão, sem `opacity:0` preso). Preço = "sob consulta no grupo".
 4. **Gate de qualidade (OBRIGATÓRIO antes do deploy)** — ver [[lp-mobile-first-standard]]:
    - `npx -y impeccable@latest detect <projeto>/lp/index.html` → **0 anti-patterns** (residual só com waiver documentado: comentário `<!-- impeccable-disable <regra> -- motivo -->`). Gotchas do detector em [[impeccable-detector-gotchas]] (clamp lido como padding 0; sem 01/02/03; ≤2 em-dashes no corpo; tracking largo só em label curto).
@@ -62,4 +62,4 @@ Editar `lp/` → rodar deploy + `alias set` (o alias NÃO segue prod sozinho) �
 - Não fechar preço (padrão "sob consulta no grupo").
 
 ## Relacionado
-`roteiro-lp.md` · `logistica-mercari.md` · skills `/marca`, `/acervo`. Memórias: [[lp-mobile-first-standard]], [[vercel-deploy-lp-gotchas]], [[design-system-extract-motion-gotcha]], [[impeccable-detector-gotchas]], [[motor-ofertas-nsc]].
+`docs/roteiro-lp.md` · `docs/logistica-mercari.md` · skills `/marca`, `/acervo`. Memórias: [[lp-mobile-first-standard]], [[vercel-deploy-lp-gotchas]], [[design-system-extract-motion-gotcha]], [[impeccable-detector-gotchas]], [[motor-ofertas-nsc]].

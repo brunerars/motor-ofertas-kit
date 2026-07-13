@@ -88,8 +88,8 @@ projetos/motor-ofertas/    # A INSTÂNCIA (Nippon Speed Co.)
     referencia/            #   design system + assets do Caio (fora do git)
   lp/                      # landing page
   n8n/nsc-dispara-ofertas.json   # workflow de disparo (importar no n8n)
-  baserow-disparador-schema.md   # schema da fila
-  roteiro-lp.md · logistica-mercari.md · README.md
+  docs/                    # fontes da verdade: roteiro-lp · logistica-mercari · baserow-schema
+  briefs/                  # pedidos do Bruno/Caio já aplicados (histórico)
 ```
 **Pra abrir uma nova loja:** clona a instância, troca o cérebro (CLAUDE.md) + assets + `.env`, roda as skills de setup. O kit de skills não muda.
 

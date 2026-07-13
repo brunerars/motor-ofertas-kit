@@ -38,4 +38,4 @@ Rodar via `/schedule` (cron do Claude Code) numa cadência (ex: a cada 20min em 
 - Não disparar item sem foto/caption. Não repetir (só `status=Agendado`). Não versionar chaves.
 
 ## Relacionado
-`baserow-disparador-schema.md` · skills `/agenda`, `/confere-ofertas`. `inbox/ideias-mercari-plus.txt` (features "+"). Memória [[motor-ofertas-nsc]].
+`docs/baserow-disparador-schema.md` · skills `/agenda`, `/confere-ofertas`. `inbox/ideias-mercari-plus.txt` (features "+"). Memória [[motor-ofertas-nsc]].

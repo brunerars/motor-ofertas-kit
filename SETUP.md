@@ -8,7 +8,7 @@ Runbook acionável. O `README.md` explica **o que é**; aqui é **como rodar** (
 ## 1. Configurar — PARTE HUMANA (1×)
 1. `cp .env.example .env` e preencha os tokens (cada chave tem a origem no arquivo).
 2. **WhatsApp:** crie a instância no Z-API, escaneie o QR com o número da loja, copie **instância + token + client-token**; ache o `group_id` (`GET /chats`, formato `120363…-group`).
-3. **Baserow:** a fila é a tabela `DISPARADOR` (schema em `baserow-disparador-schema.md`). Loja nova: o Claude cria via API.
+3. **Baserow:** a fila é a tabela `DISPARADOR` (schema em `docs/baserow-disparador-schema.md`). Loja nova: o Claude cria via API.
 
 ## 2. Marca — CLAUDE (1× por loja)
 - `/marca <ref-webflow>` → `design-system2.html`.
@@ -46,8 +46,8 @@ motor-ofertas/
 ├─ marca/                 # a marca por tópico: acervo/ campanha/ conteudo/ referencia/
 ├─ lp/                    # landing page
 ├─ n8n/                   # workflow de disparo + guia de import
-├─ baserow-disparador-schema.md
-├─ roteiro-lp.md · logistica-mercari.md
+├─ docs/                  # fontes da verdade (roteiro-lp, logistica-mercari, baserow-schema)
+├─ briefs/                # pedidos do Bruno/Caio já aplicados (histórico)
 ```
 
 ## Segredos

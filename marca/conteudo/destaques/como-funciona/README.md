@@ -26,7 +26,7 @@ status: pronto para subir (aguarda @ oficial)
 
 > ⚠️ **@ ainda placeholder:** a `tela-5` usa `@nipponspeedco`. Quando o perfil existir, trocar no HTML e re-renderizar só essa tela.
 
-> Copy dos 3 passos = a mesma do post 4:5 (`marca/conteudo/como-funciona/`) e da LP. Fonte da verdade: `logistica-mercari.md`. Se a operação mudar, muda lá e propaga pros três.
+> Copy dos 3 passos = a mesma do post 4:5 (`marca/conteudo/como-funciona/`) e da LP. Fonte da verdade: `docs/logistica-mercari.md`. Se a operação mudar, muda lá e propaga pros três.
 
 ## Render
 ```bash

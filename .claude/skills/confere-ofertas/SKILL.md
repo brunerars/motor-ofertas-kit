@@ -30,4 +30,4 @@ Cloud routine diária (`/schedule`), fora do horário de disparo.
 - Não re-avisar item já `Vendido`. Não versionar chaves.
 
 ## Relacionado
-`baserow-disparador-schema.md` · skills `/agenda`, `/dispara-oferta`. Feature do `inbox/ideias-mercari-plus.txt`. Memória [[motor-ofertas-nsc]].
+`docs/baserow-disparador-schema.md` · skills `/agenda`, `/dispara-oferta`. Feature do `inbox/ideias-mercari-plus.txt`. Memória [[motor-ofertas-nsc]].

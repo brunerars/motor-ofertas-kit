@@ -59,4 +59,4 @@ Versão pra postar no feed (mais solta, com hashtags no fim):
 - Trocar `@nipponspeedco` pelo @ real antes de subir.
 
 ## Relacionado
-[[motor-ofertas-nsc]] · `brief-campanha-nsc-01.md` · `roteiro-lp.md` · [[voz-bruno-redondo]]
+[[motor-ofertas-nsc]] · `brief-campanha-nsc-01.md` · `docs/roteiro-lp.md` · [[voz-bruno-redondo]]
