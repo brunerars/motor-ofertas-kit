@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1600, initial-scale=1"/>
+<title>Nippon Speed Co. · Wordmark minimalista</title>
+<!-- impeccable-disable tight-leading em-dash-overuse -- Anton is a condensed poster face (~1.28x); tight display leading is the point of a wordmark (same waiver as the LP). Em-dashes the detector counts are CSS custom properties (--ink, --red), not body copy. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   WORDMARK MINIMALISTA — Nippon Speed Co.
+   Sem emblema: o design system é editorial (tinta sobre papel),
+   e ilustração briga com ele. Tudo aqui é TIPOGRAFIA + um sinal
+   mínimo (xadrez ou disco), 100% CSS/vetor, escalável.
+   ============================================================ */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#fff; --hair:#ddddd7;
+  --dark-grey:#5d5d5d; --mid-grey:#8a8a86;
+  --red:#c82a2a; --red-bright:#ff5347;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+.wrap{ max-width:1520px; margin:0 auto; padding:64px 48px 96px; }
+
+h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
+h1{ font-size:64px; line-height:1; }
+h2{ font-size:34px; line-height:1.05; }
+.eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
+  letter-spacing:.2em; font-size:13px; color:var(--red); margin:0 0 10px; }
+.lede{ margin:14px 0 0; font-size:18px; line-height:1.6; color:var(--dark-grey); max-width:860px; }
+.note{ margin:8px 0 0; font-size:14px; line-height:1.6; color:var(--mid-grey); max-width:900px; }
+
+.sec{ margin-top:72px; }
+.sec-head{ border-top:2px solid var(--ink); padding-top:20px; margin-bottom:32px; }
+
+.grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; }
+.card{ border:1px solid var(--hair); border-radius:10px; background:var(--white); overflow:hidden; }
+.card-top{ display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px 20px; border-bottom:1px solid var(--hair); }
+.card-name{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:20px; letter-spacing:.02em; }
+.tag{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.1em;
+  font-size:10px; padding:5px 10px; border-radius:9999px; background:#f0efec; color:var(--dark-grey); }
+.tag-ok{ background:#e8f3ec; color:#1c6b3f; }
+.stage{ display:grid; grid-template-columns:1fr 1fr; }
+.stage > div{ display:flex; align-items:center; justify-content:center; padding:40px 24px; min-height:170px; }
+.on-paper{ background:var(--paper); }
+.on-ink{ background:var(--ink); }
+.verdict{ padding:14px 20px; border-top:1px solid var(--hair); font-size:13.5px; line-height:1.55; color:var(--dark-grey); }
+.verdict b{ color:var(--ink); }
+
+/* ============================================================
+   OS ELEMENTOS DA MARCA (é isto que vira o kit)
+   ============================================================ */
+
+/* bandeirinha xadrez: o sinal que já existe na LP e nos posts */
+.flag{ display:inline-block; flex:0 0 auto; border:2px solid currentColor;
+  width:1.55em; height:1.05em;
+  background:conic-gradient(currentColor 90deg,transparent 90deg 180deg,currentColor 180deg 270deg,transparent 270deg) 0 0/.775em .525em; }
+
+/* disco: o hinomaru reduzido a um ponto. Japão sem desenhar bandeira. */
+.disc{ display:inline-block; flex:0 0 auto; width:.62em; height:.62em; border-radius:50%; background:var(--red); }
+.on-ink .disc{ background:var(--red-bright); }
+
+.wm{ font-family:"Anton",sans-serif; text-transform:uppercase; line-height:.94; letter-spacing:.02em;
+  white-space:nowrap; }
+.on-paper .wm{ color:var(--ink); }
+.on-ink .wm{ color:var(--paper); }
+.wm .red{ color:var(--red); }
+.on-ink .wm .red{ color:var(--red-bright); }
+
+/* A — empilhado, ponto vermelho (o ponto é PONTUAÇÃO: colado no CO, sem gap) */
+.wm-a{ font-size:58px; display:flex; flex-direction:column; align-items:flex-start; }
+
+/* B — uma linha, SPEED CO. em vermelho (o contraste da logo do Caio) */
+.wm-b{ font-size:38px; display:flex; align-items:baseline; gap:.22em; }
+
+/* C — brandline: xadrez + nome (o que já está no ar) */
+.wm-c{ font-size:32px; display:flex; align-items:center; gap:.42em; }
+
+/* D — empilhado com filete vermelho (cadência editorial da LP) */
+.wm-d{ font-size:56px; display:flex; flex-direction:column; align-items:flex-start; gap:.12em; }
+.rule{ height:5px; width:2.1em; background:var(--red); border-radius:3px; }
+.on-ink .rule{ background:var(--red-bright); }
+
+/* E — disco entre as palavras, tudo tinta */
+.wm-e{ font-size:32px; display:flex; align-items:center; gap:.3em; }
+
+/* F — empilhado justificado (as duas linhas com a mesma largura óptica) */
+.wm-f{ font-size:52px; display:flex; flex-direction:column; align-items:stretch; }
+.wm-f .l1{ letter-spacing:.02em; }
+.wm-f .l2{ display:flex; justify-content:space-between; font-size:.46em; letter-spacing:.18em; }
+
+/* ============================================================
+   MARKS — o buraco real: avatar e favicon
+   ============================================================ */
+.marks{ display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+.mrow{ display:flex; align-items:center; gap:22px; padding:22px; }
+.avatar{ width:120px; height:120px; border-radius:50%; background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center; flex:0 0 auto; overflow:hidden; }
+.avatar.light{ background:var(--paper); color:var(--ink); border:1px solid var(--hair); }
+.fav{ width:44px; height:44px; border-radius:8px; background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+.fav32{ width:32px; height:32px; border-radius:6px; background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+
+/* mark 1 — monograma NSC empilhado */
+.m-nsc{ font-family:"Anton",sans-serif; text-transform:uppercase; line-height:.82; text-align:center; letter-spacing:.02em; }
+.m-nsc .dot{ color:var(--red-bright); }
+.avatar .m-nsc{ font-size:38px; }
+.fav .m-nsc{ font-size:15px; }
+.fav32 .m-nsc{ font-size:11px; }
+
+/* mark 2 — o xadrez sozinho */
+.avatar .flag-solo{ font-size:44px; }
+.fav .flag-solo{ font-size:17px; }
+.fav32 .flag-solo{ font-size:12px; }
+
+/* mark 3 — xadrez + disco (corrida + Japão, sem desenhar bandeira) */
+.m-combo{ display:flex; flex-direction:column; align-items:center; gap:.22em; }
+.avatar .m-combo{ font-size:40px; }
+.fav .m-combo{ font-size:15px; }
+.fav32 .m-combo{ font-size:11px; }
+
+/* mark 4 — N em disco (o hinomaru virando contêiner da inicial) */
+.m-ndisc{ display:flex; align-items:center; justify-content:center; border-radius:50%;
+  background:var(--red); color:#fff; font-family:"Anton",sans-serif; text-transform:uppercase; }
+.avatar .m-ndisc{ width:78px; height:78px; font-size:44px; }
+.fav .m-ndisc{ width:30px; height:30px; font-size:17px; }
+.fav32 .m-ndisc{ width:22px; height:22px; font-size:12px; }
+.mk-label{ font-size:12px; line-height:1.5; color:var(--dark-grey); }
+.mk-label b{ display:block; font-family:"Anton",sans-serif; text-transform:uppercase; font-size:16px; color:var(--ink); letter-spacing:.02em; }
+
+/* aplicação: barra de nav simulada */
+.navsim{ display:flex; align-items:center; justify-content:space-between; gap:20px;
+  padding:16px 24px; border:1px solid var(--hair); border-radius:10px; background:var(--white); }
+.navsim.dark{ background:var(--ink); border-color:#2a2a2a; }
+.navsim-links{ display:flex; gap:18px; font-size:13px; font-weight:600; color:var(--dark-grey); }
+.navsim.dark .navsim-links{ color:#b8b8b2; }
+.navsim-cta{ font-family:"Archivo",sans-serif; font-weight:700; font-size:12px; text-transform:uppercase;
+  letter-spacing:.08em; background:var(--red); color:#fff; padding:10px 18px; border-radius:9999px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Nippon Speed Co. · marca</p>
+    <h1>Wordmark<br/>minimalista</h1>
+    <p class="lede">Sem emblema. O design system é <b>editorial</b> (tinta sobre papel, Anton grande, filete vermelho), e ilustração desenhada briga com ele. A marca aqui é <b>a própria tipografia</b>, com no máximo um sinal mínimo: o xadrez ou o disco.</p>
+    <p class="note">Tudo nesta página é CSS e tipografia, zero imagem. Ou seja, já é vetor, já escala, já funciona em qualquer fundo, e é exatamente o que a LP e os posts usam hoje. O único buraco real é o <b>avatar e o favicon</b>, onde um nome deitado não cabe. É o que a seção de baixo resolve.</p>
+  </header>
+
+  <!-- ================= WORDMARKS ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Passo 1</p>
+      <h2>O nome</h2>
+      <p class="note">Seis cadências do mesmo nome. Todas em Anton, a fonte que já está no ar. A diferença é onde entra (ou não entra) o vermelho.</p>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">A · Empilhado, ponto vermelho</span><span class="tag tag-ok">mais minimalista</span></div>
+        <div class="stage">
+          <div class="on-paper"><div class="wm wm-a"><span>Nippon</span><span>Speed Co<span class="red">.</span></span></div></div>
+          <div class="on-ink"><div class="wm wm-a"><span>Nippon</span><span>Speed Co<span class="red">.</span></span></div></div>
+        </div>
+        <p class="verdict">Tudo tinta, e o vermelho aparece <b>num ponto só</b>: o ponto final vira o hinomaru. É o Japão dito sem desenhar bandeira nenhuma. Silencioso e adulto.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">B · Uma linha, Speed Co. vermelho</span><span class="tag">herda a logo do Caio</span></div>
+        <div class="stage">
+          <div class="on-paper"><div class="wm wm-b"><span>Nippon</span><span class="red">Speed Co.</span></div></div>
+          <div class="on-ink"><div class="wm wm-b"><span>Nippon</span><span class="red">Speed Co.</span></div></div>
+        </div>
+        <p class="verdict">Mantém a divisão de cor que o Caio criou (branco e vermelho). Deitado demais para avatar, mas ótimo para <b>cabeçalho e rodapé</b>.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">C · Xadrez + nome</span><span class="tag tag-ok">o que já está no ar</span></div>
+        <div class="stage">
+          <div class="on-paper"><div class="wm wm-c"><span class="flag"></span><span>Nippon Speed Co.</span></div></div>
+          <div class="on-ink"><div class="wm wm-c"><span class="flag"></span><span>Nippon Speed Co.</span></div></div>
+        </div>
+        <p class="verdict">É a <b>brandline atual</b>, formalizada. Já vive na LP, nos posts, nos stories e nos destaques. Escolher esta é dizer: a marca já existe, só faltava nomear.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">D · Filete vermelho</span><span class="tag">mais editorial</span></div>
+        <div class="stage">
+          <div class="on-paper"><div class="wm wm-d"><span>Nippon</span><span>Speed Co.</span><span class="rule"></span></div></div>
+          <div class="on-ink"><div class="wm wm-d"><span>Nippon</span><span>Speed Co.</span><span class="rule"></span></div></div>
+        </div>
+        <p class="verdict">Pega o <b>filete vermelho</b> que já é a pontuação de toda seção da LP e traz pra assinatura. Coerência total com o layout, mas o filete some no tamanho pequeno.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">E · Disco no meio</span><span class="tag">o Japão como pontuação</span></div>
+        <div class="stage">
+          <div class="on-paper"><div class="wm wm-e"><span>Nippon</span><span class="disc"></span><span>Speed Co.</span></div></div>
+          <div class="on-ink"><div class="wm wm-e"><span>Nippon</span><span class="disc"></span><span>Speed Co.</span></div></div>
+        </div>
+        <p class="verdict">O disco separa as palavras e faz o trabalho do hinomaru. Elegante, mas o ponto vermelho no meio <b>compete com a leitura</b> do nome.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">F · Empilhado justificado</span><span class="tag">bloco tipográfico</span></div>
+        <div class="stage">
+          <div class="on-paper"><div class="wm wm-f"><span class="l1">Nippon</span><span class="l2"><span>S</span><span>P</span><span>E</span><span>E</span><span>D</span><span>C</span><span>O</span><span class="red">.</span></span></div></div>
+          <div class="on-ink"><div class="wm wm-f"><span class="l1">Nippon</span><span class="l2"><span>S</span><span>P</span><span>E</span><span>E</span><span>D</span><span>C</span><span>O</span><span class="red">.</span></span></div></div>
+        </div>
+        <p class="verdict">As duas linhas com a mesma largura, tipo capa de revista. Vira um <b>bloco sólido</b>, bonito grande. Perde legibilidade pequeno por causa do espacejamento.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= MARKS ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Passo 2</p>
+      <h2>O sinal: avatar e favicon</h2>
+      <p class="note">Aqui o nome deitado não serve. Precisa de um sinal que caiba no círculo do Instagram e a 32px na aba do navegador. Nada de emblema: são quatro reduções mínimas, todas derivadas do que a marca já tem.</p>
+    </div>
+
+    <div class="marks">
+      <div class="card">
+        <div class="mrow"><div class="avatar"><span class="m-nsc">NS<br/>C<span class="dot">.</span></span></div></div>
+        <div class="mrow" style="padding-top:0"><div class="fav"><span class="m-nsc">NS<br/>C<span class="dot">.</span></span></div><div class="fav32"><span class="m-nsc">NS<br/>C<span class="dot">.</span></span></div><div class="mk-label"><b>Monograma</b>NSC empilhado, ponto vermelho. Puramente tipográfico.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="mrow"><div class="avatar"><span class="flag flag-solo"></span></div></div>
+        <div class="mrow" style="padding-top:0"><div class="fav"><span class="flag flag-solo"></span></div><div class="fav32"><span class="flag flag-solo"></span></div><div class="mk-label"><b>Xadrez</b>O sinal que já é a marca hoje, sozinho.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="mrow"><div class="avatar"><span class="m-combo"><span class="flag"></span><span class="disc"></span></span></div></div>
+        <div class="mrow" style="padding-top:0"><div class="fav"><span class="m-combo"><span class="flag"></span><span class="disc"></span></span></div><div class="fav32"><span class="m-combo"><span class="flag"></span><span class="disc"></span></span></div><div class="mk-label"><b>Xadrez + disco</b>Corrida e Japão, sem desenhar bandeira.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="mrow"><div class="avatar"><span class="m-ndisc">N</span></div></div>
+        <div class="mrow" style="padding-top:0"><div class="fav"><span class="m-ndisc">N</span></div><div class="fav32"><span class="m-ndisc">N</span></div><div class="mk-label"><b>N no disco</b>O hinomaru vira o contêiner da inicial.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= APLICAÇÃO ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Passo 3</p>
+      <h2>Como fica aplicado</h2>
+      <p class="note">A assinatura na barra da LP, clara e escura. É o teste que importa: a logo tem que sumir dentro do layout, não gritar.</p>
+    </div>
+
+    <div class="navsim on-paper" style="margin-bottom:16px">
+      <div class="wm" style="font-size:22px; display:flex; align-items:center; gap:.42em"><span class="flag"></span><span>Nippon Speed Co<span class="red">.</span></span></div>
+      <div class="navsim-links"><span>Peças</span><span>Como funciona</span><span>Eras</span><span>Grupo</span></div>
+      <span class="navsim-cta">Entrar no grupo</span>
+    </div>
+
+    <div class="navsim dark on-ink">
+      <div class="wm" style="font-size:22px; display:flex; align-items:center; gap:.42em"><span class="flag"></span><span>Nippon Speed Co<span class="red">.</span></span></div>
+      <div class="navsim-links"><span>Peças</span><span>Como funciona</span><span>Eras</span><span>Grupo</span></div>
+      <span class="navsim-cta">Entrar no grupo</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
