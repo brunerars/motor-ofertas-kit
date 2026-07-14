@@ -3,7 +3,7 @@ tipo: conteudo
 projeto: motor-ofertas
 formato: stories 9:16 (1080x1920) · destaque do Instagram
 destaque: "Como funciona"
-status: pronto para subir (aguarda @ oficial)
+status: pronto para subir
 ---
 
 # Destaque — "Como funciona"
@@ -24,7 +24,7 @@ status: pronto para subir (aguarda @ oficial)
 4. **Passo 3 · Entrega** — Entrega no Brasil, peça conferida e fotografada (ícone casa).
 5. **CTA** — Peças novas toda semana no grupo + sticker de link.
 
-> ⚠️ **@ ainda placeholder:** a `tela-5` usa `@nipponspeedco`. Quando o perfil existir, trocar no HTML e re-renderizar só essa tela.
+> ✅ **@ confirmado (14/07/2026):** o perfil é [@nipponspeedco](https://www.instagram.com/nipponspeedco/). O handle usado nos slides e na legenda está correto, nada a trocar.
 
 > Copy dos 3 passos = a mesma do post 4:5 (`marca/conteudo/como-funciona/`) e da LP. Fonte da verdade: `docs/logistica-mercari.md`. Se a operação mudar, muda lá e propaga pros três.
 

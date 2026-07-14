@@ -4,7 +4,7 @@ projeto: motor-ofertas
 formato: carrossel Instagram 4:5 (1080x1350) · 5 slides
 post: "A era vermelha da Ferrari" (STORYTELLING NARRATIVO · feed/branding)
 peca: acervo m48149424293 (boné Ferrari Schumacher, nº 1)
-status: pronto para revisão · CAPA tipográfica (aguarda imagem de capa do Bruno)
+status: PARADO (decisão 14/07) — sai depois do lançamento; capa tipográfica, sem imagem de capa
 ---
 
 # Storytelling — "A era vermelha da Ferrari"

@@ -4,7 +4,7 @@ projeto: motor-ofertas
 formato: carrossel Instagram 4:5 (1080x1350) · 5 slides
 post: "Honda, o coração japonês da F1" (STORYTELLING NARRATIVO · feed/branding)
 peca: acervo m50127608359 (boné Red Bull-Honda GP Japão 2019)
-status: pronto para revisão · CAPA tipográfica (aguarda imagem de capa do Bruno)
+status: PARADO (decisão 14/07) — sai depois do lançamento; capa tipográfica, sem imagem de capa
 ---
 
 # Storytelling — "Honda, o coração japonês da F1"

@@ -3,7 +3,7 @@ tipo: conteudo
 projeto: motor-ofertas
 formato: stories 9:16 (1080x1920) · destaque do Instagram
 destaque: "FAQ"
-status: pronto para subir (aguarda @ oficial)
+status: pronto para subir
 ---
 
 # Destaque — "FAQ"
@@ -28,7 +28,7 @@ status: pronto para subir (aguarda @ oficial)
 ## De onde vêm as respostas
 Dado real do Caio (`briefs/2026-07-13-faq-respostas.txt`), consolidado em **`docs/logistica-mercari.md`** — que é a fonte da verdade. Se a operação mudar (prazo, forma de pagamento, política de troca), **muda lá primeiro** e depois propaga pra este destaque, pro post "Como funciona" e pra LP.
 
-> ⚠️ **@ ainda placeholder:** a `tela-6` usa `@nipponspeedco`. Quando o perfil existir, trocar no HTML e re-renderizar só essa tela.
+> ✅ **@ confirmado (14/07/2026):** o perfil é [@nipponspeedco](https://www.instagram.com/nipponspeedco/). O handle usado nos slides e na legenda está correto, nada a trocar.
 
 > **Cuidado com a promessa:** o prazo conta **da saída do Japão**, não do fechamento do pedido (o garimpo vem antes). E o envio Mogi→cliente é por conta do cliente. As duas coisas estão escritas assim de propósito.
 
