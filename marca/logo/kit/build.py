@@ -120,7 +120,49 @@ def mark_formas(bg=None, red=RED, sq_color=PAPER, size=512):
 '''
 
 
+def favicon_wordmark(text_lines, size=512, bg="#ffffff", ink=INK, red=RED, pad=0.10):
+    """Favicon/avatar com o NOME (não só as formas): o wordmark centrado no quadrado,
+    fundo branco. Decisão do Bruno. O bloco é escalado pra caber com respiro.
+    """
+    # monta as linhas num sistema de coordenadas de font-size FS e depois escala tudo
+    y1 = cap
+    y2 = y1 + LEADING if len(text_lines) > 1 else y1
+    paths, widths = [], []
+    for i, (txt, track) in enumerate(text_lines):
+        base = y1 if i == 0 else y2
+        p, w = glyph_paths(txt, 0, base, track)
+        paths.append(p)
+        widths.append(w)
+    disc_x = widths[0] + GAP
+    l1_w = disc_x + DISC
+    sq_x = widths[-1] + 0.02 * FS          # o ponto quadrado fecha a última linha
+    W = max(l1_w, sq_x + SQ)
+    H = y2
+    # escala pra caber no quadrado com padding
+    avail = size * (1 - 2 * pad)
+    k = min(avail / W, avail / H)
+    ox = (size - W * k) / 2
+    oy = (size - H * k) / 2
+    inner = []
+    for p in paths:
+        inner.extend(p)
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" width="{size}" height="{size}" role="img" aria-label="Nippon Speed Co.">
+  <rect width="{size}" height="{size}" fill="{bg}"/>
+  <g transform="translate({ox:.2f} {oy:.2f}) scale({k:.4f})">
+    <g fill="{ink}">
+    {chr(10).join("    " + p for p in inner)}
+    <rect x="{sq_x:.2f}" y="{y2 - SQ:.2f}" width="{SQ:.2f}" height="{SQ:.2f}"/>
+    </g>
+    <circle cx="{disc_x + DISC / 2:.2f}" cy="{y1 - cap / 2:.2f}" r="{DISC / 2:.2f}" fill="{red}"/>
+  </g>
+</svg>
+'''
+
+
 ARQUIVOS = {
+    # favicon/avatar com o nome (fundo branco) — as duas leituras do pedido
+    "favicon-wordmark.svg": favicon_wordmark([("NIPPON", TRACK1), ("SPEED CO", TRACK2)]),
+    "favicon-wordmark-curto.svg": favicon_wordmark([("NIPPON", TRACK1), ("SPEED", TRACK2)]),
     "logo-primaria.svg": bloco(),
     "logo-primaria-dark.svg": bloco(ink=PAPER),
     "logo-primaria-mono.svg": bloco(mono=True),

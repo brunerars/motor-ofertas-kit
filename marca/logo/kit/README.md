@@ -1,7 +1,7 @@
 ---
 tipo: marca
 projeto: motor-ofertas
-status: kit gerado (aguarda escolha do mark e do vermelho)
+status: kit fechado (vermelho e favicon decididos 13/07)
 ---
 
 # Kit de logo — Nippon Speed Co.
@@ -45,11 +45,21 @@ Normalizado em `em` (base = tamanho da fonte):
 - **Não estique, não incline, não troque a fonte, não recolora o disco** fora da paleta abaixo.
 - **Mono** (1 cor): o disco vira tinta. É essa versão que vai pro bordado e pro carimbo.
 
-## Duas decisões ainda abertas
+## As duas decisões (fechadas em 13/07)
 
-**1. Qual vermelho é o oficial.** O disco do Caio é `#fe0000` (puro), e o site usa `--red #c82a2a`. Rodar os dois faz a marca parecer duas marcas. O kit está gerado com **`#e60000`** (o hinomaru que o próprio Caio usou na primeira logo): segura o impacto do disco sem berrar como o puro. Se preferir outro, muda `RED` no `build.py` e roda de novo.
+**O vermelho oficial é `#e60000`.**
+> ⛔ **Nunca usar `#fe0000`.** É a cor oficial da Ferrari. O disco da arte original do Caio veio nesse tom e foi trocado. Qualquer arte nova (post, story, LP, etiqueta) usa `#e60000`.
 
-**2. Qual é o mark.** O kit saiu com o **disco + quadrado** (as duas formas da logo, sem letra: lê em qualquer tamanho, mas é abstrato sem o nome do lado). Os outros dois candidatos estão em `logo.html`: o **NS / C + disco** (o bloco reduzido ao núcleo, mais fiel à primária) e o **N + disco** (o mais legível e o menos ownable).
+O `#e60000` é o hinomaru que o próprio Caio já tinha usado na primeira logo, e segura o impacto do disco sem berrar. O site ainda usa `--red #c82a2a` nos acentos de interface (botão, filete, kicker): isso é interface, não marca. **O disco da logo é sempre `#e60000`.**
+
+**O favicon e o avatar são o wordmark em fundo branco**, não um símbolo abstrato. Duas versões geradas, comparadas lado a lado em `favicon-comparacao.png` nos tamanhos reais (180, 64, 32 e dentro da aba do navegador):
+
+- `favicon-wordmark.svg` — **NIPPON SPEED CO.** (completo, fiel à logo).
+- `favicon-wordmark-curto.svg` — **NIPPON SPEED.** (menos letras, e por isso **lê melhor a 32px**).
+
+O `png/favicon-32.png`, `favicon-64.png`, `apple-touch-icon-180.png` e `avatar-instagram-1080.png` estão saindo do **completo**. Pra trocar pro curto, é uma linha no `raster.py`.
+
+O **mark de formas** (disco + quadrado, `mark.svg`) continua no kit, mas rebaixado: serve pra etiqueta, carimbo e selo, onde não cabe o nome.
 
 ## Ainda não aplicado
 

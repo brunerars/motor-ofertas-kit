@@ -22,10 +22,13 @@ JOBS = [
     ("logo-primaria-mono.svg", 780, 366, "transparent", "png/logo-primaria-mono@2x.png"),
     ("logo-horizontal.svg", 1200, 172, "transparent", "png/logo-horizontal@2x.png"),
     ("logo-horizontal-dark.svg", 1200, 172, "transparent", "png/logo-horizontal-dark@2x.png"),
+    # Favicon e avatar = o WORDMARK em fundo branco (decisão do Bruno, 13/07).
+    ("favicon-wordmark.svg", 32, 32, "transparent", "png/favicon-32.png"),
+    ("favicon-wordmark.svg", 64, 64, "transparent", "png/favicon-64.png"),
+    ("favicon-wordmark.svg", 180, 180, "transparent", "png/apple-touch-icon-180.png"),
+    ("favicon-wordmark.svg", 1080, 1080, "transparent", "png/avatar-instagram-1080.png"),
+    # O mark de formas fica no kit como alternativa (etiqueta, carimbo, selo).
     ("mark.svg", 512, 512, "transparent", "png/mark-512.png"),
-    ("mark.svg", 64, 64, "transparent", "png/favicon-64.png"),
-    ("mark.svg", 32, 32, "transparent", "png/favicon-32.png"),
-    ("mark.svg", 1080, 1080, "transparent", "png/avatar-instagram-1080.png"),
     ("mark-light.svg", 512, 512, "transparent", "png/mark-light-512.png"),
 ]
 
