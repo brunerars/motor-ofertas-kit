@@ -74,13 +74,18 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0;
 .brandline{ display:flex; align-items:center; gap:20px; }
 .brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase;
   font-size:32px; letter-spacing:.04em; line-height:1; }
+/* Logo oficial (kit: marca/logo/kit) — lockup horizontal.
+   O disco #e60000 e a cor da marca: nao muda com o slide. O ponto quadrado herda a tinta. */
+.brandline-txt{ display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.lg-disc{ width:.5em; height:.5em; border-radius:50%; background:#e60000; flex:0 0 auto; margin:0 .28em; }
+.lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+  align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
 .brandline .step-of{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700;
   text-transform:uppercase; letter-spacing:.14em; font-size:24px; color:var(--mid-grey); }
 .slide-ink .brandline .step-of{ color:#b8b8b2; }
-.flag{ width:44px; height:30px; flex:0 0 auto; border:2px solid currentColor;
-  background:conic-gradient(currentColor 90deg,transparent 90deg 180deg,currentColor 180deg 270deg,transparent 270deg) 0 0/22px 15px; }
-.slide-paper .flag{ color:var(--ink); }
-.slide-ink .flag{ color:var(--paper); }
+
+
+
 
 /* ---- Cover / CTA middle block ---- */
 .cover-mid{ display:flex; flex-direction:column; gap:34px; }
@@ -135,8 +140,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0;
   <div class="grain"></div>
   <div class="slide-inner">
     <div class="brandline">
-      <span class="flag" aria-hidden="true"></span>
-      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
     </div>
     <div class="cover-mid">
       <p class="eyebrow eyebrow-bright">Do Japão pro Brasil</p>
@@ -158,8 +162,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0;
 <section class="slide slide-paper" id="s2">
   <div class="slide-inner">
     <div class="brandline">
-      <span class="flag" aria-hidden="true"></span>
-      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
       <span class="step-of">Passo 1 de 3</span>
     </div>
     <div class="step-mid">
@@ -178,8 +181,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0;
 <section class="slide slide-paper" id="s3">
   <div class="slide-inner">
     <div class="brandline">
-      <span class="flag" aria-hidden="true"></span>
-      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
       <span class="step-of">Passo 2 de 3</span>
     </div>
     <div class="step-mid">
@@ -198,8 +200,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0;
 <section class="slide slide-paper" id="s4">
   <div class="slide-inner">
     <div class="brandline">
-      <span class="flag" aria-hidden="true"></span>
-      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
       <span class="step-of">Passo 3 de 3</span>
     </div>
     <div class="step-mid">
@@ -220,8 +221,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0;
   <div class="grain"></div>
   <div class="slide-inner">
     <div class="brandline">
-      <span class="flag" aria-hidden="true"></span>
-      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
     </div>
     <div class="cover-mid">
       <p class="eyebrow eyebrow-bright">Entre no grupo</p>

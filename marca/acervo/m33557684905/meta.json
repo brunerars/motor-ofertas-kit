@@ -6,7 +6,10 @@
   "condition": "目立った傷や汚れなし",
   "brand": "フェラーリ / DEKRA",
   "sold": false,
-  "tags": [],
+  "tags": [
+    "falsa",
+    "bloqueado"
+  ],
   "photos": [
     "1.jpg",
     "2.jpg",
@@ -15,5 +18,6 @@
     "5.jpg",
     "6.jpg",
     "7.jpg"
-  ]
+  ],
+  "bloqueado": "PECA FALSA - identificada pelo Caio em 13/07/2026. Nao usar em LP, post, story ou oferta."
 }

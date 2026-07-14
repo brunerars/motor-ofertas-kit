@@ -61,6 +61,12 @@ O `png/favicon-32.png`, `favicon-64.png`, `apple-touch-icon-180.png` e `avatar-i
 
 O **mark de formas** (disco + quadrado, `mark.svg`) continua no kit, mas rebaixado: serve pra etiqueta, carimbo e selo, onde não cabe o nome.
 
-## Ainda não aplicado
+## Aplicado (13/07/2026)
 
-A LP, os posts, os stories e os destaques continuam com a **brandline improvisada** (bandeirinha xadrez em `conic-gradient` + Anton). Trocar pela logo oficial é a próxima passada, depois que as duas decisões acima fecharem.
+A bandeirinha xadrez em `conic-gradient` **saiu de tudo**. No lugar, o **lockup horizontal** (NIPPON ● SPEED CO▪) em CSS puro, com o disco em `#e60000` fixo e o ponto quadrado herdando a tinta do contexto (`currentColor`), o que faz ele funcionar em slide claro e escuro sem regra extra:
+
+- `lp/index.html` — nav, rodapé, card "tem mais no grupo" e o **favicon** (`lp/assets/brand/`, cópia do kit).
+- `.claude/skills/post-feed/template.html` e `post-stories/template.html` — todo post novo já nasce com a logo.
+- Os 3 storytellings, os 2 stories, o "como funciona", os 2 destaques 9:16 e o carrossel da campanha — **PNGs re-renderizados**.
+
+O bloco (`logo-primaria.svg`) segue reservado pra peça grande: capa, camiseta, assinatura. A LP usa a horizontal porque o bloco de 2 linhas é alto demais pra uma nav de 60px.

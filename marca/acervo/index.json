@@ -1,17 +1,52 @@
 {
-  "count": 10,
+  "count": 11,
   "items": [
+    {
+      "id": "m48149424293",
+      "title_ja": "フェラーリＦ1帽子（ミハエルシューマッハ）",
+      "tags": [
+        "boné",
+        "schumacher",
+        "ferrari",
+        "f1",
+        "vintage",
+        "destaque"
+      ],
+      "sold": false,
+      "photos": [
+        "acervo/m48149424293/1.jpg",
+        "acervo/m48149424293/2.jpg",
+        "acervo/m48149424293/3.jpg",
+        "acervo/m48149424293/4.jpg",
+        "acervo/m48149424293/5.jpg",
+        "acervo/m48149424293/6.jpg",
+        "acervo/m48149424293/7.jpg",
+        "acervo/m48149424293/8.jpg",
+        "acervo/m48149424293/9.jpg",
+        "acervo/m48149424293/10.jpg",
+        "acervo/m48149424293/11.jpg",
+        "acervo/m48149424293/12.jpg",
+        "acervo/m48149424293/13.jpg",
+        "acervo/m48149424293/14.jpg",
+        "acervo/m48149424293/15.jpg",
+        "acervo/m48149424293/16.jpg",
+        "acervo/m48149424293/17.jpg",
+        "acervo/m48149424293/18.jpg",
+        "acervo/m48149424293/19.jpg"
+      ]
+    },
     {
       "id": "m33557684905",
       "title_ja": "希少 ミハエル・シューマッハ F1 フェラーリ DEKRA キャップ 帽子",
+      "bloqueado": "PEÇA FALSA — identificada pelo Caio em 13/07/2026. Não usar em LP, post, story ou oferta. Substituída no destaque por m48149424293.",
       "tags": [
         "boné",
         "schumacher",
         "ferrari",
         "dekra",
         "f1",
-        "vintage",
-        "destaque"
+        "falsa",
+        "bloqueado"
       ],
       "sold": false,
       "photos": [

@@ -42,12 +42,17 @@ body:not(:has(.slide:target)) #s1{ display:flex; }
 h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
 .brandline{ display:flex; align-items:center; gap:18px; }
 .brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; letter-spacing:.04em; line-height:1; }
+/* Logo oficial (kit: marca/logo/kit) — lockup horizontal.
+   O disco #e60000 e a cor da marca: nao muda com o slide. O ponto quadrado herda a tinta. */
+.brandline-txt{ display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.lg-disc{ width:.5em; height:.5em; border-radius:50%; background:#e60000; flex:0 0 auto; margin:0 .28em; }
+.lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+  align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
 .brandline .chap{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
   letter-spacing:.14em; font-size:21px; color:#e6e6e2; text-shadow:0 1px 8px rgba(0,0,0,.6); }
 .slide-paper .brandline .chap{ color:var(--mid-grey); text-shadow:none; }
-.flag{ width:42px; height:29px; flex:0 0 auto; border:2px solid currentColor;
-  background:conic-gradient(currentColor 90deg,transparent 90deg 180deg,currentColor 180deg 270deg,transparent 270deg) 0 0/21px 15px; }
-.slide-ink .flag, .slide-photo .flag, .slide-cover .flag{ color:var(--paper); } .slide-paper .flag{ color:var(--ink); }
+
+
 .slide-photo .brandline-txt, .slide-cover .brandline-txt{ text-shadow:0 1px 10px rgba(0,0,0,.6); }
 .eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.2em;
   font-size:26px; color:var(--red-bright); margin:0; }
@@ -102,7 +107,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
   <img class="cover-bg" src="capa.jpg" style="object-position:center 42%" alt="{{ALT_CAPA}}"/>
   <div class="cover-scrim"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span></div>
     <div class="cover-mid">
       <p class="eyebrow">{{KICKER_CAPA}}</p>                 <!-- ex: Japão · 21 de outubro de 1990 -->
       <h1 class="cover-title">{{TITULO<br/>CAPA}}</h1>       <!-- ex: Suzuka<br/>1990 -->
@@ -117,7 +122,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
   <img class="ph" src="s2.jpg" style="object-position:center 40%" alt="{{ALT}}"/>  <!-- ajustar object-position pra enquadrar -->
   <div class="ph-fade"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">{{CAPITULO}}</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">{{CAPITULO}}</span></div>
     <div class="story-block">
       <p class="eyebrow">{{KICKER}}</p>
       <h2 class="story-title">{{TITULO}}</h2>
@@ -132,7 +137,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 <section class="slide slide-ink" id="s3">
   <div class="glow"></div><div class="grain"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">{{CAPITULO}}</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">{{CAPITULO}}</span></div>
     <div class="story-block">
       <p class="eyebrow">{{KICKER}}</p>
       <h2 class="story-title">{{TITULO}}</h2>
@@ -147,7 +152,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
   <img class="ph" src="s4.jpg" style="object-position:center 40%" alt="{{ALT}}"/>
   <div class="ph-fade"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">{{CAPITULO}}</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">{{CAPITULO}}</span></div>
     <div class="story-block">
       <p class="eyebrow">{{KICKER}}</p>
       <h2 class="story-title">{{TITULO}}</h2>
@@ -161,7 +166,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 <section class="slide slide-ink" id="s5">
   <div class="glow"></div><div class="grain"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">A peça</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">A peça</span></div>
     <div class="frame">
       <img src="foto.jpg" alt="{{ALT_DA_PECA}}"/>
     </div>

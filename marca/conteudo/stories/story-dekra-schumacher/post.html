@@ -26,10 +26,15 @@ body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antia
 h1{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
 .brandline{ display:flex; align-items:center; gap:18px; }
 .brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; letter-spacing:.04em; line-height:1; }
+/* Logo oficial (kit: marca/logo/kit) — lockup horizontal.
+   O disco #e60000 e a cor da marca: nao muda com o slide. O ponto quadrado herda a tinta. */
+.brandline-txt{ display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.lg-disc{ width:.5em; height:.5em; border-radius:50%; background:#e60000; flex:0 0 auto; margin:0 .28em; }
+.lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+  align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
 .brandline .tag{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
   letter-spacing:.14em; font-size:21px; color:var(--mid-grey); }
-.flag{ width:42px; height:29px; flex:0 0 auto; border:2px solid var(--ink);
-  background:conic-gradient(var(--ink) 90deg,transparent 90deg 180deg,var(--ink) 180deg 270deg,transparent 270deg) 0 0/21px 15px; }
+
 .frame{ position:relative; width:100%; height:600px; border:3px solid var(--ink); border-radius:var(--radius-md);
   overflow:hidden; background:var(--white); box-shadow:0 20px 48px rgba(17,17,17,.12); }
 .frame img{ width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block; }
@@ -53,19 +58,18 @@ h1{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:u
 <section class="slide">
   <div class="slide-inner">
     <div class="brandline">
-      <span class="flag" aria-hidden="true"></span>
-      <span class="brandline-txt">Nippon Speed Co.</span>
+      <span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
       <span class="tag">Do acervo</span>
     </div>
     <div class="frame">
-      <img src="foto.jpg" alt="Boné Ferrari DEKRA do Michael Schumacher, vermelho com laurel branco"/>
+      <img src="foto.jpg" alt="Boné Ferrari do Michael Schumacher, vermelho, com o escudo e o número 1 na lateral"/>
       <span class="seal">Sob encomenda</span>
     </div>
     <div class="meta">
       <p class="eyebrow">Boné · Schumacher</p>
-      <h1 class="name">Ferrari DEKRA</h1>
+      <h1 class="name">Ferrari Nº 1</h1>
     </div>
-    <p class="story">A DEKRA acompanhou o <b>Michael Schumacher por anos</b>, bordada no boné e no macacão dele. No vermelho, é a fase Ferrari, a era dos cinco títulos seguidos. Logo e laurel bordados, do jeito que colecionador gosta.</p>
+    <p class="story">O <b>número 1 na lateral</b> só vai no boné de quem foi campeão no ano anterior. Na aba, a assinatura do Schumacher bordada no pano. Peça usada de época, com as marcas do tempo à mostra.</p>
     <div class="byline">
       <span class="handle">@nipponspeedco</span>
       <span class="sep">◆</span>

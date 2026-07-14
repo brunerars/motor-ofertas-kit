@@ -30,13 +30,13 @@
   /* header on every card */
   .head{ display:flex; align-items:center; justify-content:space-between;
     padding:44px 64px 0; }
-  .wordmark{ font-family:"Anton",sans-serif; font-size:30px; letter-spacing:.02em; display:flex; align-items:center; gap:14px; }
-  .wordmark .flag{ width:34px; height:24px; border:2px solid var(--ink);
-    background-image:
-      linear-gradient(45deg,var(--ink) 25%,transparent 25%,transparent 75%,var(--ink) 75%),
-      linear-gradient(45deg,var(--ink) 25%,transparent 25%,transparent 75%,var(--ink) 75%);
-    background-size:12px 12px; background-position:0 0,6px 6px; background-color:var(--white); }
-  .wordmark .co{ color:var(--red); }
+  /* Logo oficial (kit: marca/logo/kit) — lockup horizontal. */
+  .wordmark{ font-family:"Anton",sans-serif; font-size:30px; letter-spacing:.022em;
+    display:flex; align-items:center; white-space:nowrap; }
+  .wordmark .lg-disc{ width:.5em; height:.5em; border-radius:50%; background:#e60000;
+    flex:0 0 auto; margin:0 .28em; }
+  .wordmark .lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+    align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
   .handle{ font-family:"Archivo",sans-serif; font-weight:700; font-size:20px; letter-spacing:.04em; color:#555; }
 
   /* ---------- COVER ---------- */
@@ -86,7 +86,7 @@
 <section class="card cover">
   <div class="checker"></div>
   <div class="head">
-    <div class="wordmark">NIPPON<span class="co">SPEED CO.</span></div>
+    <div class="wordmark">NIPPON<span class="lg-disc"></span>SPEED CO<span class="lg-sq"></span></div>
     <div class="handle">@nipponspeedco</div>
   </div>
   <div class="body">
@@ -102,7 +102,7 @@
 <!-- 2 — SCHUMACHER -->
 <section class="card prod">
   <div class="head">
-    <div class="wordmark">NIPPON<span class="co">SPEED CO.</span></div>
+    <div class="wordmark">NIPPON<span class="lg-disc"></span>SPEED CO<span class="lg-sq"></span></div>
     <div class="handle">@nipponspeedco</div>
   </div>
   <div class="body">
@@ -113,8 +113,8 @@
     </div>
     <div class="caption">
       <div>
-        <h2>Boné Ferrari<br/>DEKRA</h2>
-        <div class="tags">Michael Schumacher · anos 90</div>
+        <h2>Boné Ferrari<br/>Schumacher</h2>
+        <div class="tags">Ferrari · era do número 1</div>
       </div>
     </div>
   </div>
@@ -124,7 +124,7 @@
 <!-- 3 — MERCEDES -->
 <section class="card prod">
   <div class="head">
-    <div class="wordmark">NIPPON<span class="co">SPEED CO.</span></div>
+    <div class="wordmark">NIPPON<span class="lg-disc"></span>SPEED CO<span class="lg-sq"></span></div>
     <div class="handle">@nipponspeedco</div>
   </div>
   <div class="body">
@@ -146,7 +146,7 @@
 <!-- 4 — SUZUKA -->
 <section class="card prod">
   <div class="head">
-    <div class="wordmark">NIPPON<span class="co">SPEED CO.</span></div>
+    <div class="wordmark">NIPPON<span class="lg-disc"></span>SPEED CO<span class="lg-sq"></span></div>
     <div class="handle">@nipponspeedco</div>
   </div>
   <div class="body">
@@ -169,7 +169,7 @@
 <section class="card cta">
   <div class="checker" style="position:absolute;top:0;left:0;right:0"></div>
   <div class="head" style="position:absolute;top:0;left:0;right:0">
-    <div class="wordmark">NIPPON<span class="co">SPEED CO.</span></div>
+    <div class="wordmark">NIPPON<span class="lg-disc"></span>SPEED CO<span class="lg-sq"></span></div>
     <div class="handle">@nipponspeedco</div>
   </div>
   <div class="body">

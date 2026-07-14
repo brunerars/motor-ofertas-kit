@@ -44,7 +44,7 @@ Ordem pensada pro grid abrir coeso (alterna tinta/papel, editorial/storytelling)
 | 3 | **Por que os anos 90 são a era mais colecionada** (cores, patrocinadores, Senna/Schumi) | EDITORIAL | Editorial puro ou mosaico de liveries | 💡 |
 | 4 | **Boné Suzuka GP Japão '90** — a peça e o que rolou naquele GP | STORYTELLING | Sim — `acervo/m23690681862` | ✅ produzido · revisão |
 | 5 | **A era vermelha da Ferrari** — Schumacher e os 5 títulos seguidos | EDITORIAL | Ideal: Schumi/Ferrari arquivo | 💡 |
-| 6 | **Boné Ferrari DEKRA do Schumacher** — a história da peça | STORYTELLING | Sim — `acervo/m33557684905` | ✅ produzido · revisão |
+| 6 | **Boné Ferrari do Schumacher (nº 1)** — a história da peça | STORYTELLING | Sim — `acervo/m48149424293` | ✅ produzido · revisão |
 | 7 | **Honda na F1** — a potência japonesa (McLaren-Honda → Red Bull-Honda) | EDITORIAL | Ideal: motor/carro Honda | 💡 |
 | 8 | **Camisa de pit West McLaren-Mercedes** — a prata dos anos 90/2000 | STORYTELLING | Sim — `acervo/m81651185430` | ✅ produzido · revisão |
 | 9 | **Como reconhecer uma peça vintage de verdade** (original × réplica) | EDITORIAL | Editorial puro (checklist visual) | 💡 |
@@ -73,7 +73,8 @@ Vai enchendo aqui. Cada uma pode virar post único 4:5 ou carrossel.
 ### STORYTELLING — peça + história (SELO "não está à venda")
 Cada peça do acervo vira um mini-post de história. Foto já existe; falta a curadoria/validação do Caio + a copy da história.
 - **💡 Boné Suzuka GP Japão '90** (`m23690681862`, 8 fotos) — o GP de Suzuka em 1990, contexto da temporada. Peça-símbolo do Japão.
-- **💡 Boné Ferrari DEKRA — Schumacher** (`m33557684905`, 7 fotos) — a DEKRA na Ferrari, era Schumi.
+- **💡 Boné Ferrari — Schumacher, nº 1** (`m48149424293`, 19 fotos) — o escudo ao lado do 1, o número do campeão.
+- ~~Boné Ferrari DEKRA (`m33557684905`)~~ — ⛔ **PEÇA FALSA** (Caio, 13/07/2026). Não usar em post, story, LP ou oferta.
 - **💡 Peltor Ferrari — Schumacher** (`m33986204509`, 7 fotos) — equipamento de box, o que a equipe usava no pit.
 - **💡 Jaqueta comemorativa Schumacher 1996** (`m17195738050`, 13 fotos) — primeiro ano de Schumi na Ferrari.
 - **💡 Camisa de pit West McLaren-Mercedes** (`m81651185430`, 12 fotos) — a prata, Häkkinen/Coulthard, o patrocínio West.

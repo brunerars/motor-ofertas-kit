@@ -42,12 +42,17 @@ body:not(:has(.slide:target)) #s1{ display:flex; }
 h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
 .brandline{ display:flex; align-items:center; gap:18px; }
 .brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; letter-spacing:.04em; line-height:1; }
+/* Logo oficial (kit: marca/logo/kit) — lockup horizontal.
+   O disco #e60000 e a cor da marca: nao muda com o slide. O ponto quadrado herda a tinta. */
+.brandline-txt{ display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.lg-disc{ width:.5em; height:.5em; border-radius:50%; background:#e60000; flex:0 0 auto; margin:0 .28em; }
+.lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+  align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
 .brandline .chap{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
   letter-spacing:.14em; font-size:21px; color:#e6e6e2; text-shadow:0 1px 8px rgba(0,0,0,.6); }
 .slide-paper .brandline .chap{ color:var(--mid-grey); text-shadow:none; }
-.flag{ width:42px; height:29px; flex:0 0 auto; border:2px solid currentColor;
-  background:conic-gradient(currentColor 90deg,transparent 90deg 180deg,currentColor 180deg 270deg,transparent 270deg) 0 0/21px 15px; }
-.slide-ink .flag, .slide-cover .flag{ color:var(--paper); } .slide-paper .flag{ color:var(--ink); }
+
+
 .eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.2em;
   font-size:26px; color:var(--red-bright); margin:0; }
 .slide-paper .eyebrow{ color:var(--red); }
@@ -86,7 +91,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 <section class="slide slide-ink" id="s1">
   <div class="glow"></div><div class="grain"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span></div>
     <div class="cover-mid">
       <p class="eyebrow">Ferrari · 2000 a 2004</p>
       <h1 class="cover-title">A era<br/>vermelha</h1>
@@ -100,7 +105,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 <section class="slide slide-ink" id="s2">
   <div class="glow"></div><div class="grain"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">A seca</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">A seca</span></div>
     <div class="mid">
       <p class="eyebrow">21 anos</p>
       <h2 class="story-title">Faltava<br/>o topo</h2>
@@ -114,7 +119,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 <section class="slide slide-ink" id="s3">
   <div class="glow"></div><div class="grain"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">O time</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">O time</span></div>
     <div class="mid">
       <p class="eyebrow">Schumacher, Todt, Brawn</p>
       <h2 class="story-title">Máquina<br/>de vencer</h2>
@@ -128,7 +133,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 <section class="slide slide-ink" id="s4">
   <div class="glow"></div><div class="grain"></div>
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">A dinastia</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">A dinastia</span></div>
     <div class="mid">
       <p class="eyebrow">2000 a 2004</p>
       <h2 class="story-title">Cinco<br/>seguidos</h2>
@@ -141,15 +146,15 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 <!-- SLIDE 5 · A PEÇA + CTA -->
 <section class="slide slide-paper" id="s5">
   <div class="slide-inner">
-    <div class="brandline"><span class="flag"></span><span class="brandline-txt">Nippon Speed Co.</span><span class="chap">A peça</span></div>
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">A peça</span></div>
     <div class="frame">
-      <img src="foto.jpg" alt="Boné Ferrari DEKRA do Michael Schumacher, vermelho com laurel branco"/>
+      <img src="foto.jpg" alt="Boné Ferrari do Michael Schumacher, vermelho, com o escudo e o número 1 na lateral"/>
     </div>
     <div class="piece-meta">
       <p class="eyebrow">O boné da era</p>
-      <h2 class="piece-name">Ferrari DEKRA</h2>
+      <h2 class="piece-name">Ferrari Nº 1</h2>
     </div>
-    <p class="piece-body">A DEKRA seguia o Schumacher em todo boné e macacão. No vermelho, é <b>essa fase de ouro bordada em pano.</b></p>
+    <p class="piece-body">O escudo ao lado do número 1, o número que só o campeão carrega. É <b>essa fase de ouro bordada em pano.</b></p>
     <div class="cta">
       <p class="cta-line">Peças com história assim, garimpadas no Japão, aparecem <b>toda semana no nosso grupo.</b></p>
       <span class="cta-handle">link na bio · @nipponspeedco</span>
