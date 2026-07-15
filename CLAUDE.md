@@ -85,12 +85,13 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - [ ] Chaves (travam no Bloco Ofertas): Firecrawl · Baserow (base+token) · Z-API (instância) → `.env`, fora do git
 
 ## Estado atual (2026-07-15)
-- [x] **Canal de entrada do Caio construído (falta subir)** — Fase 2 vira operação de dois. Três peças novas:
-  - `garimpo/index.html` — formulário estático (design system V1, mobile-first, favicon do kit): Caio cola de 1 a **20** links + nota opcional, `POST` JSON `{secret, items[]}`. Validação de URL Mercari no cliente. Render headless confirmou layout limpo (`overflow: none`). **Falta:** preencher `WEBHOOK_URL`+`SECRET` (marcadores `__…__`) e deploy Vercel (projeto separado, SSO off).
-  - `n8n/nsc-garimpo-webhook.json` — workflow de webhook (Webhook CORS→Config→Code valida secret+teto 20+extrai `mercari_id`→Baserow insert `Fila`→Responde). Mesmo padrão do disparo. **Bruno importa no n8n hospedado dele** e preenche `Config` (`baserow_token`, `form_secret`). Guia: `n8n/COMO-IMPORTAR.md`.
-  - `/agenda` **modo lote** (`SKILL.md`): rodar sem URL → pesca os rascunhos (`Fila` + `photo_url` vazio) → enriquece via `PATCH` (não duplica). É a ponte: form entrega cru, `/agenda` completa.
+- [x] **Canal de entrada do Caio NO AR + testado ponta a ponta (15/07)** — Fase 2 virou operação de dois. Form → webhook → Baserow provado: teste pela UI gerou o rascunho #10 (`Fila`, `photo_url` vazio, nota preservada em `tags`).
+  - `garimpo/index.html` — formulário estático (design system V1, mobile-first, favicon do kit): Caio cola de 1 a **20** links + nota opcional, `POST` JSON `{secret, items[]}`. **Publicado:** `garimpo-nsc.vercel.app` (SSO off). Secret `nsc-1179eaf4c820ba4d` (freio leve, visível no fonte por design). Webhook: `https://autowebhook.arvsystems.cloud/webhook/nsc-garimpo-8f3a1c`. Ambos no `.env` (`N8N_WEBHOOK_URL`, `FORM_SECRET`).
+  - `n8n/nsc-garimpo-webhook.json` — workflow importado e ativo no n8n do Bruno. **2 gotchas achados no setup:** (a) no Code node o `$input` é o node ANTERIOR (Config), não o Webhook → ler o corpo via `$('Webhook (form do Caio)').json.body`; (b) regex com `\d`/`\/` quebra ao colar o código na mão no n8n (a barra some) → usar `/m[0-9]+/i`, sem backslash.
+  - `/agenda` **modo lote** (`SKILL.md`): rodar sem URL → pesca os rascunhos (`Fila` + `photo_url` vazio) → enriquece via `PATCH` (não duplica). É a ponte: form entrega cru, `/agenda` completa. **Ainda não exercitado** (próximo passo real).
   - Fluxo: Caio → form → webhook → Baserow (rascunho) → `/agenda` lote → Bruno aprova → n8n dispara. O link cru NÃO é disparável (disparo exige `photo_url`+`caption`).
-  - **Dependências do Bruno:** URL pública do n8n (não existe no repo), Z-API paga/configurada + grupo real. Pendências herdadas: rotacionar senha Baserow, trocar GRUPO-TESTE.
+  - ⚠️ **PENDÊNCIA DURA:** o `BASEROW_TOKEN` (Database Token) **vazou no chat em 15/07** → **rotacionar** e atualizar o Config dos DOIS workflows (disparo + garimpo). Outras herdadas: Z-API paga/grupo real, trocar GRUPO-TESTE.
+  - Rascunho de teste #10 (`m71370664392`, dup do #3 já `Disparado`) pode ser apagado.
 - **`/confere-ofertas` (Fase 3):** 100% no papel (SKILL.md + campo `sold`/status `Vendido` prontos), **nunca rodou**; falta o workflow n8n gêmeo. Frente separada.
 
 ## Estado atual (2026-07-14)
