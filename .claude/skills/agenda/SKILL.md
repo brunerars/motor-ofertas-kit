@@ -10,7 +10,8 @@ Coração do Bloco Ofertas: transforma um item curado num registro pronto pra di
 > **Regra dura — curadoria humana.** A IA NUNCA descobre/escolhe produto. Processa só a URL dada.
 
 ## Input
-- URL(s) do Mercari (curadas por Bruno/Caio).
+- **Modo URL** — URL(s) do Mercari (curadas por Bruno/Caio) coladas no comando. Cria linha nova.
+- **Modo lote (sem URL)** — roda sem argumento: pesca os **rascunhos do formulário do Caio** (linhas que já estão no Baserow, só com `source_url`) e enriquece cada uma. Ver seção "Modo lote".
 - Config Baserow no `.env` (`BASEROW_API_URL`, `BASEROW_TOKEN`, `BASEROW_TABLE_ID=556`).
 - (Z-API — pendente) número 1:1 do Bruno p/ preview; grupo p/ disparo (via `/dispara-oferta`).
 
@@ -35,6 +36,16 @@ curl -s -X POST "$API/api/database/rows/table/$BASEROW_TABLE_ID/?user_field_name
        "photos":"acervo/mXXXX/1.jpg,…","tags":"…","sold":false,"status":2573}'
 # status é single_select → id da opção. Fila=2573 (conferir em docs/baserow-disparador-schema.md se mudar).
 ```
+
+## Modo lote — enriquecer os rascunhos do formulário
+O formulário de garimpo (`garimpo/`, na Vercel) deixa o Caio despejar links; o webhook do n8n (`n8n/nsc-garimpo-webhook.json`) grava cada um como **rascunho cru** no Baserow: só `source_url` + `mercari_id` + `tags` (a nota dele), `status=Fila`, `title_pt` = o próprio id (rótulo provisório) e **`photo_url` vazio**. Esse rascunho **não é disparável** (o n8n de disparo exige `photo_url` + `caption`). O `/agenda` em modo lote é quem completa.
+
+Rodando `/agenda` **sem URL**:
+1. **Listar os rascunhos:** `GET $API/api/database/rows/table/556/?user_field_names=true&size=200`, header `Authorization: Token $BASEROW_TOKEN`. Filtrar as linhas com `status=Fila` **e** `photo_url` vazio **e** `source_url` preenchido (é o formato do rascunho; a linha que o próprio `/agenda` cria já nasce completa, então não reaparece aqui).
+2. **Para cada rascunho**, rodar os passos 1–6 do Fluxo (Firecrawl → acervo → traduzir → preço → `caption` → subir foto), **mas fazer `PATCH` na MESMA linha** (não `POST`), preservando `tags` (a nota do Caio ajuda na conferida) e o `mercari_id`:
+   `PATCH $API/api/database/rows/table/556/{row_id}/?user_field_names=true` com `title_pt, title_ja, description_pt, brand, category, condition, price_jpy, photos, photo_url` (mantém `status=Fila`).
+3. **Reportar** ao Bruno: quantos rascunhos entraram, quantos foram enriquecidos, e quais falharam (URL morta / item já vendido — marcar `Descartado` com o motivo). A aprovação segue igual: Bruno revisa e flipa `Fila`→`Aprovado` no Baserow.
+> **Não duplica:** o modo lote sempre faz `PATCH` no `row_id` do rascunho, nunca cria linha nova. Idempotente — rodar de novo sobre uma linha já enriquecida (que já tem `photo_url`) simplesmente não a seleciona.
 
 ## Desacoplamento
 - `/acervo` = só fotos p/ vitrine (leve). `/agenda` = o pesado (traduz/preço/fila).

@@ -1,0 +1,100 @@
+{
+  "name": "NSC — Garimpo (form do Caio → Baserow)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nsc-garimpo-8f3a1c",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "a2b20000-0000-4000-8000-000000000001",
+      "name": "Webhook (form do Caio)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-320, -144],
+      "webhookId": "nsc-garimpo-8f3a1c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "c1", "name": "baserow_url", "value": "https://baserow.arvsystems.cloud", "type": "string" },
+            { "id": "c2", "name": "table_id", "value": "556", "type": "string" },
+            { "id": "c3", "name": "baserow_token", "value": "<PREENCHER_BASEROW_TOKEN>", "type": "string" },
+            { "id": "c4", "name": "form_secret", "value": "<PREENCHER_FORM_SECRET>", "type": "string" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2b20000-0000-4000-8000-000000000002",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-128, -144]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Recebe o payload do formulário da Vercel e vira 1 linha de Baserow por peça.\n// Freios: confere o form_secret (freio leve de spam), teto de 20 itens, e\n// só passa URL que tem id do Mercari (mXXXX). Status inicial = Fila (rascunho).\n// A linha entra CRUA (só source_url + mercari_id + nota); o /agenda enriquece depois.\nconst cfg = $('Config').first().json;\nconst body = ($input.first().json.body) || $input.first().json || {};\n\nif (!cfg.form_secret || body.secret !== cfg.form_secret) {\n  throw new Error('unauthorized: secret invalido');\n}\nconst items = Array.isArray(body.items) ? body.items : [];\nif (items.length === 0) throw new Error('sem itens');\nif (items.length > 20) throw new Error('acima do teto de 20 por envio');\n\nconst out = [];\nfor (const it of items) {\n  const url = (it && it.url ? String(it.url) : '').trim();\n  const note = (it && it.note ? String(it.note) : '').trim();\n  const m = url.match(/\\/item\\/(m\\d+)/i) || url.match(/(m\\d+)/i);\n  if (!m) continue;                 // ignora o que não é item do Mercari\n  out.push({ json: {\n    mercari_id: m[1],\n    source_url: url,\n    title_pt: m[1],                 // rótulo provisório; o /agenda troca pelo título traduzido\n    tags: note,\n    status: 'Fila'\n  }});\n}\nif (out.length === 0) throw new Error('nenhuma URL de Mercari valida');\nreturn out;"
+      },
+      "id": "a2b20000-0000-4000-8000-000000000003",
+      "name": "Validar + montar linhas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [80, -144]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/?user_field_names=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Token {{ $('Config').item.json.baserow_token }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "keypair",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "mercari_id", "value": "={{ $json.mercari_id }}" },
+            { "name": "source_url", "value": "={{ $json.source_url }}" },
+            { "name": "title_pt", "value": "={{ $json.title_pt }}" },
+            { "name": "tags", "value": "={{ $json.tags }}" },
+            { "name": "status", "value": "={{ $json.status }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2b20000-0000-4000-8000-000000000004",
+      "name": "Baserow: inserir (Fila)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [288, -144],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"count\": $items(\"Validar + montar linhas\").length } }}",
+        "options": {}
+      },
+      "id": "a2b20000-0000-4000-8000-000000000005",
+      "name": "Responder ao form",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [496, -144]
+    }
+  ],
+  "connections": {
+    "Webhook (form do Caio)": { "main": [[{ "node": "Config", "type": "main", "index": 0 }]] },
+    "Config": { "main": [[{ "node": "Validar + montar linhas", "type": "main", "index": 0 }]] },
+    "Validar + montar linhas": { "main": [[{ "node": "Baserow: inserir (Fila)", "type": "main", "index": 0 }]] },
+    "Baserow: inserir (Fila)": { "main": [[{ "node": "Responder ao form", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}

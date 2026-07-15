@@ -53,7 +53,7 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 
 ## Fases (ordem por valor)
 - **Fase 1 — Marca** (ATIVA): `/marca` → `/lp` → `/posts`. Pronto = loja tem identidade, LP no ar, posts prontos pra mostrar ao Caio.
-- **Fase 2 — Ofertas:** `/agenda` → `/dispara-oferta`. Pronto = item do Mercari vira post agendado no grupo, com aprovação.
+- **Fase 2 — Ofertas:** entrada (`garimpo/` form do Caio → webhook n8n → Baserow rascunho) → `/agenda` (modo lote enriquece) → aprovação do Bruno no Baserow → `/dispara-oferta` (n8n) posta no grupo. Pronto = link garimpado pelo Caio vira post no grupo, com a conferida do Bruno no meio.
 - **Fase 3 — Nutrição:** captura lead, `/confere-ofertas`, avisa interessados.
 
 ## Decisões travadas
@@ -83,6 +83,15 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - [x] Referência de design → template Haus (asimov, entregue)
 - [x] Produto piloto → item Mercari m71370664392
 - [ ] Chaves (travam no Bloco Ofertas): Firecrawl · Baserow (base+token) · Z-API (instância) → `.env`, fora do git
+
+## Estado atual (2026-07-15)
+- [x] **Canal de entrada do Caio construído (falta subir)** — Fase 2 vira operação de dois. Três peças novas:
+  - `garimpo/index.html` — formulário estático (design system V1, mobile-first, favicon do kit): Caio cola de 1 a **20** links + nota opcional, `POST` JSON `{secret, items[]}`. Validação de URL Mercari no cliente. Render headless confirmou layout limpo (`overflow: none`). **Falta:** preencher `WEBHOOK_URL`+`SECRET` (marcadores `__…__`) e deploy Vercel (projeto separado, SSO off).
+  - `n8n/nsc-garimpo-webhook.json` — workflow de webhook (Webhook CORS→Config→Code valida secret+teto 20+extrai `mercari_id`→Baserow insert `Fila`→Responde). Mesmo padrão do disparo. **Bruno importa no n8n hospedado dele** e preenche `Config` (`baserow_token`, `form_secret`). Guia: `n8n/COMO-IMPORTAR.md`.
+  - `/agenda` **modo lote** (`SKILL.md`): rodar sem URL → pesca os rascunhos (`Fila` + `photo_url` vazio) → enriquece via `PATCH` (não duplica). É a ponte: form entrega cru, `/agenda` completa.
+  - Fluxo: Caio → form → webhook → Baserow (rascunho) → `/agenda` lote → Bruno aprova → n8n dispara. O link cru NÃO é disparável (disparo exige `photo_url`+`caption`).
+  - **Dependências do Bruno:** URL pública do n8n (não existe no repo), Z-API paga/configurada + grupo real. Pendências herdadas: rotacionar senha Baserow, trocar GRUPO-TESTE.
+- **`/confere-ofertas` (Fase 3):** 100% no papel (SKILL.md + campo `sold`/status `Vendido` prontos), **nunca rodou**; falta o workflow n8n gêmeo. Frente separada.
 
 ## Estado atual (2026-07-14)
 - [x] **FASE 1 NO AR** — LP em produção (https://nippon-speed-co.vercel.app) com a **logo oficial** (kit `marca/logo/kit`, disco `#e60000`, favicon = wordmark), os 10 CTAs no **grupo real** e a peça em destaque certa.
