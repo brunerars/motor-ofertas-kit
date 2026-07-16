@@ -54,7 +54,7 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 ## Fases (ordem por valor)
 - **Fase 1 — Marca** (ATIVA): `/marca` → `/lp` → `/posts`. Pronto = loja tem identidade, LP no ar, posts prontos pra mostrar ao Caio.
 - **Fase 2 — Ofertas:** entrada (`garimpo/` form do Caio → webhook n8n → Baserow rascunho) → `/agenda` (modo lote enriquece) → aprovação do Bruno no Baserow → `/dispara-oferta` (n8n) posta no grupo. Pronto = link garimpado pelo Caio vira post no grupo, com a conferida do Bruno no meio.
-- **Fase 3 — Nutrição:** captura lead, `/confere-ofertas`, avisa interessados.
+- **Fase 3 — Nutrição** (COMEÇOU 16/07): captura lead **feita** (`n8n/nsc-lead-inbound.json`: WAHA inbound → tabela `LEADS` → aviso no zap do Bruno). Falta o `/confere-ofertas` e o "avisa interessados" (que agora tem de onde ler).
 
 ## Decisões travadas
 - Disparo agendado = **testar cloud routine do Claude Code** (não n8n, não worker VPS por ora)
@@ -99,6 +99,12 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - [x] Chaves (travavam o Bloco Ofertas): Firecrawl · Baserow (base+token) · **WAHA** (`WAHA_URL`, `WAHA_API_KEY`, `WAHA_GROUP_ID`) → `.env`, fora do git. *(A Z-API saiu do fluxo em 16/07; as `ZAPI_*` seguem no `.env` só como rollback, marcadas como desativadas.)*
 
 ## Estado atual (2026-07-16)
+- [x] **Ciclo do lead fechado — a Fase 3 começou.** `n8n/nsc-lead-inbound.json`: o cliente clica no `🏁 Quero essa peça`, o WAHA faz POST no n8n (`WHATSAPP_HOOK_URL`, evento `message`), o Code casa o `mXXXX` com a peça e grava na tabela **`LEADS`** (1 linha = 1 pessoa; N:1 com a 556) + ping no zap do Bruno com o nome da peça e o ordinal ("2ª pessoa"). **O bot NÃO responde cliente** — quem atende é o Bruno.
+  - **O `wa_message_id` era uma mentira documentada em 3 lugares:** dizia "rastreio de lead", mas guarda o id da mensagem que o **bot envia**. Por isso o passo 4 do `/confere-ofertas` apontava pro vazio desde 02/07. Corrigido; quem rastreia lead é a `LEADS`.
+  - **Freio que decide tudo:** o hook recebe **toda** mensagem, inclusive as ofertas que o próprio bot posta no grupo. O Code descarta `fromMe` + `@g.us` + mensagem sem id. Evento é `message` (não `message.any`, que incluiria os próprios envios). 21 testes de node cobrindo isso.
+  - `responseMode: onReceived` (≠ do garimpo): o WAHA só quer o 200. Com `responseNode`, todo "oi" descartado penduraria o webhook até o timeout.
+  - **Path secreto é o único freio** — o WAHA não assina o POST. **PII:** a `LEADS` guarda telefone de cliente (1ª tabela com dado pessoal do projeto).
+  - Pendente do Bruno: criar a tabela `LEADS` na UI (criar tabela exige JWT, o Database Token não faz) + `WAHA_ADMIN_ID` (número pessoal) + redeploy do WAHA com o `WAHA_HOOK_URL`.
 - [x] **Z-API → WAHA: a operação virou auto-hospedada (sem mensalidade).** `waha/stack-vps.yml` (Swarm+Traefik, `network_public`, domínio `waha.arvsystems.cloud`) **no ar na VPS**; `waha/docker-compose.yml` = o mesmo local, pra teste. Sessão `default` conectada no número da loja (`5511914563609`). Grupo real = **`120363410530925527@g.us`** (formato WAHA; o `120363429602486219-group` da Z-API era de OUTRO número e não existe aqui). `n8n/nsc-dispara-ofertas.json` migrado (`/api/sendImage` + header `X-Api-Key`) e **testado na mão: funcionando**. Skill `/dispara-oferta` reescrita pro WAHA (as 2 cópias).
   - **Simplificou:** a Z-API exigia base64 do acervo local; o WAHA busca o `photo_url` público do Baserow direto. Menos um passo.
   - **Gotchas do WAHA** (todos já resolvidos nas stacks, ver [[n8n-import-gotchas]] e a skill): sessão morre sem volume · **API key se regera a cada start** se não vier como env (o n8n toma 401 do nada) · `shm_size` não funciona em Swarm → **tmpfs no `/dev/shm`** ou o Chromium morre calado · `replicas: 1` obrigatório (sessão não se divide) · envio lento → **timeout 120s** no n8n (curto = post sai mas linha não vira `Disparado` = duplicata no tick seguinte).

@@ -73,5 +73,42 @@ Um `{}` sem secret **tem** que dar erro de `unauthorized`. Se der `200` vazio, o
 - **Enriquecer:** rode `/agenda` (sem URL) pra completar os rascunhos que entrarem (foto + tradução + preço) antes de aprovar.
 
 ## Depois (refino)
-- Workflow gêmeo pro `/confere-ofertas` (diário: Firecrawl checa vendido → `Vendido` + avisa grupo). Claude gera quando quiser.
-- **Dedup na entrada:** hoje o webhook não checa se o `mercari_id` já está na fila (link repetido vira linha repetida). Se virar incômodo, um `GET` antes do insert resolve.
+- Workflow gêmeo pro `/confere-ofertas` (diário: Firecrawl checa vendido → `Vendido` + avisa grupo **+ avisa os leads da peça**, que agora existem). Claude gera quando quiser.
+- **Dedup na entrada:** hoje o webhook do garimpo não checa se o `mercari_id` já está na fila (link repetido vira linha repetida). Se virar incômodo, um `GET` antes do insert resolve. *(O `nsc-lead-inbound` já nasceu com dedup.)*
+
+---
+
+# n8n — ciclo do lead (inbound do WhatsApp)
+
+Workflow: `nsc-lead-inbound.json`. Fecha a ponta que faltava: o cliente clica no `🏁 Quero essa peça` da oferta, manda `Estou interessado! (mXXXX)`, e isso **vira dado** em vez de morrer no seu 1:1.
+
+## O que ele faz
+`Webhook (WAHA inbound)` → `Config` → `Filtrar + montar lead` (descarta grupo/próprio envio/mensagem sem id) → `Baserow: leads desta peça` (GET: dedup + ordinal) → `Dedup + ordinal` → `Baserow: gravar lead` (POST na `LEADS`) → `Baserow: achar a peça` (GET o `title_pt` na 556) → `Montar aviso` → `WAHA: avisar Bruno` (`/api/sendText`).
+
+**Não responde o cliente.** Quem atende é você; o bot só registra e te cutuca.
+
+## Passos (parte humana)
+1. **Criar a tabela `LEADS` no Baserow** (na UI, ~2 min). Campos em `docs/baserow-disparador-schema.md`. *Por que na mão: criar tabela exige **JWT de usuário**, o Database Token não faz isso — e a senha desse usuário já vazou uma vez no chat.* Anote o `table_id` → `.env` (`BASEROW_LEADS_TABLE_ID`).
+2. n8n → **Import from File** → `nsc-lead-inbound.json` (ou a cópia de `versoes-em-prod/`). Preencha o `Config`: `leads_table_id`, `baserow_token`, `waha_api_key`, `admin_id`.
+   > `admin_id` = **seu número PESSOAL** no formato `55DDDNUMERO@c.us`, não o da loja. Vazio = o lead é gravado mas **ninguém te avisa**.
+3. **Ative** o workflow e copie a **Production URL** do node `Webhook`.
+4. Cole essa URL no `.env` (`WAHA_HOOK_URL`) **e** no env da stack do WAHA (Portainer → a stack já lê `WHATSAPP_HOOK_URL: ${WAHA_HOOK_URL}`). **Redeploy do WAHA** — sem isso o hook não existe.
+5. **Conferir que o hook pegou:** `GET /api/sessions/default` (header `X-Api-Key`) deve mostrar o webhook. Se não mostrar, `docker logs waha`.
+
+## Testar (na ordem — o 2º é o que importa)
+```bash
+# 1) simular o WAHA sem depender do WhatsApp:
+curl -s -X POST "https://<n8n>/webhook/nsc-lead-4d9b2e" -H "Content-Type: application/json" \
+  -d '{"event":"message","session":"default","payload":{"from":"5511988887777@c.us","fromMe":false,"body":"Estou interessado! (m71370664392)","_data":{"notifyName":"Teste"}}}'
+# -> linha nova na LEADS + ping no seu zap
+```
+2. **O teste que mais importa:** dispare uma oferta no grupo e confirme que **nenhum lead** apareceu. O hook recebe TUDO, inclusive os posts do próprio bot. Se aparecer lead, o filtro `@g.us`/`fromMe` furou.
+3. **Dedup:** mande a mesma mensagem 2× → 1 linha, 1 aviso.
+4. **Ruído:** mande "oi" → nada acontece, sem erro vermelho no n8n.
+
+## Notas
+- **`responseMode: onReceived`** (≠ do garimpo, que usa `responseNode`). O WAHA só quer o `200`, não lê corpo. Com `responseNode`, toda mensagem descartada (grupo, "oi") deixaria o webhook pendurado até estourar timeout.
+- **`WHATSAPP_HOOK_EVENTS: message`** e não `message.any`: `message.any` inclui os **próprios envios** → cada oferta postada viraria lead fantasma. O Code node filtra `fromMe` de novo mesmo assim (cinto e suspensório).
+- **Path secreto é o único freio:** o WAHA **não assina** o POST (não há secret nem HMAC). Se vazar, troque o path no node Webhook e o `WAHA_HOOK_URL`, e redeploy do WAHA.
+- **Timeout 120s** no node de aviso, mesma razão do envio de imagem (o WAHA fala por um Chromium de verdade).
+- **PII:** a `LEADS` guarda telefone de cliente. Ver a nota no schema.

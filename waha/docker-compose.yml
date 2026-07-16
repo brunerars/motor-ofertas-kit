@@ -28,6 +28,11 @@ services:
       # Sem isto a sessao existe mas volta PARADA depois de um restart —
       # o container sobe, o disparo falha, e nada avisa.
       WHATSAPP_RESTART_ALL_SESSIONS: "True"
+      # INBOUND (ciclo do lead) — espelha a stack-vps.yml. Aqui o WAHA e local,
+      # mas o n8n e hospedado: o POST sai daqui pra internet e chega igual.
+      # `message` = so o que CHEGA (`message.any` incluiria os proprios envios).
+      WHATSAPP_HOOK_URL: ${WAHA_HOOK_URL}
+      WHATSAPP_HOOK_EVENTS: message
 
 volumes:
   waha-sessions:

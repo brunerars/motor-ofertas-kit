@@ -5,8 +5,9 @@ version: "3.8"
 # COMO SUBIR (Portainer → Stacks → Add stack → Web editor: colar isto)
 #   1. DNS: registro A `waha` -> IP da VPS, Cloudflare DNS-only (NUNCA proxied,
 #      senao o Let's Encrypt nao valida e o websocket do WhatsApp sofre).
-#   2. Env da stack (Portainer → Environment variables): as 5 WAHA_*/WHATSAPP_*
-#      abaixo. Valores vem do .env local do projeto. NAO colar valor neste arquivo.
+#   2. Env da stack (Portainer → Environment variables): as WAHA_*/WHATSAPP_*
+#      abaixo, incluindo WAHA_HOOK_URL. Valores vem do .env local do projeto.
+#      NAO colar valor neste arquivo.
 #   3. Deploy → abrir https://waha.arvsystems.cloud/dashboard → escanear o QR.
 #
 # POR QUE O DOMINIO E SO PRA VOCE:
@@ -48,6 +49,14 @@ services:
       # Sem isto a sessao volta PARADA depois de um restart: o container sobe,
       # o disparo falha, e nada avisa.
       WHATSAPP_RESTART_ALL_SESSIONS: "True"
+      # INBOUND (ciclo do lead): o WAHA faz POST aqui a cada mensagem RECEBIDA.
+      # O n8n casa o "Estou interessado! (mXXXX)" com a peca e grava o lead.
+      # Path secreto: e o unico freio dessa rota (o WAHA nao assina o POST).
+      # `message` = so o que CHEGA. `message.any` incluiria os proprios envios ->
+      # cada oferta postada no grupo viraria um lead fantasma. O Code node filtra
+      # fromMe/@g.us de novo mesmo assim: cinto e suspensorio.
+      WHATSAPP_HOOK_URL: ${WAHA_HOOK_URL}
+      WHATSAPP_HOOK_EVENTS: message
 
     deploy:
       mode: replicated

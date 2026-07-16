@@ -1,0 +1,368 @@
+{
+  "name": "NSC — Lead inbound (WAHA → Baserow)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nsc-lead-4d9b2e",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "c3d30000-0000-4000-8000-000000000001",
+      "name": "Webhook (WAHA inbound)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        -140
+      ],
+      "webhookId": "nsc-lead-4d9b2e",
+      "notes": "O path secreto e o UNICO freio desta rota: o WAHA nao assina o POST. Vazou? troca o path aqui e o WAHA_HOOK_URL no .env/stack."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c1",
+              "name": "baserow_url",
+              "value": "https://baserow.arvsystems.cloud",
+              "type": "string"
+            },
+            {
+              "id": "c2",
+              "name": "table_id",
+              "value": "556",
+              "type": "string"
+            },
+            {
+              "id": "c3",
+              "name": "leads_table_id",
+              "value": "<PREENCHER_LEADS_TABLE_ID>",
+              "type": "string"
+            },
+            {
+              "id": "c4",
+              "name": "baserow_token",
+              "value": "<PREENCHER_BASEROW_TOKEN>",
+              "type": "string"
+            },
+            {
+              "id": "c5",
+              "name": "waha_url",
+              "value": "http://waha:3000",
+              "type": "string"
+            },
+            {
+              "id": "c6",
+              "name": "waha_api_key",
+              "value": "<PREENCHER_WAHA_API_KEY>",
+              "type": "string"
+            },
+            {
+              "id": "c7",
+              "name": "waha_session",
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "id": "c8",
+              "name": "admin_id",
+              "value": "<PREENCHER_WAHA_ADMIN_ID>",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "c3d30000-0000-4000-8000-000000000002",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        -140
+      ],
+      "notes": "includeOtherFields=true e OBRIGATORIO: e o que faz o body do webhook atravessar ate o Code node sem chamar $('Webhook...') pelo nome. admin_id = numero PESSOAL do Bruno (55DDDNUMERO@c.us), nao o da loja."
+    },
+    {
+      "parameters": {
+        "jsCode": "// WAHA inbound -> lead. So mensagem que CHEGA e que cita uma peca.\n//\n// REGRA DURA - o Config esta com includeOtherFields=true, entao o body do\n// webhook chega aqui dentro do $input junto com os tokens. Nao chamar\n// $('Webhook...') pelo nome: ao importar por cima de um canvas existente o n8n\n// renomeia os nos (Config -> Config1) e a referencia morre em silencio.\n//\n// NAO usar barra invertida em regex: some ao colar o codigo na mao no n8n.\nconst inp = $input.first().json;\nconst body = inp.body || {};\nconst p = body.payload || {};\n\n// 1) Nunca reagir ao proprio envio.\nif (p.fromMe) return [];\n\nconst from = String(p.from || '');\nif (!from) return [];\n\n// 2) Ignorar GRUPO. O hook dispara pra tudo - inclusive a oferta que o bot\n//    acabou de postar. Sem este freio, cada disparo viraria um lead fantasma.\nif (from.indexOf('@g.us') > -1) return [];\n\n// 3) Precisa citar uma peca. O CTA manda \"Estou interessado! (m71370664392)\".\nconst texto = String(p.body || '');\nconst m = texto.match(/m[0-9]+/i);\nif (!m) return [];   // \"oi\" solto nao vira lead; o Bruno le no WhatsApp normal\n\nconst d = p._data || {};\nreturn [{ json: {\n  mercari_id: m[0].toLowerCase(),\n  phone: from.split('@')[0],\n  nome_wa: String(p.notifyName || d.notifyName || p.pushName || '').trim(),\n  mensagem: texto,\n  recebido_em: new Date().toISOString()\n}}];"
+      },
+      "id": "c3d30000-0000-4000-8000-000000000003",
+      "name": "Filtrar + montar lead",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.leads_table_id }}/?user_field_names=true&size=200&filter__mercari_id__equal={{ $json.mercari_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3d30000-0000-4000-8000-000000000004",
+      "name": "Baserow: leads desta peca",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        140,
+        -140
+      ],
+      "notes": "Um GET so responde 'ja pediu?' (dedup) e 'e a quantesima?' (ordinal)."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Dedup + ordinal. O GET anterior trouxe TODOS os leads desta peca, entao ele\n// responde as duas perguntas de uma vez: \"essa pessoa ja pediu?\" e \"e a quantesima?\".\nconst lead = $('Filtrar + montar lead').first().json;\nconst rows = ($input.first().json.results) || [];\n\n// Mesma pessoa + mesma peca = nao duplica linha NEM aviso. (O webhook do garimpo\n// tem essa divida em aberto; aqui nao repetir: 2 mensagens = 2 pings no zap.)\nconst eu = String(lead.phone).trim();\nfor (const r of rows) {\n  if (String(r.phone || '').trim() === eu) return [];\n}\n\nreturn [{ json: Object.assign({}, lead, { ordinal: rows.length + 1 }) }];"
+      },
+      "id": "c3d30000-0000-4000-8000-000000000005",
+      "name": "Dedup + ordinal",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        340,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.leads_table_id }}/?user_field_names=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "keypair",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "lead",
+              "value": "={{ $json.nome_wa || $json.phone }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "nome_wa",
+              "value": "={{ $json.nome_wa }}"
+            },
+            {
+              "name": "mercari_id",
+              "value": "={{ $json.mercari_id }}"
+            },
+            {
+              "name": "mensagem",
+              "value": "={{ $json.mensagem }}"
+            },
+            {
+              "name": "recebido_em",
+              "value": "={{ $json.recebido_em }}"
+            },
+            {
+              "name": "status",
+              "value": "Novo"
+            },
+            {
+              "name": "avisado_vendido",
+              "value": "={{ false }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3d30000-0000-4000-8000-000000000006",
+      "name": "Baserow: gravar lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        -140
+      ],
+      "notes": "status por TEXTO ('Novo'), nao por id de opcao - com user_field_names=true o single_select aceita o value."
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/?user_field_names=true&filter__mercari_id__equal={{ $('Dedup + ordinal').item.json.mercari_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3d30000-0000-4000-8000-000000000007",
+      "name": "Baserow: achar a peca",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        -140
+      ],
+      "notes": "So pra pegar o title_pt: o aviso diz 'Bone Benetton', nao 'm71370664392'.",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Monta o aviso pro Bruno. O lead JA foi gravado - se este no falhar, o dado\n// esta salvo, so o ping se perde.\nconst cfg = $('Config').first().json;\nconst lead = $('Dedup + ordinal').first().json;\nconst rows = ($input.first().json.results) || [];\n\n// title_pt da 556 (o nome que o Bruno reconhece). Sem achar, cai pro id.\nconst peca = (rows.length && rows[0].title_pt) ? rows[0].title_pt : lead.mercari_id;\nconst quem = lead.nome_wa || lead.phone;\nconst nth = lead.ordinal > 1 ? ' (' + lead.ordinal + 'a pessoa)' : '';\n\nconst texto = '🔔 Lead: ' + quem + '\\n' + peca + nth + '\\nwa.me/' + lead.phone;\n\n// Sem admin_id nao ha pra quem avisar. O lead continua gravado.\nconst destino = String(cfg.admin_id || '').trim();\nif (!destino) return [];\n\nreturn [{ json: { payload: {\n  session: cfg.waha_session,\n  chatId: destino,\n  text: texto\n}}}];"
+      },
+      "id": "c3d30000-0000-4000-8000-000000000008",
+      "name": "Montar aviso",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').item.json.waha_url }}/api/sendText",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Api-Key",
+              "value": "={{ $('Config').item.json.waha_api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.payload) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "c3d30000-0000-4000-8000-000000000009",
+      "name": "WAHA: avisar Bruno",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1140,
+        -140
+      ],
+      "notes": "timeout 120s como o de imagem: o WAHA envia por um Chromium de verdade e e lento. onError=continue: o lead ja esta gravado, so o ping se perde.",
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "connections": {
+    "Webhook (WAHA inbound)": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Filtrar + montar lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar + montar lead": {
+      "main": [
+        [
+          {
+            "node": "Baserow: leads desta peca",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: leads desta peca": {
+      "main": [
+        [
+          {
+            "node": "Dedup + ordinal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dedup + ordinal": {
+      "main": [
+        [
+          {
+            "node": "Baserow: gravar lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: gravar lead": {
+      "main": [
+        [
+          {
+            "node": "Baserow: achar a peca",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: achar a peca": {
+      "main": [
+        [
+          {
+            "node": "Montar aviso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar aviso": {
+      "main": [
+        [
+          {
+            "node": "WAHA: avisar Bruno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

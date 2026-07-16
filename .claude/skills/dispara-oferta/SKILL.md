@@ -22,7 +22,7 @@ Lê a fila do Baserow (`DISPARADOR`) e posta no grupo via **WAHA**.
 1. **Ler aprovados prontos** (PORTÃO DE APROVAÇÃO): `status=Aprovado` (sai já) **ou** `status=Agendado` com `scheduled_at <= agora`. **Nunca dispara `Fila`** — Fila = pendente da conferida do Bruno no Baserow. É a camada de aprovação barata (sem webhook).
 2. **Resumo pré-janela (opcional):** antes do lote, `sendText` no grupo: "Nos próximos ~20min: N peças chegando 👇" (ver [[ideias-mercari-plus]]).
 3. **Disparar cada oferta:** `sendImage` com **`photo_url`** (URL pública do Baserow) + o campo **`caption`** já aprovado — **o texto exato que o Bruno revisou, não recompor**. Quem monta legenda é o `/agenda`; aqui é repasse cru.
-4. **Marcar:** `PATCH` row → `status=Disparado`, `posted_at=agora`, `wa_message_id` (rastreio de lead p/ `/confere-ofertas`).
+4. **Marcar:** `PATCH` row → `status=Disparado`, `posted_at=agora`, `wa_message_id` (id da mensagem que o BOT enviou — **não** é rastreio de lead; quem rastreia lead é a tabela `LEADS`).
 
 ## WAHA — endpoints
 ```bash
