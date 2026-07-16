@@ -63,6 +63,17 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 - **LP = opção 2: base escura + vermelho de corrida** (mais próxima das artes do Caio; nicho pede impacto, não minimalismo de galeria). Deploy Vercel.
 - **Motion:** não replicar o timing exato do IX2 do Webflow — usar camada própria de animação inteira (IntersectionObserver + CSS, progressive enhancement, conteúdo visível por padrão). Ver [[design-system-extract-motion-gotcha]].
 - `jp.wings` / `jpwingsbr.com` são **referências**, não a marca própria
+- **Modelo de preço + legenda do WhatsApp (16/07)** — o **R$ que o Caio manda no form já é fechado: inclui frete do Japão + impostos** ("impostos e frete por nossa conta" é o jeito que a NSC vende). O único frete que sobra é **escritório → casa do cliente**, resolvido no pv. Portanto: **NUNCA escrever "frete sob consulta" nem "valor sob consulta" na legenda do WhatsApp**; a linha de preço é limpa (`R$ 750,00`). O `price_jpy` (Firecrawl) é referência interna e não vai pro post. **Legenda = modelo que o Caio já usa no grupo dele** (curto, a foto faz o trabalho):
+  ```
+  *<Título da peça>*
+  Tam: <observação do Caio; "único" se vazio; defeito junto, por vírgula>
+
+  R$ <preço>
+
+  🏁 Quero essa peça: <wa.me?text=<mercari_id>>
+  ```
+  **Formato definitivo (16/07, refino do Bruno em cima do modelo do Caio):** título em **negrito** (`*` do WhatsApp, o Z-API renderiza), **duas linhas em branco** separando título+tam / preço / CTA, e **🏁** no CTA. A linha do Tam **nunca some** (vem do campo `tags` = o que o Caio digitou no form; vazio → `único`) e o **defeito entra nela**, por vírgula — não tem linha de defeito própria. Sem gancho histórico, sem medidas técnicas (vão no pv). O `wa.me` fica: é a captura de lead (grupo não tem botão "tenho interesse") e alimenta o `/confere-ofertas`. **Sem preço não há legenda** → segura em `Fila` e reporta.
+  > O n8n **não monta legenda**: lê `caption` do Baserow e repassa cru pro `send-image`. Quem escreve é o `/agenda`. Mudou o formato? Mexe só na skill.
 
 ## Visão de produto + arquitetura de custo (decisão 2026-07-02)
 Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas separáveis:
@@ -120,7 +131,7 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
   - [x] **NO AR (público):** https://nippon-speed-co.vercel.app · projeto Vercel `nippon-speed-co` (id prj_Zvxcj57IQYi3LfW8goOAddrqoFsK, team_UAxVjXgJHIfUnZ6lMN8fevvq). CTAs = WhatsApp OFICIAL da loja 5511914563609 (o "Quero essa peça" com texto pré-preenchido citando o item).
   - **Rotina de deploy** (token no `.env`): `npx vercel deploy lp --prod --yes --scope brunoconstantinou-4051s-projects --token=$VERCEL_TOKEN` → depois `vercel alias set <deploy-url> nippon-speed-co.vercel.app` (o alias NÃO segue prod sozinho). SSO Deployment Protection vem LIGADO por padrão → desligar: `PATCH api.vercel.com/v10/projects/nippon-speed-co {"ssoProtection":null}`. Ver [[vercel-deploy-lp-gotchas]].
   - Pendentes de polish: trocar número de teste pelo convite do grupo real; gerar 3 imagens dos passos via `/nanobanana` (precisa GEMINI_API_KEY); melhorar qualidade do design system + usar imagens hi-res (Pinterest) na origem.
-- **Preço na LP/ofertas = "valor e frete sob consulta no grupo"** (não fecha R$; CTA → grupo WhatsApp).
+- ~~**Preço na LP/ofertas = "valor e frete sob consulta no grupo"**~~ → **revisto em 16/07, ver "Modelo de preço + legenda" nas Decisões travadas.** A **LP** segue sem fechar R$ (CTA → grupo). A **oferta no WhatsApp agora mostra o R$** (vem do form do Caio).
 - Pendências: link do convite do grupo WhatsApp (placeholder `REPLACE_ME` na LP) · chaves Baserow/Z-API (Bloco Ofertas).
 
 ## Relacionado

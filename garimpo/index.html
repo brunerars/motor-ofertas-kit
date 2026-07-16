@@ -157,7 +157,7 @@ footer{ margin-top:40px; padding-top:18px; border-top:1.5px solid var(--hair);
 
   <p class="eyebrow">Garimpo · uso interno</p>
   <h1>Manda os<br/>links</h1>
-  <p class="lead">Achou uma peça no Mercari? Cola o link, o título e o valor. Pode mandar <strong>quantas quiser de uma vez</strong>. A observação é opcional, pra deixar um recado (raro, condição, o que for).</p>
+  <p class="lead">Achou uma peça no Mercari? Cola o link, o título e o valor. Pode mandar <strong>quantas quiser de uma vez</strong>. O campo <strong>Tam / observação</strong> sai na oferta logo depois de "Tam:" — põe o tamanho, medida ou detalhe da peça. Vazio vira "único".</p>
 
   <form id="form" novalidate>
     <div class="items" id="items"><!-- linhas injetadas pelo JS --></div>
@@ -240,12 +240,12 @@ function addRow(){
       <input type="text" class="title" autocomplete="off" placeholder="ex: Boné Ferrari Schumacher nº 1" />
     </div>
     <div class="note-wrap">
-      <label>Valor</label>
-      <input type="text" class="price" inputmode="decimal" autocomplete="off" placeholder="ex: R$ 150 ou ¥ 2.500" />
+      <label>Valor de venda (R$)</label>
+      <input type="text" class="price" inputmode="decimal" autocomplete="off" placeholder="ex: R$ 750,00" />
     </div>
     <div class="note-wrap">
-      <label>Observação <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#a7a7a2">(opcional)</span></label>
-      <input type="text" class="note" autocomplete="off" placeholder="ex: raro, condição, detalhe" />
+      <label>Tam / observação <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#a7a7a2">(opcional)</span></label>
+      <input type="text" class="note" autocomplete="off" placeholder="ex: F, medidas pv" />
     </div>`;
   row.querySelector(".item-rm").addEventListener("click", () => {
     if (rowCount() > 1){ row.remove(); renumber(); }
@@ -295,7 +295,14 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify({ secret: SECRET, items })
     });
     if (!resp.ok) throw new Error("HTTP " + resp.status);
-    setStatus("ok", "Recebido! " + items.length + (items.length === 1 ? " peça entrou" : " peças entraram") + " na fila. Pode mandar mais quando quiser.");
+    // O n8n devolve 200 com corpo VAZIO quando o workflow explode no meio.
+    // Sem checar o corpo, o form dizia "Recebido!" com ZERO linhas gravadas (16/07).
+    // O Respond node manda "All Incoming Items" = as linhas que o Baserow criou,
+    // cada uma com seu id -> contar os id e a unica prova real de que entrou.
+    const data = await resp.json().catch(() => null);
+    const criadas = Array.isArray(data) ? data.filter(r => r && r.id).length : 0;
+    if (criadas === 0) throw new Error("workflow nao confirmou nenhuma linha");
+    setStatus("ok", "Recebido! " + criadas + (criadas === 1 ? " peça entrou" : " peças entraram") + " na fila. Pode mandar mais quando quiser.");
     form.reset();
     itemsEl.innerHTML = "";
     addRow();

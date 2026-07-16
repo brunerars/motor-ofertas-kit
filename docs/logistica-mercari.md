@@ -28,7 +28,8 @@ Despachamos seu pedido junto às encomendas do grupo por logística própria e c
 Você retira com a gente ou recebe por Correios ou transportadora. Cada peça chega conferida, fotografada e com a história registrada.
 
 ## Regras de precificação (padrão atual)
-- LP e ofertas **não fecham preço**: exibem "valor **sob consulta no grupo**". Fechamento no 1:1.
+- **LP** (e anúncio pago) **não fecha preço**: exibe "valor **sob consulta no grupo**", CTA → grupo.
+- **Oferta no grupo fecha preço** (revisto 16/07): a legenda mostra o R$ limpo (`R$ 750,00`), que vem do form do Caio já fechado. **Nunca escrever "sob consulta" na legenda do WhatsApp.** Fechamento da entrega segue no 1:1.
 - O preço anunciado por peça **já é final** até Mogi (frete internacional + impostos dentro). O envio Mogi→cliente é à parte.
 - **(confirmar c/ Caio):** se/quando existir fórmula pública (câmbio + margem + frete), atualizar aqui e em [[roteiro-lp]].
 

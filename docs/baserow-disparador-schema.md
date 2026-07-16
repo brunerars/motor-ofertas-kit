@@ -17,15 +17,15 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 | `title_ja` | text | Firecrawl |
 | `description_pt` | long_text | tradução |
 | `brand` `category` `condition` | text | Firecrawl |
-| `price_jpy` | number (0dp) | Firecrawl |
-| `price_brl` | number (2dp) | vazio = "sob consulta" |
+| `price_jpy` | number (0dp) | Firecrawl; **referência interna, não vai pro post** |
+| `price_brl` | number (2dp) | vem do form do Caio, **já fechado** (frete+impostos). Vazio = **sem legenda**: segura em `Fila` e reporta (nunca "sob consulta" no grupo) |
 | `photos` | long_text | refs do acervo, ex `acervo/<id>/1.jpg,…` |
 | `caption` | long_text | **texto exato do post** (o que o Bruno aprova/edita) |
 | `photo_url` | url | **URL pública da foto principal** (upload no Baserow); o n8n manda essa URL pro Z-API |
 | `status` | single_select | `Fila·Aprovado·Agendado·Disparado·Vendido·Descartado` |
 | `scheduled_at` `posted_at` | date (com hora) | agendamento / disparo |
 | `sold` | boolean | `/confere-ofertas` |
-| `tags` | text | curadoria (csv) |
+| `tags` | text | **campo "Tam / observação" do form do Caio** → vira a linha `Tam:` da legenda (vazio → `único`) |
 | `wa_message_id` | text | rastreio de lead |
 
 ## Fluxo de status (aprovação = flip no Baserow, sem webhook)
