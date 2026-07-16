@@ -3,11 +3,12 @@
 Runbook acionável. O `README.md` explica **o que é**; aqui é **como rodar** (na NSC ou numa loja nova). As skills estão em `.claude/skills/` deste repo — abrindo o Claude Code na raiz, elas aparecem.
 
 ## 0. Pré-requisitos
-- **Claude Code** · **n8n** (hospedado, pro disparo) · contas: **Firecrawl · Baserow · Z-API · Vercel**.
+- **Claude Code** · **n8n** (hospedado, pro disparo) · **WAHA** (container próprio, pro WhatsApp) · contas: **Firecrawl · Baserow · Vercel**.
 
 ## 1. Configurar — PARTE HUMANA (1×)
 1. `cp .env.example .env` e preencha os tokens (cada chave tem a origem no arquivo).
-2. **WhatsApp:** crie a instância no Z-API, escaneie o QR com o número da loja, copie **instância + token + client-token**; ache o `group_id` (`GET /chats`, formato `120363…-group`).
+2. **WhatsApp (WAHA, auto-hospedado — sem mensalidade):** suba `waha/stack-vps.yml` no Portainer (Swarm+Traefik, `network_public`; as 5 `WAHA_*`/`WHATSAPP_*` vão na env da stack). DNS: A `waha` → IP da VPS, **Cloudflare DNS-only**. Abra `https://waha.<seu-dominio>/dashboard` e escaneie o QR com o número da loja. Ache o `group_id` em `GET /api/default/groups` — formato **`120363…@g.us`**.
+   > O **domínio é só pra você** escanear o QR: o n8n fala com o WAHA por dentro da rede (`http://waha:3000`). **WAHA local não serve pra produção** — o n8n é hospedado e não alcança `localhost`.
 3. **Baserow:** a fila é a tabela `DISPARADOR` (schema em `docs/baserow-disparador-schema.md`). Loja nova: o Claude cria via API.
 
 ## 2. Marca — CLAUDE (1× por loja)

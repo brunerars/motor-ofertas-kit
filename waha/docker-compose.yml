@@ -1,0 +1,33 @@
+# WAHA — WhatsApp HTTP API (disparo das ofertas).
+# Subir:  cd waha && docker compose --env-file ../.env up -d
+# Logs:   docker compose logs -f
+#
+# POR QUE COMPOSE E NAO `docker run`: este arquivo e o mesmo que sobe na VPS depois.
+# Local = teste; VPS = producao (o n8n hospedado NAO alcanca localhost:3000).
+services:
+  waha:
+    image: devlikeapro/waha
+    container_name: waha
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      # A sessao do WhatsApp (~52MB) vive aqui. SEM volume, recriar o container
+      # = perder a sessao = escanear o QR de novo. Volume nomeado: fica fora do
+      # repo, sobrevive a `docker compose down` (so morre com `down -v`).
+      - waha-sessions:/app/.sessions
+    environment:
+      # O WAHA REGERA essas credenciais a cada start se nao vierem daqui —
+      # era por isso que a API key mudava sozinha. Valores no ../.env (fora do git).
+      WAHA_API_KEY: ${WAHA_API_KEY}
+      WAHA_DASHBOARD_USERNAME: ${WAHA_DASHBOARD_USERNAME}
+      WAHA_DASHBOARD_PASSWORD: ${WAHA_DASHBOARD_PASSWORD}
+      WHATSAPP_SWAGGER_USERNAME: ${WHATSAPP_SWAGGER_USERNAME}
+      WHATSAPP_SWAGGER_PASSWORD: ${WHATSAPP_SWAGGER_PASSWORD}
+      WHATSAPP_DEFAULT_ENGINE: WEBJS
+      # Sem isto a sessao existe mas volta PARADA depois de um restart —
+      # o container sobe, o disparo falha, e nada avisa.
+      WHATSAPP_RESTART_ALL_SESSIONS: "True"
+
+volumes:
+  waha-sessions:

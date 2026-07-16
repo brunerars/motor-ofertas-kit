@@ -5,6 +5,11 @@
 .credentials.json
 bw-jwt.txt
 
+# Workflows n8n COM os segredos preenchidos (espelho do que roda em prod).
+# Ficam SÓ na máquina do Bruno: ele exporta de lá / importa direto, sem editar token na mão.
+# Os templates versionáveis (com <PREENCHER_...>) continuam em n8n/*.json.
+n8n/versoes-em-prod/
+
 # Vercel / build
 .vercel/
 lp/.vercel/

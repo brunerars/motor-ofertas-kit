@@ -21,7 +21,7 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 | `price_brl` | number (2dp) | vem do form do Caio, **já fechado** (frete+impostos). Vazio = **sem legenda**: segura em `Fila` e reporta (nunca "sob consulta" no grupo) |
 | `photos` | long_text | refs do acervo, ex `acervo/<id>/1.jpg,…` |
 | `caption` | long_text | **texto exato do post** (o que o Bruno aprova/edita) |
-| `photo_url` | url | **URL pública da foto principal** (upload no Baserow); o n8n manda essa URL pro Z-API |
+| `photo_url` | url | **URL pública da foto principal** (upload no Baserow); o n8n manda essa URL pro **WAHA** (`file.url`) |
 | `status` | single_select | `Fila·Aprovado·Agendado·Disparado·Vendido·Descartado` |
 | `scheduled_at` `posted_at` | date (com hora) | agendamento / disparo |
 | `sold` | boolean | `/confere-ofertas` |
