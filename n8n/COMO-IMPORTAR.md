@@ -5,26 +5,50 @@ Workflow: `nsc-dispara-ofertas.json`. Substitui o `/dispara-oferta` do Claude po
 ## O que ele faz
 A cada 30 min: lê a fila do Baserow (`DISPARADOR`), pega as linhas **`Aprovado`** (e `Agendado` vencidas), e posta **uma a uma** no grupo via **WAHA** (`/api/sendImage` com `photo_url` + `caption`), marcando **`Disparado`** + `posted_at` + `wa_message_id`. **Nunca dispara `Fila`** (portão de aprovação) e **não spamma** se não houver nada aprovado.
 
+> ⚠️ **Testar na mão com a agendada rodando é seguro agora, mas não era.** Foi assim que 3 peças viraram 5 posts em 16/07. Se for clicar em **"Test workflow"**, saiba que ele roda **junto** com a execução agendada, não no lugar dela. O que segura as duas hoje é o `reler a linha` (abaixo) — antes, nada segurava.
+
 ## Cadência: janela + uma peça por vez (16/07)
 **Antes era rajada:** 5 aprovados = 5 posts seguidos, em segundos. É o padrão que derruba conta no WEBJS (o WhatsApp olha **volume e velocidade**, não se o horário é redondo).
 
 Agora:
 ```
 Filtrar aprovados (janela) → Loop Over Items → [done] fim
-                                             → [loop] Espera humana (45-90s aleatórios)
-                                                        → WAHA: enviar → Baserow: marcar → volta pro Loop
+                                             → [loop] Espera humana (aleatória)
+                                                        → Baserow: reler a linha
+                                                        → Ainda dá pra disparar? --não--> volta pro Loop
+                                                                   |sim
+                                                        → Baserow: marcar Disparado   ← o cadeado, ANTES do envio
+                                                        → WAHA: enviar
+                                                        → Baserow: gravar message id
+                                                        → volta pro Loop
 ```
 - **Janela 9h-21h** (`America/Sao_Paulo`). Fora dela a fila **espera**, ninguém perde o lugar. Post de madrugada não é lido e ainda cheira a robô.
   > ⚠️ **Fuso:** o container do n8n roda em **UTC**. `new Date().getHours()` daria 9-21 UTC = **6h-18h no Brasil**. O código força `America/Sao_Paulo` via `toLocaleString`. Não "simplificar" isso.
 - **Espera aleatória antes de cada envio** (node `Espera humana`). O número exato não importa; a **ausência de padrão** importa.
-- **Teto por rodada — não é cadência, é anti-duplicata.** Se o loop passar do intervalo do cron, a execução seguinte começa com a anterior ainda rodando, vê as **mesmas** linhas (ainda não marcadas `Disparado`) e **posta tudo de novo no grupo**.
+- **Teto por rodada = bound de sanidade**, não é mais o anti-duplicata (ver abaixo).
+
+### ⚠️ Anti-duplicata: reler + marcar antes de enviar (16/07, pago com sangue)
+**O que aconteceu:** em 16/07 três peças foram pro grupo **cinco vezes**. Duas execuções rodaram sobrepostas — A postou Lotus 22:30:49, B nasceu logo depois, e as duas seguiram postando Honda e Suzuka com ~35s de diferença.
+
+**Por que:** o `Baserow: listar linhas` roda **uma vez, no topo da rodada**. Entre listar e enviar a última peça passam até **20 minutos**. A execução B leu a lista quando só o Lotus estava `Disparado`, e passou o resto da rodada postando de um **retrato desatualizado**. Marcar `Disparado` **depois** do envio piorava: o post já tinha caído no grupo antes da linha mudar.
+
+**O teto nunca ia resolver isso.** Ele só garante que **uma** rodada caiba no cron. Não impede uma **segunda execução** de nascer no meio da primeira — que é exatamente o que acontece quando você clica **"Test workflow"** com a agendada rodando, ou deixa dois workflows ativos.
+
+**O conserto, dentro do loop:**
+1. **`Baserow: reler a linha`** — no instante do envio, pergunta o status **de agora**. Mata o retrato velho.
+2. **`Ainda dá pra disparar?`** — já `Disparado` (outro chegou antes) ou `Descartado` (mudou de ideia no meio da rodada) → pula calado e segue pra próxima.
+3. **`Baserow: marcar Disparado` ANTES do envio** — o cadeado. Quem chegar depois relê, vê `Disparado`, pula.
+
+> **A troca que foi feita de propósito:** se o WAHA falhar, a peça fica `Disparado` sem ter saído. É silencioso, mas **detectável** (`status=Disparado` + `wa_message_id` vazio) e o pior caso é uma peça não postada. O oposto — duplicar no grupo — custa reputação com os clientes e risco de ban no WhatsApp. **Perder é mais barato que duplicar.**
+
+> Bônus: o payload agora sai da linha **recém-lida**, não do retrato do topo. Legenda editada depois da aprovação sai correta. E sumiu o `$('Filtrar aprovados').item`, que atravessava a fronteira do `splitInBatches` — o ponto mais frágil de resolução de item do n8n.
 
 ### ⚠️ A cadência mora no `Config`, e só lá (16/07)
 `cron_min` · `espera_min_s` · `espera_var_s`. O node `Espera humana` **e** o teto do `Filtrar aprovados` leem os **mesmos** três campos, e o teto **se recalcula sozinho**:
 ```
 teto = floor( (cron_min * 60 * 0.75) / (espera_min_s + espera_var_s + 15) )
 ```
-**Por que isso existe:** a espera vivia cravada no node Wait e o teto cravado no Code. Trocar a espera de 90s pra 225s deixou um teto de 15 valendo **56 min** contra um cron de **30 min** — ou seja, duplicata garantida no grupo assim que a fila passasse de ~8 peças. Um número mudou, o outro não soube. **Agora não dá pra desalinhar.**
+**Por que isso existe:** a espera vivia cravada no node Wait e o teto cravado no Code. Trocar a espera de 90s pra 225s deixou um teto de 15 valendo **56 min** contra um cron de **30 min**. Um número mudou, o outro não soube. **Agora não dá pra desalinhar.**
 
 | espera | teto automático | pior caso |
 |---|---|---|
