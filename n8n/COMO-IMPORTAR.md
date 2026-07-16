@@ -16,8 +16,24 @@ Filtrar aprovados (janela) → Loop Over Items → [done] fim
 ```
 - **Janela 9h-21h** (`America/Sao_Paulo`). Fora dela a fila **espera**, ninguém perde o lugar. Post de madrugada não é lido e ainda cheira a robô.
   > ⚠️ **Fuso:** o container do n8n roda em **UTC**. `new Date().getHours()` daria 9-21 UTC = **6h-18h no Brasil**. O código força `America/Sao_Paulo` via `toLocaleString`. Não "simplificar" isso.
-- **Espera aleatória de 45 a 90s** antes de cada envio (node `Espera humana`). O número exato não importa; a **ausência de padrão** importa.
-- **Teto de 15 por rodada — e não é cadência, é anti-duplicata.** Com até 90s por peça, 20 peças levariam 30min = o intervalo do próprio cron. A execução seguinte começaria com a primeira ainda rodando, veria as **mesmas** linhas (ainda não marcadas `Disparado`) e **postaria tudo de novo no grupo**. 15 × 90s = 22min, com folga. O resto sai no próximo tick.
+- **Espera aleatória antes de cada envio** (node `Espera humana`). O número exato não importa; a **ausência de padrão** importa.
+- **Teto por rodada — não é cadência, é anti-duplicata.** Se o loop passar do intervalo do cron, a execução seguinte começa com a anterior ainda rodando, vê as **mesmas** linhas (ainda não marcadas `Disparado`) e **posta tudo de novo no grupo**.
+
+### ⚠️ A cadência mora no `Config`, e só lá (16/07)
+`cron_min` · `espera_min_s` · `espera_var_s`. O node `Espera humana` **e** o teto do `Filtrar aprovados` leem os **mesmos** três campos, e o teto **se recalcula sozinho**:
+```
+teto = floor( (cron_min * 60 * 0.75) / (espera_min_s + espera_var_s + 15) )
+```
+**Por que isso existe:** a espera vivia cravada no node Wait e o teto cravado no Code. Trocar a espera de 90s pra 225s deixou um teto de 15 valendo **56 min** contra um cron de **30 min** — ou seja, duplicata garantida no grupo assim que a fila passasse de ~8 peças. Um número mudou, o outro não soube. **Agora não dá pra desalinhar.**
+
+| espera | teto automático | pior caso |
+|---|---|---|
+| 90s | 12 | 21min |
+| 180-225s (3 a 3min45) | 5 | 20min |
+| 240-360s (4 a 6min, "5 em 5") | 3 | 19min |
+
+> Teto baixo **não** trava a fila: o que sobra sai no tick seguinte. Com janela de 12h e cron de 30min são 24 rodadas por dia — mesmo com teto 3 dá 72 peças/dia, muito acima do volume real.
+> **Mudou o intervalo no node `Agenda`? Mude o `cron_min` junto**, senão a conta do teto usa o número errado.
 
 > **A proteção principal não é técnica:** é grupo **opt-in**. Ninguém recebe mensagem sem ter pedido. É isso que separa "loja" de "spam" aos olhos do WhatsApp.
 

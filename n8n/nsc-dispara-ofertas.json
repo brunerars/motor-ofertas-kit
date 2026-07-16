@@ -66,6 +66,24 @@
               "name": "group_id",
               "value": "120363410530925527@g.us",
               "type": "string"
+            },
+            {
+              "id": "w0",
+              "name": "cron_min",
+              "value": "30",
+              "type": "string"
+            },
+            {
+              "id": "w1",
+              "name": "espera_min_s",
+              "value": "180",
+              "type": "string"
+            },
+            {
+              "id": "w2",
+              "name": "espera_var_s",
+              "value": "46",
+              "type": "string"
             }
           ]
         },
@@ -79,7 +97,7 @@
         -180,
         0
       ],
-      "notes": "waha_url = http://waha:3000 -> rede interna (alias 'waha' na network_public). NAO usar o dominio publico pra falar com o vizinho de porta: gasta TLS e depende do Traefik. group_id no formato WAHA (120363...@g.us); o formato da Z-API (120363...-group) NAO funciona aqui."
+      "notes": "Cadencia mora AQUI, nos 3 campos cron_min/espera_min_s/espera_var_s. O node 'Espera humana' e o teto do 'Filtrar aprovados' leem os dois do mesmo lugar - mudar so um era o que quebrava o outro em silencio. Pra 5min de verdade: espera_min_s=240, espera_var_s=121 (da 4 a 6min)."
     },
     {
       "parameters": {
@@ -106,7 +124,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Portao de aprovacao. Aprovado = sai ja · Agendado = so quando scheduled_at venceu.\n// NUNCA dispara Fila. Sem photo_url/caption, pula (evita post quebrado no grupo).\n//\n// O n8n NAO monta legenda: le o `caption` pronto do Baserow e repassa cru.\n// Quem escreve o texto e a skill /agenda. Mudou o formato da mensagem? Nao mexe aqui.\n// JANELA: so dispara entre 9h e 21h (America/Sao_Paulo).\n// Post de madrugada nao e lido por ninguem e ainda cheira a robo.\n// Fora da janela a fila espera: ninguem perde o lugar, so sai mais tarde.\n//\n// TIMEZONE: NAO usar new Date().getHours() - o container do n8n roda em UTC,\n// e 9-21 UTC seria 6-18 no Brasil (dispararia as 6 da manha e pararia as 18h).\nconst horaBR = Number(new Date().toLocaleString('en-US', {\n  timeZone: 'America/Sao_Paulo', hour: '2-digit', hour12: false\n})) % 24;\nif (horaBR < 9 || horaBR >= 21) return [];\n\nconst cfg = $('Config').first().json;\nconst now = new Date().toISOString();\nconst rows = ($input.first().json.results) || [];\nconst out = [];\nfor (const r of rows) {\n  const st = (r.status && r.status.value) ? r.status.value : r.status;\n  const due = st === 'Aprovado' || (st === 'Agendado' && r.scheduled_at && r.scheduled_at <= now);\n  if (!due) continue;\n  if (!r.photo_url || !r.caption) continue;\n  // Payload do WAHA montado aqui: o file.url e aninhado e nao cabe em body keypair.\n  // O WAHA busca a foto na URL publica do Baserow (o CDN do Mercari daria 403).\n  out.push({ json: {\n    row_id: r.id,\n    payload: {\n      session: cfg.waha_session,\n      chatId: cfg.group_id,\n      file: { url: r.photo_url },\n      caption: r.caption\n    }\n  }});\n}\n// Quem espaca um a um agora e o Loop Over Items + o Wait aleatorio logo depois.\n// Antes isto virava rajada (5 aprovados = 5 posts seguidos), que e exatamente o\n// padrao que derruba conta no WEBJS.\n//\n// TETO DE SEGURANCA (nao e cadencia, e anti-duplicata): com Wait de ate 90s por\n// peca, 20 pecas levariam 30min = o intervalo do proprio cron. A execucao seguinte\n// comecaria com a primeira ainda rodando, veria as MESMAS linhas (que ainda nao\n// viraram Disparado) e postaria tudo DE NOVO no grupo. 15 x 90s = 22min < 30min.\n// O resto fica Aprovado e sai no proximo tick, sem perder o lugar.\nreturn out.slice(0, 15);"
+        "jsCode": "// Portao de aprovacao. Aprovado = sai ja · Agendado = so quando scheduled_at venceu.\n// NUNCA dispara Fila. Sem photo_url/caption, pula (evita post quebrado no grupo).\n//\n// O n8n NAO monta legenda: le o `caption` pronto do Baserow e repassa cru.\n// Quem escreve o texto e a skill /agenda. Mudou o formato da mensagem? Nao mexe aqui.\n// JANELA: so dispara entre 9h e 21h (America/Sao_Paulo).\n// Post de madrugada nao e lido por ninguem e ainda cheira a robo.\n// Fora da janela a fila espera: ninguem perde o lugar, so sai mais tarde.\n//\n// TIMEZONE: NAO usar new Date().getHours() - o container do n8n roda em UTC,\n// e 9-21 UTC seria 6-18 no Brasil (dispararia as 6 da manha e pararia as 18h).\nconst horaBR = Number(new Date().toLocaleString('en-US', {\n  timeZone: 'America/Sao_Paulo', hour: '2-digit', hour12: false\n})) % 24;\nif (horaBR < 9 || horaBR >= 21) return [];\n\nconst cfg = $('Config').first().json;\nconst now = new Date().toISOString();\nconst rows = ($input.first().json.results) || [];\nconst out = [];\nfor (const r of rows) {\n  const st = (r.status && r.status.value) ? r.status.value : r.status;\n  const due = st === 'Aprovado' || (st === 'Agendado' && r.scheduled_at && r.scheduled_at <= now);\n  if (!due) continue;\n  if (!r.photo_url || !r.caption) continue;\n  // Payload do WAHA montado aqui: o file.url e aninhado e nao cabe em body keypair.\n  // O WAHA busca a foto na URL publica do Baserow (o CDN do Mercari daria 403).\n  out.push({ json: {\n    row_id: r.id,\n    payload: {\n      session: cfg.waha_session,\n      chatId: cfg.group_id,\n      file: { url: r.photo_url },\n      caption: r.caption\n    }\n  }});\n}\n// Quem espaca um a um agora e o Loop Over Items + o Wait logo depois. Antes isto\n// virava rajada (5 aprovados = 5 posts seguidos), que e o padrao que derruba conta\n// no WEBJS.\n//\n// TETO = ANTI-DUPLICATA, nao cadencia. Se o loop passar do intervalo do cron, a\n// execucao seguinte comeca com esta ainda rodando, ve as MESMAS linhas (que ainda\n// nao viraram Disparado) e posta TUDO DE NOVO no grupo.\n// Por isso o teto se calcula da mesma fonte da espera (Config), em vez de ser um\n// numero cravado: trocar a espera de 90s pra 225s deixava um teto de 15 valendo\n// 56min contra um cron de 30min. Silencioso e caro.\nconst cronS = Number(cfg.cron_min || 30) * 60;\nconst esperaMax = Number(cfg.espera_min_s || 180) + Number(cfg.espera_var_s || 46);\nconst porPeca = esperaMax + 15;          // +15s: o envio pelo WAHA e lento (Chromium)\nconst teto = Math.max(1, Math.floor((cronS * 0.75) / porPeca));   // 25% de folga\nreturn out.slice(0, teto);"
       },
       "id": "b1000000-0000-4000-8000-000000000004",
       "name": "Filtrar aprovados",
@@ -209,7 +227,7 @@
     },
     {
       "parameters": {
-        "amount": "={{ Math.floor(Math.random() * 46) + 45 }}",
+        "amount": "={{ Math.floor(Math.random() * Number($('Config').item.json.espera_var_s)) + Number($('Config').item.json.espera_min_s) }}",
         "unit": "seconds"
       },
       "id": "d4e40000-0000-4000-8000-000000000011",
@@ -221,7 +239,7 @@
         -40
       ],
       "webhookId": "d4e40000-0000-4000-8000-0000000000ff",
-      "notes": "45 a 90s aleatorios ANTES de cada envio. O que protege a conta e nao sair em rajada; o numero exato nao importa, a ausencia de padrao sim."
+      "notes": "Espera aleatoria ANTES de cada envio, lida do Config (espera_min_s + rand(espera_var_s)). O que protege a conta e nao sair em rajada; o numero exato nao importa, a ausencia de padrao sim. Mudou aqui? Nao - muda no Config, senao o teto do Filtrar desalinha."
     }
   ],
   "connections": {
