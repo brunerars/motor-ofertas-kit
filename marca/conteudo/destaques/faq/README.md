@@ -15,7 +15,7 @@ status: pronto para subir
 1. Publica `tela-1` … `tela-6` como stories, na ordem.
 2. Cria o destaque "FAQ" e adiciona os 6.
 3. Capa do destaque → `capa.png` (o app recorta o círculo no centro; a arte já é só o ícone centrado).
-4. Na `tela-6`, cola o **sticker de link** do grupo: `https://chat.whatsapp.com/GvYbIleIhNu2S7mG6AsJMI`.
+4. Na `tela-6`, adiciona o **botão nativo do Instagram** (contato/WhatsApp) — o CTA do grupo saiu da arte de propósito (Caio, 15/07).
 
 ## Roteiro das telas
 1. **Abertura** — "Perguntas frequentes" (fundo escuro).
@@ -23,7 +23,7 @@ status: pronto para subir
 3. **Pagamento** — antecipado; Pix, débito ou crédito em até 12x (Mercado Pago).
 4. **Custos** — frete internacional e impostos já no valor anunciado; o cliente só paga o envio de Mogi até ele.
 5. **Trocas** — não há troca nem devolução; a contrapartida é descrição e foto fiéis ao estado.
-6. **CTA** — pergunta no grupo + sticker de link.
+6. **CTA** — "Entre em contato conosco" + botão nativo do Instagram (a arte não traz mais o link do grupo).
 
 ## De onde vêm as respostas
 Dado real do Caio (`briefs/2026-07-13-faq-respostas.txt`), consolidado em **`docs/logistica-mercari.md`** — que é a fonte da verdade. Se a operação mudar (prazo, forma de pagamento, política de troca), **muda lá primeiro** e depois propaga pra este destaque, pro post "Como funciona" e pra LP.
