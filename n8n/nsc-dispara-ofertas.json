@@ -5,7 +5,10 @@
       "parameters": {
         "rule": {
           "interval": [
-            { "field": "minutes", "minutesInterval": 30 }
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
           ]
         }
       },
@@ -13,19 +16,57 @@
       "name": "Agenda (a cada 30min)",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [-380, 0]
+      "position": [
+        -380,
+        0
+      ]
     },
     {
       "parameters": {
         "assignments": {
           "assignments": [
-            { "id": "d1", "name": "baserow_url", "value": "https://baserow.arvsystems.cloud", "type": "string" },
-            { "id": "d2", "name": "table_id", "value": "556", "type": "string" },
-            { "id": "d3", "name": "baserow_token", "value": "<PREENCHER_BASEROW_TOKEN>", "type": "string" },
-            { "id": "d4", "name": "waha_url", "value": "http://waha:3000", "type": "string" },
-            { "id": "d5", "name": "waha_api_key", "value": "<PREENCHER_WAHA_API_KEY>", "type": "string" },
-            { "id": "d6", "name": "waha_session", "value": "default", "type": "string" },
-            { "id": "d7", "name": "group_id", "value": "120363410530925527@g.us", "type": "string" }
+            {
+              "id": "d1",
+              "name": "baserow_url",
+              "value": "https://baserow.arvsystems.cloud",
+              "type": "string"
+            },
+            {
+              "id": "d2",
+              "name": "table_id",
+              "value": "556",
+              "type": "string"
+            },
+            {
+              "id": "d3",
+              "name": "baserow_token",
+              "value": "<PREENCHER_BASEROW_TOKEN>",
+              "type": "string"
+            },
+            {
+              "id": "d4",
+              "name": "waha_url",
+              "value": "http://waha:3000",
+              "type": "string"
+            },
+            {
+              "id": "d5",
+              "name": "waha_api_key",
+              "value": "<PREENCHER_WAHA_API_KEY>",
+              "type": "string"
+            },
+            {
+              "id": "d6",
+              "name": "waha_session",
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "id": "d7",
+              "name": "group_id",
+              "value": "120363410530925527@g.us",
+              "type": "string"
+            }
           ]
         },
         "options": {}
@@ -34,7 +75,10 @@
       "name": "Config",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [-180, 0],
+      "position": [
+        -180,
+        0
+      ],
       "notes": "waha_url = http://waha:3000 -> rede interna (alias 'waha' na network_public). NAO usar o dominio publico pra falar com o vizinho de porta: gasta TLS e depende do Traefik. group_id no formato WAHA (120363...@g.us); o formato da Z-API (120363...-group) NAO funciona aqui."
     },
     {
@@ -43,7 +87,10 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "Authorization", "value": "=Token {{ $('Config').item.json.baserow_token }}" }
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
           ]
         },
         "options": {}
@@ -52,17 +99,23 @@
       "name": "Baserow: listar linhas",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [20, 0]
+      "position": [
+        20,
+        0
+      ]
     },
     {
       "parameters": {
-        "jsCode": "// Portao de aprovacao. Aprovado = sai ja · Agendado = so quando scheduled_at venceu.\n// NUNCA dispara Fila. Sem photo_url/caption, pula (evita post quebrado no grupo).\n//\n// O n8n NAO monta legenda: le o `caption` pronto do Baserow e repassa cru.\n// Quem escreve o texto e a skill /agenda. Mudou o formato da mensagem? Nao mexe aqui.\nconst cfg = $('Config').first().json;\nconst now = new Date().toISOString();\nconst rows = ($input.first().json.results) || [];\nconst out = [];\nfor (const r of rows) {\n  const st = (r.status && r.status.value) ? r.status.value : r.status;\n  const due = st === 'Aprovado' || (st === 'Agendado' && r.scheduled_at && r.scheduled_at <= now);\n  if (!due) continue;\n  if (!r.photo_url || !r.caption) continue;\n  // Payload do WAHA montado aqui: o file.url e aninhado e nao cabe em body keypair.\n  // O WAHA busca a foto na URL publica do Baserow (o CDN do Mercari daria 403).\n  out.push({ json: {\n    row_id: r.id,\n    payload: {\n      session: cfg.waha_session,\n      chatId: cfg.group_id,\n      file: { url: r.photo_url },\n      caption: r.caption\n    }\n  }});\n}\nreturn out;"
+        "jsCode": "// Portao de aprovacao. Aprovado = sai ja · Agendado = so quando scheduled_at venceu.\n// NUNCA dispara Fila. Sem photo_url/caption, pula (evita post quebrado no grupo).\n//\n// O n8n NAO monta legenda: le o `caption` pronto do Baserow e repassa cru.\n// Quem escreve o texto e a skill /agenda. Mudou o formato da mensagem? Nao mexe aqui.\n// JANELA: so dispara entre 9h e 21h (America/Sao_Paulo).\n// Post de madrugada nao e lido por ninguem e ainda cheira a robo.\n// Fora da janela a fila espera: ninguem perde o lugar, so sai mais tarde.\n//\n// TIMEZONE: NAO usar new Date().getHours() - o container do n8n roda em UTC,\n// e 9-21 UTC seria 6-18 no Brasil (dispararia as 6 da manha e pararia as 18h).\nconst horaBR = Number(new Date().toLocaleString('en-US', {\n  timeZone: 'America/Sao_Paulo', hour: '2-digit', hour12: false\n})) % 24;\nif (horaBR < 9 || horaBR >= 21) return [];\n\nconst cfg = $('Config').first().json;\nconst now = new Date().toISOString();\nconst rows = ($input.first().json.results) || [];\nconst out = [];\nfor (const r of rows) {\n  const st = (r.status && r.status.value) ? r.status.value : r.status;\n  const due = st === 'Aprovado' || (st === 'Agendado' && r.scheduled_at && r.scheduled_at <= now);\n  if (!due) continue;\n  if (!r.photo_url || !r.caption) continue;\n  // Payload do WAHA montado aqui: o file.url e aninhado e nao cabe em body keypair.\n  // O WAHA busca a foto na URL publica do Baserow (o CDN do Mercari daria 403).\n  out.push({ json: {\n    row_id: r.id,\n    payload: {\n      session: cfg.waha_session,\n      chatId: cfg.group_id,\n      file: { url: r.photo_url },\n      caption: r.caption\n    }\n  }});\n}\n// Quem espaca um a um agora e o Loop Over Items + o Wait aleatorio logo depois.\n// Antes isto virava rajada (5 aprovados = 5 posts seguidos), que e exatamente o\n// padrao que derruba conta no WEBJS.\n//\n// TETO DE SEGURANCA (nao e cadencia, e anti-duplicata): com Wait de ate 90s por\n// peca, 20 pecas levariam 30min = o intervalo do proprio cron. A execucao seguinte\n// comecaria com a primeira ainda rodando, veria as MESMAS linhas (que ainda nao\n// viraram Disparado) e postaria tudo DE NOVO no grupo. 15 x 90s = 22min < 30min.\n// O resto fica Aprovado e sai no proximo tick, sem perder o lugar.\nreturn out.slice(0, 15);"
       },
       "id": "b1000000-0000-4000-8000-000000000004",
       "name": "Filtrar aprovados",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [220, 0]
+      "position": [
+        220,
+        0
+      ]
     },
     {
       "parameters": {
@@ -71,20 +124,28 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "X-Api-Key", "value": "={{ $('Config').item.json.waha_api_key }}" }
+            {
+              "name": "X-Api-Key",
+              "value": "={{ $('Config').item.json.waha_api_key }}"
+            }
           ]
         },
         "sendBody": true,
         "contentType": "json",
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify($json.payload) }}",
-        "options": { "timeout": 120000 }
+        "options": {
+          "timeout": 120000
+        }
       },
       "id": "b1000000-0000-4000-8000-000000000005",
       "name": "WAHA: enviar oferta",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [420, 0],
+      "position": [
+        740,
+        -40
+      ],
       "notes": "Era Z-API (/send-image + header Client-Token). Agora WAHA: /api/sendImage + header X-Api-Key. O WAHA envia por um Chromium de verdade -> timeout de 120s. Com o padrao (5s) a requisicao estoura, a linha NAO vira Disparado, mas o post SAI mesmo assim = duplicata no proximo tick."
     },
     {
@@ -94,7 +155,10 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "Authorization", "value": "=Token {{ $('Config').item.json.baserow_token }}" }
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
           ]
         },
         "sendBody": true,
@@ -102,9 +166,18 @@
         "specifyBody": "keypair",
         "bodyParameters": {
           "parameters": [
-            { "name": "status", "value": "Disparado" },
-            { "name": "posted_at", "value": "={{ $now.toISO() }}" },
-            { "name": "wa_message_id", "value": "={{ $json.id && $json.id._serialized ? $json.id._serialized : $json.id }}" }
+            {
+              "name": "status",
+              "value": "Disparado"
+            },
+            {
+              "name": "posted_at",
+              "value": "={{ $now.toISO() }}"
+            },
+            {
+              "name": "wa_message_id",
+              "value": "={{ $json.id && $json.id._serialized ? $json.id._serialized : $json.id }}"
+            }
           ]
         },
         "options": {}
@@ -113,17 +186,137 @@
       "name": "Baserow: marcar Disparado",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [620, 0],
+      "position": [
+        940,
+        -40
+      ],
       "notes": "wa_message_id: a Z-API devolvia $json.messageId (string). O WAHA devolve `id`, que vem string OU objeto {_serialized}. A expressao cobre os dois."
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "d4e40000-0000-4000-8000-000000000010",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        340,
+        -144
+      ],
+      "notes": "batchSize 1: uma peca por volta. Saida 0 = done (acabou a fila), saida 1 = loop (proxima peca)."
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random() * 46) + 45 }}",
+        "unit": "seconds"
+      },
+      "id": "d4e40000-0000-4000-8000-000000000011",
+      "name": "Espera humana",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        540,
+        -40
+      ],
+      "webhookId": "d4e40000-0000-4000-8000-0000000000ff",
+      "notes": "45 a 90s aleatorios ANTES de cada envio. O que protege a conta e nao sair em rajada; o numero exato nao importa, a ausencia de padrao sim."
     }
   ],
   "connections": {
-    "Agenda (a cada 30min)": { "main": [[{ "node": "Config", "type": "main", "index": 0 }]] },
-    "Config": { "main": [[{ "node": "Baserow: listar linhas", "type": "main", "index": 0 }]] },
-    "Baserow: listar linhas": { "main": [[{ "node": "Filtrar aprovados", "type": "main", "index": 0 }]] },
-    "Filtrar aprovados": { "main": [[{ "node": "WAHA: enviar oferta", "type": "main", "index": 0 }]] },
-    "WAHA: enviar oferta": { "main": [[{ "node": "Baserow: marcar Disparado", "type": "main", "index": 0 }]] }
+    "Agenda (a cada 30min)": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Baserow: listar linhas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: listar linhas": {
+      "main": [
+        [
+          {
+            "node": "Filtrar aprovados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar aprovados": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WAHA: enviar oferta": {
+      "main": [
+        [
+          {
+            "node": "Baserow: marcar Disparado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Espera humana",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Espera humana": {
+      "main": [
+        [
+          {
+            "node": "WAHA: enviar oferta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: marcar Disparado": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
   },
-  "settings": { "executionOrder": "v1" },
+  "settings": {
+    "executionOrder": "v1"
+  },
   "pinData": {}
 }

@@ -3,7 +3,23 @@
 Workflow: `nsc-dispara-ofertas.json`. Substitui o `/dispara-oferta` do Claude por um cron **persistente e 0 token**.
 
 ## O que ele faz
-A cada 30 min: lê a fila do Baserow (`DISPARADOR`), pega as linhas **`Aprovado`** (e `Agendado` vencidas), posta cada uma no grupo via **WAHA** (`/api/sendImage` com `photo_url` + `caption`), e marca **`Disparado`** + `posted_at` + `wa_message_id`. **Nunca dispara `Fila`** (portão de aprovação) e **não spamma** se não houver nada aprovado.
+A cada 30 min: lê a fila do Baserow (`DISPARADOR`), pega as linhas **`Aprovado`** (e `Agendado` vencidas), e posta **uma a uma** no grupo via **WAHA** (`/api/sendImage` com `photo_url` + `caption`), marcando **`Disparado`** + `posted_at` + `wa_message_id`. **Nunca dispara `Fila`** (portão de aprovação) e **não spamma** se não houver nada aprovado.
+
+## Cadência: janela + uma peça por vez (16/07)
+**Antes era rajada:** 5 aprovados = 5 posts seguidos, em segundos. É o padrão que derruba conta no WEBJS (o WhatsApp olha **volume e velocidade**, não se o horário é redondo).
+
+Agora:
+```
+Filtrar aprovados (janela) → Loop Over Items → [done] fim
+                                             → [loop] Espera humana (45-90s aleatórios)
+                                                        → WAHA: enviar → Baserow: marcar → volta pro Loop
+```
+- **Janela 9h-21h** (`America/Sao_Paulo`). Fora dela a fila **espera**, ninguém perde o lugar. Post de madrugada não é lido e ainda cheira a robô.
+  > ⚠️ **Fuso:** o container do n8n roda em **UTC**. `new Date().getHours()` daria 9-21 UTC = **6h-18h no Brasil**. O código força `America/Sao_Paulo` via `toLocaleString`. Não "simplificar" isso.
+- **Espera aleatória de 45 a 90s** antes de cada envio (node `Espera humana`). O número exato não importa; a **ausência de padrão** importa.
+- **Teto de 15 por rodada — e não é cadência, é anti-duplicata.** Com até 90s por peça, 20 peças levariam 30min = o intervalo do próprio cron. A execução seguinte começaria com a primeira ainda rodando, veria as **mesmas** linhas (ainda não marcadas `Disparado`) e **postaria tudo de novo no grupo**. 15 × 90s = 22min, com folga. O resto sai no próximo tick.
+
+> **A proteção principal não é técnica:** é grupo **opt-in**. Ninguém recebe mensagem sem ter pedido. É isso que separa "loja" de "spam" aos olhos do WhatsApp.
 
 ## Passos (parte humana)
 1. n8n → **Workflows → Import from File** → escolha `nsc-dispara-ofertas.json`.
