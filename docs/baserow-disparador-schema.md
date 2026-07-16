@@ -63,9 +63,24 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 > **Guarda os dois: `peca` (link) e `mercari_id` (texto).** O link é pra você navegar no Baserow; o texto é o que o n8n filtra (`filter__mercari_id__equal`) sem precisar resolver relação. Filtrar por link é chato; navegar por texto é chato. Cada um faz o que faz bem.
 > **O link quer `row_id`, não `mercari_id`** → por isso o workflow busca a peça na 556 **antes** de gravar o lead. Peça não encontrada = grava o lead com o link vazio (perder o lead por causa do link seria pior).
 
-**Dedup:** o workflow faz `GET …/?user_field_names=true&filter__mercari_id__equal=<id>` antes de inserir. Mesma pessoa + mesma peça = não insere nem avisa de novo. O mesmo GET dá o **ordinal** ("2ª pessoa") de graça.
+## Dedup: insert-and-reconcile, não read-then-write
+**O WAHA às vezes entrega o mesmo evento duas vezes.** Medido em 16/07: uma mensagem → 2 leads, gravados com **36ms** e **145ms** de diferença.
 
-> ⚠️ **O dedup perde numa corrida de ~40ms.** O WAHA às vezes entrega o **mesmo evento duas vezes** (visto em 16/07: uma mensagem → 2 leads, gravados com 36ms e 145ms de diferença). As duas execuções fazem o GET antes de qualquer INSERT e nenhuma vê a outra. Contra mensagens **de verdade** separadas (segundos) o dedup funciona — foi provado no mesmo teste: 3 cliques no CTA, só o 1º gerou linha. **Este Baserow não suporta constraint de unicidade** (a API de campos não tem `field_constraints`), então não dá pra deixar o banco arbitrar. Fix real = inserir e reconciliar depois (quem tem o menor `row_id` vence, o outro se apaga).
+Contra isso, perguntar-antes-de-inserir (`GET` com filtro → `POST`) **não tem defesa**: as duas execuções fazem o GET antes de qualquer INSERT e nenhuma enxerga a outra. Resultado: 2 linhas, 2 pings, e o ordinal inflado ("3ª pessoa" havendo 2 pessoas, porque contava **linha** e não **gente**). Contra mensagens de verdade, separadas por segundos, o dedup antigo funcionava — provado no mesmo teste: 3 cliques no CTA, só o 1º gerou linha.
+
+**O certo seria o banco arbitrar, mas este Baserow não tem unique constraint** (a API de campos não expõe `field_constraints`). Então:
+
+```
+Montar a linha → gravar lead (SEMPRE) → Espera 3s → leads desta peça (GET)
+  → Reconciliar + ordinal → Sou a linha que vale?
+       sim → Montar aviso → avisar Bruno
+       não → apagar minha linha (e fica calado)
+```
+- **Não precisa de lock.** As duas execuções chegam à mesma conclusão sozinhas: o Baserow dá `row_id` crescente, e *"o menor id vence"* é uma regra que ambas conseguem avaliar sem falar uma com a outra.
+- **A espera de 3s** garante que as duas já gravaram antes de qualquer uma reconsultar (a defasagem medida foi 36-145ms; 3s é folga de 20×). Custo: o ping chega 3s depois. Ninguém nota.
+- **`Baserow: apagar minha linha` só apaga a linha que aquela execução criou** (`meu_id` vem do próprio insert), nunca a de outro.
+- **Ordinal conta pessoas distintas**, não linhas.
+- ⚠️ **Fail-safe ao contrário do disparo, de propósito.** Se a reconciliação não se acha na lista, ela **mantém** a linha e avisa. Aqui o pior caso é o Bruno ver 2 pings; perder um lead é perder venda. No disparo é o oposto (prefere perder a peça a duplicar) — lá quem leva a mensagem duplicada é o cliente.
 
 ## ⚠️ LID: o `from` do WhatsApp não é telefone
 O WhatsApp entrega o remetente como **LID** (identidade interna): `from = "21522181840928@lid"`. O `from.split('@')[0]` gravava **o LID** em `phone` e o aviso saía com `wa.me/21522181840928`, que não abre.
