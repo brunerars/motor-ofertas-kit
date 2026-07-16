@@ -38,7 +38,7 @@
             {
               "id": "c3",
               "name": "leads_table_id",
-              "value": "<PREENCHER_LEADS_TABLE_ID>",
+              "value": "557",
               "type": "string"
             },
             {
@@ -84,7 +84,7 @@
         -260,
         -140
       ],
-      "notes": "includeOtherFields=true e OBRIGATORIO: e o que faz o body do webhook atravessar ate o Code node sem chamar $('Webhook...') pelo nome. admin_id = numero PESSOAL do Bruno (55DDDNUMERO@c.us), nao o da loja."
+      "notes": "includeOtherFields=true e OBRIGATORIO: e o que faz o body do webhook atravessar ate o Code node sem chamar $('Webhook...') pelo nome. admin_id = numero PESSOAL do Bruno (55DDDNUMERO@c.us), nao o da loja: e pra la que vai o aviso de lead."
     },
     {
       "parameters": {
@@ -101,7 +101,7 @@
     },
     {
       "parameters": {
-        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.leads_table_id }}/?user_field_names=true&size=200&filter__mercari_id__equal={{ $json.mercari_id }}",
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/?user_field_names=true&filter__mercari_id__equal={{ $json.mercari_id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -114,25 +114,50 @@
         "options": {}
       },
       "id": "c3d30000-0000-4000-8000-000000000004",
-      "name": "Baserow: leads desta peca",
+      "name": "Baserow: achar a peca",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
         140,
         -140
       ],
-      "notes": "Um GET so responde 'ja pediu?' (dedup) e 'e a quantesima?' (ordinal)."
+      "notes": "Vem ANTES de gravar: da o row_id (pro campo link 'peca') e o title_pt (pro aviso dizer 'Bone Benetton' e nao 'm71370664392').",
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
-        "jsCode": "// Dedup + ordinal. O GET anterior trouxe TODOS os leads desta peca, entao ele\n// responde as duas perguntas de uma vez: \"essa pessoa ja pediu?\" e \"e a quantesima?\".\nconst lead = $('Filtrar + montar lead').first().json;\nconst rows = ($input.first().json.results) || [];\n\n// Mesma pessoa + mesma peca = nao duplica linha NEM aviso. (O webhook do garimpo\n// tem essa divida em aberto; aqui nao repetir: 2 mensagens = 2 pings no zap.)\nconst eu = String(lead.phone).trim();\nfor (const r of rows) {\n  if (String(r.phone || '').trim() === eu) return [];\n}\n\nreturn [{ json: Object.assign({}, lead, { ordinal: rows.length + 1 }) }];"
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.leads_table_id }}/?user_field_names=true&size=200&filter__mercari_id__equal={{ $('Filtrar + montar lead').item.json.mercari_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
+          ]
+        },
+        "options": {}
       },
       "id": "c3d30000-0000-4000-8000-000000000005",
+      "name": "Baserow: leads desta peca",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        340,
+        -140
+      ],
+      "notes": "Um GET so responde 'essa pessoa ja pediu?' (dedup) e 'e a quantesima?' (ordinal)."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Junta as duas consultas e monta a linha do lead.\n//  - $input          = os leads QUE JA EXISTEM desta peca (dedup + ordinal)\n//  - achar a peca    = a linha da 556 (row_id pro link + title_pt pro aviso)\nconst lead = $('Filtrar + montar lead').first().json;\nconst leadRows = ($input.first().json.results) || [];\nconst pecaRows = ($('Baserow: achar a peca').first().json.results) || [];\n\n// Mesma pessoa + mesma peca = nao duplica linha NEM aviso. (2 mensagens do\n// mesmo cliente nao podem virar 2 pings no zap do Bruno.)\nconst eu = String(lead.phone).trim();\nfor (const r of leadRows) {\n  if (String(r.phone || '').trim() === eu) return [];\n}\n\nconst peca = pecaRows.length ? pecaRows[0] : null;\nconst titulo = (peca && peca.title_pt) ? peca.title_pt : lead.mercari_id;\n\n// A linha vai montada daqui: o HTTP node so faz JSON.stringify($json.row).\n// Campo `peca` = link_row -> quer um ARRAY de row_id, nao o mercari_id.\n// Peca nao encontrada (link solto): grava o lead assim mesmo, com peca vazia.\n// Perder o lead por causa do link seria pior que um link faltando.\nconst row = {\n  lead: lead.nome_wa || lead.phone,\n  phone: lead.phone,\n  nome_wa: lead.nome_wa,\n  mercari_id: lead.mercari_id,\n  peca: peca ? [peca.id] : [],\n  mensagem: lead.mensagem,\n  recebido_em: lead.recebido_em,\n  status: 'Novo',\n  avisado_vendido: false\n};\n\nreturn [{ json: {\n  row: row,\n  ordinal: leadRows.length + 1,\n  peca_titulo: titulo,\n  phone: lead.phone,\n  nome_wa: lead.nome_wa\n}}];"
+      },
+      "id": "c3d30000-0000-4000-8000-000000000006",
       "name": "Dedup + ordinal",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        340,
+        540,
         -140
       ]
     },
@@ -151,83 +176,23 @@
         },
         "sendBody": true,
         "contentType": "json",
-        "specifyBody": "keypair",
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "lead",
-              "value": "={{ $json.nome_wa || $json.phone }}"
-            },
-            {
-              "name": "phone",
-              "value": "={{ $json.phone }}"
-            },
-            {
-              "name": "nome_wa",
-              "value": "={{ $json.nome_wa }}"
-            },
-            {
-              "name": "mercari_id",
-              "value": "={{ $json.mercari_id }}"
-            },
-            {
-              "name": "mensagem",
-              "value": "={{ $json.mensagem }}"
-            },
-            {
-              "name": "recebido_em",
-              "value": "={{ $json.recebido_em }}"
-            },
-            {
-              "name": "status",
-              "value": "Novo"
-            },
-            {
-              "name": "avisado_vendido",
-              "value": "={{ false }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "c3d30000-0000-4000-8000-000000000006",
-      "name": "Baserow: gravar lead",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        540,
-        -140
-      ],
-      "notes": "status por TEXTO ('Novo'), nao por id de opcao - com user_field_names=true o single_select aceita o value."
-    },
-    {
-      "parameters": {
-        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/?user_field_names=true&filter__mercari_id__equal={{ $('Dedup + ordinal').item.json.mercari_id }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "=Token {{ $('Config').item.json.baserow_token }}"
-            }
-          ]
-        },
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.row) }}",
         "options": {}
       },
       "id": "c3d30000-0000-4000-8000-000000000007",
-      "name": "Baserow: achar a peca",
+      "name": "Baserow: gravar lead",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
         740,
         -140
       ],
-      "notes": "So pra pegar o title_pt: o aviso diz 'Bone Benetton', nao 'm71370664392'.",
-      "onError": "continueRegularOutput"
+      "notes": "A linha vem montada do Code (inclusive o link 'peca' como array de row_id). status por TEXTO ('Novo'): com user_field_names=true o single_select aceita o value, sem precisar do id da opcao."
     },
     {
       "parameters": {
-        "jsCode": "// Monta o aviso pro Bruno. O lead JA foi gravado - se este no falhar, o dado\n// esta salvo, so o ping se perde.\nconst cfg = $('Config').first().json;\nconst lead = $('Dedup + ordinal').first().json;\nconst rows = ($input.first().json.results) || [];\n\n// title_pt da 556 (o nome que o Bruno reconhece). Sem achar, cai pro id.\nconst peca = (rows.length && rows[0].title_pt) ? rows[0].title_pt : lead.mercari_id;\nconst quem = lead.nome_wa || lead.phone;\nconst nth = lead.ordinal > 1 ? ' (' + lead.ordinal + 'a pessoa)' : '';\n\nconst texto = '🔔 Lead: ' + quem + '\\n' + peca + nth + '\\nwa.me/' + lead.phone;\n\n// Sem admin_id nao ha pra quem avisar. O lead continua gravado.\nconst destino = String(cfg.admin_id || '').trim();\nif (!destino) return [];\n\nreturn [{ json: { payload: {\n  session: cfg.waha_session,\n  chatId: destino,\n  text: texto\n}}}];"
+        "jsCode": "// Monta o aviso pro Bruno. O lead JA foi gravado - se este no falhar, o dado\n// esta salvo e so o ping se perde.\nconst cfg = $('Config').first().json;\nconst d = $('Dedup + ordinal').first().json;\n\nconst quem = d.nome_wa || d.phone;\nconst nth = d.ordinal > 1 ? ' (' + d.ordinal + 'a pessoa)' : '';\nconst texto = '🔔 Lead: ' + quem + '\\n' + d.peca_titulo + nth + '\\nwa.me/' + d.phone;\n\n// Sem admin_id nao ha pra quem avisar. O lead continua gravado.\nconst destino = String(cfg.admin_id || '').trim();\nif (!destino) return [];\n\nreturn [{ json: { payload: {\n  session: cfg.waha_session,\n  chatId: destino,\n  text: texto\n}}}];"
       },
       "id": "c3d30000-0000-4000-8000-000000000008",
       "name": "Montar aviso",
@@ -298,6 +263,17 @@
       "main": [
         [
           {
+            "node": "Baserow: achar a peca",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: achar a peca": {
+      "main": [
+        [
+          {
             "node": "Baserow: leads desta peca",
             "type": "main",
             "index": 0
@@ -328,17 +304,6 @@
       ]
     },
     "Baserow: gravar lead": {
-      "main": [
-        [
-          {
-            "node": "Baserow: achar a peca",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Baserow: achar a peca": {
       "main": [
         [
           {

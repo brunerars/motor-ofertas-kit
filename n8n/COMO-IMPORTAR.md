@@ -83,13 +83,15 @@ Um `{}` sem secret **tem** que dar erro de `unauthorized`. Se der `200` vazio, o
 Workflow: `nsc-lead-inbound.json`. Fecha a ponta que faltava: o cliente clica no `🏁 Quero essa peça` da oferta, manda `Estou interessado! (mXXXX)`, e isso **vira dado** em vez de morrer no seu 1:1.
 
 ## O que ele faz
-`Webhook (WAHA inbound)` → `Config` → `Filtrar + montar lead` (descarta grupo/próprio envio/mensagem sem id) → `Baserow: leads desta peça` (GET: dedup + ordinal) → `Dedup + ordinal` → `Baserow: gravar lead` (POST na `LEADS`) → `Baserow: achar a peça` (GET o `title_pt` na 556) → `Montar aviso` → `WAHA: avisar Bruno` (`/api/sendText`).
+`Webhook (WAHA inbound)` → `Config` → `Filtrar + montar lead` (descarta grupo/próprio envio/mensagem sem id) → `Baserow: achar a peça` (GET na 556: dá o `row_id` pro link e o `title_pt` pro aviso) → `Baserow: leads desta peça` (GET na 557: dedup + ordinal) → `Dedup + ordinal` (monta a linha) → `Baserow: gravar lead` (POST na `LEADS`) → `Montar aviso` → `WAHA: avisar Bruno` (`/api/sendText`).
+
+> **A peça é buscada ANTES de gravar** porque o campo `peca` é um link de verdade e link quer `row_id`, não `mercari_id`. O mesmo GET já traz o `title_pt` do aviso — dois coelhos.
 
 **Não responde o cliente.** Quem atende é você; o bot só registra e te cutuca.
 
 ## Passos (parte humana)
-1. **Criar a tabela `LEADS` no Baserow** (na UI, ~2 min). Campos em `docs/baserow-disparador-schema.md`. *Por que na mão: criar tabela exige **JWT de usuário**, o Database Token não faz isso — e a senha desse usuário já vazou uma vez no chat.* Anote o `table_id` → `.env` (`BASEROW_LEADS_TABLE_ID`).
-2. n8n → **Import from File** → `nsc-lead-inbound.json` (ou a cópia de `versoes-em-prod/`). Preencha o `Config`: `leads_table_id`, `baserow_token`, `waha_api_key`, `admin_id`.
+1. ~~Criar a tabela `LEADS`~~ **feito: tabela 557**, criada via API (JWT) em 16/07 com o link real pra `DISPARADOR`. Já está no `.env` (`BASEROW_LEADS_TABLE_ID=557`) e no `Config` do workflow. Schema em `docs/baserow-disparador-schema.md`.
+2. n8n → **Import from File** → `nsc-lead-inbound.json` (ou a cópia de `versoes-em-prod/`). No `Config`, preencha só o que é segredo: `baserow_token`, `waha_api_key`, `admin_id`. (`table_id=556` e `leads_table_id=557` já vêm certos.)
    > `admin_id` = **seu número PESSOAL** no formato `55DDDNUMERO@c.us`, não o da loja. Vazio = o lead é gravado mas **ninguém te avisa**.
 3. **Ative** o workflow e copie a **Production URL** do node `Webhook`.
 4. Cole essa URL no `.env` (`WAHA_HOOK_URL`) **e** no env da stack do WAHA (Portainer → a stack já lê `WHATSAPP_HOOK_URL: ${WAHA_HOOK_URL}`). **Redeploy do WAHA** — sem isso o hook não existe.

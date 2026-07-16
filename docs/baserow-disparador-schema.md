@@ -6,7 +6,8 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 - **Host:** `https://baserow.arvsystems.cloud` (`BASEROW_API_URL`)
 - **Database:** 104 · **Tabela:** 556 (`DISPARADOR`) → `BASEROW_TABLE_ID=556`
 - **Auth runtime:** Database Token (`BASEROW_TOKEN`, header `Authorization: Token …`) — só linhas (CRUD de rows). Validado: read/insert/delete OK.
-- **Auth schema (criar/alterar campos):** exige JWT de usuário (`POST /api/user/token-auth/`). NÃO guardar senha; pegar JWT on-demand. ⚠️ senha usada no setup passou pelo chat → **rotacionar**.
+- **Auth schema (criar/alterar campos/tabelas):** exige **JWT de usuário** (`POST /api/user/token-auth/` → header `Authorization: JWT <token>`). O Database Token **nem é aceito** aqui: devolve `401 "Authentication credentials were not provided"` até pra listar tabelas. Credenciais em `BASEROW_USER`/`BASEROW_PASSWORD` no `.env` (fora do git) — nunca colar em chat.
+  > **Tabela nova nasce visível pro Database Token?** Nesta instância sim (o token é escopo "all tables"): a 557 aceitou GET/POST logo após ser criada. Se um dia um token com escopo por-tabela for usado, lembrar de liberar a tabela nova nas permissões dele.
 
 ## Campos (usar `?user_field_names=true` nas chamadas)
 | Campo | Tipo | Notas |
@@ -43,7 +44,7 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 
 **1 linha = 1 pessoa interessada.** N leads : 1 peça (várias pessoas querem o mesmo boné) → tabela separada, não campo na 556.
 
-- **Tabela:** `<PREENCHER>` → `BASEROW_LEADS_TABLE_ID` no `.env`. Mesmo database (104).
+- **Tabela: 557** → `BASEROW_LEADS_TABLE_ID=557` no `.env`. Mesmo database (104). Criada via API (JWT) em 16/07.
 - **Quem escreve:** o workflow `n8n/nsc-lead-inbound.json`, quando o cliente clica no CTA da oferta e manda `Estou interessado! (mXXXX)`.
 
 | Campo | Tipo | Notas |
@@ -51,13 +52,15 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 | `lead` | text (primário) | rótulo: `nome_wa` ou, sem nome, o telefone |
 | `phone` | text | número do interessado, sem `@c.us`. **PII** (ver abaixo) |
 | `nome_wa` | text | `notifyName` do WhatsApp; pode vir vazio |
-| `mercari_id` | text | **a chave que casa com a 556** |
+| `mercari_id` | text | a chave crua (sobrevive mesmo se a peça sumir da 556) |
+| `peca` | **link_row → 556** | o link de verdade: clicar no lead abre a peça. O n8n preenche com `[row_id]` |
 | `mensagem` | long_text | texto cru recebido |
-| `recebido_em` | date (com hora) | quando chegou |
-| `status` | single_select | `Novo · Respondido · Fechado · Perdido` |
+| `recebido_em` | date (com hora, ISO) | quando chegou |
+| `status` | single_select | `Novo · Respondido · Fechado · Perdido` (ids 2579-2582; **mandar por texto**) |
 | `avisado_vendido` | boolean | munição pro passo 4 do `/confere-ofertas` (avisar que a peça saiu) |
 
-> **Por que casa por `mercari_id` texto e não por link field:** link do Baserow exige o `row_id` da peça → obrigaria um GET a mais no n8n só pra descobrir o id. O texto casa direto e é o que os dois lados já falam.
+> **Guarda os dois: `peca` (link) e `mercari_id` (texto).** O link é pra você navegar no Baserow; o texto é o que o n8n filtra (`filter__mercari_id__equal`) sem precisar resolver relação. Filtrar por link é chato; navegar por texto é chato. Cada um faz o que faz bem.
+> **O link quer `row_id`, não `mercari_id`** → por isso o workflow busca a peça na 556 **antes** de gravar o lead. Peça não encontrada = grava o lead com o link vazio (perder o lead por causa do link seria pior).
 
 **Dedup:** o workflow faz `GET …/?user_field_names=true&filter__mercari_id__equal=<id>` antes de inserir. Mesma pessoa + mesma peça = não insere nem avisa de novo. O mesmo GET dá o **ordinal** ("2ª pessoa") de graça.
 
