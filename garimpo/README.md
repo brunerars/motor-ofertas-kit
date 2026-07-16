@@ -5,9 +5,10 @@ Página estática (Vercel) onde o **Caio** cola os links das peças que garimpou
 ## Fluxo
 ```
 Caio abre o form no celular
-  → cola de 1 a 20 links (nota opcional em cada)
+  → cola de 1 a 20 links (título e valor por peça; nota opcional)
   → Enviar  → POST JSON pro webhook do n8n
-                → grava cada link como rascunho (Fila) no Baserow
+                → grava cada peça como rascunho (Fila) no Baserow
+                   (title→title_pt, valor+nota→tags)
   → /agenda (modo lote) enriquece os rascunhos (foto + tradução + preço)
   → Bruno aprova no Baserow (Fila → Aprovado)
   → n8n de disparo posta no grupo

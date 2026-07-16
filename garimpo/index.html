@@ -157,7 +157,7 @@ footer{ margin-top:40px; padding-top:18px; border-top:1.5px solid var(--hair);
 
   <p class="eyebrow">Garimpo · uso interno</p>
   <h1>Manda os<br/>links</h1>
-  <p class="lead">Achou uma peça no Mercari? Cola o link aqui. Pode mandar <strong>quantas quiser de uma vez</strong> — a observação é opcional, é só se quiser deixar um recado (raro, ideia de preço, o que for).</p>
+  <p class="lead">Achou uma peça no Mercari? Cola o link, o título e o valor. Pode mandar <strong>quantas quiser de uma vez</strong>. A observação é opcional, pra deixar um recado (raro, condição, o que for).</p>
 
   <form id="form" novalidate>
     <div class="items" id="items"><!-- linhas injetadas pelo JS --></div>
@@ -236,8 +236,16 @@ function addRow(){
            placeholder="https://jp.mercari.com/item/m..." />
     <div class="field-err">Cola o link de um item do Mercari (jp.mercari.com/item/m...).</div>
     <div class="note-wrap">
+      <label>Título do produto</label>
+      <input type="text" class="title" autocomplete="off" placeholder="ex: Boné Ferrari Schumacher nº 1" />
+    </div>
+    <div class="note-wrap">
+      <label>Valor</label>
+      <input type="text" class="price" inputmode="decimal" autocomplete="off" placeholder="ex: R$ 150 ou ¥ 2.500" />
+    </div>
+    <div class="note-wrap">
       <label>Observação <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#a7a7a2">(opcional)</span></label>
-      <input type="text" class="note" autocomplete="off" placeholder="ex: raro, condição, ideia de preço" />
+      <input type="text" class="note" autocomplete="off" placeholder="ex: raro, condição, detalhe" />
     </div>`;
   row.querySelector(".item-rm").addEventListener("click", () => {
     if (rowCount() > 1){ row.remove(); renumber(); }
@@ -266,10 +274,12 @@ form.addEventListener("submit", async (e) => {
   for (const row of rows){
     row.classList.remove("invalid");
     const url = row.querySelector(".url").value.trim();
+    const title = row.querySelector(".title").value.trim();
+    const price = row.querySelector(".price").value.trim();
     const note = row.querySelector(".note").value.trim();
     if (!url) continue;
     if (!MERCARI_RE.test(url)){ row.classList.add("invalid"); bad = true; continue; }
-    items.push({ url, note });
+    items.push({ url, title, price, note });
   }
 
   if (bad){ setStatus("err", "Tem link que não é do Mercari. Confere os marcados em vermelho."); return; }
