@@ -50,7 +50,8 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 | Campo | Tipo | Notas |
 |---|---|---|
 | `lead` | text (primário) | rótulo: `nome_wa` ou, sem nome, o telefone |
-| `phone` | text | número do interessado, sem `@c.us`. **PII** (ver abaixo) |
+| `phone` | text | número do interessado, sem `@c.us`. **PII** (ver abaixo). Vem do WAHA resolvendo o LID (ver abaixo) — **pode vir vazio** se não resolver |
+| `wa_id` | text | o id cru do WhatsApp (`21522181840928@lid` ou `5511...@c.us`). A identidade **estável** da pessoa: é a chave de dedup quando o `phone` não resolve |
 | `nome_wa` | text | `notifyName` do WhatsApp; pode vir vazio |
 | `mercari_id` | text | a chave crua (sobrevive mesmo se a peça sumir da 556) |
 | `peca` | **link_row → 556** | o link de verdade: clicar no lead abre a peça. O n8n preenche com `[row_id]` |
@@ -63,6 +64,21 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 > **O link quer `row_id`, não `mercari_id`** → por isso o workflow busca a peça na 556 **antes** de gravar o lead. Peça não encontrada = grava o lead com o link vazio (perder o lead por causa do link seria pior).
 
 **Dedup:** o workflow faz `GET …/?user_field_names=true&filter__mercari_id__equal=<id>` antes de inserir. Mesma pessoa + mesma peça = não insere nem avisa de novo. O mesmo GET dá o **ordinal** ("2ª pessoa") de graça.
+
+> ⚠️ **O dedup perde numa corrida de ~40ms.** O WAHA às vezes entrega o **mesmo evento duas vezes** (visto em 16/07: uma mensagem → 2 leads, gravados com 36ms e 145ms de diferença). As duas execuções fazem o GET antes de qualquer INSERT e nenhuma vê a outra. Contra mensagens **de verdade** separadas (segundos) o dedup funciona — foi provado no mesmo teste: 3 cliques no CTA, só o 1º gerou linha. **Este Baserow não suporta constraint de unicidade** (a API de campos não tem `field_constraints`), então não dá pra deixar o banco arbitrar. Fix real = inserir e reconciliar depois (quem tem o menor `row_id` vence, o outro se apaga).
+
+## ⚠️ LID: o `from` do WhatsApp não é telefone
+O WhatsApp entrega o remetente como **LID** (identidade interna): `from = "21522181840928@lid"`. O `from.split('@')[0]` gravava **o LID** em `phone` e o aviso saía com `wa.me/21522181840928`, que não abre.
+
+Quem traduz é o WAHA: `GET /api/contacts?contactId=<lid>&session=<s>` →
+```json
+{"id":"5511974052313@c.us", "number":"21522181840928", "pushname":"..."}
+```
+- **Usar `id`.** O campo **`number` é o LID de novo** — armadilha.
+- **LID desconhecido volta `200` com `id` = o próprio LID** (`{"id":"99999999999999@lid"}`). Status 200 não prova nada: **o teste é o sufixo `@c.us`**.
+- **Tamanho não serve de teste:** LID tem 14 dígitos, celular BR tem 13.
+- Não resolveu → `phone` fica **vazio** e o aviso **omite o `wa.me`** em vez de mandar link quebrado. O `wa_id` segura a identidade pro dedup.
+- Existe também `GET /api/{session}/lids/{lid}` → `{lid, pn}` (devolve `pn: null` pro desconhecido). Serve pro mesmo fim.
 
 ## ⚠️ PII — isto aqui é dado de pessoa, não de peça
 A `LEADS` guarda **telefone e nome de cliente**. É a primeira tabela do projeto com dado pessoal:
