@@ -26,7 +26,7 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 ## Stack
 - **Scraping:** Firecrawl (Playwright por baixo; mecânica já provada no n8n do primo do Caio)
 - **DB/fila:** Baserow (API + MCP) — Bruno já domina do [[crm-slotter-produto]]
-- **WhatsApp:** Z-API (grupo + mídia + webhook de resposta)
+- **WhatsApp:** **WAHA** auto-hospedado (`devlikeapro/waha`, CORE, engine WEBJS) — stack em `waha/`. Substituiu a **Z-API** (paga) em 16/07.
 - **Design:** método `Extract HTML Design System v2` (ref → download `sd.asimov.academy` → `design-system2.html`)
 - **Conteúdo:** `/nanobanana` · `/motion` · `/ghostwriter`
 - **Disparo agendado:** Claude Code cloud routine (skill `/schedule`) — EM TESTE
@@ -72,8 +72,9 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 
   🏁 Quero essa peça: <wa.me?text=<mercari_id>>
   ```
-  **Formato definitivo (16/07, refino do Bruno em cima do modelo do Caio):** título em **negrito** (`*` do WhatsApp, o Z-API renderiza), **duas linhas em branco** separando título+tam / preço / CTA, e **🏁** no CTA. A linha do Tam **nunca some** (vem do campo `tags` = o que o Caio digitou no form; vazio → `único`) e o **defeito entra nela**, por vírgula — não tem linha de defeito própria. Sem gancho histórico, sem medidas técnicas (vão no pv). O `wa.me` fica: é a captura de lead (grupo não tem botão "tenho interesse") e alimenta o `/confere-ofertas`. **Sem preço não há legenda** → segura em `Fila` e reporta.
+  **Formato definitivo (16/07, refino do Bruno em cima do modelo do Caio):** título em **negrito** (`*` do WhatsApp — quem renderiza é o **app do WhatsApp**, não a API: vale igual no WAHA, na Z-API ou em qualquer outra), **duas linhas em branco** separando título+tam / preço / CTA, e **🏁** no CTA. A linha do Tam **nunca some** (vem do campo `tags` = o que o Caio digitou no form; vazio → `único`) e o **defeito entra nela**, por vírgula — não tem linha de defeito própria. Sem gancho histórico, sem medidas técnicas (vão no pv). O `wa.me` fica: é a captura de lead (grupo não tem botão "tenho interesse") e alimenta o `/confere-ofertas`. **Sem preço não há legenda** → segura em `Fila` e reporta.
   > O n8n **não monta legenda**: lê `caption` do Baserow e repassa cru pro `send-image`. Quem escreve é o `/agenda`. Mudou o formato? Mexe só na skill.
+- **Autoria da linha do Tam: a nota do Caio é insumo, não legenda (16/07)** — o Caio garimpa lendo **o mesmo anúncio** que o Firecrawl lê; **não tem a peça na mão**. Logo a nota dele (`tags`) não é fonte de verdade sobre estado. O `/agenda` **arbitra e reporta**: **tamanho/medida = do Caio** · **estado/defeito = SEMPRE da `description` traduzida** (nota otimista contra descrição que admite dano: o anúncio ganha, sem empate) · **marketing ("raro", "imperdível") cai fora**. O que for sobrescrito **vai no report**, e o Bruno decide no flip `Fila`→`Aprovado`. *Precedente: row 23 (Benetton) — `Raro, tamanho M, perfeito estado` virou `Tam: M, medidas pv, pequena mancha escura na aba`.*
 
 ## Visão de produto + arquitetura de custo (decisão 2026-07-02)
 Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas separáveis:
@@ -85,7 +86,8 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - **Recorrente mecânico (disparo, confere-vendidos) → n8n = ~0 token** (HTTP puro, não é Claude).
 - ⚠️ Custo desta sessão é de **P&D** (construção/debug), NÃO custo de regime. Pra número real: `/cost`.
 
-**Cron de produção = n8n hospedado** (Schedule Trigger → GET Baserow `Aprovado` → POST Z-API → PATCH `Disparado`). Não usar cloud-routine do Claude (session-only) nem subir VPS worker novo. Mesma lógica já provada aqui.
+**Cron de produção = n8n hospedado** (Schedule Trigger → GET Baserow `Aprovado` → POST **WAHA** `/api/sendImage` → PATCH `Disparado`). Não usar cloud-routine do Claude (session-only) nem subir VPS worker novo. Mesma lógica já provada aqui.
+> **O n8n fala com o WAHA por dentro da `network_public`** (`http://waha:3000`, alias de rede) — não usa domínio, não passa pela internet, não gasta TLS. O domínio `waha.arvsystems.cloud` existe só pro Bruno abrir o dashboard e escanear o QR. **WAHA local não serve pra produção:** o n8n é hospedado e não alcança `localhost` — mesma parede que criou o `photo_url`.
 
 **ROI/porém:** validar com **UMA loja rodando pro Caio (NSC)** antes de generalizar o kit. Moat = velocidade de setup + know-how de garimpo do Caio, não a tech. Depois: organizar em repo separando template × instância. Liga com [[crm-slotter-produto]] · [[framework-operacao]].
 
@@ -93,7 +95,16 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - [x] Nome/marca + logo → Nippon Speed Co. (assets entregues)
 - [x] Referência de design → template Haus (asimov, entregue)
 - [x] Produto piloto → item Mercari m71370664392
-- [ ] Chaves (travam no Bloco Ofertas): Firecrawl · Baserow (base+token) · Z-API (instância) → `.env`, fora do git
+- [x] Chaves (travavam o Bloco Ofertas): Firecrawl · Baserow (base+token) · **WAHA** (`WAHA_URL`, `WAHA_API_KEY`, `WAHA_GROUP_ID`) → `.env`, fora do git. *(A Z-API saiu do fluxo em 16/07; as `ZAPI_*` seguem no `.env` só como rollback, marcadas como desativadas.)*
+
+## Estado atual (2026-07-16)
+- [x] **Z-API → WAHA: a operação virou auto-hospedada (sem mensalidade).** `waha/stack-vps.yml` (Swarm+Traefik, `network_public`, domínio `waha.arvsystems.cloud`) **no ar na VPS**; `waha/docker-compose.yml` = o mesmo local, pra teste. Sessão `default` conectada no número da loja (`5511914563609`). Grupo real = **`120363410530925527@g.us`** (formato WAHA; o `120363429602486219-group` da Z-API era de OUTRO número e não existe aqui). `n8n/nsc-dispara-ofertas.json` migrado (`/api/sendImage` + header `X-Api-Key`) e **testado na mão: funcionando**. Skill `/dispara-oferta` reescrita pro WAHA (as 2 cópias).
+  - **Simplificou:** a Z-API exigia base64 do acervo local; o WAHA busca o `photo_url` público do Baserow direto. Menos um passo.
+  - **Gotchas do WAHA** (todos já resolvidos nas stacks, ver [[n8n-import-gotchas]] e a skill): sessão morre sem volume · **API key se regera a cada start** se não vier como env (o n8n toma 401 do nada) · `shm_size` não funciona em Swarm → **tmpfs no `/dev/shm`** ou o Chromium morre calado · `replicas: 1` obrigatório (sessão não se divide) · envio lento → **timeout 120s** no n8n (curto = post sai mas linha não vira `Disparado` = duplicata no tick seguinte).
+  - ⚠️ **WEBJS é frágil por natureza:** em 16/07 quebrou o `refreshQR` (`Cmd.refreshQR is not a function`) — o QR parava de renovar e escanear não adiantava. Quando a sessão não conectar, `docker logs waha` ANTES de culpar o resto. É o preço de sair da API paga.
+- [x] **Esteira do Caio consertada e provada ponta a ponta.** O webhook em prod **descartava título e preço** do form (o Code node nem lia os campos). Agora `title_pt` e `price_brl` chegam inteiros — validado com os 4 casos (`R$ 750,00`→750 · `1.250,50`→1250.5 · vazio→sem preço · **`¥ 2.500`→rejeitado**, antes virava R$ 2,50 no grupo). O form parou de mentir: só diz "Recebido!" se contar os `id` das linhas criadas (antes dizia sucesso com o banco vazio).
+- [x] **Legenda no modelo do Caio** (ver "Modelo de preço + legenda" nas Decisões travadas). Primeira peça real da esteira nova = row 23 (Benetton F1, R$ 350), em `Fila` esperando aprovação.
+- **Pendências:** `BASEROW_TOKEN` vazado em 15/07 ainda **precisa rotacionar** (agora afeta 2 workflows) · `/confere-ofertas` continua 100% no papel, e agora está desatualizada (fala Z-API) · avaliar tirar as `ZAPI_*` do `.env` quando o WAHA firmar.
 
 ## Estado atual (2026-07-15)
 - [x] **Canal de entrada do Caio NO AR + testado ponta a ponta (15/07)** — Fase 2 virou operação de dois. Form → webhook → Baserow provado: teste pela UI gerou o rascunho #10 (`Fila`, `photo_url` vazio, nota preservada em `tags`).
