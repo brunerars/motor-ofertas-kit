@@ -66,15 +66,16 @@ Primeira instância: **Nippon Speed Co. (NSC)** — memorabilia de automobilismo
 - **Modelo de preço + legenda do WhatsApp (16/07)** — o **R$ que o Caio manda no form já é fechado: inclui frete do Japão + impostos** ("impostos e frete por nossa conta" é o jeito que a NSC vende). O único frete que sobra é **escritório → casa do cliente**, resolvido no pv. Portanto: **NUNCA escrever "frete sob consulta" nem "valor sob consulta" na legenda do WhatsApp**; a linha de preço é limpa (`R$ 750,00`). O `price_jpy` (Firecrawl) é referência interna e não vai pro post. **Legenda = modelo que o Caio já usa no grupo dele** (curto, a foto faz o trabalho):
   ```
   *<Título da peça>*
-  Tam: <observação do Caio; "único" se vazio; defeito junto, por vírgula>
+  Tam: <a observação do Caio, como ele escreveu; "único" se vazio>
 
   R$ <preço>
 
-  🏁 Quero essa peça: <wa.me?text=<mercari_id>>
+  🏁 Quero essa peça: https://wa.me/<numero>?text=Estou%20interessado!%20(<mercari_id>)
   ```
   **Formato definitivo (16/07, refino do Bruno em cima do modelo do Caio):** título em **negrito** (`*` do WhatsApp — quem renderiza é o **app do WhatsApp**, não a API: vale igual no WAHA, na Z-API ou em qualquer outra), **duas linhas em branco** separando título+tam / preço / CTA, e **🏁** no CTA. A linha do Tam **nunca some** (vem do campo `tags` = o que o Caio digitou no form; vazio → `único`) e o **defeito entra nela**, por vírgula — não tem linha de defeito própria. Sem gancho histórico, sem medidas técnicas (vão no pv). O `wa.me` fica: é a captura de lead (grupo não tem botão "tenho interesse") e alimenta o `/confere-ofertas`. **Sem preço não há legenda** → segura em `Fila` e reporta.
   > O n8n **não monta legenda**: lê `caption` do Baserow e repassa cru pro `send-image`. Quem escreve é o `/agenda`. Mudou o formato? Mexe só na skill.
-- **Autoria da linha do Tam: a nota do Caio é insumo, não legenda (16/07)** — o Caio garimpa lendo **o mesmo anúncio** que o Firecrawl lê; **não tem a peça na mão**. Logo a nota dele (`tags`) não é fonte de verdade sobre estado. O `/agenda` **arbitra e reporta**: **tamanho/medida = do Caio** · **estado/defeito = SEMPRE da `description` traduzida** (nota otimista contra descrição que admite dano: o anúncio ganha, sem empate) · **marketing ("raro", "imperdível") cai fora**. O que for sobrescrito **vai no report**, e o Bruno decide no flip `Fila`→`Aprovado`. *Precedente: row 23 (Benetton) — `Raro, tamanho M, perfeito estado` virou `Tam: M, medidas pv, pequena mancha escura na aba`.*
+- **A observação é de quem escreveu: a skill não inventa (16/07, regra final)** — a linha do Tam sai **como o Caio/Bruno digitou**; o máximo permitido é **gramática e formato** (`tamanho M` → `M`). **NUNCA acrescentar defeito que só a `description` do anúncio menciona** (ex.: "leve mancha na lente"): num detalhe pouco visual isso **desqualifica a peça sozinho** e cria objeção de venda. **Quem decide o que desqualifica é o Bruno, não a skill.** A divergência anúncio × nota **vai no report** (o Bruno quer o feedback), nunca direto na legenda. *Reverte a "regra de autoria" tentada mais cedo no mesmo dia, que mandava o `/agenda` arbitrar o estado; a row 23 ganhou um "pequena mancha escura na aba" que ninguém pediu e foi desfeita.*
+- **CTA do `wa.me` = `Estou interessado! (<mercari_id>)` (16/07)** — o id sozinho confundia o cliente. Frase normal na frente, id discreto no fim: o cliente não precisa entender o código e o Bruno sabe a peça sem perguntar. **Não havia ganho técnico em manter só o id:** nada parseia essa mensagem (o `wa_message_id` é da mensagem que o **bot envia**, não da resposta; não há webhook de entrada; "avisar interessados" nunca saiu do papel). Quem lê é o Bruno, no 1:1.
 
 ## Visão de produto + arquitetura de custo (decisão 2026-07-02)
 Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas separáveis:
