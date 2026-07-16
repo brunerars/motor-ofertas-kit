@@ -17,8 +17,12 @@ node_modules/
 *.local
 
 # Firecrawl — dumps brutos intermediários
-marca/acervo/**/_raw.json
-lp/**/_raw.json
+# _raw*.json (não só _raw.json: um 2º scrape do mesmo item vira _raw2.json)
+# _upload.json = resposta da API do Baserow ao subir a foto; a URL que importa
+# mora no campo photo_url da linha, não aqui.
+marca/acervo/**/_raw*.json
+marca/acervo/**/_upload.json
+lp/**/_raw*.json
 
 # Referência de design (input do /marca, pesada, regenerável — não runtime)
 marca/referencia/
