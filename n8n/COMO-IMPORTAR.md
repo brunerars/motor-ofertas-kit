@@ -108,8 +108,24 @@ curl -s -X POST "https://<n8n>/webhook/nsc-lead-4d9b2e" -H "Content-Type: applic
 3. **Dedup:** mande a mesma mensagem 2× → 1 linha, 1 aviso.
 4. **Ruído:** mande "oi" → nada acontece, sem erro vermelho no n8n.
 
+## ⚠️ Gotcha do hook — a env NÃO entra em sessão que já existe (queimou em 16/07)
+`WHATSAPP_HOOK_URL` é o **padrão aplicado quando a sessão é CRIADA**. A sessão `default` já existia, e o `WHATSAPP_RESTART_ALL_SESSIONS: "True"` a restaura **com a config salva no volume** — que não tinha hook. Resultado: env setada, stack redeployada, e o WAHA continua sem webhook nenhum.
+
+**Sintoma:** `GET /api/sessions/default` volta `WORKING`, número logado, e `config.webhooks` **vazio**. O n8n fica ativo esperando um POST que nunca chega. Nada dá erro.
+
+**Solução (não precisa de redeploy):** gravar o webhook direto na sessão —
+```bash
+curl -s -X PUT "https://waha.arvsystems.cloud/api/sessions/default" \
+  -H "X-Api-Key: $WAHA_API_KEY" -H "Content-Type: application/json" \
+  -d '{"name":"default","config":{"webhooks":[{"url":"'"$WAHA_HOOK_URL"'","events":["message"]}]}}'
+```
+A sessão **reinicia** pra aplicar (volta sozinha pelo volume, sem QR — validado em 16/07). A config fica no volume e sobrevive a restart. **Conferir depois:** `GET /api/sessions/default` tem que mostrar o webhook em `config.webhooks`.
+
+> A env nas stacks fica assim mesmo: serve pra **sessão nova** (ex.: loja nova, onde ela é criada depois da env). Pra sessão que já existe, é o PUT.
+
 ## Notas
 - **`responseMode: onReceived`** (≠ do garimpo, que usa `responseNode`). O WAHA só quer o `200`, não lê corpo. Com `responseNode`, toda mensagem descartada (grupo, "oi") deixaria o webhook pendurado até estourar timeout.
+  > **O preço disso:** o webhook responde `200` **sempre**, mesmo se o fluxo quebrar depois. `200` aqui **não prova nada** — quem conta a verdade é a lista de **Executions** do n8n. (Diferente do garimpo, onde `200` vazio era sintoma de nó renomeado.)
 - **`WHATSAPP_HOOK_EVENTS: message`** e não `message.any`: `message.any` inclui os **próprios envios** → cada oferta postada viraria lead fantasma. O Code node filtra `fromMe` de novo mesmo assim (cinto e suspensório).
 - **Path secreto é o único freio:** o WAHA **não assina** o POST (não há secret nem HMAC). Se vazar, troque o path no node Webhook e o `WAHA_HOOK_URL`, e redeploy do WAHA.
 - **Timeout 120s** no node de aviso, mesma razão do envio de imagem (o WAHA fala por um Chromium de verdade).
