@@ -91,12 +91,40 @@ Na Fase 1 do hub, `borda/` migra pra `kit/templates/borda/` com os mesmos `__PLA
 - ✅ **`status` sai por TEXTO**, nunca por id — provado no mock.
 - ✅ **UTF-8** (acento + 🏁) atravessa inteiro, mandando por `--data-binary @arquivo`.
 - ✅ **390 e 1440**, nenhuma tela rola na horizontal.
-- ✅ **A fila esconde rascunho cru** e conta como *"1 peça chegando"*.
+- ~~✅ **A fila esconde rascunho cru** e conta como *"1 peça chegando"*.~~ **REVERTIDO em 17/07** — ver abaixo.
 - ⚠️ **NÃO verificado: o ciclo real ponta a ponta.** A DISPARADOR tem 3 linhas e **todas já foram
   disparadas** — não existe peça em `Fila` (a row 23 do plano sumiu; a fila foi limpa depois do 16/07).
   A Fila foi provada contra o **mock**, não contra o Baserow real.
   **Não se flipou peça `Disparado` → `Fila` pra testar:** aprovar depois faria o cron **repostar no
   grupo real**. O teste de verdade é o Bruno rodar `/agenda` num link novo e o Caio aprovar.
+
+## 17/07 — o Caio deixou de ficar cego, e a alegação de PII estava errada
+
+### A fila mostra o rascunho cru (reverte a decisão de 16/07)
+Esconder o cru era "não mostrar lixo pro Caio". O custo apareceu na **#31 real**: ele mandou o *"Boné Ferrari Michael Schumacher 1997"* e **esqueceu o preço**. Sem preço não há legenda → não pode ser aprovada; o `/agenda` **também segura** nesse caso; e a borda escondia. A peça ficou entalada, invisível justo pra quem podia consertar. **Rascunho cru não é lixo: é o formulário dele esperando conserto.**
+
+Junto: **`title_pt` e `price_brl` entraram na allowlist** (os 2 campos que ele digita no form; o link fica de fora — link errado = Descartar e reenviar). Não havia razão de segurança pra trava: o que vaza margem é o `price_jpy`, e esse continua cortado. **O `/agenda` segue igual** — ele refina o título, e o Caio revisa e corrige **depois**, antes de aprovar.
+
+> ⚠️ **Editar título/preço NÃO muda o que sai no grupo.** O n8n manda **só o `caption`**. Título e preço são insumos que o `/agenda` usou pra montar a legenda; mexer neles depois não a reescreve. A borda **não pode** remontar legenda (é IA, é do `/agenda`, a v1 não tem IA) — então ela **avisa**: `precoDivergente()` já existia, `tituloDivergente()` é o irmão novo.
+
+### 🔴 A PII não estava sendo segurada por quem a doc dizia
+A doc creditava o **escopo do token** (*"401 na 557"*). **Não é ele.** A 556 tem um campo `LEADS` (link_row → 557), criado sozinho junto com a relação, e campo link do Baserow traz o **campo primário** da linha ligada — que na LEADS é o **nome/telefone**. Medido com o token da borda:
+
+```
+#27 -> LEADS = [{"id": 15, "value": "bruno constantinou"}]   ← o nome CHEGA no servidor
+GET /rows/table/557/  -> 401                                  ← a 557 direta segue barrada
+```
+
+Quem segura é o **`paraBorda()`** (`lib/baserow.ts`) montar o objeto **campo a campo**: o que ele não conhece, não passa. **Nunca trocar aquele map por um spread de `row`.** O guard novo (`npm run guards`) congela isso: faz `grep` pelo nome da fixture no payload de `/api/ofertas`.
+
+Isso viabilizou o **contador de interesse** sem token novo nem campo novo: `qtdLeads = row.LEADS.length`. **Só o `.length`, nunca o `value`.**
+
+### Contraste: o selo mais visível estava ilegível no escuro
+`.selo-disparado` (o *"Saiu 17/07"*) era `color:var(--white)` sobre `background:var(--ink)`. No tema escuro o `--ink` vira `#efeee9` e o `--white` **não vira** → **fundo branco com letra branca, 1.05:1**. Passou por review, por 9 guards e pelo harness de screenshot — **nenhum deles olha contraste**, e o `shot.mjs` só fotografa o tema claro.
+
+- Fix: `color:var(--paper)` — vira junto. **Regra: nunca parear um token que vira (`--ink`, `--paper`) com um que não vira (`--white`, `--red`).**
+- `npm run contraste` — calcula o contraste real de todo par `color`+`background` nos **dois** temas. Achou mais 2 (`.selo-aprovado` e `.banner-ok` em 3.84:1); `--green` ficou 14% mais escuro, mesmo matiz.
+- `npm run shot:dark` — o `shot.mjs` só via o claro, que é metade da UI.
 
 ## O que falta
 

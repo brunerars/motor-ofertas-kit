@@ -91,12 +91,76 @@ export function precoDivergente(o: { precoBrl: number | null; caption: string })
 }
 
 /**
- * Sem preço não há legenda: a peça segura em `Fila` e o Bruno é avisado.
+ * Sem preço não há legenda: a peça segura em `Fila`.
  * Regra do projeto — nunca escrever "valor sob consulta" no grupo, porque o R$
  * que o Caio manda no form JÁ inclui frete do Japão e impostos.
+ *
+ * As duas mensagens apontam pra pessoa CERTA, e a diferença importa:
+ *  - preço é campo DO CAIO (ele digita no form) → ele resolve aqui, agora.
+ *  - legenda é do /agenda (traduz e monta) → essa sim espera o Bruno.
+ * Antes as duas mandavam esperar o Bruno, e a do preço mandava esperar por algo
+ * que o próprio Caio tinha esquecido de preencher.
  */
 export function podeAprovar(o: { precoBrl: number | null; caption: string }): string | null {
-  if (o.precoBrl === null) return 'Sem preço. O Bruno precisa completar antes de aprovar.'
-  if (!o.caption.trim()) return 'Sem legenda. O Bruno precisa completar antes de aprovar.'
+  if (o.precoBrl === null) return 'Falta o preço — dá pra pôr aqui mesmo, no Editar.'
+  if (!o.caption.trim()) return 'A legenda ainda não foi escrita. Essa parte é com o Bruno.'
   return null
+}
+
+/**
+ * Lê o R$ que o Caio digitou. Espelha o `parseBRL` do webhook do garimpo
+ * (`n8n/nsc-garimpo-webhook.json`) de propósito: é a MESMA regra que decide o
+ * preço quando ele manda pelo form, e ter duas leituras diferentes do mesmo
+ * texto é como o "R$ 750" vira coisas distintas em cada porta de entrada.
+ *
+ * Devolve o motivo em vez de só `null` (o webhook não precisa, aqui a UI precisa):
+ * "não entendi" e "isso é iene" pedem respostas diferentes do Caio.
+ */
+export type PrecoLido = { ok: true; valor: number } | { ok: false; erro: 'vazio' | 'iene' | 'invalido' }
+
+export function lerPrecoBrl(s: string): PrecoLido {
+  const raw = String(s ?? '').trim()
+  if (!raw) return { ok: false, erro: 'vazio' }
+
+  // Freio do iene: '¥ 2.500' viraria 2.5 → R$ 2,50 no grupo. Já aconteceu de o
+  // Caio mandar em iene pelo form; lá a linha nasce sem preço e ele nem via.
+  if (raw.includes('¥') || raw.includes('円') || raw.toUpperCase().includes('JPY')) {
+    return { ok: false, erro: 'iene' }
+  }
+
+  let t = raw.replace(/[^0-9.,]/g, '').trim()
+  if (!t) return { ok: false, erro: 'invalido' }
+  // BR: ponto = milhar, vírgula = decimal ("1.250,50")
+  if (t.includes(',')) t = t.split('.').join('').replace(',', '.')
+
+  const n = parseFloat(t)
+  if (!Number.isFinite(n) || n <= 0) return { ok: false, erro: 'invalido' }
+  return { ok: true, valor: n }
+}
+
+/** O título escrito na legenda = o 1º trecho em negrito (o formato manda `*Título*` na 1ª linha). */
+export function tituloNaLegenda(caption: string): string | null {
+  const m = caption.match(/\*([^*\n]+)\*/)
+  return m ? m[1].trim() : null
+}
+
+/**
+ * O campo `title_pt` bate com o título escrito na legenda?
+ *
+ * Mesmo motivo do `precoDivergente`: **quem sai no grupo é a legenda**. Editar o
+ * título aqui não reescreve a legenda (quem monta é o /agenda), então sem este
+ * aviso o Caio corrige o título, aprova, e o grupo recebe o título antigo — sem
+ * ninguém notar.
+ *
+ * Devolve o título da legenda quando difere; `null` quando bate ou não há o que
+ * comparar (rascunho cru não diverge de nada).
+ */
+export function tituloDivergente(o: { titulo: string; caption: string }): string | null {
+  const meu = o.titulo.trim()
+  if (!meu) return null
+  const naLegenda = tituloNaLegenda(o.caption)
+  if (naLegenda === null) return null
+  // espaço a mais não é divergência
+  const norm = (s: string) => s.replace(/\s+/g, ' ').trim().toLowerCase()
+  return norm(naLegenda) === norm(meu) ? null : naLegenda
 }

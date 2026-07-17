@@ -45,6 +45,31 @@ export function PecaLida({ oferta, acao }: { oferta: Oferta; acao?: React.ReactN
           <h2 className="peca-titulo">{oferta.titulo}</h2>
           {oferta.precoBrl !== null && <span className="peca-preco">{formatarBrl(oferta.precoBrl)}</span>}
         </div>
+        {/* O link + o contador vêm ANTES do selo: são o que faz o Caio agir.
+            "Saiu do Mercari" sem o link do Mercari pede que ele adivinhe qual
+            anúncio conferir; e sem saber se alguém quis a peça, ele confere no
+            escuro. Juntos viram o controle semi-automático: tem gente querendo →
+            abre o anúncio → marca se sumiu. */}
+        {(oferta.qtdLeads > 0 || oferta.sourceUrl) && (
+          <p className="peca-meta" style={{ marginTop: 10 }}>
+            {oferta.qtdLeads > 0 && (
+              <>
+                {/* Só o NÚMERO. Quem é a pessoa não passa do servidor — ver paraBorda(). */}
+                <strong className="querem">
+                  {oferta.qtdLeads === 1 ? '1 quer essa' : `${oferta.qtdLeads} querem essa`}
+                </strong>
+                {oferta.sourceUrl && ' · '}
+              </>
+            )}
+            {/* `txt()` devolve '' e nunca null: sem a guarda vira <a href=""> apontando
+                pra própria página. O Peca.tsx tem esse bug latente; não herdar. */}
+            {oferta.sourceUrl && (
+              <a href={oferta.sourceUrl} target="_blank" rel="noreferrer">
+                ver no Mercari
+              </a>
+            )}
+          </p>
+        )}
         <p className="peca-meta" style={{ marginTop: 10 }}>
           <span className={`selo ${SELO[oferta.status] ?? 'selo-fila'}`}>{quandoSai(oferta)}</span>
         </p>

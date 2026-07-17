@@ -55,11 +55,64 @@ console.log('\n=== sem preço não há legenda ===')
 await checa('recusa aprovar a peça sem preço', 102, { status: 'Aprovado' }, 409, 'incompleta')
 
 console.log('\n=== allowlist ===')
-await checa('preço não é campo da borda: cai fora e sobra nada', 101, { price_brl: 1 }, 400, 'nada_pra_mudar')
+// price_jpy é a REFERÊNCIA DE CUSTO do Bruno: vazar/escrever isso é mexer na margem.
+// Fica fora da allowlist, então some antes de chegar no Baserow e o patch fica vazio.
+await checa('price_jpy não é campo da borda: cai fora e sobra nada', 101, { price_jpy: 1 }, 400, 'nada_pra_mudar')
+await checa('title_ja também não: o japonês é do /agenda', 101, { title_ja: 'x' }, 400, 'nada_pra_mudar')
 await checa('sem cookie não escreve', 101, { status: 'Aprovado' }, 401, undefined, false)
 
+console.log('\n=== título e preço são do CAIO (17/07) ===')
+console.log('  ele digita os dois no form. Travados, um erro dele virava peça entalada')
+console.log('  que só o Bruno destravava na mão — foi o que aconteceu com a #31 real.')
+await checa('aceita corrigir o preço', 103, { price_brl: 480 }, 200)
+await checa('aceita corrigir o título', 103, { title_pt: 'Boné Ferrari Schumacher 1997' }, 200)
+await checa('preço negativo não passa', 103, { price_brl: -5 }, 400, 'preco_invalido')
+await checa('preço zero não é preço de venda', 103, { price_brl: 0 }, 400, 'preco_invalido')
+await checa('preço como texto não passa', 103, { price_brl: '480' }, 400, 'preco_invalido')
+await checa('título vazio não passa', 103, { title_pt: '   ' }, 400, 'titulo_invalido')
+await checa('null limpa o preço (volta a faltar, de propósito)', 103, { price_brl: null }, 200)
+// O guard do posted_at vale pra QUALQUER campo, não só status: peça postada é história.
+await checa('peça já postada não aceita nem preço novo', 106, { price_brl: 999, status: 'Aprovado' }, 409, 'ja_postada')
+
 console.log('\n=== e o que PODE, passa ===')
+// A #102 não tem preço NEM legenda. Mandar os dois + Aprovar na MESMA requisição
+// tem que passar: o servidor valida contra o que ESTA requisição vai gravar
+// (`patch.X ?? atual.X`), não contra o que está no banco. Olhando só o `atual`,
+// ele recusaria por falta de coisas que chegaram junto — e o Caio leria
+// "falta o preço" com o preço preenchido na tela.
+await checa(
+  'preço + legenda + aprovar na mesma ação (valida o que vai gravar, não o que está lá)',
+  102,
+  { price_brl: 390, caption: '*Jaqueta Team Lotus anos 90*\nTam: M\n\nR$ 390,00', status: 'Aprovado' },
+  200,
+)
 await checa('aprova a peça completa', 101, { status: 'Aprovado' }, 200)
+
+console.log('\n=== 🔴 PII: o nome do lead NÃO pode chegar no browser ===')
+console.log('  a doc dizia que o escopo do token segurava (401 na LEADS/557). NÃO É ELE.')
+console.log('  a 556 tem um campo LEADS (link_row) que traz o NOME junto:')
+console.log('     #27 -> LEADS = [{"id":15,"value":"bruno constantinou"}]   (medido em prod)')
+console.log('  quem segura é o paraBorda() montar o objeto campo a campo. Este guard prova.')
+{
+  const res = await fetch(`${BASE}/api/ofertas`, { headers: { cookie } })
+  const cru = await res.text()
+  const vazou = ['bruno constantinou', '5511965823369'].filter((s) => cru.includes(s))
+  const contou = cru.includes('"qtdLeads":2')
+
+  const ok1 = res.status === 200 && vazou.length === 0
+  if (!ok1) falhas++
+  console.log(`  ${ok1 ? '✓' : '✗'} nenhum nome/telefone de lead no payload`, ok1 ? '' : `→ VAZOU: ${vazou.join(', ')}`)
+
+  const ok2 = contou
+  if (!ok2) falhas++
+  console.log(`  ${ok2 ? '✓' : '✗'} mas o CONTADOR chegou (qtdLeads: 2)`, ok2 ? '' : '→ o .length não saiu do servidor')
+
+  // price_jpy e wa_message_id: mesma barreira, já valia antes. Não regredir.
+  const outros = ['price_jpy', 'wa_message_id', 'title_ja'].filter((s) => cru.includes(s))
+  const ok3 = outros.length === 0
+  if (!ok3) falhas++
+  console.log(`  ${ok3 ? '✓' : '✗'} sem price_jpy / wa_message_id / title_ja`, ok3 ? '' : `→ VAZOU: ${outros.join(', ')}`)
+}
 
 console.log(falhas ? `\n✗ ${falhas} freio(s) falharam` : '\n✓ todos os freios seguraram')
 process.exitCode = falhas ? 1 : 0

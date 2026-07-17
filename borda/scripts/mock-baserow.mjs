@@ -111,8 +111,9 @@ const linhas = [
     sold: false,
   },
   {
-    // Rascunho cru do form do Caio: sem foto, título = o próprio id.
-    // A borda TEM que esconder isto e contar como "1 peça chegando".
+    // Rascunho cru SEM título: o Caio deixou o campo em branco e o webhook caiu no
+    // fallback `title || id`. A borda MOSTRA (17/07) — antes escondia como "1 peça
+    // chegando", e escondê-la tirava do Caio a única peça que ele podia consertar.
     id: 103,
     title_pt: 'm99988877766',
     mercari_id: 'm99988877766',
@@ -126,6 +127,50 @@ const linhas = [
     scheduled_at: null,
     posted_at: null,
     sold: false,
+  },
+  {
+    // ⚠️ A ROW #31 REAL (17/07), o motivo de tudo isto existir: o Caio mandou a peça
+    // com título e Tam, e ESQUECEU O PREÇO. Sem preço não há legenda → não pode ser
+    // aprovada; o /agenda também segura nesse caso; e a borda escondia. Ela ficou
+    // entalada, invisível justo pra quem a digitou.
+    // Diferente da #103: aqui o título é humano. Erro de preço, não de título.
+    id: 107,
+    title_pt: 'Boné Ferrari Michael Schumacher 1997',
+    mercari_id: 'm71164960236',
+    source_url: 'https://jp.mercari.com/item/m71164960236',
+    price_jpy: null,
+    price_brl: '',
+    photo_url: '',
+    caption: '',
+    tags: 'Tam: Ajustável',
+    status: { id: 2573, value: 'Fila', color: 'light-gray' },
+    scheduled_at: null,
+    posted_at: null,
+    sold: false,
+  },
+  {
+    // Peça no grupo COM interesse. O campo LEADS é link_row → 557 e vem com o NOME
+    // dentro: é assim que a 556 devolve de verdade (medido com o token da borda).
+    // Existe pra provar que o nome NÃO chega no browser — quem corta é o paraBorda().
+    // Se algum dia alguém trocar aquele map por um spread de `row`, este guard grita.
+    id: 108,
+    title_pt: 'Camisa Lotus by Tommy Hilfiger',
+    mercari_id: 'm53001823873',
+    source_url: 'https://jp.mercari.com/item/m53001823873',
+    price_jpy: 5200,
+    price_brl: '650.00',
+    photo_url: 'https://placehold.co/800x800/1b7741/ffffff/png?text=Lotus+Tommy',
+    caption:
+      '*Camisa Lotus by Tommy Hilfiger*\nTam: L\n\nR$ 650,00\n\n🏁 Quero essa peça: https://wa.me/5511914563609?text=Estou%20interessado!%20(m53001823873)',
+    tags: 'Tam: L',
+    status: { id: 2576, value: 'Disparado', color: 'dark-gray' },
+    scheduled_at: null,
+    posted_at: '2026-07-16T22:56:33.000000Z',
+    sold: false,
+    LEADS: [
+      { id: 15, value: 'bruno constantinou' },
+      { id: 16, value: '5511965823369' },
+    ],
   },
 ]
 

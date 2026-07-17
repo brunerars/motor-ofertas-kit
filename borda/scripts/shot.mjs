@@ -15,10 +15,16 @@
 
 import { spawn } from 'node:child_process'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { setTimeout as sleep } from 'node:timers/promises'
 
 const BASE = process.argv[2] ?? 'http://localhost:3987'
-const OUT = process.argv[3] ?? './shots'
+// ABSOLUTO, sempre. O `--user-data-dir` do Edge no Windows NÃO resolve caminho
+// relativo a partir do CWD do processo: passando `./shots/.prof` ele tenta criar o
+// profile em outro lugar, falha calado, e o script morre em "CDP não respondeu" —
+// que parece problema de porta ou de Edge, e não é. O drive.mjs escapava por usar
+// %TEMP% (já absoluto). Custou uma caçada; não voltar a passar relativo.
+const OUT = resolve(process.argv[3] ?? './shots')
 const PORT = 9333
 
 const EDGE = [

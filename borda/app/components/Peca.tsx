@@ -3,15 +3,22 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Oferta, Status } from '@/lib/baserow'
-import { formatarBrl, podeAprovar, precoDivergente } from '@/lib/caption'
+import { formatarBrl, lerPrecoBrl, podeAprovar, precoDivergente, tituloDivergente } from '@/lib/caption'
 import type { Feito } from './FilaLista'
 import { Legenda } from './Legenda'
 
 type Modo = 'ver' | 'editando' | 'agendando'
 
+/** Número → o que se digita num campo de preço ("770" · "480,5"). */
+function paraCampo(v: number | null): string {
+  return v === null ? '' : String(v).replace('.', ',')
+}
+
 export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) => void }) {
   const router = useRouter()
   const [modo, setModo] = useState<Modo>('ver')
+  const [titulo, setTitulo] = useState(oferta.titulo)
+  const [preco, setPreco] = useState(paraCampo(oferta.precoBrl))
   const [caption, setCaption] = useState(oferta.caption)
   const [tags, setTags] = useState(oferta.tags)
   const [quando, setQuando] = useState('')
@@ -22,6 +29,7 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
 
   const incompleta = podeAprovar(oferta)
   const divergente = precoDivergente(oferta)
+  const tituloTorto = tituloDivergente(oferta)
 
   async function patch(body: Record<string, unknown>, feito?: Feito) {
     setOcupado(true)
@@ -61,6 +69,29 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
 
   const mudarStatus = (status: Status) => patch({ status }, { titulo: oferta.titulo, status })
 
+  function salvarEdicao() {
+    const t = titulo.trim()
+    if (!t) {
+      setErro('O título não pode ficar vazio.')
+      return
+    }
+
+    // Lê o R$ com a MESMA regra do form do garimpo (lerPrecoBrl espelha o parseBRL
+    // do webhook). Campo vazio = limpar o preço de propósito, não é erro: volta pra
+    // "falta o preço" e a peça deixa de poder ser aprovada, que é o correto.
+    const lido = lerPrecoBrl(preco)
+    if (!lido.ok && lido.erro !== 'vazio') {
+      setErro(
+        lido.erro === 'iene'
+          ? 'Esse valor está em iene. Põe em real — o preço que a gente cobra já inclui o frete do Japão e os impostos.'
+          : 'Não entendi o valor. Escreve assim: 750,00',
+      )
+      return
+    }
+
+    patch({ title_pt: t, price_brl: lido.ok ? lido.valor : null, caption, tags })
+  }
+
   return (
     <article className="peca">
       {oferta.fotoUrl && !fotoQuebrou && (
@@ -75,6 +106,15 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
           loading="lazy"
           onError={() => setFotoQuebrou(true)}
         />
+      )}
+      {!oferta.fotoUrl && (
+        // Rascunho cru: o /agenda ainda não buscou a foto. Sem este bloco o card
+        // começava direto no texto e parecia meio quebrado — e a peça só está aqui
+        // porque o Caio precisa consertar algo nela, então parecer quebrada é o
+        // pior sinal possível. Diz que a foto vem depois e de quem ela depende.
+        <div className="peca-foto peca-foto-vazia">
+          <span>A foto vem quando o Bruno preparar a peça. Dá pra arrumar o resto agora.</span>
+        </div>
       )}
       {fotoQuebrou && (
         // Foto quebrada não é detalhe estético: é a MESMA URL que o WAHA busca pra
@@ -99,10 +139,16 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
         </div>
         <p className="peca-meta">
           Tam: {oferta.tags.trim() || 'único'}
-          {' · '}
-          <a href={oferta.sourceUrl} target="_blank" rel="noreferrer">
-            ver no Mercari
-          </a>
+          {/* `txt()` devolve '' e nunca null → sem esta guarda vira <a href="">, que
+              recarrega a própria página e parece que o link do Mercari quebrou. */}
+          {oferta.sourceUrl && (
+            <>
+              {' · '}
+              <a href={oferta.sourceUrl} target="_blank" rel="noreferrer">
+                ver no Mercari
+              </a>
+            </>
+          )}
         </p>
 
         {modo === 'ver' && (
@@ -118,6 +164,18 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
                 O valor aqui em cima é <strong>{formatarBrl(oferta.precoBrl)}</strong>, mas na legenda está{' '}
                 <strong>{divergente.map((p) => formatarBrl(p)).join(' e ')}</strong>.{' '}
                 <strong>Vale o da legenda</strong> — é ela que sai no grupo. Se não for isso, fala com o Bruno.
+              </div>
+            )}
+
+            {tituloTorto && (
+              // Irmão do `divergente`, e existe pelo mesmo motivo: quem sai no grupo
+              // é a LEGENDA. Editar o título aqui não a reescreve (quem monta é o
+              // /agenda), então sem este aviso o Caio corrige o título, aprova, e o
+              // grupo recebe o antigo — sem ninguém notar. Também não bloqueia.
+              <div className="banner banner-warn" role="alert">
+                O título aqui em cima é <strong>{oferta.titulo}</strong>, mas a legenda diz{' '}
+                <strong>{tituloTorto}</strong>. <strong>Vale o da legenda</strong> — é ela que sai no grupo. Pra
+                mudar de verdade, edita a legenda também.
               </div>
             )}
 
@@ -164,6 +222,25 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
 
         {modo === 'editando' && (
           <>
+            {/* Título e Valor são campos DO CAIO: ele os digita no form do garimpo.
+                Sem eles aqui, esquecer o preço (ou mandar em iene, que o webhook
+                rejeita) virava peça entalada que só o Bruno destravava na mão. */}
+            <label htmlFor={`tit-${oferta.id}`}>Título</label>
+            <input
+              id={`tit-${oferta.id}`}
+              type="text"
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
+            />
+            <label htmlFor={`pre-${oferta.id}`}>Valor de venda (R$)</label>
+            <input
+              id={`pre-${oferta.id}`}
+              type="text"
+              inputMode="decimal"
+              value={preco}
+              onChange={(e) => setPreco(e.target.value)}
+              placeholder="750,00"
+            />
             <label htmlFor={`cap-${oferta.id}`}>Legenda (sai assim no grupo)</label>
             <textarea
               id={`cap-${oferta.id}`}
@@ -188,13 +265,15 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
             )}
 
             <div className="btns">
-              <button className="btn btn-primary" disabled={ocupado} onClick={() => patch({ caption, tags })}>
+              <button className="btn btn-primary" disabled={ocupado} onClick={salvarEdicao}>
                 {ocupado ? 'Salvando…' : 'Salvar'}
               </button>
               <button
                 className="btn"
                 disabled={ocupado}
                 onClick={() => {
+                  setTitulo(oferta.titulo)
+                  setPreco(paraCampo(oferta.precoBrl))
                   setCaption(oferta.caption)
                   setTags(oferta.tags)
                   setErro(null)

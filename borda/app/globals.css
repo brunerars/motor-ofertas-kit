@@ -9,7 +9,10 @@
   --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
   --dark-grey:#5d5d5d; --mid-grey:#676763; --light-grey:#d1d1cc; --hair:#ddddd7;
   --red:#c82a2a; --red-ink:#a31f1f; --brand-red:#e60000;
-  --green:#1f8a4c; --green-bg:#e7f3ec;
+  /* verde 14% mais escuro que o #1f8a4c original, mesmo matiz (145) e saturacao:
+     sobre o --green-bg ele dava 3.84:1, abaixo dos 4.5 que texto pequeno exige.
+     Pegava o .selo-aprovado e o .banner-ok — o selo mais importante do app. */
+  --green:#1b7741; --green-bg:#e7f3ec;
   --amber:#8a5a00; --amber-bg:#fdf3e0;
   /* superfícies + acentos semânticos (viram no tema escuro; --white e --red ficam fixos) */
   --card:#ffffff; --field:#f5f5f5; --err-bg:#fbeaea;
@@ -92,6 +95,18 @@ nav.abas .badge{ display:inline-block; margin-left:6px; padding:1px 6px; border-
 .peca-foto-erro{ display:flex; align-items:center; justify-content:center; text-align:center;
   padding:24px; background:var(--amber-bg); color:var(--amber);
   font-size:.86rem; line-height:1.5; font-weight:600; }
+/* Rascunho cru: a foto ainda não existe (o /agenda é quem busca). Tom NEUTRO de
+   propósito, diferente do âmbar do erro acima: aqui não há nada errado, só falta
+   uma etapa. Pintar de alerta ensinaria o Caio a ignorar alerta de verdade.
+   Sem aspect-ratio 1/1: reservar um quadrado inteiro pra um aviso de uma linha
+   empurra a peça toda pra fora da tela do celular. */
+.peca-foto-vazia{ display:flex; align-items:center; justify-content:center; text-align:center;
+  aspect-ratio:auto; padding:20px; background:var(--whitesmoke); color:var(--mid-grey);
+  font-size:.82rem; line-height:1.5; }
+/* "2 querem essa" — o gatilho pra conferir o Mercari. Acento, não cinza: dentro de
+   uma .peca-meta cinza ele desapareceria, e é justamente o que muda o que o Caio
+   faz. --accent-text vira com o tema (o --red fixo some no escuro). */
+.querem{ color:var(--accent-text); }
 .peca-corpo{ padding:16px; }
 .peca-topo{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
 .peca-titulo{ font-family:"Anton",sans-serif; font-size:1.15rem; text-transform:uppercase;
@@ -144,7 +159,12 @@ button{ font-family:"Archivo",sans-serif; }
 .selo-fila{ color:var(--dark-grey); border-color:var(--hair); background:var(--whitesmoke); }
 .selo-aprovado{ color:var(--green); border-color:var(--green); background:var(--green-bg); }
 .selo-agendado{ color:var(--amber); border-color:var(--amber); background:var(--amber-bg); }
-.selo-disparado{ color:var(--white); border-color:var(--ink); background:var(--ink); }
+/* Chip invertido: fundo = a cor do texto, texto = a cor do fundo. Por isso --paper e
+   NAO --white. O --white e fixo e o --ink vira no tema escuro (#111 -> #efeee9):
+   o par --ink/--white dava fundo quase branco com letra branca (contraste 1.05:1,
+   ilegivel) justo no selo que mais aparece, o "Saiu 17/07". Regra: nunca parear um
+   token que vira com o tema (--ink, --paper) com um que nao vira (--white, --red). */
+.selo-disparado{ color:var(--paper); border-color:var(--ink); background:var(--ink); }
 
 /* --- Banners: a UI absorve a incerteza em vez de fingir precisão --- */
 .banner{ margin:16px 0; padding:14px 16px; border-radius:var(--radius-md);

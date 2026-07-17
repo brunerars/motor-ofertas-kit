@@ -33,7 +33,10 @@ export default async function SaiuDoMercari() {
     )
   }
 
-  const naFila = ofertas.filter((o) => o.status === 'Fila' && o.enriquecida).length
+  // Mesmo critério da lista em app/page.tsx: TUDO que está na Fila, cru ou não.
+  // Os 3 call-sites têm que concordar, senão o badge do topo diz um número e a
+  // fila mostra outro.
+  const naFila = ofertas.filter((o) => o.status === 'Fila').length
   const noGrupo = ofertas.filter((o) => o.status === 'Disparado' || o.status === 'Vendido')
   const sumiram = noGrupo.filter((o) => o.sold || o.status === 'Vendido')
   const vivas = noGrupo.filter((o) => !o.sold && o.status !== 'Vendido')

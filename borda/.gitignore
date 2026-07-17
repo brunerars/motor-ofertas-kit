@@ -23,3 +23,6 @@ shots/
 # A lp/ versionou o dela e por isso duas lojas no mesmo checkout fariam deploy uma
 # por cima da outra. Não repetir o erro.
 .vercel/
+
+# saída do shot:dark
+shots-dark/

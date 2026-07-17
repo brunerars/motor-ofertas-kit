@@ -36,6 +36,27 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
   if (typeof body.tags === 'string') patch.tags = body.tags
   if (typeof body.sold === 'boolean') patch.sold = body.sold
 
+  // `title_pt` e `price_brl` são do CAIO — ele os digita no form do garimpo.
+  // Ficavam de fora sem razão de segurança (o que vaza margem é o `price_jpy`, e
+  // esse continua fora, junto com `title_ja`: não estão aqui, logo não passam).
+  if (body.title_pt !== undefined) {
+    if (typeof body.title_pt !== 'string' || !body.title_pt.trim()) {
+      return NextResponse.json({ erro: 'titulo_invalido' }, { status: 400 })
+    }
+    patch.title_pt = body.title_pt.trim()
+  }
+
+  if (body.price_brl !== undefined) {
+    // null limpa o preço (volta a "falta o preço"). O 0 não é preço de venda.
+    if (body.price_brl === null) {
+      patch.price_brl = null
+    } else if (typeof body.price_brl !== 'number' || !Number.isFinite(body.price_brl) || body.price_brl <= 0) {
+      return NextResponse.json({ erro: 'preco_invalido' }, { status: 400 })
+    } else {
+      patch.price_brl = body.price_brl
+    }
+  }
+
   if (body.status !== undefined) {
     const s = body.status as Status
     if (!PERMITIDOS.includes(s)) {
@@ -91,9 +112,14 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
 
       // Aprovar/agendar exige preço e legenda. A regra é do projeto e vale no servidor,
       // não só no botão: "sem preço não há legenda" — nunca sai "sob consulta" no grupo.
+      //
+      // Valida contra o que ESTA requisição vai gravar (`patch.X ?? atual.X`), não
+      // contra o que está no banco. O Caio põe o preço que faltava e aprova na mesma
+      // ação: olhar só o `atual.precoBrl` recusaria por falta de um preço que chegou
+      // junto, e ele leria "falta o preço" com o preço preenchido na tela.
       if (patch.status === 'Aprovado' || patch.status === 'Agendado') {
         const motivo = podeAprovar({
-          precoBrl: atual.precoBrl,
+          precoBrl: patch.price_brl !== undefined ? patch.price_brl : atual.precoBrl,
           caption: patch.caption ?? atual.caption,
         })
         if (motivo) return NextResponse.json({ erro: 'incompleta', motivo }, { status: 409 })

@@ -78,10 +78,24 @@ await sleep(3000)
 
 console.log('\n=== a fila mostra o que deve ===')
 let t = await texto()
-checar('esconde o rascunho cru e conta "1 peça chegando"', /1 peça chegando/.test(t))
+// INVERTIDO em 17/07. Antes: `esconde o rascunho cru e conta "1 peça chegando"`.
+// A #31 real provou o custo: o Caio mandou o "Boné Ferrari 1997" e esqueceu o
+// preço; sem preço não há legenda, o /agenda também segura, e a peça ficava
+// invisível justo pra quem podia consertar. Rascunho cru não é lixo — é o
+// formulário dele esperando conserto.
+// /i obrigatório: `texto()` lê innerText, que APLICA o text-transform:uppercase do
+// .peca-titulo. Na tela está "BONÉ FERRARI…", no mock está "Boné Ferrari…".
+// Comparar case-sensitive falha por um motivo que nada tem a ver com o que se prova.
+checar('MOSTRA o rascunho cru com título humano (a #31 real)', /Boné Ferrari Michael Schumacher 1997/i.test(t))
+checar('MOSTRA o rascunho cru sem título (cai no id)', /m99988877766/i.test(t))
+checar('sumiu o banner "peças chegando"', !/peças? chegando/.test(t))
+checar('a peça sem foto avisa em vez de parecer quebrada', /A foto vem quando o Bruno preparar/.test(t))
 checar('avisa o preço divergente da Suzuka (480 no card × 529 na legenda)', /na legenda está.*R\$\s?529/s.test(t))
 checar('NÃO dá alarme falso na promoção (De R$ 650 por R$ 480)', !/R\$\s?650,00.*e.*R\$\s?480,00/s.test(t.split('Camisa Lotus')[1] ?? ''))
-checar('trava a peça sem preço', /Sem preço\. O Bruno precisa completar/.test(t))
+// O texto mudou junto com a regra: mandar esperar o Bruno por um campo que o
+// PRÓPRIO Caio digitou no form era o que deixava a peça entalada.
+checar('trava a peça sem preço, mas aponta pro Caio', /Falta o preço — dá pra pôr aqui mesmo/.test(t))
+checar('não manda esperar o Bruno pelo preço', !/Sem preço\. O Bruno precisa completar/.test(t))
 
 console.log('\n=== editar: o bug que o Bruno reportou ===')
 console.log('  clicar em Editar →', await clicar('Editar'))

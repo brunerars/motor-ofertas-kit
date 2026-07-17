@@ -19,7 +19,7 @@ export type Feito = { titulo: string; status: Status }
  * ação que dá certo e não deixa rastro é indistinguível de uma que falhou.
  * Por isso a lista guarda o que acabou de sair e diz o que aconteceu.
  */
-export function FilaLista({ ofertas, chegando }: { ofertas: Oferta[]; chegando: number }) {
+export function FilaLista({ ofertas }: { ofertas: Oferta[] }) {
   const router = useRouter()
   const [feitos, setFeitos] = useState<Feito[]>([])
 
@@ -40,11 +40,9 @@ export function FilaLista({ ofertas, chegando }: { ofertas: Oferta[]; chegando: 
         </div>
       ))}
 
-      {chegando > 0 && (
-        <div className="banner banner-info" role="status">
-          {chegando === 1 ? '1 peça chegando' : `${chegando} peças chegando`} — o Bruno tá preparando.
-        </div>
-      )}
+      {/* Saiu o banner "N peças chegando — o Bruno tá preparando": as peças cruas
+          agora aparecem na lista, cada uma dizendo o que falta nela. O banner era
+          um resumo de coisas que o Caio não podia ver nem consertar. */}
 
       {vazia ? (
         <div className="vazio">
@@ -52,7 +50,7 @@ export function FilaLista({ ofertas, chegando }: { ofertas: Oferta[]; chegando: 
           <p>
             {feitos.length
               ? 'Você conferiu tudo. O que saiu daqui está em No ar.'
-              : 'Quando o Bruno preparar as peças, elas aparecem aqui.'}
+              : 'As peças que você mandar pelo formulário aparecem aqui.'}
           </p>
         </div>
       ) : (

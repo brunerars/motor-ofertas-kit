@@ -29,8 +29,21 @@ export type Oferta = {
   scheduledAt: string | null
   postedAt: string | null
   sold: boolean
-  /** true = o /agenda já passou. Fila crua (sem foto) é lixo pro Caio, não se mostra. */
+  /**
+   * true = o /agenda já passou (tem foto).
+   * A fila MOSTRA as cruas também: o Caio digitou link/título/valor/Tam no form e
+   * precisa poder consertar o que errou. Escondê-las deixava a #31 real ("Boné
+   * Ferrari 1997", sem preço) entalada — invisível pra ele, imprópria pra aprovar
+   * e ignorada pelo /agenda (a skill segura em Fila quando falta preço).
+   * Serve pra decidir o que o card mostra, não mais pra sumir com a peça.
+   */
   enriquecida: boolean
+  /**
+   * Quantas pessoas mandaram "Estou interessado!" nesta peça.
+   *
+   * 🔴 SÓ O NÚMERO. Ver `paraBorda()`: a 556 traz o NOME junto e ele para lá.
+   */
+  qtdLeads: number
 }
 
 type Row = Record<string, unknown>
@@ -97,7 +110,22 @@ function selValue(v: unknown): string {
 
 /**
  * Row do Baserow → o que a borda mostra.
+ *
+ * 🔴 ESTA FUNÇÃO É A BARREIRA DE PII, não o escopo do token.
+ *
+ * A doc dizia que o token segurava (ele toma 401 na LEADS/557). Só que a 556 tem
+ * um campo `LEADS` (link_row → 557), criado sozinho junto com a relação, e campo
+ * link do Baserow traz o CAMPO PRIMÁRIO da linha ligada — que na LEADS é o nome
+ * ou o telefone do cliente. Medido com o token da borda:
+ *
+ *     #27 -> LEADS = [{"id": 15, "value": "bruno constantinou"}]
+ *
+ * Ou seja: o nome CHEGA aqui. O que impede ele de ir pro browser é esta função
+ * montar o objeto campo a campo — o que ela não conhece, não passa. Manter assim:
+ * nunca fazer spread de `row`.
+ *
  * Fica DE FORA de propósito:
+ *  - `LEADS`       → é PII. Só o `.length` sai daqui, nunca o `value`.
  *  - `price_jpy`   → referência de custo do Bruno. Não é da conta do Caio, e um
  *                    vazamento aqui é vazamento de margem.
  *  - `wa_message_id` → id da mensagem que o BOT enviou. O nome engana (não é lead)
@@ -120,6 +148,8 @@ function paraBorda(row: Row): Oferta {
     postedAt: txt(row.posted_at) || null,
     sold: row.sold === true,
     enriquecida: Boolean(fotoUrl),
+    // 🔴 `.length` e MAIS NADA. Cada item é {id, value} e `value` é o nome da pessoa.
+    qtdLeads: Array.isArray(row.LEADS) ? row.LEADS.length : 0,
   }
 }
 
@@ -137,8 +167,22 @@ export async function buscarOferta(id: number): Promise<Oferta> {
   return paraBorda(j)
 }
 
-/** Só o que a borda tem direito de escrever. Nada de status por id, nada de preço. */
+/**
+ * Só o que a borda tem direito de escrever. Nada de status por id.
+ *
+ * `title_pt` e `price_brl` entraram em 17/07, e a razão é que eles nunca deveriam
+ * ter ficado fora: são os campos que o **próprio Caio digitou no form**. Sem eles,
+ * um erro dele (esquecer o preço, ou mandar em iene — que o webhook rejeita de
+ * propósito) virava peça entalada que só o Bruno destravava, na mão, no Baserow.
+ * Não havia razão de segurança pra trava; era subproduto do desenho "a borda só
+ * confere". O que vaza margem é o `price_jpy`, e esse continua fora.
+ *
+ * ⚠️ Isto é a 1ª de DUAS barreiras: a rota (`app/api/ofertas/[id]/route.ts`) só
+ * copia campo a campo o que reconhece. Abrir aqui não abre lá.
+ */
 export type Patch = {
+  title_pt?: string
+  price_brl?: number | null
   caption?: string
   tags?: string
   status?: Status

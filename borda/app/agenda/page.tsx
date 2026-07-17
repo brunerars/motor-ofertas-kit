@@ -23,7 +23,10 @@ export default async function NoAr() {
     )
   }
 
-  const naFila = ofertas.filter((o) => o.status === 'Fila' && o.enriquecida).length
+  // Mesmo critério da lista em app/page.tsx: TUDO que está na Fila, cru ou não.
+  // Os 3 call-sites têm que concordar, senão o badge do topo diz um número e a
+  // fila mostra outro.
+  const naFila = ofertas.filter((o) => o.status === 'Fila').length
   const esperando = ofertas.filter((o) => o.status === 'Aprovado' || o.status === 'Agendado')
   const sairam = ofertas
     .filter((o) => o.status === 'Disparado')

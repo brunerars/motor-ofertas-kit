@@ -46,6 +46,14 @@ node --env-file=.env.local scripts/shot.mjs http://localhost:3989 ./shots
 ```bash
 npm run guards       # com o mock + dev:mock rodando
 ```
+Inclui o guard de **PII**: faz `grep` pelo nome do lead no payload de `/api/ofertas`. Ver "Armadilhas".
+
+**Contraste e tema escuro** (o `shot.mjs` só fotografa o claro):
+
+```bash
+npm run contraste    # não precisa de servidor: lê o globals.css e calcula os 2 temas
+npm run shot:dark    # com o dev:mock rodando
+```
 
 **Exercitar o fluxo do Caio** (clica de verdade: edita, salva, aprova):
 
@@ -86,12 +94,18 @@ python "$CLAUDE_JOB_DIR/tmp/verifica_prod.py"   # portão · SSO · login · fil
 | Arquivo | Papel |
 |---|---|
 | `lib/loja.ts` | **A costura.** v1 lê env; v2 lê a tabela `LOJAS`. É `async` de propósito — na v2 vira rede, e nenhum call-site muda. Ninguém lê `BASEROW_TABLE_ID` fora daqui. |
-| `lib/baserow.ts` | Cliente **server-only** (o `import 'server-only'` quebra o build se um client component importar). Corta `price_jpy` e `wa_message_id` antes de mandar pro browser. |
-| `lib/caption.ts` | Lê a legenda (não monta — quem monta é a `/agenda`). Render do `*negrito*` do WhatsApp pro preview. |
+| `lib/baserow.ts` | Cliente **server-only** (o `import 'server-only'` quebra o build se um client component importar). **`paraBorda()` é A BARREIRA DE PII** — ver abaixo. Corta `price_jpy`, `wa_message_id` e o nome dos leads antes de mandar pro browser. |
+| `lib/caption.ts` | Lê a legenda (não monta — quem monta é a `/agenda`). Render do `*negrito*`, `precoDivergente`/`tituloDivergente`, e `lerPrecoBrl` (espelha o `parseBRL` do webhook, com o freio do iene). |
 | `lib/auth.ts` | Passphrase → cookie HMAC. Web Crypto, não `node:crypto`: o middleware roda no Edge. |
-| `app/api/ofertas/[id]/` | Allowlist de escrita. `Disparado` e `Vendido` são **403** — quem escreve esses dois é o n8n. Linha com `posted_at` é **409**: já saiu no grupo, não se mexe. |
+| `app/api/ofertas/[id]/` | Allowlist de escrita. `Disparado` e `Vendido` são **403** — quem escreve esses dois é o n8n. Linha com `posted_at` é **409**: já saiu no grupo, não se mexe. **`title_pt` e `price_brl` PODEM** (17/07): são os campos que o Caio digita no form. `price_jpy` e `title_ja` não. |
 
 ## Armadilhas (já pagas)
+
+- 🔴 **A PII não é segurada pelo escopo do token — é pelo `paraBorda()`.** O token toma 401 na LEADS (557), mas a **556 tem um campo `LEADS` (link_row)** e campo link do Baserow traz o **campo primário** da linha ligada: o **nome/telefone** do cliente. Medido: `#27 -> LEADS = [{"id":15,"value":"bruno constantinou"}]`. O nome **chega no servidor**. Quem o barra é o `paraBorda()` montar o objeto **campo a campo** — **nunca trocar aquele map por um spread de `row`**. O `npm run guards` faz `grep` pelo nome no payload e grita se voltar.
+- **Contraste: nunca parear um token que vira com o tema (`--ink`, `--paper`) com um que não vira (`--white`, `--red`).** O `.selo-disparado` era `--white` sobre `--ink`: no escuro virou **branco no branco (1.05:1)**, no selo que mais aparece. Passou por review, por 9 guards e pelo `shot.mjs` — nenhum olha contraste, e o `shot.mjs` só fotografa o tema claro. Rode `npm run contraste` e `npm run shot:dark`.
+- **`--user-data-dir` do Edge tem que ser ABSOLUTO.** Com caminho relativo o Edge não resolve a partir do CWD, o profile nunca é criado e o script morre em `✗ CDP não respondeu` — que parece problema de porta ou de Edge, e não é. O `shot.mjs` já resolve com `path.resolve`; o `drive.mjs` escapava por usar `%TEMP%`.
+- **O `edge.kill()` não mata os filhos no Windows.** Sobram processos que seguram o profile e a corrida seguinte falha no CDP. Entre corridas: `taskkill //F //IM msedge.exe`.
+- **`texto()` do `drive.mjs` lê `innerText`, que APLICA `text-transform:uppercase`.** Comparar título contra o dado cru do mock precisa de regex `/i`, senão falha por um motivo que nada tem a ver com o que se prova.
 
 - **`status` sempre por TEXTO**, nunca por id. Os ids de `single_select` não se repetem entre
   tabelas: o `2573` literal da `/agenda` funciona na NSC e **quebra calado na loja 2**.
