@@ -102,8 +102,8 @@ Na Fase 1 do hub, `borda/` migra pra `kit/templates/borda/` com os mesmos `__PLA
 
 - **v1:**
   - [x] **Token escopado na DISPARADOR** — `BASEROW_TOKEN_BORDA`, próprio (≠ o dos workflows). `npm run smoke` prova: lê a 556 e toma **401 na 557**. A borda não alcança telefone de cliente nem que queira.
-  - [ ] **Versionar o `borda/`** — 40 arquivos ainda `??` no git. O `.gitignore` próprio já protege o `.env.local`.
-  - [ ] **Deploy na Vercel** + **desligar o SSO** (senão o Caio toma tela de login da Vercel e parece bug da borda).
+  - [x] **Versionado** — `bf83097`. Auditado valor por valor dos dois `.env` contra os 36 arquivos: nenhum segredo entrou.
+  - [x] **NO AR: https://nsc-borda.vercel.app** — projeto `nsc-borda` (`prj_7S3N3eH36rO6FLZRUIp3EXFso909`), scope `brunoconstantinou-4051s-projects`, SSO **desligado na criação** (não depois: ligado, o Caio toma tela de login da Vercel e acha que a borda quebrou). 9 env vars plantadas via API; `BASEROW_LEADS_TABLE_ID` **não** vai pra Vercel — é só do smoke, a app nunca lê. **Verificado em produção** (12/12): portão 307/401-JSON · senha errada recusada · login + fila real (3 peças) · sem `price_jpy`/`wa_message_id` no payload.
   - [ ] **Uma peça real em `Fila`** — hoje a 556 tem 3 linhas e **nenhuma em `Fila`** (nem rascunho do form). Depende de link novo do Caio → Bruno roda `/agenda`. **É o pré-requisito do teste que importa**, e não dá pra forjar: flipar uma linha `Disparado` de volta faria o cron repostar no grupo real.
   - [ ] **O Caio aprovar 1 peça real sozinho, sem perguntar nada.**
 - **v2:** absorve o garimpo (URL única) · botão "pedir post" → fila de pedidos → o Bruno roda

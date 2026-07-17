@@ -57,14 +57,29 @@ Só contra o **mock** — ele clica em Aprovar, e aprovar no Baserow real faz o 
 a seguinte acha a peça sem preço no topo, com o Aprovar travado — parece bug e não é).
 No Windows o `pkill` não mata: `netstat -ano | grep :4001 | grep LISTENING` → `taskkill //F //PID <pid>`.
 
-## Deploy (Vercel)
+## Deploy (Vercel) — **no ar: https://nsc-borda.vercel.app**
+
+Projeto `nsc-borda` · `prj_7S3N3eH36rO6FLZRUIp3EXFso909` · scope `brunoconstantinou-4051s-projects`.
 
 ```bash
 npx vercel deploy --prod --yes --scope <scope> --token=$VERCEL_TOKEN
-npx vercel alias set <deploy-url> <alias>          # o alias NÃO segue prod sozinho
+npx vercel alias set <deploy-url> nsc-borda.vercel.app   # o alias NÃO segue prod sozinho
 ```
-Depois: **desligar o SSO** (`PATCH /v10/projects/<id> {"ssoProtection":null}`), senão o Caio toma
-tela de login da Vercel e parece bug da borda. As env vars são as mesmas do `.env.example`.
+- **`.vercel/project.json` tem que existir ANTES** (é gitignorado, então some em clone novo). Sem
+  ele o CLI cria um projeto novo com o nome da **pasta** (`borda`) — genérico e colidindo entre
+  lojas. Foi assim que nasceu o projeto fantasma `build` no deploy da LP.
+- **SSO Deployment Protection vem LIGADO.** Desligar **na criação**, não depois
+  (`PATCH /v9/projects/<id>?teamId=<t> {"ssoProtection":null}`): ligado, o Caio toma tela de login
+  da Vercel e acha que a borda quebrou.
+- **Env vars = as do `.env.example` menos `BASEROW_LEADS_TABLE_ID`**, que é só do smoke — a app
+  nunca lê (`grep process.env app lib` prova). São 9.
+
+Verificar prod (não confie em "deploy ready"):
+```bash
+python "$CLAUDE_JOB_DIR/tmp/verifica_prod.py"   # portão · SSO · login · fila real · vazamento
+```
+> **A rota de login lê o campo `senha`**, não `passphrase`. Mandar o nome errado dá 401 e parece
+> senha errada — inclusive faz um teste de "senha errada" passar pelo motivo errado.
 
 ## Mapa
 
