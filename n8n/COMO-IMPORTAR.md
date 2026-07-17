@@ -22,7 +22,9 @@ Filtrar aprovados (janela) → Loop Over Items → [done] fim
                                                         → Baserow: gravar message id
                                                         → volta pro Loop
 ```
-- **Janela 9h-21h** (`America/Sao_Paulo`). Fora dela a fila **espera**, ninguém perde o lugar. Post de madrugada não é lido e ainda cheira a robô.
+- **Janela 9h-21h** (`America/Sao_Paulo`), nos campos `janela_ini`/`janela_fim` do `Config`. Fora dela a fila **espera**, ninguém perde o lugar. Post de madrugada não é lido e ainda cheira a robô.
+  > 🕘 **"O Code node não está identificando o `Aprovado`" quase sempre é a janela.** O `return []` da janela é a **primeira coisa** que o node faz — fora do horário ele devolve vazio **sem sequer olhar o status**. Antes de caçar bug no filtro, confira a hora.
+  > **Pra testar fora do horário:** `janela_ini=0` / `janela_fim=24` no `Config` e **fechar depois**. Fim é **exclusivo** (9 e 21 = das 9h às 20h59).
   > ⚠️ **Fuso:** o container do n8n roda em **UTC**. `new Date().getHours()` daria 9-21 UTC = **6h-18h no Brasil**. O código força `America/Sao_Paulo` via `toLocaleString`. Não "simplificar" isso.
 - **Espera aleatória antes de cada envio** (node `Espera humana`). O número exato não importa; a **ausência de padrão** importa.
 - **Teto por rodada = bound de sanidade**, não é mais o anti-duplicata (ver abaixo).
@@ -43,8 +45,8 @@ Filtrar aprovados (janela) → Loop Over Items → [done] fim
 
 > Bônus: o payload agora sai da linha **recém-lida**, não do retrato do topo. Legenda editada depois da aprovação sai correta. E sumiu o `$('Filtrar aprovados').item`, que atravessava a fronteira do `splitInBatches` — o ponto mais frágil de resolução de item do n8n.
 
-### ⚠️ A cadência mora no `Config`, e só lá (16/07)
-`cron_min` · `espera_min_s` · `espera_var_s`. O node `Espera humana` **e** o teto do `Filtrar aprovados` leem os **mesmos** três campos, e o teto **se recalcula sozinho**:
+### ⚠️ A cadência e a janela moram no `Config`, e só lá (16/07)
+`cron_min` · `espera_min_s` · `espera_var_s` · `janela_ini` · `janela_fim`. O node `Espera humana` **e** o teto do `Filtrar aprovados` leem os **mesmos** três primeiros campos, e o teto **se recalcula sozinho**:
 ```
 teto = floor( (cron_min * 60 * 0.75) / (espera_min_s + espera_var_s + 15) )
 ```
