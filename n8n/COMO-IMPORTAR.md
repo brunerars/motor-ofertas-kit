@@ -38,8 +38,17 @@ Filtrar aprovados (janela) → Loop Over Items → [done] fim
 
 **O conserto, dentro do loop:**
 1. **`Baserow: reler a linha`** — no instante do envio, pergunta o status **de agora**. Mata o retrato velho.
-2. **`Ainda dá pra disparar?`** — já `Disparado` (outro chegou antes) ou `Descartado` (mudou de ideia no meio da rodada) → pula calado e segue pra próxima.
+2. **`Ainda dá pra disparar?`** — pula `Disparado`/`Descartado` **e qualquer linha com `posted_at`** (ver abaixo).
 3. **`Baserow: marcar Disparado` ANTES do envio** — o cadeado. Quem chegar depois relê, vê `Disparado`, pula.
+
+### ⚠️ O cadeado tem DUAS chaves, e a segunda é a que importa
+Até 16/07 o gate trancava **só pelo `status`** — e `status` é justamente o campo que **todo mundo mexe**: o Bruno na UI do Baserow, o Caio na borda, um PATCH de teste. Devolver uma linha **já postada** pra `Aprovado` fazia o cron **repostar no grupo real**, porque `Aprovado` é destino legítimo e o gate não olhava mais nada.
+
+**Aconteceu:** as rows 28 e 29 ficaram `Aprovado` carregando `posted_at` + `wa_message_id` das 23h, prontas pra sair de novo às 9h. Quem achou foi a sessão da borda, pela porta dos fundos.
+
+A segunda chave é o **`posted_at`**: quem escreve esse campo é o próprio cron, no instante do envio, e mais ninguém. **Linha com `posted_at` já saiu — não importa o que o `status` diga.** É o mesmo guard que a borda aplica do lado dela (`409 ja_postada`).
+
+> **Repostar de propósito agora exige limpar o `posted_at` na mão, no Baserow.** O atrito é a feature: vira decisão, não flip distraído.
 
 > **A troca que foi feita de propósito:** se o WAHA falhar, a peça fica `Disparado` sem ter saído. É silencioso, mas **detectável** (`status=Disparado` + `wa_message_id` vazio) e o pior caso é uma peça não postada. O oposto — duplicar no grupo — custa reputação com os clientes e risco de ban no WhatsApp. **Perder é mais barato que duplicar.**
 

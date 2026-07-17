@@ -320,6 +320,16 @@
                 "operation": "notEmpty",
                 "singleValue": true
               }
+            },
+            {
+              "id": "g5",
+              "leftValue": "={{ $json.posted_at }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
             }
           ],
           "combinator": "and"
@@ -335,7 +345,7 @@
         940,
         -40
       ],
-      "notes": "FALSO nao e erro: volta pro Loop e pega a proxima peca. Ja Disparado (outra execucao chegou antes) ou Descartado (Bruno mudou de ideia durante a rodada) = pular calado."
+      "notes": "O CADEADO TEM DUAS CHAVES, e a segunda e a que importa. status: pula Disparado/Descartado. posted_at: pula QUALQUER linha que ja saiu no grupo, nao importa o status. Por que a segunda existe: `status` e o campo que todo mundo mexe (Bruno na UI, Caio na borda). Devolver uma linha postada pra `Aprovado` fazia o cron repostar no grupo real - `Aprovado` e destino legitimo e o gate nao olhava mais nada. Foi achado em 16/07 com as rows 28/29 ja agendadas pra sair 2x. `posted_at` so o cron escreve, entao ele nao mente. Repostar de proposito agora exige limpar o posted_at na mao no Baserow - o atrito e a feature. FALSO nao e erro: volta pro Loop e pega a proxima peca."
     },
     {
       "parameters": {
