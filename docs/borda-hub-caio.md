@@ -114,10 +114,16 @@ Na Fase 1 do hub, `borda/` migra pra `kit/templates/borda/` com os mesmos `__PLA
 
 ## O risco que não é de código
 
-A conversa com o Caio pra levantar o sistema-template **está desmarcada desde 24/06** enquanto a
-tech correu sozinha. Esta borda é o que o **Bruno acha** que o Caio quer. O CRUD era barato o
-bastante pra compensar construir e mostrar em vez de perguntar — **mas mostrar antes de construir a
-v2**, que é onde o dinheiro começa a queimar.
+> **Corrigido em 16/07 (Bruno):** ~~a conversa com o Caio está desmarcada desde 24/06~~ — **ela já
+> aconteceu e virou tudo isto**. O levantamento não está parado: o form do garimpo, o modelo de
+> preço (R$ fechado, frete e impostos por conta da NSC), o formato da legenda e a semântica do Tam
+> saíram todos dela. A borda **não** é tech correndo sozinha na frente do cliente.
+
+O que continua valendo, em escala menor: o **layout** da borda é o que o Bruno acha que o Caio quer.
+O que a loja faz está levantado; o que a *tela* deve mostrar, não.
 
 **O teste que importa:** o Caio abre no celular, aprova uma peça sozinho e **não pergunta nada**.
 Se ele perguntar, a borda falhou como produto mesmo com o código certo.
+
+> O Caio **já está no grupo e acompanhando**: às 23:36 de 16/07 ele reagiu ao teste do disparo com
+> *"testando 3 em 3 min?"*. O canal pra validar a borda está aberto — é mandar o link.

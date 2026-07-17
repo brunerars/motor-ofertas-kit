@@ -22,10 +22,11 @@ Filtrar aprovados (janela) → Loop Over Items → [done] fim
                                                         → Baserow: gravar message id
                                                         → volta pro Loop
 ```
-- **Janela 9h-21h** (`America/Sao_Paulo`), nos campos `janela_ini`/`janela_fim` do `Config`. Fora dela a fila **espera**, ninguém perde o lugar. Post de madrugada não é lido e ainda cheira a robô.
+- **Janela 9h-24h** (`America/Sao_Paulo`), nos campos `janela_ini`/`janela_fim` do `Config`. Fora dela a fila **espera**, ninguém perde o lugar. Post de madrugada não é lido e ainda cheira a robô.
   > 🕘 **"O Code node não está identificando o `Aprovado`" quase sempre é a janela.** O `return []` da janela é a **primeira coisa** que o node faz — fora do horário ele devolve vazio **sem sequer olhar o status**. Antes de caçar bug no filtro, confira a hora.
-  > **Pra testar fora do horário:** `janela_ini=0` / `janela_fim=24` no `Config` e **fechar depois**. Fim é **exclusivo** (9 e 21 = das 9h às 20h59).
-  > ⚠️ **Fuso:** o container do n8n roda em **UTC**. `new Date().getHours()` daria 9-21 UTC = **6h-18h no Brasil**. O código força `America/Sao_Paulo` via `toLocaleString`. Não "simplificar" isso.
+  > **A janela é 9-24 por decisão do Bruno (16/07)**, não 9-21. Fim é **exclusivo**: 9 e 24 = das **9h às 23h59** (meia-noite não sai, porque hora 0 < 9).
+  > **Pra testar de madrugada:** `janela_ini=0` no `Config` e **fechar depois**.
+  > ⚠️ **Fuso:** o container do n8n roda em **UTC**. `new Date().getHours()` daria 9-24 UTC = **6h-21h no Brasil**. O código força `America/Sao_Paulo` via `toLocaleString`. Não "simplificar" isso.
 - **Espera aleatória antes de cada envio** (node `Espera humana`). O número exato não importa; a **ausência de padrão** importa.
 - **Teto por rodada = bound de sanidade**, não é mais o anti-duplicata (ver abaixo).
 
@@ -67,7 +68,7 @@ teto = floor( (cron_min * 60 * 0.75) / (espera_min_s + espera_var_s + 15) )
 | 180-225s (3 a 3min45) | 5 | 20min |
 | 240-360s (4 a 6min, "5 em 5") | 3 | 19min |
 
-> Teto baixo **não** trava a fila: o que sobra sai no tick seguinte. Com janela de 12h e cron de 30min são 24 rodadas por dia — mesmo com teto 3 dá 72 peças/dia, muito acima do volume real.
+> Teto baixo **não** trava a fila: o que sobra sai no tick seguinte. Com a janela de 15h (9-24) e cron de 30min são 30 rodadas por dia — mesmo com teto 3 dá 90 peças/dia, muito acima do volume real.
 > **Mudou o intervalo no node `Agenda`? Mude o `cron_min` junto**, senão a conta do teto usa o número errado.
 
 > **A proteção principal não é técnica:** é grupo **opt-in**. Ninguém recebe mensagem sem ter pedido. É isso que separa "loja" de "spam" aos olhos do WhatsApp.
