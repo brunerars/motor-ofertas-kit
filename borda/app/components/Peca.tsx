@@ -94,62 +94,70 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
 
   return (
     <article className="peca">
-      {oferta.fotoUrl && !fotoQuebrou && (
-        // <img> e não next/image de propósito: é a MESMA URL pública do Baserow que
-        // o WAHA busca pra postar. Se o que o Caio vê aqui passar por um otimizador,
-        // ele deixa de ser o que sai no grupo — e o ponto do preview é ser idêntico.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          className="peca-foto"
-          src={oferta.fotoUrl}
-          alt={oferta.titulo}
-          loading="lazy"
-          onError={() => setFotoQuebrou(true)}
-        />
-      )}
-      {!oferta.fotoUrl && (
-        // Rascunho cru: o /agenda ainda não buscou a foto. Sem este bloco o card
-        // começava direto no texto e parecia meio quebrado — e a peça só está aqui
-        // porque o Caio precisa consertar algo nela, então parecer quebrada é o
-        // pior sinal possível. Diz que a foto vem depois e de quem ela depende.
-        <div className="peca-foto peca-foto-vazia">
-          <span>A foto vem quando o Bruno preparar a peça. Dá pra arrumar o resto agora.</span>
+      <div className="peca-cab">
+        {oferta.fotoUrl && !fotoQuebrou && (
+          // <img> e não next/image de propósito: é a MESMA URL pública do Baserow que
+          // o WAHA busca pra postar. Se o que o Caio vê aqui passar por um otimizador,
+          // ele deixa de ser o que sai no grupo — e o ponto do preview é ser idêntico.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            className="peca-foto"
+            src={oferta.fotoUrl}
+            alt={oferta.titulo}
+            loading="lazy"
+            onError={() => setFotoQuebrou(true)}
+          />
+        )}
+        {/* Nos dois estados abaixo a miniatura só ROTULA; quem explica é o banner no
+            corpo. Uma caixa de 72px não comporta frase, e a frase é o que importa. */}
+        {!oferta.fotoUrl && <div className="peca-foto peca-foto-vazia">sem foto</div>}
+        {fotoQuebrou && <div className="peca-foto peca-foto-erro">não abriu</div>}
+
+        <div className="peca-cab-texto">
+          <div className="peca-topo">
+            <h2 className="peca-titulo">{oferta.titulo}</h2>
+            {oferta.precoBrl !== null && <span className="peca-preco">{formatarBrl(oferta.precoBrl)}</span>}
+          </div>
+          <p className="peca-meta">
+            Tam: {oferta.tags.trim() || 'único'}
+            {/* `txt()` devolve '' e nunca null → sem esta guarda vira <a href="">, que
+                recarrega a própria página e parece que o link do Mercari quebrou. */}
+            {oferta.sourceUrl && (
+              <>
+                {' · '}
+                <a href={oferta.sourceUrl} target="_blank" rel="noreferrer">
+                  ver no Mercari
+                </a>
+              </>
+            )}
+          </p>
         </div>
-      )}
-      {fotoQuebrou && (
-        // Foto quebrada não é detalhe estético: é a MESMA URL que o WAHA busca pra
-        // postar. Se ela não abre, o disparo no grupo também falha. Um retângulo
-        // cinza mudo deixaria o Caio decidindo às cegas — e ele julga a peça pela foto.
-        //
-        // NÃO desabilita o Aprovar: o `onError` também dispara com internet ruim, e
-        // travar o botão por causa do 4G do Caio seria alarme falso — o tipo de coisa
-        // que ensina a ignorar aviso. Diz o que houve e deixa ele decidir.
-        <div className="peca-foto peca-foto-erro">
-          <span>
-            A foto não abriu aqui. Pode ser a sua internet — tenta recarregar. Se continuar assim, chama o
-            Bruno antes de aprovar.
-          </span>
-        </div>
-      )}
+      </div>
 
       <div className="peca-corpo">
-        <div className="peca-topo">
-          <h2 className="peca-titulo">{oferta.titulo}</h2>
-          {oferta.precoBrl !== null && <span className="peca-preco">{formatarBrl(oferta.precoBrl)}</span>}
-        </div>
-        <p className="peca-meta">
-          Tam: {oferta.tags.trim() || 'único'}
-          {/* `txt()` devolve '' e nunca null → sem esta guarda vira <a href="">, que
-              recarrega a própria página e parece que o link do Mercari quebrou. */}
-          {oferta.sourceUrl && (
-            <>
-              {' · '}
-              <a href={oferta.sourceUrl} target="_blank" rel="noreferrer">
-                ver no Mercari
-              </a>
-            </>
-          )}
-        </p>
+        {!oferta.fotoUrl && (
+          // Rascunho cru: o /agenda ainda não buscou a foto. Sem este aviso o card
+          // parece quebrado — e a peça só está aqui porque o Caio precisa mexer nela,
+          // então parecer quebrada é o pior sinal possível. Diz que a foto vem depois
+          // e de quem ela depende. `-info` e não `-warn`: não há nada errado aqui,
+          // só falta uma etapa; pintar de alerta ensina a ignorar alerta de verdade.
+          <div className="banner banner-info">
+            A foto vem quando o Bruno preparar a peça. Dá pra arrumar o resto agora.
+          </div>
+        )}
+        {fotoQuebrou && (
+          // Foto quebrada não é detalhe estético: é a MESMA URL que o WAHA busca pra
+          // postar. Se ela não abre, o disparo no grupo também falha. Uma miniatura
+          // muda deixaria o Caio decidindo às cegas — e ele julga a peça pela foto.
+          //
+          // NÃO desabilita o Aprovar: o `onError` também dispara com internet ruim, e
+          // travar o botão por causa do 4G do Caio seria alarme falso — o tipo de coisa
+          // que ensina a ignorar aviso. Diz o que houve e deixa ele decidir.
+          <div className="banner banner-warn" role="alert">
+            A foto não abriu aqui. Pode ser a sua internet — tenta recarregar. Se continuar assim, chama o
+            Bruno antes de aprovar.
+          </div>
+        )}
 
         {modo === 'ver' && (
           <>

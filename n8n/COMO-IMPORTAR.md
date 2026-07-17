@@ -151,9 +151,11 @@ Um `{}` sem secret **tem** que dar erro de `unauthorized`. Se der `200` vazio, o
 Workflow: `nsc-lead-inbound.json`. Fecha a ponta que faltava: o cliente clica no `🏁 Quero essa peça` da oferta, manda `Estou interessado! (mXXXX)`, e isso **vira dado** em vez de morrer no seu 1:1.
 
 ## O que ele faz
-`Webhook (WAHA inbound)` → `Config` → `Filtrar + montar lead` (descarta grupo/próprio envio/mensagem sem id) → `Baserow: achar a peça` (GET na 556: dá o `row_id` pro link e o `title_pt` pro aviso) → `Baserow: leads desta peça` (GET na 557: dedup + ordinal) → `Dedup + ordinal` (monta a linha) → `Baserow: gravar lead` (POST na `LEADS`) → `Montar aviso` → `WAHA: avisar Bruno` (`/api/sendText`).
+`Webhook (WAHA inbound)` → `Config` → `Filtrar + montar lead` (descarta grupo/próprio envio/mensagem sem id) → `WAHA: resolver o numero` (LID → telefone) → `Baserow: achar a peça` (GET na 556: dá o `row_id` pro link e o `title_pt` pro aviso) → `Montar a linha` → `Baserow: gravar lead` (POST na `LEADS`) → `Espera (anti-corrida)` → `Baserow: leads desta peça` (GET na 557) → `Reconciliar + ordinal` → `Sou a linha que vale?` → `Montar aviso` → `WAHA: avisar Bruno` (`/api/sendText`); o ramo perdedor vai pra `Baserow: apagar minha linha`.
 
 > **A peça é buscada ANTES de gravar** porque o campo `peca` é um link de verdade e link quer `row_id`, não `mercari_id`. O mesmo GET já traz o `title_pt` do aviso — dois coelhos.
+
+> ⚠️ **Este desenho já mordeu uma vez (17/07).** O nó `WAHA: resolver o numero` foi inserido no meio da cadeia pelo conserto do LID, e o `Baserow: achar a peça`, que lia `{{ $json.mercari_id }}`, passou a ler o **contato do WhatsApp** — que não tem `mercari_id`. Filtro vazio **não devolve zero linhas**: o Baserow ignora o filtro e devolve a tabela inteira, e o `results[0]` carimbava todo lead na primeira peça da 556. Ninguém viu porque o link ficava plausível. Por isso os dois nós que filtram por `mercari_id` usam **referência nomeada** (`$('Filtrar + montar lead').item.json.mercari_id`), nunca `$json`, e o `Montar a linha` **casa o `mercari_id` explicitamente** em vez de confiar no `results[0]`. Ao mexer na ordem dos nós, confira essas duas coisas.
 
 **Não responde o cliente.** Quem atende é você; o bot só registra e te cutuca.
 

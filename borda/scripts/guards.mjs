@@ -54,6 +54,33 @@ await checa('recusa Vendido', 101, { status: 'Vendido' }, 403, 'status_nao_permi
 console.log('\n=== sem preço não há legenda ===')
 await checa('recusa aprovar a peça sem preço', 102, { status: 'Aprovado' }, 409, 'incompleta')
 
+// 🔴 O bug de 17/07: o `datetime-local` manda hora de PAREDE, sem fuso. `new Date()`
+// numa string dessas usa o fuso do RUNTIME (UTC na Vercel), então o 14:30 do Caio
+// virava 14:30Z = 11:30 no Brasil e a peça saía 3h CEDO. Silencioso: o Baserow
+// aceitava, a tela relia em UTC e tudo parecia coerente consigo mesmo.
+// Um assert de fuso não sobrevive em revisão de código — sobrevive aqui.
+console.log('\n=== agendar grava a hora que o Caio QUIS (fuso da loja, não do servidor) ===')
+async function checaAgenda(nome, parede, esperado) {
+  const res = await fetch(`${BASE}/api/ofertas/101`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', cookie },
+    body: JSON.stringify({ scheduled_at: parede }),
+  })
+  const j = await res.json().catch(() => ({}))
+  const gravado = j?.oferta?.scheduledAt ?? null
+  const ok = res.status === 200 && gravado === esperado
+  if (!ok) falhas++
+  console.log(`  ${ok ? '✓' : '✗'} ${nome}`, ok ? '' : `→ gravou ${gravado}, esperava ${esperado}`)
+}
+await checaAgenda('14:30 em SP vira 17:30Z (não 14:30Z)', '2026-07-17T14:30', '2026-07-17T17:30:00.000Z')
+await checaAgenda('23:30 em SP vira 02:30Z do dia SEGUINTE', '2026-07-17T23:30', '2026-07-18T02:30:00.000Z')
+await checaAgenda('janeiro segue -03 (Brasil sem horário de verão desde 2019)', '2026-01-15T14:30', '2026-01-15T17:30:00.000Z')
+await checa('data impossível não passa', 101, { scheduled_at: '2026-02-31T10:00' }, 400, 'data_invalida')
+await checa('lixo não passa', 101, { scheduled_at: 'pizza' }, 400, 'data_invalida')
+// Data sem hora não vem do <input type="datetime-local">; se vier, é chamada torta.
+// Antes virava meia-noite UTC calado — a mesma família de bug.
+await checa('data sem hora não passa', 101, { scheduled_at: '2026-07-17' }, 400, 'data_invalida')
+
 console.log('\n=== allowlist ===')
 // price_jpy é a REFERÊNCIA DE CUSTO do Bruno: vazar/escrever isso é mexer na margem.
 // Fica fora da allowlist, então some antes de chegar no Baserow e o patch fica vazio.

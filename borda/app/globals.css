@@ -84,33 +84,50 @@ nav.abas a[aria-current="page"]{ color:var(--ink); border-bottom-color:var(--red
 nav.abas .badge{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:var(--radius-pill);
   background:var(--red); color:var(--white); font-size:.68rem; line-height:1.5; }
 
-/* --- Card de peça --- */
+/* --- Card de peça: formato LISTA (17/07) ---
+   A foto era `width:100%; aspect-ratio:1/1` — um quadrado full-bleed de 390×390
+   no celular, ~750px por peça. O Caio rolava a tela inteira pra ver UMA peça, e
+   a foto (que ele já viu no Mercari) empurrava pra fora o que ele veio conferir.
+   Agora é miniatura de 72px + cabeçalho em linha: ~340px por peça.
+
+   🔴 A LEGENDA CONTINUA À VISTA, de propósito. Ela é o gate de aprovação: é o
+   texto exato que sai no grupo. Escondê-la atrás de um toque transformaria
+   "conferir e aprovar" em "clicar Aprovar" — o gate viraria enfeite. O que
+   encolheu foi a foto, que é o que ele MENOS precisa reler aqui. */
 .pecas{ display:flex; flex-direction:column; gap:16px; }
 .peca{ border:1.5px solid var(--hair); border-radius:var(--radius-md); background:var(--card);
   overflow:hidden; transition:border-color var(--fast); }
 .peca:focus-within{ border-color:var(--ink); }
-.peca-foto{ width:100%; aspect-ratio:1/1; object-fit:cover; background:var(--whitesmoke);
-  border-bottom:1.5px solid var(--hair); }
-/* Foto que não abriu. Cinza mudo faz o Caio decidir às cegas; isto fala. */
-.peca-foto-erro{ display:flex; align-items:center; justify-content:center; text-align:center;
-  padding:24px; background:var(--amber-bg); color:var(--amber);
-  font-size:.86rem; line-height:1.5; font-weight:600; }
-/* Rascunho cru: a foto ainda não existe (o /agenda é quem busca). Tom NEUTRO de
-   propósito, diferente do âmbar do erro acima: aqui não há nada errado, só falta
-   uma etapa. Pintar de alerta ensinaria o Caio a ignorar alerta de verdade.
-   Sem aspect-ratio 1/1: reservar um quadrado inteiro pra um aviso de uma linha
-   empurra a peça toda pra fora da tela do celular. */
-.peca-foto-vazia{ display:flex; align-items:center; justify-content:center; text-align:center;
-  aspect-ratio:auto; padding:20px; background:var(--whitesmoke); color:var(--mid-grey);
-  font-size:.82rem; line-height:1.5; }
+.peca-cab{ display:flex; align-items:flex-start; gap:12px; padding:16px 16px 0; }
+/* min-width:0 é o que impede um título comprido de esticar o flex e estourar a
+   largura da tela (o gate do shot.mjs reprova a página que rola na horizontal). */
+.peca-cab-texto{ flex:1 1 auto; min-width:0; }
+.peca-foto{ flex:0 0 72px; width:72px; height:72px; object-fit:cover;
+  border-radius:var(--radius-sm); border:1.5px solid var(--hair);
+  background:var(--whitesmoke); }
+/* Nos dois estados sem foto a caixa tem 72px: NÃO cabe frase nenhuma. O texto que
+   explica o que houve desceu pro corpo como banner (`.banner-warn` / `-info`);
+   aqui fica só o rótulo curto. A frase não sumiu, mudou de lugar. */
+.peca-foto-vazia, .peca-foto-erro{ display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:4px; font-size:.58rem; font-weight:700; line-height:1.25;
+  text-transform:uppercase; letter-spacing:.04em; }
+/* Foto que não abriu = a MESMA URL que o WAHA busca pra postar. Âmbar. */
+.peca-foto-erro{ background:var(--amber-bg); color:var(--amber); border-color:var(--amber); }
+/* Rascunho cru: o /agenda ainda não buscou a foto. Tom NEUTRO de propósito,
+   diferente do âmbar acima: aqui não há nada errado, só falta uma etapa. Pintar
+   de alerta ensinaria o Caio a ignorar alerta de verdade. Tracejado = "vem depois". */
+.peca-foto-vazia{ background:var(--whitesmoke); color:var(--mid-grey);
+  border-style:dashed; border-color:var(--light-grey); }
 /* "2 querem essa" — o gatilho pra conferir o Mercari. Acento, não cinza: dentro de
    uma .peca-meta cinza ele desapareceria, e é justamente o que muda o que o Caio
    faz. --accent-text vira com o tema (o --red fixo some no escuro). */
 .querem{ color:var(--accent-text); }
-.peca-corpo{ padding:16px; }
+/* Sem padding-top: quem espaça é a margem do 1º filho (legenda 14px, banner 16px,
+   label 14px) — somar os dois abriria um buraco no meio do card. */
+.peca-corpo{ padding:0 16px 16px; }
 .peca-topo{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
 .peca-titulo{ font-family:"Anton",sans-serif; font-size:1.15rem; text-transform:uppercase;
-  letter-spacing:.01em; line-height:1.15; }
+  letter-spacing:.01em; line-height:1.15; min-width:0; overflow-wrap:anywhere; }
 .peca-preco{ font-family:"Anton",sans-serif; font-size:1.25rem; color:var(--accent-text);
   white-space:nowrap; }
 .peca-meta{ margin-top:6px; font-size:.78rem; color:var(--mid-grey);

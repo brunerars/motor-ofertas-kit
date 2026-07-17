@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { atualizarOferta, buscarOferta, type Patch, type Status } from '@/lib/baserow'
 import { podeAprovar } from '@/lib/caption'
+import { isoDeHoraLocal } from '@/lib/hora'
 
 export const runtime = 'nodejs'
 
@@ -69,11 +70,15 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
     if (body.scheduled_at === null || body.scheduled_at === '') {
       patch.scheduled_at = null
     } else if (typeof body.scheduled_at === 'string') {
-      const d = new Date(body.scheduled_at)
-      if (Number.isNaN(d.getTime())) {
+      // 🔴 O `datetime-local` manda HORA DE PAREDE, sem fuso ("2026-07-17T14:30").
+      // `new Date()` numa string dessas usa o fuso do RUNTIME — UTC na Vercel — e
+      // gravava o 14:30 do Caio como 14:30Z = 11:30 aqui: a peça saía 3h cedo.
+      // `isoDeHoraLocal` lê a parede no fuso da LOJA, não no do servidor.
+      const iso = isoDeHoraLocal(body.scheduled_at)
+      if (iso === null) {
         return NextResponse.json({ erro: 'data_invalida' }, { status: 400 })
       }
-      patch.scheduled_at = d.toISOString()
+      patch.scheduled_at = iso
     }
   }
 
