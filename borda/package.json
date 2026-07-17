@@ -1,0 +1,29 @@
+{
+  "name": "nsc-borda",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "smoke": "node --env-file=.env.local scripts/smoke-baserow.mjs",
+    "mock": "node scripts/mock-baserow.mjs 4001",
+    "dev:mock": "cross-env BASEROW_API_URL=http://localhost:4001 next dev -p 3989",
+    "guards": "node --env-file=.env.local scripts/guards.mjs http://localhost:3989",
+    "shot": "node --env-file=.env.local scripts/shot.mjs http://localhost:3000 ./shots"
+  },
+  "dependencies": {
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "@types/node": "^22.10.7",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "typescript": "^5.7.3"
+  }
+}
