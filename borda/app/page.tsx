@@ -1,10 +1,15 @@
 import { listarOfertas } from '@/lib/baserow'
+import { getLoja } from '@/lib/loja'
 import { Rodape, Topo } from './components/Chrome'
 import { FilaLista } from './components/FilaLista'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Fila() {
+  // O número do WhatsApp da loja vem daqui pro CTA do modelo de legenda. Server-only
+  // (getLoja lê env) → desce por prop até o Peca, que é client. Um lugar só resolve
+  // a loja; a v2 troca o env por lookup na LOJAS sem mexer no call-site.
+  const { waNumero } = await getLoja()
 
   let ofertas
   try {
@@ -42,7 +47,7 @@ export default async function Fila() {
         <strong>agendar</strong> escolhe a hora.
       </p>
 
-      <FilaLista ofertas={fila} />
+      <FilaLista ofertas={fila} waNumero={waNumero} />
 
       <Rodape />
     </main>

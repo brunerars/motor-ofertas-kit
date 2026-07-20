@@ -221,6 +221,13 @@ checar('a foto entrou no card', await js(`!!${cardDe(ALVO)}?.querySelector('img.
 // cumpriu o papel — continuar na tela seria ruído no card mais denso do app.
 console.log('  escrever a legenda no Editar →', await clicarNoCard(ALVO, 'Editar'))
 await sleep(1000)
+// 🔴 O "sempre no jeito" (20/07): o Editar já abre com a legenda no modelo —
+// emoji, negrito, preço, Tam e o CTA do WhatsApp prontos dos campos que o Caio já
+// preencheu. Ele NÃO precisa lembrar de digitar o 🏁 nem o formato.
+const modelo = await js(`${cardDe(ALVO)}.querySelector('textarea')?.value ?? ''`)
+checar('o Editar já vem com o CTA do WhatsApp pronto', /🏁 Quero essa peça: https:\/\/wa\.me\/\d+/.test(modelo))
+checar('já vem com o preço e o Tam dos campos', /R\$\s?620,00/.test(modelo) && /Tam: Ajustável/.test(modelo))
+checar('e o título de verdade (não é placeholder, #110 tem título em PT)', /\*Boné Ferrari Schumacher 1997\*/.test(modelo))
 await js(`(()=>{
   const ta=${cardDe(ALVO)}.querySelector('textarea');
   const set=Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set;

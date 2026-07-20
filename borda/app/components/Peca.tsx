@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Oferta, Status } from '@/lib/baserow'
-import { formatarBrl, lerPrecoBrl, podeAprovar, precoDivergente, tituloDivergente } from '@/lib/caption'
+import { formatarBrl, lerPrecoBrl, modeloLegenda, podeAprovar, precoDivergente, tituloDivergente } from '@/lib/caption'
 import type { Feito } from './FilaLista'
 import { Legenda } from './Legenda'
 
@@ -14,7 +14,15 @@ function paraCampo(v: number | null): string {
   return v === null ? '' : String(v).replace('.', ',')
 }
 
-export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) => void }) {
+export function Peca({
+  oferta,
+  aoFazer,
+  waNumero,
+}: {
+  oferta: Oferta
+  aoFazer: (f: Feito) => void
+  waNumero: string
+}) {
   const router = useRouter()
   const [modo, setModo] = useState<Modo>('ver')
   const [titulo, setTitulo] = useState(oferta.titulo)
@@ -70,6 +78,37 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
   }
 
   const mudarStatus = (status: Status) => patch({ status }, { titulo: oferta.titulo, status })
+
+  /**
+   * A legenda no formato padrão, dos campos ATUAIS (o Caio pode ter mexido no
+   * título/preço/Tam antes de gerar). Emoji, negrito, espaçamento e o CTA do
+   * WhatsApp vêm prontos — ele só troca o que é dele. Não traduz nada.
+   */
+  function montarModelo() {
+    const lido = lerPrecoBrl(preco)
+    setCaption(
+      modeloLegenda(
+        {
+          titulo: titulo.trim(),
+          mercariId: oferta.mercariId,
+          precoBrl: lido.ok ? lido.valor : oferta.precoBrl,
+          tags: tags.trim(),
+        },
+        waNumero,
+      ),
+    )
+  }
+
+  /**
+   * Entra no Editar já com a moldura montada quando ainda não há legenda — é o
+   * "sempre no jeito" que o Bruno pediu: o Caio abre e o padrão está lá, só faltando
+   * o que é dele. Legenda existente NÃO é sobrescrita (o botão "Montar no modelo"
+   * faz isso de propósito).
+   */
+  function editar() {
+    if (!caption.trim()) montarModelo()
+    setModo('editando')
+  }
 
   /**
    * Busca os dados do anúncio (foto + japonês). É a METADE MECÂNICA do que o
@@ -285,7 +324,7 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
               >
                 Aprovar
               </button>
-              <button className="btn" disabled={ocupado} onClick={() => setModo('editando')}>
+              <button className="btn" disabled={ocupado} onClick={editar}>
                 Editar
               </button>
               <button
@@ -323,12 +362,6 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
               onChange={(e) => setPreco(e.target.value)}
               placeholder="750,00"
             />
-            <label htmlFor={`cap-${oferta.id}`}>Legenda (sai assim no grupo)</label>
-            <textarea
-              id={`cap-${oferta.id}`}
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
-            />
             <label htmlFor={`tam-${oferta.id}`}>Tam / observação</label>
             <input
               id={`tam-${oferta.id}`}
@@ -336,6 +369,21 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               placeholder="único"
+            />
+
+            <div className="legenda-topo">
+              <label htmlFor={`cap-${oferta.id}`}>Legenda (sai assim no grupo)</label>
+              {/* Regenera a moldura dos campos ATUAIS. Fica aqui, colado na legenda,
+                  porque é sobre ela: o Caio mexeu no título/preço/Tam acima e quer
+                  o padrão de novo, sem apagar e digitar 🏁 na mão. */}
+              <button type="button" className="btn btn-mini" disabled={ocupado} onClick={montarModelo}>
+                Montar no modelo
+              </button>
+            </div>
+            <textarea
+              id={`cap-${oferta.id}`}
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
             />
 
             <Legenda caption={caption} />

@@ -108,7 +108,61 @@ export function precoDivergente(o: { precoBrl: number | null; caption: string })
 export function podeAprovar(o: { precoBrl: number | null; caption: string }): string | null {
   if (o.precoBrl === null) return 'Falta o preço — dá pra pôr aqui mesmo, no Editar.'
   if (!o.caption.trim()) return 'Falta a legenda — dá pra escrever no Editar, ou esperar o Bruno.'
+  // O modelo deixou o título por preencher e o Caio aprovou por cima. Sem esta
+  // trava, o grupo receberia "*✏️ traduz o título aqui*" — o andaime cru. Roda no
+  // servidor também (route.ts chama isto), não só no botão.
+  if (o.caption.includes(PLACEHOLDER_TITULO)) {
+    return 'O título ainda está no modelo — troca "traduz o título aqui" pelo nome da peça.'
+  }
   return null
+}
+
+/**
+ * O texto que marca o buraco do título no modelo. Fica NUMA constante porque dois
+ * lugares dependem dele casar exato: o `modeloLegenda` que o escreve e o
+ * `podeAprovar` que barra a aprovação enquanto ele estiver lá.
+ */
+export const PLACEHOLDER_TITULO = 'traduz o título aqui'
+
+/**
+ * Monta a legenda no FORMATO PADRÃO, já com emoji, negrito, espaçamento e o CTA
+ * do WhatsApp — o que o Caio não deveria ter que lembrar de digitar toda vez.
+ *
+ * 🔴 Isto NÃO é "a borda montar legenda" no sentido que a v1 proibia. Aquilo era
+ * IA — traduzir, redigir, decidir. Isto é ANDAIME MECÂNICO: costura os campos que
+ * o Caio já preencheu (título, Tam, preço, id) na moldura fixa. Nenhuma decisão,
+ * nenhuma tradução. Mesma linha da meia-enriquecida: mecânico sim, julgamento não.
+ *
+ * O ÚNICO buraco que sobra é o título quando ele ainda é o id/vazio (o Caio traduz
+ * do bloco japonês). Preço, Tam e CTA saem prontos dos dados que já existem.
+ *
+ * Formato é o mesmo do `/agenda` (CLAUDE.md, "Modelo de preço e legenda"): se os
+ * dois divergirem, a legenda muda conforme quem a montou. Manter em sincronia.
+ */
+export function modeloLegenda(
+  o: { titulo: string; mercariId: string; precoBrl: number | null; tags: string },
+  waNumero: string,
+): string {
+  const t = o.titulo.trim()
+  // title_pt nasce como o próprio id quando o Caio não põe título no form (o
+  // webhook faz `title || id`). Nesse caso não há título de verdade — vira buraco.
+  const titulo = !t || t === o.mercariId ? `✏️ ${PLACEHOLDER_TITULO}` : t
+
+  const tam = o.tags.trim() || 'único'
+
+  // Espaço NORMAL, não o nbsp que o toLocaleString com currency mete — a legenda
+  // do /agenda usa espaço normal, e paridade importa (precosNaLegenda ainda pega,
+  // mas o texto tem que bater). Preço ausente é buraco, mas quem barra a aprovação
+  // é o `precoBrl === null` do podeAprovar, não este texto.
+  const preco =
+    o.precoBrl !== null
+      ? `R$ ${o.precoBrl.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+      : 'R$ ✏️ põe o preço no campo Valor'
+
+  const cta = `🏁 Quero essa peça: https://wa.me/${waNumero}?text=Estou%20interessado!%20(${o.mercariId})`
+
+  // Duas linhas em branco separando título+Tam / preço / CTA — o formato de 16/07.
+  return `*${titulo}*\nTam: ${tam}\n\n${preco}\n\n${cta}`
 }
 
 /**

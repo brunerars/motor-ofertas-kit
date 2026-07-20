@@ -175,6 +175,15 @@ button{ font-family:"Archivo",sans-serif; }
 .btn-ghost{ border-style:dashed; color:var(--mid-grey); }
 .btn-ghost:hover:not(:disabled){ color:var(--danger-text); border-color:var(--red); }
 .btn-block{ width:100%; }
+/* Botão secundário pequeno, pra ação que acompanha um campo ("Montar no modelo"
+   ao lado do label da legenda). Não compete com o .btn-primary. */
+.btn-mini{ padding:6px 12px; font-size:.68rem; }
+
+/* Label + ação na mesma linha, o label empurrando o botão pra direita. O label
+   herda a margem de topo de 14px; o botão alinha na base dele. */
+.legenda-topo{ display:flex; align-items:flex-end; justify-content:space-between;
+  gap:10px; flex-wrap:wrap; }
+.legenda-topo label{ margin-bottom:0; }
 
 /* --- O texto do anúncio, em japonês (20/07) ---
    Mora dentro de um `.banner-info`, então a cor já está resolvida e conferida

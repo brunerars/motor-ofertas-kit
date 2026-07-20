@@ -25,6 +25,13 @@ export type Loja = {
   moedaOrigem: string
   /** onde o Caio manda os links. Hoje é uma página à parte, no ar desde 15/07. */
   garimpoUrl: string | null
+  /**
+   * O WhatsApp da loja, só dígitos (`5511914563609`). É o número do `wa.me` no CTA
+   * da legenda — o "🏁 Quero essa peça". PÚBLICO (está na LP e no grupo), não é
+   * segredo. Muda por loja: mandar o cliente pro WhatsApp errado é o pior defeito
+   * possível da legenda, então nunca cravar isso no componente.
+   */
+  waNumero: string
 }
 
 function exigir(nome: string): string {
@@ -50,6 +57,10 @@ export async function getLoja(): Promise<Loja> {
     tableId,
     moedaOrigem: process.env.LOJA_MOEDA_ORIGEM ?? 'JPY',
     garimpoUrl: process.env.GARIMPO_URL ?? null,
+    // Default = o número da NSC, no mesmo padrão de LOJA_SLUG/NOME acima (v1 tem
+    // literal por loja; v2 lê da tabela LOJAS). `replace` limpa espaço/traço se
+    // alguém puser "+55 11 ..." no env — o wa.me só aceita dígitos.
+    waNumero: (process.env.LOJA_WA_NUMERO ?? '5511914563609').replace(/\D/g, ''),
   }
 
   // ── v2: trocar o bloco acima por um GET na LOJAS ───────────────────────────

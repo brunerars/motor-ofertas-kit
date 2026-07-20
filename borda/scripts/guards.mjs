@@ -54,6 +54,23 @@ await checa('recusa Vendido', 101, { status: 'Vendido' }, 403, 'status_nao_permi
 console.log('\n=== sem preço não há legenda ===')
 await checa('recusa aprovar a peça sem preço', 102, { status: 'Aprovado' }, 409, 'incompleta')
 
+console.log('\n=== o título não pode ir pro grupo AINDA no modelo (20/07) ===')
+console.log('  o Editar pré-preenche a legenda com "*✏️ traduz o título aqui*". Se o Caio')
+console.log('  aprovar por cima, o grupo receberia o andaime cru. Trava no servidor.')
+await checa(
+  'não aprova com o placeholder do título na legenda',
+  102,
+  { price_brl: 390, caption: '*✏️ traduz o título aqui*\nTam: M\n\nR$ 390,00', status: 'Aprovado' },
+  409,
+  'incompleta',
+)
+await checa(
+  'mas aprova quando o título foi trocado de verdade',
+  102,
+  { price_brl: 390, caption: '*Jaqueta Team Lotus*\nTam: M\n\nR$ 390,00', status: 'Aprovado' },
+  200,
+)
+
 // 🔴 O bug de 17/07: o `datetime-local` manda hora de PAREDE, sem fuso. `new Date()`
 // numa string dessas usa o fuso do RUNTIME (UTC na Vercel), então o 14:30 do Caio
 // virava 14:30Z = 11:30 no Brasil e a peça saía 3h CEDO. Silencioso: o Baserow

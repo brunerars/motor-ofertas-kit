@@ -19,7 +19,7 @@ export type Feito = { titulo: string; status: Status }
  * ação que dá certo e não deixa rastro é indistinguível de uma que falhou.
  * Por isso a lista guarda o que acabou de sair e diz o que aconteceu.
  */
-export function FilaLista({ ofertas }: { ofertas: Oferta[] }) {
+export function FilaLista({ ofertas, waNumero }: { ofertas: Oferta[]; waNumero: string }) {
   const router = useRouter()
   const [feitos, setFeitos] = useState<Feito[]>([])
 
@@ -56,7 +56,7 @@ export function FilaLista({ ofertas }: { ofertas: Oferta[] }) {
       ) : (
         <div className="pecas">
           {ofertas.map((o) => (
-            <Peca key={o.id} oferta={o} aoFazer={aoFazer} />
+            <Peca key={o.id} oferta={o} aoFazer={aoFazer} waNumero={waNumero} />
           ))}
         </div>
       )}
