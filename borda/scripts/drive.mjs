@@ -89,7 +89,10 @@ let t = await texto()
 checar('MOSTRA o rascunho cru com título humano (a #31 real)', /Boné Ferrari Michael Schumacher 1997/i.test(t))
 checar('MOSTRA o rascunho cru sem título (cai no id)', /m99988877766/i.test(t))
 checar('sumiu o banner "peças chegando"', !/peças? chegando/.test(t))
-checar('a peça sem foto avisa em vez de parecer quebrada', /A foto vem quando o Bruno preparar/.test(t))
+// O aviso continua existindo pelo mesmo motivo (card sem foto não pode PARECER
+// quebrado), mas o texto mudou em 20/07: em vez de mandar esperar o Bruno, diz
+// que a peça está crua e oferece o botão de buscar.
+checar('a peça sem foto avisa em vez de parecer quebrada', /ainda está crua/i.test(t))
 checar('avisa o preço divergente da Suzuka (480 no card × 529 na legenda)', /na legenda está.*R\$\s?529/s.test(t))
 checar('NÃO dá alarme falso na promoção (De R$ 650 por R$ 480)', !/R\$\s?650,00.*e.*R\$\s?480,00/s.test(t.split('Camisa Lotus')[1] ?? ''))
 // O texto mudou junto com a regra: mandar esperar o Bruno por um campo que o
@@ -164,7 +167,77 @@ t = await texto()
 // O loop inteiro: ele mandou o link e a peça está na fila dele, na mesma sessão,
 // sem trocar de site. É isto que a aba comprou.
 checar('a peça que ele acabou de mandar está na Fila', /Boné Williams Rothmans 1994/i.test(t))
-checar('e entrou como rascunho cru (sem foto, esperando o /agenda)', /A foto vem quando o Bruno preparar/.test(t))
+// O texto mudou em 20/07 junto com a regra: o card cru não manda mais esperar o
+// Bruno pela foto, oferece o botão de buscar.
+checar('e entrou como rascunho cru (sem foto)', /ainda está crua/i.test(t))
+
+console.log('\n=== ENRIQUECER: o Caio prepara a peça sozinho (20/07) ===')
+console.log('  o fluxo inteiro numa tela: buscar → traduzir → escrever → aprovar.')
+
+/**
+ * A fila tem várias peças e o `clicar()` acima pega o PRIMEIRO botão da página —
+ * o que faz o teste agir numa peça que não é a que ele acha. Estas duas escopam
+ * no card (`article.peca`) que contém um título conhecido.
+ */
+// 🔴 `.toUpperCase()` nos DOIS lados, sempre: o `.peca-titulo` tem
+// text-transform:uppercase e o innerText já vem transformado. Comparar
+// case-sensitive aqui devolve "CARD NAO ACHADO" por um motivo que nada tem a ver
+// com o que se quer provar — foi o que aconteceu na 1ª corrida.
+const cardDe = (titulo) =>
+  `[...document.querySelectorAll('article.peca')].find(a=>a.innerText.toUpperCase().includes(${JSON.stringify(
+    titulo.toUpperCase(),
+  )}))`
+const clicarNoCard = (titulo, rotulo) =>
+  js(`(()=>{const c=${cardDe(titulo)};if(!c)return 'CARD NAO ACHADO';
+    const b=[...c.querySelectorAll('button')].find(b=>b.textContent.trim()===${JSON.stringify(rotulo)});
+    if(!b)return 'BOTAO NAO ACHADO';if(b.disabled)return 'DESABILITADO';b.click();return 'clicou'})()`)
+const textoDoCard = (titulo) => js(`(()=>{const c=${cardDe(titulo)};return c?c.innerText:'CARD NAO ACHADO'})()`)
+
+// A peça-alvo: rascunho cru COM preço, pra o fluxo terminar em peça aprovável.
+const ALVO = 'Ferrari Schumacher 1997'
+
+await cmd('Page.navigate', { url: BASE }, sessionId)
+await sleep(3000)
+t = await textoDoCard(ALVO)
+// O texto velho dizia "A foto vem quando o Bruno preparar a peça" — virou mentira
+// no instante em que o botão existiu, e ensinaria ele a esperar por algo que está
+// a um toque de distância.
+checar('o card cru não manda mais esperar o Bruno pela foto', !/A foto vem quando o Bruno preparar/.test(t))
+// /i obrigatório: `innerText` APLICA o text-transform:uppercase do `.btn`. Na tela
+// está "BUSCAR DO MERCARI". A mesma pegadinha que já mordeu no `.peca-titulo`.
+checar('oferece buscar do Mercari', /Buscar do Mercari/i.test(t))
+checar('e diz que a peça está crua', /ainda está crua/i.test(t))
+
+console.log('  clicar em Buscar do Mercari →', await clicarNoCard(ALVO, 'Buscar do Mercari'))
+await sleep(6000)
+t = await textoDoCard(ALVO)
+checar('o título japonês aparece depois de buscar', /フェラーリ/.test(t))
+checar('a condição do anúncio aparece', /目立った傷や汚れなし/.test(t))
+checar('e explica o que fazer com isso', /traduzir e escrever a legenda/i.test(t))
+checar('o card deixou de estar cru', !/ainda está crua/i.test(t))
+checar('a foto entrou no card', await js(`!!${cardDe(ALVO)}?.querySelector('img.peca-foto')`))
+
+// O bloco do japonês é insumo pra escrever a legenda. Escrita a legenda, ele
+// cumpriu o papel — continuar na tela seria ruído no card mais denso do app.
+console.log('  escrever a legenda no Editar →', await clicarNoCard(ALVO, 'Editar'))
+await sleep(1000)
+await js(`(()=>{
+  const ta=${cardDe(ALVO)}.querySelector('textarea');
+  const set=Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set;
+  set.call(ta,'*Boné Ferrari Schumacher 1997*\\nTam: Ajustável\\n\\nR$ 620,00');
+  ta.dispatchEvent(new Event('input',{bubbles:true}));
+})()`)
+console.log('  clicar em Salvar →', await clicarNoCard(ALVO, 'Salvar'))
+await sleep(3000)
+t = await textoDoCard(ALVO)
+checar('some o japonês quando a legenda existe (já cumpriu o papel)', !/フェラーリ/.test(t))
+checar('a legenda escrita aparece no card', /R\$\s?620,00/.test(t))
+// 🔴 O fecho: o Caio preparou a peça do começo ao fim, sem o Bruno em nenhum
+// ponto. É exatamente por isso que a marcação de autoria existe.
+checar('e o Aprovar destravou', (await clicarNoCard(ALVO, 'Aprovar')) === 'clicou')
+await sleep(2500)
+t = await texto()
+checar('a peça foi aprovada pelo Caio, sozinho', /Boné Ferrari Schumacher 1997.*aprovado/is.test(t))
 
 const { data } = await cmd('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true,
   clip: { x: 0, y: 0, width: 390, height: Math.min((await cmd('Page.getLayoutMetrics', {}, sessionId)).cssContentSize.height, 4000), scale: 1 } }, sessionId)

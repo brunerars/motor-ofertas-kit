@@ -176,6 +176,23 @@ button{ font-family:"Archivo",sans-serif; }
 .btn-ghost:hover:not(:disabled){ color:var(--danger-text); border-color:var(--red); }
 .btn-block{ width:100%; }
 
+/* --- O texto do anúncio, em japonês (20/07) ---
+   Mora dentro de um `.banner-info`, então a cor já está resolvida e conferida
+   pelo `npm run contraste`. O que muda aqui é só métrica: japonês não tem espaço
+   entre palavras e precisa de mais entrelinha pra não virar bloco maciço.
+   `word-break:break-all` porque sem espaços o navegador não acha onde quebrar e
+   a linha estoura a largura do card (o gate do shot.mjs reprova). */
+.ja-rotulo{ margin:0 0 8px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.06em; font-size:.68rem; }
+.ja-texto{ margin:0; font-size:1.05rem; line-height:1.7; word-break:break-all; }
+.ja-cond{ margin:8px 0 0; font-size:.88rem; line-height:1.7; word-break:break-all;
+  opacity:.85; }
+.ja-dica{ margin:10px 0 0; font-size:.82rem; }
+/* Quem lê é o BRUNO, não o Caio: é o rastro de qual peça foi pro grupo sem a
+   conferida dele. Discreto de propósito — não é alerta, é registro. */
+.autoria{ display:inline-block; margin-left:8px; font-size:.72rem;
+  color:var(--mid-grey); text-transform:none; letter-spacing:0; }
+
 /* --- Garimpar: o form multi-peça (17/07) ---
    Porte do `garimpo/index.html`, que continua no ar como fallback. Só o que a
    borda ainda NÃO tinha entra aqui: a caixa da peça e o estado de link inválido.

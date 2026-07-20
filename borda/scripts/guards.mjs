@@ -230,8 +230,112 @@ async function linhaCriada(id) {
   ok('teto de 20 por envio (igual ao webhook)', demais.status === 400 && demais.j.erro === 'acima_do_teto', `${demais.status} ${JSON.stringify(demais.j)}`)
 }
 
+console.log('\n=== ENRIQUECER: a metade MECÂNICA do /agenda (20/07) ===')
+console.log('  Firecrawl → foto + japonês. NADA de traduzir, redigir legenda ou julgar')
+console.log('  a peça: isso continua com o Bruno. A borda segue sem nenhuma IA.')
+
+async function enriquecer(id, corpo = {}) {
+  const res = await fetch(`${BASE}/api/ofertas/${id}/enriquecer`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', cookie },
+    body: JSON.stringify(corpo),
+  })
+  return { status: res.status, j: await res.json().catch(() => ({})) }
+}
+
+{
+  const res = await fetch(`${BASE}/api/ofertas/110/enriquecer`, { method: 'POST' })
+  ok('sem cookie não enriquece', res.status === 401, `recebeu ${res.status}`)
+}
+
+{
+  const { status, j } = await enriquecer(110)
+  ok('enriquece o rascunho cru', status === 200, `${status} ${JSON.stringify(j).slice(0, 140)}`)
+
+  const o = await linhaCriada(110)
+  ok('gravou a foto re-hospedada', Boolean(o?.fotoUrl) && o.enriquecida === true, `foto ${o?.fotoUrl}`)
+  // A foto NÃO pode ser a do Mercari: o CDN de lá dá 403 pro WAHA e a peça sairia
+  // sem imagem no grupo. Tem que ser a URL do Baserow.
+  ok('a foto é re-hospedada, não a URL do Mercari', !/mercdn\.net/.test(o?.fotoUrl ?? ''), o?.fotoUrl)
+  ok('gravou o título japonês (o insumo do Caio)', o?.tituloJa?.includes('フェラーリ'), `ja ${o?.tituloJa}`)
+  ok('gravou a condição', Boolean(o?.condicao), `cond ${o?.condicao}`)
+
+  // 🔴 A LINHA INTEIRA DO DESENHO: o mecânico entra, o julgamento não.
+  ok('NÃO traduziu o título (title_pt intocado)', o?.titulo === 'Boné Ferrari Schumacher 1997', `titulo ${o?.titulo}`)
+  ok('NÃO escreveu legenda (é do /agenda)', o?.caption === '', `caption ${o?.caption}`)
+  ok('NÃO mexeu no preço em R$ (é do Caio)', o?.precoBrl === 620, `preco ${o?.precoBrl}`)
+}
+
+{
+  const { status, j } = await enriquecer(110)
+  ok('não re-raspa peça já enriquecida (Firecrawl é pago)', status === 409 && j.erro === 'ja_enriquecida', `${status} ${JSON.stringify(j)}`)
+  const forcado = await enriquecer(110, { refazer: true })
+  ok('mas refazer:true força', forcado.status === 200, `${forcado.status}`)
+}
+
+{
+  const { status, j } = await enriquecer(106) // tem posted_at
+  ok('peça já postada é intocável aqui também', status === 409 && j.erro === 'ja_postada', `${status} ${JSON.stringify(j)}`)
+}
+
+{
+  const { status, j } = await enriquecer(111) // Firecrawl diz sold:true
+  ok('peça vendida no Mercari não é preparada', status === 409 && j.erro === 'vendida_no_mercari', `${status} ${JSON.stringify(j)}`)
+  const o = await linhaCriada(111)
+  ok('e a linha fica intacta', !o?.fotoUrl && !o?.tituloJa, `foto ${o?.fotoUrl} ja ${o?.tituloJa}`)
+  // `sold` é campo do /confere-ofertas (o cron). Se a borda o escrevesse, a fila
+  // passaria a mentir pro cron — mesmo motivo de Disparado/Vendido darem 403.
+  ok('e a borda NÃO marca sold (é campo do cron)', o?.sold === false, `sold ${o?.sold}`)
+}
+
+{
+  const { status, j } = await enriquecer(112) // Firecrawl 500
+  ok('Firecrawl fora do ar → 502 honesto', status === 502 && j.erro === 'firecrawl_falhou', `${status} ${JSON.stringify(j)}`)
+  const o = await linhaCriada(112)
+  // 🔴 O pior resultado possível seria `photo_url` gravada apontando pro vazio: a
+  // peça pareceria pronta e o disparo falharia no grupo.
+  ok('e NÃO deixa a linha meio-gravada', !o?.fotoUrl && !o?.tituloJa, `foto ${o?.fotoUrl}`)
+}
+
+{
+  // O caso traiçoeiro: 200 com corpo vazio é o que o Mercari devolve quando a
+  // página não montou. Sem trava, gravaria uma peça em branco com cara de pronta.
+  const { status, j } = await enriquecer(113)
+  ok('resposta vazia não vira peça "enriquecida" em branco', status === 502 && j.erro === 'nada_veio', `${status} ${JSON.stringify(j)}`)
+  const o = await linhaCriada(113)
+  ok('e a linha fica intacta', !o?.fotoUrl && !o?.tituloJa)
+}
+
+console.log('\n=== 🔴 price_jpy: a borda agora ESCREVE, e mesmo assim não pode VAZAR ===')
+console.log('  é a referência de custo do Bruno. Antes a borda só lia; escrever torna')
+console.log('  o guard mais importante, não menos.')
+{
+  const res = await fetch(`${BASE}/api/ofertas`, { headers: { cookie } })
+  const cru = await res.text()
+  ok('price_jpy não aparece no payload, mesmo gravado', !cru.includes('price_jpy') && !cru.includes('4200'), 'VAZOU o preço em iene')
+  ok('mas o título japonês chega (o Caio precisa dele)', cru.includes('tituloJa'), 'o título japonês não saiu do servidor')
+}
+
+console.log('\n=== a marcação de autoria (o freio de 20/07) ===')
+console.log('  o Caio consegue preparar a peça inteira sozinho. A conferida do Bruno')
+console.log('  sai do caminho — o freio é ela não sair CALADA.')
+{
+  await checa('escrever legenda na borda marca o autor', 110, { caption: '*Boné Ferrari*\nTam: Ajustável\n\nR$ 620,00' }, 200)
+  const o = await linhaCriada(110)
+  ok('a peça diz que a legenda é do Caio', o?.captionPor === 'caio', `captionPor ${o?.captionPor}`)
+
+  await checa('apagar a legenda tira o autor', 110, { caption: '' }, 200)
+  const limpa = await linhaCriada(110)
+  ok('legenda vazia não tem autor (volta a ler como /agenda)', limpa?.captionPor === '', `captionPor ${limpa?.captionPor}`)
+
+  // O cliente não escolhe o autor: a rota DERIVA. Senão a marcação não vale nada.
+  await checa('o cliente não consegue se dizer /agenda', 110, { caption: 'x', caption_by: 'agenda' }, 200)
+  const forjada = await linhaCriada(110)
+  ok('mandar caption_by no corpo não engana a rota', forjada?.captionPor === 'caio', `captionPor ${forjada?.captionPor}`)
+}
+
 console.log('\n=== 🔴 PARIDADE com o webhook: as duas portas gravam a MESMA linha ===')
-console.log('  este é O guard que importa. O /agenda pesca por `Fila` + photo_url vazio e')
+console.log('  este é O guard que importa. O /agenda pesca por `Fila` + caption vazia e')
 console.log('  não sabe por onde a peça entrou — se os campos divergirem, ele trata')
 console.log('  diferente a mesma peça conforme a porta. Comparação ESTÁTICA: o tipo')
 console.log('  NovaOferta (lib/baserow.ts) × o `const row` do Code node do n8n.')

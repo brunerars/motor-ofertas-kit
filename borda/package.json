@@ -10,7 +10,8 @@
     "contraste": "python scripts/contraste.py",
     "smoke": "node --env-file=.env.local scripts/smoke-baserow.mjs",
     "mock": "node scripts/mock-baserow.mjs 4001",
-    "dev:mock": "cross-env BASEROW_API_URL=http://localhost:4001 next dev -p 3989",
+    "mock:fc": "node scripts/mock-firecrawl.mjs 4002",
+    "dev:mock": "cross-env BASEROW_API_URL=http://localhost:4001 FIRECRAWL_API_URL=http://localhost:4002 FIRECRAWL_API_KEY=falsa next dev -p 3989",
     "guards": "node --env-file=.env.local scripts/guards.mjs http://localhost:3989",
     "shot": "node --env-file=.env.local scripts/shot.mjs http://localhost:3000 ./shots",
     "shot:dark": "node --env-file=.env.local scripts/shot-dark.mjs http://localhost:3989 ./shots-dark"

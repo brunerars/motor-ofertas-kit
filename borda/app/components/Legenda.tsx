@@ -9,14 +9,17 @@ import { parseCaption } from '@/lib/caption'
  */
 export function Legenda({ caption }: { caption: string }) {
   if (!caption.trim()) {
-    // A legenda é MESMO do Bruno (o /agenda traduz e monta), então esta frase
-    // continua verdadeira. O "só ela" é que passou a importar: agora que a peça
-    // crua aparece na fila, o Caio precisa saber que o resto do card é dele —
-    // senão lê "o Bruno tá escrevendo" e conclui que não há nada a fazer, que é
-    // exatamente o problema que trouxe a peça pra cá.
+    // ⚠️ ESTA FRASE DIZIA "só a legenda é com o Bruno — ele escreve quando
+    // preparar a peça", e virou MENTIRA em 20/07: com o japonês na tela, o Caio
+    // escreve a legenda sozinho se quiser. Não é detalhe de texto — o card
+    // passou a dizer três coisas contraditórias de uma vez (aqui, no aviso de
+    // incompleta e no bloco do japonês), e quem lê isso não sabe se pode agir.
+    //
+    // Agora é NEUTRO: constata o que falta, sem atribuir dono. Quem oferece o
+    // caminho é o bloco do japonês (uma vez só, no lugar certo).
     return (
       <div className="legenda-preview">
-        <span className="cta">Só a legenda é com o Bruno — ele escreve quando preparar a peça.</span>
+        <span className="cta">A legenda ainda não foi escrita.</span>
       </div>
     )
   }

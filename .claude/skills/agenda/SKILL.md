@@ -59,14 +59,22 @@ curl -s -X POST "$API/api/database/rows/table/$BASEROW_TABLE_ID/?user_field_name
 O formulário de garimpo (`garimpo/`, na Vercel) deixa o Caio despejar links; o webhook do n8n (`n8n/nsc-garimpo-webhook.json`) grava cada um como **rascunho cru** no Baserow: só `source_url` + `mercari_id` + `tags` (a nota dele), `status=Fila`, `title_pt` = o próprio id (rótulo provisório) e **`photo_url` vazio**. Esse rascunho **não é disparável** (o n8n de disparo exige `photo_url` + `caption`). O `/agenda` em modo lote é quem completa.
 
 Rodando `/agenda` **sem URL** (não pedir link — ir no banco):
-1. **Listar os rascunhos:** `GET $API/api/database/rows/table/556/?user_field_names=true&size=200`, header `Authorization: Token $BASEROW_TOKEN`. Filtrar as linhas com `status=Fila` **e** `photo_url` vazio **e** `source_url` preenchido (é o formato do rascunho; a linha que o próprio `/agenda` cria já nasce completa, então não reaparece aqui).
+1. **Listar os rascunhos:** `GET $API/api/database/rows/table/556/?user_field_names=true&size=200`, header `Authorization: Token $BASEROW_TOKEN`. Filtrar as linhas com `status=Fila` **e `caption` vazia** **e** `source_url` preenchido.
+
+   > 🔴 **O filtro era `photo_url` vazio e MUDOU em 20/07.** A borda ganhou o botão "Buscar do Mercari" (a metade mecânica: foto + japonês, sem tradução nem legenda). Uma peça que o Caio enriquecer **ganha `photo_url`** — e com o filtro antigo ela **sumiria deste lote calada**, sem erro, sem aviso. O Bruno simplesmente pararia de ver peça que ainda precisa de legenda, e só descobriria quando uma saísse errada no grupo.
+   >
+   > `caption` vazia é o filtro certo pro que esta skill de fato faz: **ela existe pra escrever a legenda**. Pesca o rascunho cru e o meio-enriquecido, e continua idempotente (peça com legenda pronta não reaparece).
+   >
+   > Consequência prática: um rascunho pode chegar aqui **já com foto e `title_ja`**. Não re-raspar por hábito — se `photo_url` e `title_ja` já existem, o Firecrawl é desnecessário e pago; ir direto pra tradução, preço e `caption`.
 2. **Reportar quantos achou e confirmar** antes de gastar Firecrawl no lote todo (o Caio pode ter mandado até 20). Sem rascunho pendente, avisar e parar — não inventar item.
 3. **Para cada rascunho**, rodar os passos 1–6 do Fluxo (Firecrawl → acervo → traduzir → preço → `caption` → subir foto), **mas fazer `PATCH` na MESMA linha** (não `POST`), preservando `tags` (a nota do Caio ajuda na conferida) e o `mercari_id`:
    `PATCH $API/api/database/rows/table/556/{row_id}/?user_field_names=true` com `title_pt, title_ja, description_pt, brand, category, condition, price_jpy, photos, photo_url` (mantém `status=Fila`).
    > **Estado: ler tudo, mas escrever nada por conta própria (regra de 16/07).** O `condition` do Mercari costuma dizer "sem danos" enquanto a `description` admite desbotamento ou mancha. **Ler** a descrição inteira, sim — mas o defeito **NÃO entra na `caption`** se a nota do Caio não o cita. Vai **no report**, pro Bruno decidir. *Por quê: carimbar um detalhe pouco visual na legenda desqualifica a peça sozinho, e a chamada de o que vale a venda é comercial, do Bruno, não da skill.* Se o Bruno mandar incluir, aí sim entra na linha do Tam, por vírgula.
    > **Encaixe no nicho:** o Caio manda o link, mas quem aprova o encaixe é o Bruno. Se a peça foge do nicho da loja (ex.: grife de moda vs. memorabilia de F1), enriquecer mesmo assim mas **sinalizar no report** pra decisão de `Aprovado`/`Descartado`.
 4. **Reportar** ao Bruno: quantos rascunhos entraram, quantos foram enriquecidos, e quais falharam (URL morta / item já vendido — marcar `Descartado` com o motivo) + qualquer ressalva de encaixe/estado. A aprovação segue igual: Bruno revisa e flipa `Fila`→`Aprovado` no Baserow.
-> **Não duplica:** o modo lote sempre faz `PATCH` no `row_id` do rascunho, nunca cria linha nova. Idempotente — rodar de novo sobre uma linha já enriquecida (que já tem `photo_url`) simplesmente não a seleciona.
+> **Não duplica:** o modo lote sempre faz `PATCH` no `row_id` do rascunho, nunca cria linha nova. Idempotente — rodar de novo sobre uma linha que já tem `caption` simplesmente não a seleciona.
+
+> ⚠️ **O Caio pode ter escrito a legenda sozinho.** Desde 20/07 ele consegue: com a foto e o japonês na tela, traduz e escreve no Editar da borda. Essas peças **não aparecem neste lote** (têm `caption`), e é o correto — não há o que fazer nelas. O campo **`caption_by`** guarda quem escreveu (`caio`, ou vazio = esta skill), e a borda mostra `✍ legenda do Caio` na aba No ar. **É o rastro de quais peças foram pro grupo sem a conferida do Bruno** — a mesma que pegou a condição subestimada da row 5 e o boné DEKRA falso. Vale passar o olho nelas de vez em quando; não é bloqueio, é registro.
 
 ## Desacoplamento
 - `/acervo` = só fotos p/ vitrine (leve). `/agenda` = o pesado (traduz/preço/fila).

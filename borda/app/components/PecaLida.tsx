@@ -74,6 +74,16 @@ export function PecaLida({ oferta, acao }: { oferta: Oferta; acao?: React.ReactN
       <div className="peca-corpo">
         <p className="peca-meta" style={{ marginTop: 12 }}>
           <span className={`selo ${SELO[oferta.status] ?? 'selo-fila'}`}>{quandoSai(oferta)}</span>
+          {/* 🔴 O FREIO DE 20/07, e ele é pra o BRUNO ler, não o Caio.
+              Desde que a borda busca os dados do Mercari sozinha, o Caio consegue
+              preparar e aprovar uma peça inteira sem o Bruno em nenhum ponto — e a
+              conferida dele (a que pegou a condição subestimada da row 5 e o boné
+              DEKRA falso) sairia CALADA. `docs/borda-hub-caio.md:38-40` mandava
+              reinserir um freio explícito ou aceitar por escrito que ele saiu.
+              Este é o freio: não bloqueia nada, só torna visível quais peças foram
+              pro grupo sem passar por ele. Vazio = /agenda, e é por isso que toda
+              linha antiga lê certo sem migração. */}
+          {oferta.captionPor === 'caio' && <span className="autoria">✍ legenda do Caio</span>}
         </p>
         {acao}
       </div>

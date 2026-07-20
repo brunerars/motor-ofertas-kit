@@ -33,7 +33,22 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
   // nem por campo novo que apareça no schema depois.
   const patch: Patch = {}
 
-  if (typeof body.caption === 'string') patch.caption = body.caption
+  if (typeof body.caption === 'string') {
+    patch.caption = body.caption
+    // 🔴 O FREIO DE 20/07. Com o botão de enriquecer, o Caio consegue preparar a
+    // peça inteira sozinho — e a conferida do Bruno (a que pegou a condição
+    // subestimada da row 5 e o boné DEKRA falso) sairia do caminho SEM AVISO.
+    // `docs/borda-hub-caio.md:38-40` exigia reinserir um freio explícito ou
+    // aceitar por escrito que ele saiu. Este é o freio, e ele é deliberadamente
+    // fraco: não bloqueia, não pede aprovação, só deixa de ser silencioso.
+    //
+    // A rota DERIVA o valor, não o aceita do cliente: quem salva legenda por aqui
+    // é o Caio, por definição — o /agenda escreve direto no Baserow e nunca passa
+    // por esta rota. Por isso `caption_by` não está na leitura do `body`.
+    //
+    // Legenda apagada não tem autor: volta a vazio, que lê como "/agenda".
+    patch.caption_by = body.caption.trim() ? 'caio' : ''
+  }
   if (typeof body.tags === 'string') patch.tags = body.tags
   if (typeof body.sold === 'boolean') patch.sold = body.sold
 

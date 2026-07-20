@@ -44,6 +44,25 @@ export type Oferta = {
    * 🔴 SÓ O NÚMERO. Ver `paraBorda()`: a 556 traz o NOME junto e ele para lá.
    */
   qtdLeads: number
+  /**
+   * O título ORIGINAL do anúncio, em japonês (20/07).
+   *
+   * Passou a sair pro browser porque é o insumo do Caio: com ele na tela, o Caio
+   * traduz e escreve a legenda sozinho quando não quer esperar o `/agenda`. Antes
+   * estava cortado como "ruído" — era, enquanto ele não podia fazer nada com isso.
+   */
+  tituloJa: string
+  /** Frase de condição do Mercari, crua. Contexto pro Caio; não vira legenda. */
+  condicao: string
+  marca: string
+  /**
+   * Quem escreveu a legenda. `''` = o `/agenda` (o Bruno).
+   *
+   * O freio que o `docs/borda-hub-caio.md:38-40` exigiu: enriquecer na borda tira
+   * o Bruno do caminho, e sem isto ele sairia **calado**. Não bloqueia nada — só
+   * torna visível qual peça foi pro grupo sem passar por ele.
+   */
+  captionPor: string
 }
 
 type Row = Record<string, unknown>
@@ -82,6 +101,41 @@ async function req(path: string, init?: RequestInit): Promise<unknown> {
     throw new BaserowError(r.status)
   }
   return r.json()
+}
+
+/**
+ * Sobe um arquivo e devolve a URL pública (`/media/user_files/…`, abre sem auth).
+ *
+ * ✅ **Medido em 20/07: o token ESCOPADO da borda consegue** (HTTP 200), mesmo o
+ * endpoint sendo de database e não de tabela. Isso importa porque a alternativa
+ * seria trazer o `BASEROW_TOKEN` *all tables* pra cá — e ele alcança a `LEADS`,
+ * que é PII. Se um dia isto voltar a dar 401, a saída é um token só-de-upload,
+ * NÃO o all-tables.
+ *
+ * Não usa o `req()`: ali o Content-Type é `application/json` cravado, e multipart
+ * precisa que o fetch monte o boundary sozinho.
+ */
+export async function subirArquivo(arquivo: File): Promise<string> {
+  const form = new FormData()
+  form.append('file', arquivo)
+
+  const r = await fetch(`${baseUrl()}/api/user-files/upload-file/`, {
+    method: 'POST',
+    headers: { Authorization: `Token ${token()}` },
+    body: form,
+    cache: 'no-store',
+  })
+
+  if (!r.ok) {
+    const corpo = await r.text().catch(() => '')
+    console.error(`[baserow] upload → ${r.status}: ${corpo.slice(0, 300)}`)
+    throw new BaserowError(r.status)
+  }
+
+  const j = (await r.json()) as { url?: unknown }
+  const url = txt(j.url)
+  if (!url) throw new BaserowError(502)
+  return url
 }
 
 export class BaserowError extends Error {
@@ -130,7 +184,14 @@ function selValue(v: unknown): string {
  *                    vazamento aqui é vazamento de margem.
  *  - `wa_message_id` → id da mensagem que o BOT enviou. O nome engana (não é lead)
  *                    e não serve pra nada na UI.
- *  - `title_ja`, `description_pt`, `photos` → ruído. O que vale é a `caption`.
+ *  - `description_pt`, `photos` → ruído. O que vale é a `caption`.
+ *
+ * ⚠️ O `title_ja` SAIU desta lista em 20/07 e agora passa (ver o tipo `Oferta`).
+ * A razão da exclusão era "ruído", e ruído ele era enquanto o Caio não tinha o
+ * que fazer com ele. Com o botão de enriquecer, o japonês é o insumo que ele
+ * traduz. O `price_jpy` continua fora e a razão dele é OUTRA e não mudou: é
+ * margem do Bruno, e a borda passou a ESCREVÊ-LO — o que torna o guard de PII
+ * mais importante, não menos.
  */
 function paraBorda(row: Row): Oferta {
   const fotoUrl = txt(row.photo_url) || null
@@ -150,6 +211,12 @@ function paraBorda(row: Row): Oferta {
     enriquecida: Boolean(fotoUrl),
     // 🔴 `.length` e MAIS NADA. Cada item é {id, value} e `value` é o nome da pessoa.
     qtdLeads: Array.isArray(row.LEADS) ? row.LEADS.length : 0,
+    tituloJa: txt(row.title_ja),
+    condicao: txt(row.condition),
+    marca: txt(row.brand),
+    // Vazio = `/agenda`. Linhas antigas (e toda peça que o Bruno preparar) leem
+    // certo sem ninguém migrar nada, e a skill não precisou mudar por causa disto.
+    captionPor: txt(row.caption_by),
   }
 }
 
@@ -188,6 +255,30 @@ export type Patch = {
   status?: Status
   scheduled_at?: string | null
   sold?: boolean
+  /**
+   * Quem escreveu a legenda. Escrito junto com `caption` pela rota de PATCH.
+   * Não é campo que o cliente manda: a rota o deriva (quem salvou legenda na
+   * borda foi o Caio, por definição — o `/agenda` não passa por aqui).
+   */
+  caption_by?: string
+}
+
+/**
+ * O que SÓ a rota de enriquecer escreve — o resultado mecânico do Firecrawl.
+ *
+ * Separado do `Patch` de propósito: a rota genérica (`app/api/ofertas/[id]`) copia
+ * campo a campo o que reconhece, e ela **não reconhece nada daqui**. Ou seja, nem
+ * um cliente malicioso nem um refactor distraído consegue escrever `photo_url`
+ * pelo caminho normal — e `photo_url` é a URL que o WAHA busca pra postar no
+ * grupo. Duas barreiras, como já valia pro `price_jpy`.
+ */
+export type PatchEnriquecido = {
+  photo_url?: string
+  title_ja?: string
+  brand?: string
+  category?: string
+  condition?: string
+  price_jpy?: number | null
 }
 
 /**
@@ -198,8 +289,10 @@ export type Patch = {
  * (esta e o form standalone) gravam a MESMA linha, senão o /agenda em modo lote
  * trata a peça diferente conforme por onde ela entrou. Mudou lá, muda aqui.
  *
- * Não tem `photo_url` nem `caption` de propósito: quem enriquece é o /agenda, e é
- * o `photo_url` vazio que a skill usa pra pescar o que ainda não passou por ela.
+ * Não tem `photo_url` nem `caption` de propósito: a peça nasce crua. Quem escreve
+ * a legenda é o /agenda, e é a `caption` VAZIA que a skill usa pra pescar o que
+ * ainda não passou por ela (o filtro era `photo_url` vazio e mudou em 20/07,
+ * quando a borda passou a preencher a foto sozinha — ver agenda/SKILL.md).
  */
 export type NovaOferta = {
   mercari_id: string
@@ -226,7 +319,7 @@ export async function criarOferta(nova: NovaOferta): Promise<Oferta> {
   return paraBorda(j)
 }
 
-export async function atualizarOferta(id: number, patch: Patch): Promise<Oferta> {
+export async function atualizarOferta(id: number, patch: Patch | PatchEnriquecido): Promise<Oferta> {
   const { tableId } = await getLoja()
 
   // `status` vai por TEXTO ("Aprovado"), nunca por id de opção.

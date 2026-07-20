@@ -95,15 +95,19 @@ export function precoDivergente(o: { precoBrl: number | null; caption: string })
  * Regra do projeto — nunca escrever "valor sob consulta" no grupo, porque o R$
  * que o Caio manda no form JÁ inclui frete do Japão e impostos.
  *
- * As duas mensagens apontam pra pessoa CERTA, e a diferença importa:
+ * As duas mensagens apontam pro caminho CERTO, e a diferença importa:
  *  - preço é campo DO CAIO (ele digita no form) → ele resolve aqui, agora.
- *  - legenda é do /agenda (traduz e monta) → essa sim espera o Bruno.
- * Antes as duas mandavam esperar o Bruno, e a do preço mandava esperar por algo
- * que o próprio Caio tinha esquecido de preencher.
+ *  - legenda tem DOIS caminhos desde 20/07 (ver abaixo).
+ *
+ * ⚠️ A mensagem da legenda dizia "essa parte é com o Bruno" e virou meia-verdade
+ * quando o botão de enriquecer chegou: com o japonês na tela, o Caio escreve
+ * sozinho se não quiser esperar. Mandar esperar seria repetir o erro que a
+ * mensagem do preço já tinha corrigido — mandar o Caio aguardar por algo que ele
+ * mesmo resolve. Agora oferece os dois caminhos e deixa ele escolher.
  */
 export function podeAprovar(o: { precoBrl: number | null; caption: string }): string | null {
   if (o.precoBrl === null) return 'Falta o preço — dá pra pôr aqui mesmo, no Editar.'
-  if (!o.caption.trim()) return 'A legenda ainda não foi escrita. Essa parte é com o Bruno.'
+  if (!o.caption.trim()) return 'Falta a legenda — dá pra escrever no Editar, ou esperar o Bruno.'
   return null
 }
 

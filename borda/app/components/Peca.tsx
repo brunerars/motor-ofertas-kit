@@ -26,6 +26,8 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
   const [salvo, setSalvo] = useState(false)
   const [ocupado, setOcupado] = useState(false)
   const [fotoQuebrou, setFotoQuebrou] = useState(false)
+  const [buscando, setBuscando] = useState(false)
+  const [copiado, setCopiado] = useState(false)
 
   const incompleta = podeAprovar(oferta)
   const divergente = precoDivergente(oferta)
@@ -68,6 +70,44 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
   }
 
   const mudarStatus = (status: Status) => patch({ status }, { titulo: oferta.titulo, status })
+
+  /**
+   * Busca os dados do anúncio (foto + japonês). É a METADE MECÂNICA do que o
+   * /agenda faz — nada de tradução nem legenda, isso continua com o Bruno.
+   */
+  async function enriquecer() {
+    setBuscando(true)
+    setErro(null)
+    try {
+      const r = await fetch(`/api/ofertas/${oferta.id}/enriquecer`, { method: 'POST' })
+      const j = (await r.json().catch(() => ({}))) as { erro?: string; motivo?: string; fotoFalhou?: boolean }
+      if (!r.ok) {
+        setErro(j.motivo ?? 'Não deu pra buscar os dados agora. Tenta de novo em instantes.')
+        return
+      }
+      if (j.fotoFalhou) {
+        // Os dados vieram, a foto não. Dizer isso é melhor que um "pronto!" que
+        // deixa ele procurando uma foto que não chegou.
+        setErro('Peguei os dados, mas a foto não veio. Dá pra tentar de novo.')
+      }
+      router.refresh()
+    } catch {
+      setErro('Sem conexão.')
+    } finally {
+      setBuscando(false)
+    }
+  }
+
+  async function copiarJa() {
+    try {
+      await navigator.clipboard.writeText(oferta.tituloJa)
+      setCopiado(true)
+      setTimeout(() => setCopiado(false), 2000)
+    } catch {
+      // Clipboard bloqueado (contexto inseguro, permissão negada). O texto está na
+      // tela e dá pra selecionar na mão — não vale virar erro vermelho por isso.
+    }
+  }
 
   function salvarEdicao() {
     const t = titulo.trim()
@@ -136,13 +176,47 @@ export function Peca({ oferta, aoFazer }: { oferta: Oferta; aoFazer: (f: Feito) 
 
       <div className="peca-corpo">
         {!oferta.fotoUrl && (
-          // Rascunho cru: o /agenda ainda não buscou a foto. Sem este aviso o card
-          // parece quebrado — e a peça só está aqui porque o Caio precisa mexer nela,
-          // então parecer quebrada é o pior sinal possível. Diz que a foto vem depois
-          // e de quem ela depende. `-info` e não `-warn`: não há nada errado aqui,
-          // só falta uma etapa; pintar de alerta ensina a ignorar alerta de verdade.
+          // Rascunho cru. O texto ANTIGO dizia "a foto vem quando o Bruno preparar
+          // a peça" — virou mentira em 20/07: agora o próprio Caio busca. Deixar a
+          // frase velha ensinaria ele a esperar por algo que está a um toque.
+          // `-info` e não `-warn`: não há nada errado, só falta uma etapa.
           <div className="banner banner-info">
-            A foto vem quando o Bruno preparar a peça. Dá pra arrumar o resto agora.
+            <p>Essa peça ainda está crua — sem foto e sem o texto do anúncio.</p>
+            <div className="btns">
+              <button className="btn" disabled={buscando || ocupado} onClick={enriquecer}>
+                {buscando ? 'Buscando… demora uns segundos' : 'Buscar do Mercari'}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* O japonês só aparece DEPOIS de buscar, e só pra peça que ainda não tem
+            legenda: com a legenda escrita ele já cumpriu o papel e vira ruído.
+            É o insumo do Caio — com ele na tela, quem não quer esperar o /agenda
+            traduz e escreve a legenda no Editar. */}
+        {oferta.tituloJa && !oferta.caption.trim() && (
+          <div className="banner banner-info">
+            <p className="ja-rotulo">Do anúncio, em japonês</p>
+            <p className="ja-texto" lang="ja">
+              {oferta.tituloJa}
+            </p>
+            {oferta.condicao && (
+              <p className="ja-cond" lang="ja">
+                {oferta.condicao}
+              </p>
+            )}
+            <div className="btns">
+              <button className="btn" onClick={copiarJa}>
+                {copiado ? 'Copiado!' : 'Copiar o título'}
+              </button>
+            </div>
+            {/* Sem "ou esperar o Bruno" aqui: quem diz isso é o aviso de legenda
+                faltando, logo abaixo. Repetir a escolha em dois lugares foi o que
+                deixou o card dizendo três coisas ao mesmo tempo. Este bloco tem
+                UM trabalho: entregar o texto cru e dizer o que fazer com ele. */}
+            <p className="ja-dica">
+              Dá pra traduzir e escrever a legenda no <strong>Editar</strong>.
+            </p>
           </div>
         )}
         {fotoQuebrou && (
