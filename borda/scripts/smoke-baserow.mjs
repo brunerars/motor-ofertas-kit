@@ -44,7 +44,28 @@ if (r1.ok) {
   if (linha) {
     console.log(`  amostra: #${linha.id} "${linha.title_pt}" · ${linha.status?.value ?? '?'}`)
     const semFoto = !linha.photo_url
-    if (semFoto) console.log('  ⚠ a 1ª linha não tem photo_url (rascunho cru; a borda esconde)')
+    if (semFoto) console.log('  ⚠ a 1ª linha não tem photo_url (rascunho cru, esperando enriquecer)')
+
+    // 🔴 O BASEROW IGNORA CAMPO INEXISTENTE EM SILÊNCIO — medido em 20/07:
+    // `PATCH {"caption_by":"x"}` numa tabela sem esse campo devolve **200**, não
+    // cria nada e não reclama. Isso é veneno pra este campo específico: ele é o
+    // FREIO que impede a conferida do Bruno de sumir calada quando o Caio escreve
+    // a legenda sozinho. Sem a coluna criada, o freio nunca grava, o selo
+    // "✍ legenda do Caio" nunca aparece, e ninguém descobre — o freio contra
+    // falha silenciosa falhando em silêncio.
+    //
+    // Por isso a checagem mora aqui, no smoke que roda ANTES de subir.
+    if (!('caption_by' in linha)) {
+      ok = false
+      console.error('\n✗ FALTA O CAMPO `caption_by` na DISPARADOR.')
+      console.error('  Sem ele, quem escreveu a legenda NÃO é registrado — e o Baserow')
+      console.error('  aceita o PATCH com 200 mesmo assim, então a falha é INVISÍVEL.')
+      console.error('  Criar na UI do Baserow (campo novo exige JWT; Database Token não faz):')
+      console.error('    tabela DISPARADOR → + → nome `caption_by`, tipo Single line text.')
+      console.error('  Deixar vazio nas linhas existentes: vazio significa "legenda do /agenda".')
+    } else {
+      console.log('  ✓ campo `caption_by` existe (o freio de autoria da legenda grava)')
+    }
   }
 } else {
   ok = false
