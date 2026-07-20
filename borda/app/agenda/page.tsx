@@ -26,8 +26,13 @@ export default async function NoAr() {
   // fila mostra outro.
   const naFila = ofertas.filter((o) => o.status === 'Fila').length
   const esperando = ofertas.filter((o) => o.status === 'Aprovado' || o.status === 'Agendado')
+  // `&& !o.sold`: "No ar" é o pipeline VIVO. A peça que sumiu do Mercari continua
+  // `Disparado` (o toggle de "Sumiu do Mercari" só escreve `sold`, nunca mexe no
+  // status — só o cron /confere-ofertas viraria `Vendido`, e ele nunca rodou).
+  // Sem este filtro ela aparecia AQUI e na Gestão de peças ao mesmo tempo. Quem
+  // sumiu vive só lá, que é a aba de controle do garimpo.
   const sairam = ofertas
-    .filter((o) => o.status === 'Disparado')
+    .filter((o) => o.status === 'Disparado' && !o.sold)
     .sort((a, b) => (b.postedAt ?? '').localeCompare(a.postedAt ?? ''))
 
   // Sinal honesto de que o disparo pode estar parado. O WAHA é frágil por natureza

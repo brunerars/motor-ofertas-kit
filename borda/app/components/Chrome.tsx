@@ -17,7 +17,11 @@ export function Topo({ atual, naFila }: { atual: Aba; naFila: number }) {
   const abas: { id: Aba; href: string; nome: string; badge?: number }[] = [
     { id: 'fila', href: '/', nome: 'Fila', badge: naFila || undefined },
     { id: 'agenda', href: '/agenda', nome: 'No ar' },
-    { id: 'vendidos', href: '/vendidos', nome: 'Saiu do Mercari' },
+    // `id`/`href` continuam 'vendidos'/'/vendidos' — a URL é interna e renomear
+    // rota é churn sem ganho. Só o RÓTULO mudou: a aba faz o controle do garimpo
+    // (marcar o que sumiu do Mercari), e "Gestão de peças" diz isso melhor que
+    // "Saiu do Mercari", que descrevia só metade do que mora lá.
+    { id: 'vendidos', href: '/vendidos', nome: 'Gestão de peças' },
     // Sem badge: badge conta coisa esperando ação, e aqui nunca há nada esperando.
     { id: 'garimpar', href: '/garimpar', nome: 'Garimpar' },
   ]

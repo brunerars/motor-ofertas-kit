@@ -72,6 +72,17 @@ export function PecaLida({ oferta, acao }: { oferta: Oferta; acao?: React.ReactN
       </div>
 
       <div className="peca-corpo">
+        {/* Peça que SUMIU do Mercari mas tem gente esperando: é a informação
+            acionável de verdade — prometemos algo que não vem mais. A borda NÃO
+            manda a mensagem (não tem o telefone: a PII fica na 557, fora do token;
+            disparar é a Fase 3). Ela SINALIZA, e o aviso é na mão, no pv. Só o
+            número sai do servidor — nunca quem é a pessoa. */}
+        {oferta.sold && oferta.qtdLeads > 0 && (
+          <div className="banner banner-warn" role="status">
+            {oferta.qtdLeads === 1 ? '1 pessoa estava' : `${oferta.qtdLeads} pessoas estavam`} esperando essa peça —
+            avisa no pv que ela sumiu.
+          </div>
+        )}
         <p className="peca-meta" style={{ marginTop: 12 }}>
           <span className={`selo ${SELO[oferta.status] ?? 'selo-fila'}`}>{quandoSai(oferta)}</span>
           {/* 🔴 O FREIO DE 20/07, e ele é pra o BRUNO ler, não o Caio.

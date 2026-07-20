@@ -44,7 +44,7 @@ export default async function SaiuDoMercari() {
       <Topo atual="vendidos" naFila={naFila} />
 
       <p className="eyebrow">Controle do garimpo</p>
-      <h1>Saiu do Mercari</h1>
+      <h1>Gestão de peças</h1>
       <p className="lead">
         Peças que já foram pro grupo. Se alguém <strong>lá no Japão</strong> comprou antes da gente,
         marca aqui — assim ninguém promete o que não dá pra buscar.

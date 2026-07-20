@@ -239,6 +239,35 @@ await sleep(2500)
 t = await texto()
 checar('a peça foi aprovada pelo Caio, sozinho', /Boné Ferrari Schumacher 1997.*aprovado/is.test(t))
 
+console.log('\n=== SUMIU DO MERCARI: o bug que o Bruno pegou (20/07) ===')
+console.log('  marcar uma peça como sumida a tirava de Gestão mas ela FICAVA em No ar.')
+const irPraAba = (rotulo) =>
+  js(`(()=>{const a=[...document.querySelectorAll('nav.abas a')].find(a=>a.textContent.trim().startsWith(${JSON.stringify(rotulo)}));if(!a)return 'NAO ACHEI';a.click();return 'clicou'})()`)
+const SUMIDA = 'Camisa Lotus by Tommy Hilfiger' // #108: Disparado + 2 leads + sold:false
+
+// Antes de marcar: a peça aparece nas DUAS abas (é o estado do bug).
+console.log('  ir pra No ar →', await irPraAba('No ar'))
+await sleep(2500)
+checar('a peça está em No ar ANTES de marcar', /Camisa Lotus by Tommy Hilfiger/i.test(await texto()))
+console.log('  ir pra Gestão de peças →', await irPraAba('Gestão'))
+await sleep(2500)
+checar('e também em Gestão de peças', /Camisa Lotus by Tommy Hilfiger/i.test(await texto()))
+
+// Marcar "Sumiu do Mercari" no card certo.
+console.log('  marcar Sumiu do Mercari →', await clicarNoCard(SUMIDA, 'Sumiu do Mercari'))
+await sleep(2500)
+
+// O fix: ela sai de No ar e fica só em Gestão, agora com o aviso de interesse.
+console.log('  voltar pra No ar →', await irPraAba('No ar'))
+await sleep(2500)
+checar('DEPOIS de marcar: sumiu de No ar (o fix)', !/Camisa Lotus by Tommy Hilfiger/i.test(await texto()))
+console.log('  ir pra Gestão de peças →', await irPraAba('Gestão'))
+await sleep(2500)
+t = await textoDoCard(SUMIDA)
+checar('continua em Gestão de peças', t !== 'CARD NAO ACHADO')
+checar('e avisa que tem gente esperando (2 leads)', /2 pessoas estavam esperando/i.test(t))
+checar('com o rótulo Gestão de peças no topo', /Gestão de peças/i.test(await texto()))
+
 const { data } = await cmd('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true,
   clip: { x: 0, y: 0, width: 390, height: Math.min((await cmd('Page.getLayoutMetrics', {}, sessionId)).cssContentSize.height, 4000), scale: 1 } }, sessionId)
 const { writeFileSync } = await import('node:fs')
