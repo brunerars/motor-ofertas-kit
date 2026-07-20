@@ -52,7 +52,7 @@ await cmd('Page.addScriptToEvaluateOnNewDocument', {
 }, sessionId)
 await cmd('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true }, sessionId)
 
-for (const [nome, path] of [['fila', '/'], ['saiu', '/vendidos']]) {
+for (const [nome, path] of [['fila', '/'], ['saiu', '/vendidos'], ['garimpar', '/garimpar']]) {
   await cmd('Page.navigate', { url: BASE + path }, sessionId)
   await sleep(2600)
   const tema = (await cmd('Runtime.evaluate', { expression: `document.documentElement.getAttribute('data-theme')`, returnByValue: true }, sessionId)).result?.value

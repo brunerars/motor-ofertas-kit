@@ -10,7 +10,7 @@
  * é escrever em produção pra ver um botão. Aqui a fila é fixture: dá pra ver o
  * card cheio, o card sem preço e o rascunho cru, sempre, sem risco.
  *
- * Fala só o que a borda usa: GET lista, GET linha, PATCH linha.
+ * Fala só o que a borda usa: GET lista, GET linha, PATCH linha, POST criar.
  */
 
 import { createServer } from 'node:http'
@@ -193,6 +193,39 @@ createServer((req, res) => {
     const l = linhas.find((x) => x.id === rowId)
     return l ? json(res, 200, l) : json(res, 404, { error: 'row_nao_existe' })
   }
+  // POST = a aba Garimpar criando o rascunho cru (17/07). O Baserow devolve a
+  // linha inteira, COM o id — e é dele que a borda tira a confirmação ("N peças
+  // entraram"). Sem isto, o guard e o drive da rota nova não têm o que atacar.
+  if (req.method === 'POST' && rowId === null) {
+    let corpo = ''
+    req.on('data', (d) => (corpo += d))
+    req.on('end', () => {
+      const p = JSON.parse(corpo || '{}')
+      const nova = {
+        id: Math.max(...linhas.map((l) => l.id)) + 1,
+        title_pt: '',
+        mercari_id: '',
+        source_url: '',
+        price_jpy: null,
+        price_brl: '',
+        photo_url: '',
+        caption: '',
+        tags: '',
+        scheduled_at: null,
+        posted_at: null,
+        sold: false,
+        ...p,
+        // single_select: entra TEXTO, sai objeto — igual ao Baserow de verdade.
+        // Se um dia a rota mandar o id 2573, o mock quebra, que é o ponto.
+        status: { id: 0, value: typeof p.status === 'string' ? p.status : 'Fila', color: 'gray' },
+      }
+      linhas.push(nova)
+      console.log(`POST nova linha ${nova.id}`, JSON.stringify(p))
+      return json(res, 200, nova)
+    })
+    return
+  }
+
   if (req.method === 'PATCH') {
     let corpo = ''
     req.on('data', (d) => (corpo += d))

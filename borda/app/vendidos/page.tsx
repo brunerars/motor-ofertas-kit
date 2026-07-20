@@ -1,5 +1,4 @@
 import { listarOfertas } from '@/lib/baserow'
-import { getLoja } from '@/lib/loja'
 import { Rodape, Topo } from '../components/Chrome'
 import { PecaLida } from '../components/PecaLida'
 import { ToggleSaiu } from '../components/ToggleSaiu'
@@ -16,7 +15,6 @@ export const dynamic = 'force-dynamic'
  * mentir pro Caio na palavra que mais importa pra ele.
  */
 export default async function SaiuDoMercari() {
-  const loja = await getLoja()
 
   let ofertas
   try {
@@ -28,7 +26,7 @@ export default async function SaiuDoMercari() {
         <div className="banner banner-err" role="alert">
           A fila não respondeu agora. Não é você — o Bruno já vai ver.
         </div>
-        <Rodape garimpoUrl={loja.garimpoUrl} />
+        <Rodape />
       </main>
     )
   }
@@ -83,7 +81,7 @@ export default async function SaiuDoMercari() {
         </>
       )}
 
-      <Rodape garimpoUrl={loja.garimpoUrl} />
+      <Rodape />
     </main>
   )
 }

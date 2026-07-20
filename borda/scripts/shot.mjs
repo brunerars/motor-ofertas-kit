@@ -41,6 +41,7 @@ const TELAS = [
   { nome: 'fila', path: '/', auth: true },
   { nome: 'noar', path: '/agenda', auth: true },
   { nome: 'saiu', path: '/vendidos', auth: true },
+  { nome: 'garimpar', path: '/garimpar', auth: true },
 ]
 const LARGURAS = [390, 1440]
 

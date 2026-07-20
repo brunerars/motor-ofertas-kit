@@ -1,12 +1,10 @@
 import { listarOfertas } from '@/lib/baserow'
-import { getLoja } from '@/lib/loja'
 import { Rodape, Topo } from '../components/Chrome'
 import { PecaLida } from '../components/PecaLida'
 
 export const dynamic = 'force-dynamic'
 
 export default async function NoAr() {
-  const loja = await getLoja()
 
   let ofertas
   try {
@@ -18,7 +16,7 @@ export default async function NoAr() {
         <div className="banner banner-err" role="alert">
           A fila não respondeu agora. Não é você — o Bruno já vai ver.
         </div>
-        <Rodape garimpoUrl={loja.garimpoUrl} />
+        <Rodape />
       </main>
     )
   }
@@ -83,7 +81,7 @@ export default async function NoAr() {
         </>
       )}
 
-      <Rodape garimpoUrl={loja.garimpoUrl} />
+      <Rodape />
     </main>
   )
 }

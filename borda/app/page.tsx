@@ -1,12 +1,10 @@
 import { listarOfertas } from '@/lib/baserow'
-import { getLoja } from '@/lib/loja'
 import { Rodape, Topo } from './components/Chrome'
 import { FilaLista } from './components/FilaLista'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Fila() {
-  const loja = await getLoja()
 
   let ofertas
   try {
@@ -18,7 +16,7 @@ export default async function Fila() {
         <div className="banner banner-err" role="alert">
           A fila não respondeu agora. Não é você — o Bruno já vai ver. Tenta daqui a pouco.
         </div>
-        <Rodape garimpoUrl={loja.garimpoUrl} />
+        <Rodape />
       </main>
     )
   }
@@ -46,7 +44,7 @@ export default async function Fila() {
 
       <FilaLista ofertas={fila} />
 
-      <Rodape garimpoUrl={loja.garimpoUrl} />
+      <Rodape />
     </main>
   )
 }

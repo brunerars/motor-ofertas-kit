@@ -141,5 +141,125 @@ console.log('  quem segura é o paraBorda() montar o objeto campo a campo. Este 
   console.log(`  ${ok3 ? '✓' : '✗'} sem price_jpy / wa_message_id / title_ja`, ok3 ? '' : `→ VAZOU: ${outros.join(', ')}`)
 }
 
+console.log('\n=== GARIMPAR: a 2ª porta de entrada (17/07) ===')
+console.log('  a 1ª é o form standalone → webhook do n8n, que FICA no ar como fallback.')
+console.log('  as duas gravam o MESMO rascunho cru na 556. Divergir quebra o /agenda.')
+
+async function garimpo(items, comCookie = true) {
+  const res = await fetch(`${BASE}/api/garimpo`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...(comCookie ? { cookie } : {}) },
+    body: JSON.stringify({ items }),
+  })
+  return { status: res.status, j: await res.json().catch(() => ({})) }
+}
+function ok(nome, cond, detalhe = '') {
+  if (!cond) falhas++
+  console.log(`  ${cond ? '✓' : '✗'} ${nome}`, cond ? '' : `→ ${detalhe}`)
+}
+/** A linha como o Baserow guardou — é o que o /agenda vai ler depois. */
+async function linhaCriada(id) {
+  const res = await fetch(`${BASE}/api/ofertas`, { headers: { cookie } })
+  const { ofertas } = await res.json()
+  return ofertas.find((o) => o.id === id)
+}
+
+{
+  const semCookie = await garimpo([{ url: 'https://jp.mercari.com/item/m12345678901' }], false)
+  ok('sem cookie não entra (herda o middleware)', semCookie.status === 401, `recebeu ${semCookie.status}`)
+}
+
+{
+  const { status, j } = await garimpo([
+    { url: 'https://jp.mercari.com/item/m12345678901', title: 'Boné Williams Rothmans 1994', price: 'R$ 690,00', note: 'Ajustável' },
+  ])
+  ok('cria o rascunho a partir de 1 link', status === 200 && j.criadas?.length === 1, `${status} ${JSON.stringify(j).slice(0, 120)}`)
+
+  const o = j.criadas?.[0] ? await linhaCriada(j.criadas[0].id) : null
+  ok('nasce em Fila', o?.status === 'Fila', `status ${o?.status}`)
+  ok('guarda o mercari_id extraído do link', o?.mercariId === 'm12345678901', `id ${o?.mercariId}`)
+  ok('guarda o link inteiro em source_url', o?.sourceUrl === 'https://jp.mercari.com/item/m12345678901')
+  ok('guarda o título do Caio', o?.titulo === 'Boné Williams Rothmans 1994', `titulo ${o?.titulo}`)
+  ok('a nota vai pro tags (é ela que vira a linha do Tam)', o?.tags === 'Ajustável', `tags ${o?.tags}`)
+  ok('lê o preço em R$', o?.precoBrl === 690, `preco ${o?.precoBrl}`)
+  // Rascunho cru: quem busca foto é o /agenda, e é o photo_url VAZIO que a skill
+  // usa pra pescar o que ainda não passou por ela. Nascer com foto a esconderia.
+  ok('nasce SEM foto (é assim que o /agenda a encontra)', o?.fotoUrl === null && o?.enriquecida === false, `foto ${o?.fotoUrl}`)
+  ok('nasce sem legenda (quem escreve é o /agenda)', o?.caption === '', `caption ${o?.caption}`)
+}
+
+{
+  // Título vazio → o id vira o título. Igual ao `title || id` do webhook: sem isso
+  // a peça aparece na fila sem nome nenhum e o Caio não sabe qual é.
+  const { j } = await garimpo([{ url: 'https://jp.mercari.com/item/m22222222222', title: '   ' }])
+  const o = j.criadas?.[0] ? await linhaCriada(j.criadas[0].id) : null
+  ok('título vazio cai no mercari_id (fallback do webhook)', o?.titulo === 'm22222222222', `titulo ${o?.titulo}`)
+}
+
+{
+  // 🔴 O IENE NÃO BLOQUEIA AQUI, ao contrário do editar. Garimpar é despejo em
+  // lote: a linha entra sem preço e ele conserta na Fila. Barrar faria a mesma
+  // peça entrar pelo standalone e ser recusada pela borda.
+  const { j } = await garimpo([{ url: 'https://jp.mercari.com/item/m33333333333', title: 'Boné Honda', price: '¥ 2.500' }])
+  ok('preço em iene NÃO derruba o item', j.criadas?.length === 1, JSON.stringify(j).slice(0, 120))
+  const o = j.criadas?.[0] ? await linhaCriada(j.criadas[0].id) : null
+  ok('mas a linha nasce SEM preço (¥2.500 não vira R$ 2,50)', o?.precoBrl === null, `preco ${o?.precoBrl}`)
+}
+
+{
+  const { status, j } = await garimpo([{ url: 'https://example.com/item/m99999999999' }])
+  ok('link fora do Mercari é rejeitado', j.rejeitados?.length === 1, JSON.stringify(j).slice(0, 120))
+  ok('e não cria linha nenhuma', (j.criadas?.length ?? 0) === 0 && status === 200)
+}
+
+{
+  // Um link torto NÃO pode derrubar a leva: ele cola 8 de uma vez e perder as 7
+  // boas por causa de 1 é o pior resultado possível.
+  const { j } = await garimpo([
+    { url: 'https://jp.mercari.com/item/m44444444444', title: 'boa' },
+    { url: 'pizza', title: 'torta' },
+  ])
+  ok('link torto no meio da leva não derruba as boas', j.criadas?.length === 1 && j.rejeitados?.length === 1, JSON.stringify(j).slice(0, 140))
+  ok('e a resposta diz QUAL caiu', j.rejeitados?.[0]?.indice === 1, JSON.stringify(j.rejeitados))
+}
+
+{
+  const vazio = await garimpo([])
+  ok('leva vazia não passa', vazio.status === 400 && vazio.j.erro === 'sem_itens', `${vazio.status} ${JSON.stringify(vazio.j)}`)
+  const demais = await garimpo(Array.from({ length: 21 }, () => ({ url: 'https://jp.mercari.com/item/m55555555555' })))
+  ok('teto de 20 por envio (igual ao webhook)', demais.status === 400 && demais.j.erro === 'acima_do_teto', `${demais.status} ${JSON.stringify(demais.j)}`)
+}
+
+console.log('\n=== 🔴 PARIDADE com o webhook: as duas portas gravam a MESMA linha ===')
+console.log('  este é O guard que importa. O /agenda pesca por `Fila` + photo_url vazio e')
+console.log('  não sabe por onde a peça entrou — se os campos divergirem, ele trata')
+console.log('  diferente a mesma peça conforme a porta. Comparação ESTÁTICA: o tipo')
+console.log('  NovaOferta (lib/baserow.ts) × o `const row` do Code node do n8n.')
+{
+  const { readFileSync } = await import('node:fs')
+  const raiz = new URL('../../', import.meta.url)
+
+  const wf = JSON.parse(readFileSync(new URL('n8n/nsc-garimpo-webhook.json', raiz), 'utf8'))
+  const code = wf.nodes.find((n) => n.name === 'Validar + montar linhas')?.parameters?.jsCode ?? ''
+  // os campos do literal `const row = {...}` + os que o Code adiciona depois (row.x = )
+  const bloco = code.match(/const row = \{([\s\S]*?)\n {2}\};/)?.[1] ?? ''
+  const doWebhook = new Set([
+    ...[...bloco.matchAll(/^\s{4}([a-z_]+):/gm)].map((m) => m[1]),
+    ...[...code.matchAll(/row\.([a-z_]+) = /g)].map((m) => m[1]),
+  ])
+
+  const ts = readFileSync(new URL('borda/lib/baserow.ts', raiz), 'utf8')
+  const tipo = ts.match(/export type NovaOferta = \{([\s\S]*?)\n\}/)?.[1] ?? ''
+  const daBorda = new Set([...tipo.matchAll(/^ {2}([a-z_]+)\??:/gm)].map((m) => m[1]))
+
+  const soNoWebhook = [...doWebhook].filter((c) => !daBorda.has(c))
+  const soNaBorda = [...daBorda].filter((c) => !doWebhook.has(c))
+
+  ok(`achou os campos dos dois lados (webhook ${doWebhook.size} × borda ${daBorda.size})`, doWebhook.size >= 5 && daBorda.size >= 5,
+    `webhook=[${[...doWebhook]}] borda=[${[...daBorda]}]`)
+  ok('a borda não deixou campo do webhook pra trás', soNoWebhook.length === 0, `faltam na borda: ${soNoWebhook.join(', ')}`)
+  ok('a borda não inventou campo que o webhook não grava', soNaBorda.length === 0, `só na borda: ${soNaBorda.join(', ')}`)
+}
+
 console.log(falhas ? `\n✗ ${falhas} freio(s) falharam` : '\n✓ todos os freios seguraram')
 process.exitCode = falhas ? 1 : 0

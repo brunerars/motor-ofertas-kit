@@ -190,6 +190,42 @@ export type Patch = {
   sold?: boolean
 }
 
+/**
+ * Uma peça NOVA, do jeito que ela nasce: rascunho cru.
+ *
+ * 🔴 Estes são exatamente os campos que o `Validar + montar linhas` do
+ * `n8n/nsc-garimpo-webhook.json` monta — nem um a mais. As duas portas de entrada
+ * (esta e o form standalone) gravam a MESMA linha, senão o /agenda em modo lote
+ * trata a peça diferente conforme por onde ela entrou. Mudou lá, muda aqui.
+ *
+ * Não tem `photo_url` nem `caption` de propósito: quem enriquece é o /agenda, e é
+ * o `photo_url` vazio que a skill usa pra pescar o que ainda não passou por ela.
+ */
+export type NovaOferta = {
+  mercari_id: string
+  source_url: string
+  /** o que o Caio digitou; o `mercari_id` é o fallback quando ele deixa vazio */
+  title_pt: string
+  /** o campo "Tam / observação" do form. Vazio → a legenda escreve "único". */
+  tags: string
+  status: Status
+  /** omitido quando o Caio não pôs preço (ou pôs em iene). NÃO bloqueia a entrada. */
+  price_brl?: number
+}
+
+export async function criarOferta(nova: NovaOferta): Promise<Oferta> {
+  const { tableId } = await getLoja()
+
+  // `status` por TEXTO, mesma regra do PATCH: id de single_select não se repete
+  // entre tabelas e quebraria calado na loja 2.
+  const j = (await req(`/api/database/rows/table/${tableId}/?user_field_names=true`, {
+    method: 'POST',
+    body: JSON.stringify(nova),
+  })) as Row
+
+  return paraBorda(j)
+}
+
 export async function atualizarOferta(id: number, patch: Patch): Promise<Oferta> {
   const { tableId } = await getLoja()
 

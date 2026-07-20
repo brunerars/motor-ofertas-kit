@@ -71,9 +71,16 @@ h1{ font-size:clamp(2.1rem,9vw,2.9rem); }
 .lead strong{ color:var(--ink); }
 
 /* --- Navegação por papel: as 3 coisas que o Caio faz. Nada de menu de sistema. --- */
-nav.abas{ display:flex; gap:6px; margin:18px 0 22px; border-bottom:1.5px solid var(--hair);
-  overflow-x:auto; scrollbar-width:none; }
-nav.abas::-webkit-scrollbar{ display:none; }
+/* 🔴 QUEBRA EM LINHA, não rola (17/07). Com 3 abas o `overflow-x:auto` cabia no
+   390 e ninguém notava que ele existia. Com a 4ª (Garimpar), o menu passou a
+   nascer com a última aba FORA da tela — medido: as 4 pedem ~448px e sobram 350.
+   Aba que rola é aba que o Caio não descobre, e trocar o link do rodapé por uma
+   aba invisível seria piorar o que a mudança veio consertar.
+   `wrap` custa uma segunda linha no celular e não esconde nada. Encurtar o
+   "Saiu do Mercari" faria caber numa linha só, mas aquele nome é uma decisão
+   tomada (sold = sumiu do Mercari ≠ o cliente comprou) — não se desfaz por CSS. */
+nav.abas{ display:flex; flex-wrap:wrap; gap:2px 6px; margin:18px 0 22px;
+  border-bottom:1.5px solid var(--hair); }
 nav.abas a{ flex:0 0 auto; text-decoration:none; padding:10px 14px; margin-bottom:-1.5px;
   font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
   letter-spacing:.06em; font-size:.78rem; color:var(--mid-grey);
@@ -144,7 +151,7 @@ nav.abas .badge{ display:inline-block; margin-left:6px; padding:1px 6px; border-
 label{ display:block; font-family:"Archivo",sans-serif; font-weight:700;
   text-transform:uppercase; letter-spacing:.06em; font-size:.68rem; color:var(--dark-grey);
   margin:14px 0 5px; }
-input[type=text], input[type=password], input[type=datetime-local], textarea{
+input[type=text], input[type=password], input[type=datetime-local], input[type=url], textarea{
   width:100%; font-family:"Archivo",sans-serif; font-size:1rem; padding:12px;
   border:1.5px solid var(--hair); border-radius:var(--radius-sm);
   background:var(--field); color:var(--ink); transition:border-color var(--fast); }
@@ -168,6 +175,35 @@ button{ font-family:"Archivo",sans-serif; }
 .btn-ghost{ border-style:dashed; color:var(--mid-grey); }
 .btn-ghost:hover:not(:disabled){ color:var(--danger-text); border-color:var(--red); }
 .btn-block{ width:100%; }
+
+/* --- Garimpar: o form multi-peça (17/07) ---
+   Porte do `garimpo/index.html`, que continua no ar como fallback. Só o que a
+   borda ainda NÃO tinha entra aqui: a caixa da peça e o estado de link inválido.
+   Botão de adicionar e de enviar reusam `.btn-ghost`/`.btn-primary` + `.btn-block`,
+   e a confirmação reusa `.banner` — o standalone tinha `.add`/`.submit`/`.status`
+   próprios porque nasceu antes do design system da borda existir. Duplicar aquilo
+   aqui seria criar um segundo botão primário que envelhece separado. */
+.garimpo-itens{ display:flex; flex-direction:column; gap:14px; margin-top:22px; }
+.garimpo-item{ border:1.5px solid var(--hair); border-radius:var(--radius-md);
+  background:var(--card); padding:16px 16px 18px; transition:border-color var(--fast); }
+.garimpo-item:focus-within{ border-color:var(--ink); }
+/* O 1º label da caixa não leva a margem de 14px do label global: ele encosta no
+   cabeçalho e abriria um buraco. */
+.garimpo-item label:first-of-type{ margin-top:6px; }
+.garimpo-item-cab{ display:flex; align-items:center; justify-content:space-between;
+  min-height:28px; }
+.garimpo-n{ font-family:"Anton",sans-serif; font-size:.95rem; letter-spacing:.03em;
+  text-transform:uppercase; color:var(--mid-grey); }
+.garimpo-rm{ appearance:none; border:0; background:none; cursor:pointer; padding:4px 8px;
+  font-size:1.3rem; line-height:1; color:var(--mid-grey); transition:color var(--fast); }
+.garimpo-rm:hover{ color:var(--accent-text); }
+/* --accent-text, não --red: o --red é fixo e some no tema escuro. Mesma regra do
+   selo invertido — nunca parear token que vira com token que não vira. */
+.garimpo-item.invalida{ border-color:var(--accent-text); }
+.garimpo-item.invalida input[type=url]{ border-color:var(--accent-text); }
+.campo-erro{ margin:6px 0 0; font-size:.78rem; font-weight:600; color:var(--danger-text); }
+.label-leve{ font-weight:400; text-transform:none; letter-spacing:0; color:var(--mid-grey); }
+.garimpo-conta{ text-align:center; margin-top:12px; font-size:.8rem; color:var(--mid-grey); }
 
 /* --- Selos de estado --- */
 .selo{ display:inline-block; padding:3px 10px; border-radius:var(--radius-pill);

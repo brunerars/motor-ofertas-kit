@@ -119,6 +119,53 @@ t = await texto()
 checar('confirma o que aconteceu, com o nome da peça', /aprovado\. Sai no grupo na próxima janela/.test(t))
 checar('nomeia a peça aprovada', /Boné Benetton F1 vermelho vintage/.test(t))
 
+console.log('\n=== GARIMPAR: o loop se fecha DENTRO da borda (17/07) ===')
+console.log('  mandar link era a única coisa que o Caio fazia num site à parte.')
+// React é controlado: mexer no .value direto não dispara o onChange e o estado
+// fica vazio. Mesmo truque do textarea acima — setter nativo + evento borbulhando.
+const digitar = (sel, valor) => js(`(()=>{
+  const el=document.querySelector(${JSON.stringify(sel)});
+  if(!el) return 'NAO ACHEI';
+  const set=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;
+  set.call(el, ${JSON.stringify(valor)});
+  el.dispatchEvent(new Event('input',{bubbles:true}));
+  return 'ok';
+})()`)
+
+console.log('  clicar na aba Garimpar →', await js(`(()=>{const a=[...document.querySelectorAll('nav.abas a')].find(a=>a.textContent.trim()==='Garimpar');if(!a)return 'NAO ACHEI';a.click();return 'clicou'})()`))
+await sleep(2500)
+t = await texto()
+checar('a aba Garimpar existe e abre', /Garimpar/i.test(t) && (await js(`!!document.querySelector('#url-0')`)))
+checar('o rodapé não tem mais "Mandar links" (2 portas pra mesma ação)', !/Mandar links/i.test(t))
+
+console.log('  digitar a peça →', await digitar('#url-0', 'https://jp.mercari.com/item/m88899900011'))
+await digitar('#title-0', 'Boné Williams Rothmans 1994')
+await digitar('#price-0', 'R$ 690,00')
+await digitar('#note-0', 'Ajustável')
+await sleep(300)
+console.log('  clicar em Mandar pra fila →', await clicar('Mandar pra fila'))
+await sleep(2500)
+t = await texto()
+checar('confirma pela CONTAGEM, não por "enviado"', /1 peça entrou na fila/.test(t))
+checar('diz onde ela foi parar', /aba Fila/i.test(t))
+
+// Link torto: o erro tem que aparecer NA LINHA, não só num banner genérico.
+await digitar('#url-0', 'https://example.com/item/m123')
+await sleep(200)
+console.log('  mandar link torto →', await clicar('Mandar pra fila'))
+await sleep(1200)
+t = await texto()
+checar('link fora do Mercari é barrado ANTES de sair da tela', /não é de uma peça do Mercari/.test(t))
+checar('e o erro aparece na linha, não só no banner', /Cola o link de um item do Mercari/.test(t))
+
+console.log('  voltar pra Fila →', await js(`(()=>{const a=[...document.querySelectorAll('nav.abas a')].find(a=>a.textContent.trim().startsWith('Fila'));if(!a)return 'NAO ACHEI';a.click();return 'clicou'})()`))
+await sleep(2500)
+t = await texto()
+// O loop inteiro: ele mandou o link e a peça está na fila dele, na mesma sessão,
+// sem trocar de site. É isto que a aba comprou.
+checar('a peça que ele acabou de mandar está na Fila', /Boné Williams Rothmans 1994/i.test(t))
+checar('e entrou como rascunho cru (sem foto, esperando o /agenda)', /A foto vem quando o Bruno preparar/.test(t))
+
 const { data } = await cmd('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true,
   clip: { x: 0, y: 0, width: 390, height: Math.min((await cmd('Page.getLayoutMetrics', {}, sessionId)).cssContentSize.height, 4000), scale: 1 } }, sessionId)
 const { writeFileSync } = await import('node:fs')
