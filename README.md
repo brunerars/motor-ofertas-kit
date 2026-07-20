@@ -18,7 +18,7 @@ flowchart LR
   C --> D["👤 Bruno<br/>revisa e aprova no Baserow"]
   D --> E[("Baserow<br/>Aprovado")]
   E --> F["⚙️ n8n (cron)<br/>lê aprovados"]
-  F --> G["📱 Z-API<br/>posta no grupo WhatsApp"]
+  F --> G["📱 WAHA<br/>posta no grupo WhatsApp"]
   G --> H[("Baserow<br/>Disparado")]
   H --> I["⚙️ n8n (diário)<br/>checa se vendeu"]
   I --> J[("Baserow<br/>Vendido")]
@@ -34,7 +34,7 @@ flowchart LR
 | Design system | 🤖 **Claude** `/marca` | Gera `design-system2.html` a partir da ref |
 | Fotos do acervo | 👤 dá URLs → 🤖 `/acervo` | Humano **cura** as URLs; Claude baixa as fotos |
 | Landing page + deploy | 🤖 **Claude** `/lp` | LP self-contained → Vercel, no ar |
-| Contas & tokens (Firecrawl, Baserow, Z-API, Vercel) | 👤 **Humano** | Cria contas; **conecta o WhatsApp (QR)** |
+| Contas & tokens (Firecrawl, Baserow, Vercel) + **subir o WAHA** | 👤 **Humano** | Cria contas; sobe a stack do WAHA; **conecta o WhatsApp (QR)** |
 | Preencher `.env` | 👤 **Humano** | Cola os tokens — **só troca de valores** |
 | Tabela/fila no Baserow | 🤖 **Claude** | Cria o schema via API |
 | Importar workflow do n8n | 👤 **Humano** | Cola o JSON, preenche o node `Config`, ativa |
@@ -64,7 +64,7 @@ flowchart LR
 | `/confere-ofertas` | Marca vendidos + avisa *(prod = n8n)* | Ofertas |
 
 ## Stack
-- **Firecrawl** — scrape do Mercari · **Baserow** — fila/DB (`DISPARADOR`, db 104/tabela 556) · **Z-API** — WhatsApp · **Vercel** — LP · **n8n** — cron de disparo (0 token).
+- **Firecrawl** — scrape do Mercari · **Baserow** — fila/DB (`DISPARADOR`, db 104/tabela 556) · **WAHA** — WhatsApp (auto-hospedado, `waha/stack-vps.yml`; substituiu a Z-API paga em 16/07) · **Vercel** — LP · **n8n** — cron de disparo (0 token).
 - Segredos só no `.env` (fora do git). Ver `.env.example`.
 
 ## Arquitetura de custo (por que fecha como produto)
@@ -77,15 +77,19 @@ flowchart LR
 ## Organização (rumo a produto)
 ```
 .claude/skills/            # O KIT — reutilizável entre lojas
-  marca/ acervo/ lp/ agenda/ dispara-oferta/ confere-ofertas/
+  marca/ acervo/ lp/ agenda/ dispara-oferta/ confere-ofertas/ post-feed/ post-stories/
 projetos/motor-ofertas/    # A INSTÂNCIA (Nippon Speed Co.)
   CLAUDE.md                # cérebro da loja (adaptável)
   .env  /  .env.example    # tokens (humano preenche)
-  marca/                   # design system + acervo de fotos
+  marca/                   # tudo da marca, por tópico:
+    acervo/                #   fotos das peças (do Mercari, via /acervo)
+    campanha/              #   Meta Ads: brief + criativos
+    conteudo/              #   Instagram: storytelling/ stories/ destaques/ + ideias-feed.md
+    referencia/            #   design system + assets do Caio (fora do git)
   lp/                      # landing page
   n8n/nsc-dispara-ofertas.json   # workflow de disparo (importar no n8n)
-  baserow-disparador-schema.md   # schema da fila
-  roteiro-lp.md · logistica-mercari.md · README.md
+  docs/                    # fontes da verdade: roteiro-lp · logistica-mercari · baserow-schema
+  briefs/                  # pedidos do Bruno/Caio já aplicados (histórico)
 ```
 **Pra abrir uma nova loja:** clona a instância, troca o cérebro (CLAUDE.md) + assets + `.env`, roda as skills de setup. O kit de skills não muda.
 

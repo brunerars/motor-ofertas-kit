@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Nippon Speed Co. · Garimpo — manda os links</title>
+<meta name="description" content="Canal interno da Nippon Speed Co. para o Caio mandar os links das peças garimpadas no Mercari."/>
+<meta name="robots" content="noindex, nofollow"/>
+
+<!-- Tema: aplica claro/escuro ANTES de pintar (respeita o sistema; lembra a escolha). Evita flash. -->
+<script>(function(){try{var s=localStorage.getItem('nsc-tema');var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));}catch(e){}})();</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<style>
+/* ============================================================
+   NIPPON SPEED CO. — GARIMPO (canal de entrada do Caio)
+   Design system V1: ink-on-paper, Anton + Archivo, acento vermelho.
+   Mobile-first: o Caio usa no celular.
+   ============================================================ */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
+  --dark-grey:#5d5d5d; --mid-grey:#676763; --light-grey:#d1d1cc; --hair:#ddddd7;
+  --red:#c82a2a; --red-ink:#a31f1f; --brand-red:#e60000;
+  --green:#1f8a4c; --green-bg:#e7f3ec;
+  /* superfícies + acentos semânticos (viram no tema escuro; --white e --red ficam fixos) */
+  --card:#ffffff; --field:#f5f5f5; --err-bg:#fbeaea;
+  --accent-text:#c82a2a; --danger-text:#a31f1f;
+  --radius-sm:4px; --radius-md:8px; --radius-pill:9999px;
+  --ease:cubic-bezier(.16,1,.3,1); --fast:.18s cubic-bezier(.25,.46,.45,.94);
+  color-scheme:light;
+}
+/* Tema escuro — o Caio trabalha muito à noite. Só troca as superfícies e os acentos de
+   texto; o botão vermelho (--red sobre --white) fica intacto pra não perder contraste. */
+:root[data-theme="dark"]{
+  --ink:#efeee9; --paper:#121212; --whitesmoke:#1e1e1e;
+  --dark-grey:#b0b0ab; --mid-grey:#9a9a95; --light-grey:#5c5c59; --hair:#33332f;
+  --green:#4ecb84; --green-bg:#12291d;
+  --card:#1c1c1c; --field:#151515; --err-bg:#311a1c;
+  --accent-text:#ff6b60; --danger-text:#ff8a80;
+  color-scheme:dark;
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{ margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif; font-size:1rem; line-height:1.6;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  transition:background .25s ease, color .25s ease; }
+h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0;
+  text-transform:uppercase; letter-spacing:.01em; line-height:1.05; }
+a{ color:inherit; }
+
+.wrap{ max-width:640px; margin:0 auto; padding:28px 20px 64px; }
+
+/* --- Logo lockup (kit oficial: disco #e60000, ponto quadrado) --- */
+.logo-h{ display:inline-flex; align-items:center; font-family:"Anton",sans-serif;
+  text-transform:uppercase; letter-spacing:.022em; line-height:1; white-space:nowrap;
+  font-size:1.15rem; }
+.logo-h .lg-disc{ width:.5em; height:.5em; border-radius:50%; background:var(--brand-red);
+  flex:0 0 auto; margin:0 .28em; }
+.logo-h .lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+  align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
+
+header{ display:flex; align-items:center; justify-content:space-between; gap:14px;
+  border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:26px; }
+.theme-toggle{ appearance:none; flex:0 0 auto; width:40px; height:40px; cursor:pointer;
+  border:1.5px solid var(--hair); background:var(--card); color:var(--ink);
+  border-radius:var(--radius-pill); display:inline-flex; align-items:center; justify-content:center;
+  transition:border-color var(--fast), background var(--fast); }
+.theme-toggle:hover{ border-color:var(--ink); }
+.theme-toggle svg{ width:18px; height:18px; }
+.theme-toggle .ic-sun{ display:none; } .theme-toggle .ic-moon{ display:block; }
+:root[data-theme="dark"] .theme-toggle .ic-sun{ display:block; }
+:root[data-theme="dark"] .theme-toggle .ic-moon{ display:none; }
+.eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
+  letter-spacing:.2em; font-size:.8rem; color:var(--accent-text); margin:22px 0 8px; }
+h1{ font-size:clamp(2.1rem,9vw,2.9rem); }
+.lead{ margin-top:14px; color:var(--dark-grey); font-size:.98rem; line-height:1.6; max-width:44ch; }
+.lead strong{ color:var(--ink); }
+
+/* --- Item rows --- */
+.items{ display:flex; flex-direction:column; gap:14px; margin-top:10px; }
+.item{ position:relative; border:1.5px solid var(--hair); border-radius:var(--radius-md);
+  background:var(--card); padding:16px 16px 14px; transition:border-color var(--fast); }
+.item:focus-within{ border-color:var(--ink); }
+.item-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.item-n{ font-family:"Anton",sans-serif; font-size:.95rem; letter-spacing:.03em;
+  text-transform:uppercase; color:var(--mid-grey); }
+.item-rm{ appearance:none; border:0; background:none; cursor:pointer; padding:4px;
+  font-size:1.2rem; line-height:1; color:var(--light-grey); transition:color var(--fast); }
+.item-rm:hover{ color:var(--red); }
+.item.solo .item-rm{ display:none; }
+
+label{ display:block; font-family:"Archivo",sans-serif; font-weight:700;
+  text-transform:uppercase; letter-spacing:.06em; font-size:.68rem; color:var(--dark-grey);
+  margin:0 0 5px; }
+input[type=url], input[type=text]{ width:100%; font-family:"Archivo",sans-serif;
+  font-size:1rem; padding:12px 12px; border:1.5px solid var(--hair);
+  border-radius:var(--radius-sm); background:var(--field); color:var(--ink);
+  transition:border-color var(--fast); }
+input:focus{ outline:none; border-color:var(--ink); }
+input::placeholder{ color:#a7a7a2; }
+.note-wrap{ margin-top:10px; }
+.field-err{ margin-top:6px; font-size:.78rem; color:var(--danger-text); font-weight:600; display:none; }
+.item.invalid .field-err{ display:block; }
+.item.invalid input[type=url]{ border-color:var(--red); }
+
+/* --- Add button --- */
+.add{ appearance:none; margin-top:14px; width:100%; cursor:pointer;
+  font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
+  letter-spacing:.06em; font-size:.85rem; color:var(--ink);
+  background:none; border:1.5px dashed var(--light-grey); border-radius:var(--radius-md);
+  padding:14px; transition:border-color var(--fast), color var(--fast); }
+.add:hover:not(:disabled){ border-color:var(--ink); }
+.add:disabled{ opacity:.4; cursor:not-allowed; }
+
+/* --- Submit --- */
+.actions{ margin-top:26px; }
+.submit{ appearance:none; width:100%; cursor:pointer; border:0;
+  font-family:"Anton",sans-serif; text-transform:uppercase; letter-spacing:.03em;
+  font-size:1.15rem; color:var(--white); background:var(--red);
+  border-radius:var(--radius-pill); padding:18px 24px;
+  transition:background var(--fast), transform var(--fast); }
+.submit:hover:not(:disabled){ background:var(--red-ink); }
+.submit:active:not(:disabled){ transform:translateY(1px); }
+.submit:disabled{ opacity:.55; cursor:not-allowed; }
+.count-note{ text-align:center; margin-top:12px; font-size:.8rem; color:var(--mid-grey); }
+
+/* --- Status banner --- */
+.status{ margin-top:20px; padding:16px 18px; border-radius:var(--radius-md);
+  font-size:.95rem; line-height:1.5; display:none; }
+.status.show{ display:block; }
+.status.ok{ background:var(--green-bg); color:var(--green); border:1.5px solid var(--green); font-weight:600; }
+.status.err{ background:var(--err-bg); color:var(--danger-text); border:1.5px solid var(--red); font-weight:600; }
+.status.sending{ background:var(--whitesmoke); color:var(--dark-grey); border:1.5px solid var(--hair); }
+
+footer{ margin-top:40px; padding-top:18px; border-top:1.5px solid var(--hair);
+  font-size:.78rem; color:var(--light-grey); text-transform:uppercase; letter-spacing:.06em; }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <header>
+    <span class="logo-h" aria-label="Nippon Speed Co.">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
+    <button type="button" id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro e escuro" title="Tema claro/escuro">
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </header>
+
+  <p class="eyebrow">Garimpo · uso interno</p>
+  <h1>Manda os<br/>links</h1>
+  <p class="lead">Achou uma peça no Mercari? Cola o link, o título e o valor. Pode mandar <strong>quantas quiser de uma vez</strong>. O campo <strong>Tam / observação</strong> sai na oferta logo depois de "Tam:" — põe o tamanho, medida ou detalhe da peça. Vazio vira "único".</p>
+
+  <form id="form" novalidate>
+    <div class="items" id="items"><!-- linhas injetadas pelo JS --></div>
+
+    <button type="button" class="add" id="add">+ adicionar outra peça</button>
+
+    <div class="actions">
+      <button type="submit" class="submit" id="submit">Enviar pro grupo</button>
+      <p class="count-note" id="countNote"></p>
+    </div>
+
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </form>
+
+  <footer>Nippon Speed Co. · canal interno</footer>
+</div>
+
+<script>
+/* ===================== CONFIG ===================== *
+ * Trocar WEBHOOK_URL pela URL real do webhook do n8n hospedado do Bruno,
+ * e SECRET pelo mesmo valor colado no node Config do workflow.
+ * O SECRET aqui é um freio leve de spam (fica visível no fonte), não senha. */
+const WEBHOOK_URL = "__N8N_WEBHOOK_URL__";
+const SECRET      = "__FORM_SECRET__";
+const MAX_ITEMS   = 20;
+const MERCARI_RE  = /mercari\.com\/item\/m\d+/i;
+
+const itemsEl = document.getElementById("items");
+const addBtn  = document.getElementById("add");
+const form    = document.getElementById("form");
+const submit  = document.getElementById("submit");
+const statusEl= document.getElementById("status");
+const countNote = document.getElementById("countNote");
+
+/* Toggle de tema — persiste a escolha; sem escolha salva, segue o sistema (ver <head>). */
+document.getElementById("themeToggle").addEventListener("click", function(){
+  const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  const next = cur === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try{ localStorage.setItem("nsc-tema", next); }catch(e){}
+});
+if (window.matchMedia){
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(e){
+    if(!localStorage.getItem("nsc-tema")){
+      document.documentElement.setAttribute("data-theme", e.matches ? "dark" : "light");
+    }
+  });
+}
+
+function rowCount(){ return itemsEl.querySelectorAll(".item").length; }
+
+function renumber(){
+  const rows = [...itemsEl.querySelectorAll(".item")];
+  rows.forEach((row, i) => {
+    row.querySelector(".item-n").textContent = "Peça " + (i + 1);
+    row.classList.toggle("solo", rows.length === 1);
+  });
+  addBtn.disabled = rows.length >= MAX_ITEMS;
+  addBtn.textContent = rows.length >= MAX_ITEMS
+    ? "Máximo de " + MAX_ITEMS + " por envio"
+    : "+ adicionar outra peça";
+  countNote.textContent = rows.length + (rows.length === 1 ? " peça" : " peças") + " nesta leva";
+}
+
+function addRow(){
+  if (rowCount() >= MAX_ITEMS) return;
+  const row = document.createElement("div");
+  row.className = "item";
+  row.innerHTML = `
+    <div class="item-head">
+      <span class="item-n">Peça</span>
+      <button type="button" class="item-rm" aria-label="Remover esta peça" title="Remover">&times;</button>
+    </div>
+    <label>Link do produto (Mercari)</label>
+    <input type="url" class="url" inputmode="url" autocomplete="off"
+           placeholder="https://jp.mercari.com/item/m..." />
+    <div class="field-err">Cola o link de um item do Mercari (jp.mercari.com/item/m...).</div>
+    <div class="note-wrap">
+      <label>Título do produto</label>
+      <input type="text" class="title" autocomplete="off" placeholder="ex: Boné Ferrari Schumacher nº 1" />
+    </div>
+    <div class="note-wrap">
+      <label>Valor de venda (R$)</label>
+      <input type="text" class="price" inputmode="decimal" autocomplete="off" placeholder="ex: R$ 750,00" />
+    </div>
+    <div class="note-wrap">
+      <label>Tam / observação <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#a7a7a2">(opcional)</span></label>
+      <input type="text" class="note" autocomplete="off" placeholder="ex: F, medidas pv" />
+    </div>`;
+  row.querySelector(".item-rm").addEventListener("click", () => {
+    if (rowCount() > 1){ row.remove(); renumber(); }
+  });
+  row.querySelector(".url").addEventListener("input", () => row.classList.remove("invalid"));
+  itemsEl.appendChild(row);
+  renumber();
+}
+
+addBtn.addEventListener("click", addRow);
+addRow(); // começa com uma linha
+
+function setStatus(kind, msg){
+  statusEl.className = "status show " + kind;
+  statusEl.textContent = msg;
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusEl.className = "status"; // limpa
+
+  // valida: cada linha preenchida precisa parecer Mercari; ignora linha totalmente vazia
+  const rows = [...itemsEl.querySelectorAll(".item")];
+  const items = [];
+  let bad = false;
+  for (const row of rows){
+    row.classList.remove("invalid");
+    const url = row.querySelector(".url").value.trim();
+    const title = row.querySelector(".title").value.trim();
+    const price = row.querySelector(".price").value.trim();
+    const note = row.querySelector(".note").value.trim();
+    if (!url) continue;
+    if (!MERCARI_RE.test(url)){ row.classList.add("invalid"); bad = true; continue; }
+    items.push({ url, title, price, note });
+  }
+
+  if (bad){ setStatus("err", "Tem link que não é do Mercari. Confere os marcados em vermelho."); return; }
+  if (items.length === 0){ setStatus("err", "Cola pelo menos um link antes de enviar."); return; }
+
+  submit.disabled = true; addBtn.disabled = true;
+  setStatus("sending", "Enviando " + items.length + (items.length === 1 ? " peça…" : " peças…"));
+
+  try{
+    const resp = await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret: SECRET, items })
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    // O n8n devolve 200 com corpo VAZIO quando o workflow explode no meio.
+    // Sem checar o corpo, o form dizia "Recebido!" com ZERO linhas gravadas (16/07).
+    // O Respond node manda "All Incoming Items" = as linhas que o Baserow criou,
+    // cada uma com seu id -> contar os id e a unica prova real de que entrou.
+    const data = await resp.json().catch(() => null);
+    const criadas = Array.isArray(data) ? data.filter(r => r && r.id).length : 0;
+    if (criadas === 0) throw new Error("workflow nao confirmou nenhuma linha");
+    setStatus("ok", "Recebido! " + criadas + (criadas === 1 ? " peça entrou" : " peças entraram") + " na fila. Pode mandar mais quando quiser.");
+    form.reset();
+    itemsEl.innerHTML = "";
+    addRow();
+  }catch(err){
+    setStatus("err", "Não deu pra enviar agora. Tenta de novo em instantes — se persistir, avisa o Bruno.");
+  }finally{
+    submit.disabled = false;
+    renumber();
+  }
+});
+</script>
+</body>
+</html>

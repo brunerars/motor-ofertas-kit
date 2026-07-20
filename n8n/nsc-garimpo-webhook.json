@@ -1,0 +1,94 @@
+{
+  "name": "NSC — Garimpo (form do Caio → Baserow)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nsc-garimpo-8f3a1c",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "a2b20000-0000-4000-8000-000000000001",
+      "name": "Webhook (form do Caio)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-320, -144],
+      "webhookId": "nsc-garimpo-8f3a1c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "c1", "name": "baserow_url", "value": "https://baserow.arvsystems.cloud", "type": "string" },
+            { "id": "c2", "name": "table_id", "value": "556", "type": "string" },
+            { "id": "c3", "name": "baserow_token", "value": "<PREENCHER_BASEROW_TOKEN>", "type": "string" },
+            { "id": "c4", "name": "form_secret", "value": "<PREENCHER_FORM_SECRET>", "type": "string" }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "a2b20000-0000-4000-8000-000000000002",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-128, -144],
+      "notes": "includeOtherFields=true e OBRIGATORIO: e o que faz o body do webhook atravessar ate o Code node sem precisar chamar $('Webhook...') pelo nome."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Form do Caio -> 1 linha de Baserow por peca. Status inicial = Fila (rascunho cru);\n// o /agenda (modo lote) enriquece depois com foto + traducao + legenda.\n//\n// REGRA DURA - NAO usar $('nome-do-no') aqui. Ja quebrou 2x (15/07 e 16/07):\n// ao importar por cima de um canvas existente o n8n renomeia os nos (Config -> Config1)\n// e carimba o '1' ate em referencia de no que nao foi renomeado -> ExpressionError\n// 'Referenced node doesn't exist', e o webhook devolve 200 VAZIO (falha silenciosa).\n// Por isso o node Config esta com includeOtherFields=true: o body do webhook chega\n// aqui dentro do $input, junto com os tokens. Zero dependencia de nome.\n//\n// NAO usar barra invertida em regex: some ao colar o codigo na mao no n8n.\nconst inp = $input.first().json;\nconst payload = inp.body || {};\n\nif (!inp.form_secret || String(payload.secret || '').trim() !== String(inp.form_secret).trim()) {\n  throw new Error('unauthorized: secret invalido');\n}\nconst items = Array.isArray(payload.items) ? payload.items : [];\nif (items.length === 0) throw new Error('sem itens');\nif (items.length > 20) throw new Error('acima do teto de 20 por envio');\n\n// Valor do Caio (R$) -> numero. Aceita 'R$ 750,00', '750,00', '1.250,50', '750'.\n// Esse R$ JA E FECHADO: inclui frete do Japao + impostos (modelo de venda da NSC).\nfunction parseBRL(s) {\n  if (!s) return null;\n  const raw = String(s);\n  // Freio: se veio em iene, NAO adivinhar. '¥ 2.500' viraria 2.5 (R$ 2,50) e iria pro grupo errado.\n  if (raw.indexOf('¥') > -1 || raw.indexOf('円') > -1 || raw.toUpperCase().indexOf('JPY') > -1) return null;\n  let t = raw.replace(/[^0-9.,]/g, '').trim();\n  if (!t) return null;\n  if (t.indexOf(',') > -1) { t = t.split('.').join('').replace(',', '.'); }  // BR: ponto=milhar, virgula=decimal\n  const n = parseFloat(t);\n  return (isNaN(n) || n <= 0) ? null : n;\n}\n\nconst out = [];\nfor (const it of items) {\n  const url = (it && it.url ? String(it.url) : '').trim();\n  const title = (it && it.title ? String(it.title) : '').trim();\n  const note = (it && it.note ? String(it.note) : '').trim();\n  const m = url.match(/m[0-9]+/i);   // so digitos, sem barra invertida\n  if (!m) continue;\n  const id = m[0].toLowerCase();\n  const row = {\n    mercari_id: id,\n    source_url: url,\n    title_pt: title || id,          // titulo do Caio (id como fallback); /agenda refina\n    tags: note,                     // so a nota; o valor tem campo proprio\n    status: 'Fila'\n  };\n  const brl = parseBRL(it && it.price);\n  if (brl !== null) row.price_brl = brl;   // omite quando o Caio nao preencheu\n  // config viaja junto: o HTTP node le tudo de $json, sem $('Config')\n  out.push({ json: { row, baserow_url: inp.baserow_url, table_id: inp.table_id, baserow_token: inp.baserow_token } });\n}\nif (out.length === 0) throw new Error('nenhuma URL de Mercari valida');\nreturn out;"
+      },
+      "id": "a2b20000-0000-4000-8000-000000000003",
+      "name": "Validar + montar linhas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [80, -144]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.baserow_url }}/api/database/rows/table/{{ $json.table_id }}/?user_field_names=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Token {{ $json.baserow_token }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.row) }}",
+        "options": {}
+      },
+      "id": "a2b20000-0000-4000-8000-000000000004",
+      "name": "Baserow: inserir (Fila)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [288, -144],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "a2b20000-0000-4000-8000-000000000005",
+      "name": "Responder ao form",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [496, -144],
+      "notes": "All Incoming Items = devolve as linhas que o Baserow criou, cada uma com seu id. E prova de gravacao, nao so 'o workflow terminou'. O form conta os id pra dizer quantas entraram de verdade. NAO usar expressao aqui: o padrao '={{ { \"ok\": true } }}' devolvia corpo VAZIO (nunca funcionou; passava batido porque o form so olhava o status HTTP)."
+    }
+  ],
+  "connections": {
+    "Webhook (form do Caio)": { "main": [[{ "node": "Config", "type": "main", "index": 0 }]] },
+    "Config": { "main": [[{ "node": "Validar + montar linhas", "type": "main", "index": 0 }]] },
+    "Validar + montar linhas": { "main": [[{ "node": "Baserow: inserir (Fila)", "type": "main", "index": 0 }]] },
+    "Baserow: inserir (Fila)": { "main": [[{ "node": "Responder ao form", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}

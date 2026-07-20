@@ -5,6 +5,11 @@
 .credentials.json
 bw-jwt.txt
 
+# Workflows n8n COM os segredos preenchidos (espelho do que roda em prod).
+# Ficam SÓ na máquina do Bruno: ele exporta de lá / importa direto, sem editar token na mão.
+# Os templates versionáveis (com <PREENCHER_...>) continuam em n8n/*.json.
+n8n/versoes-em-prod/
+
 # Vercel / build
 .vercel/
 lp/.vercel/
@@ -12,14 +17,22 @@ node_modules/
 *.local
 
 # Firecrawl — dumps brutos intermediários
-marca/acervo/**/_raw.json
-lp/**/_raw.json
+# _raw*.json (não só _raw.json: um 2º scrape do mesmo item vira _raw2.json)
+# _upload.json = resposta da API do Baserow ao subir a foto; a URL que importa
+# mora no campo photo_url da linha, não aqui.
+marca/acervo/**/_raw*.json
+marca/acervo/**/_upload.json
+lp/**/_raw*.json
 
 # Referência de design (input do /marca, pesada, regenerável — não runtime)
 marca/referencia/
+
+# Cache do quality gate (regenerável)
+.impeccable/
 
 # Temp / OS / editor
 *.tmp
 _verify_tmp.html
 .DS_Store
 Thumbs.db
+*.err

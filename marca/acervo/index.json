@@ -1,10 +1,164 @@
 {
-  "count": 3,
+  "count": 11,
   "items": [
+    {
+      "id": "m48149424293",
+      "title_ja": "フェラーリＦ1帽子（ミハエルシューマッハ）",
+      "tags": [
+        "boné",
+        "schumacher",
+        "ferrari",
+        "f1",
+        "vintage",
+        "destaque"
+      ],
+      "sold": false,
+      "photos": [
+        "acervo/m48149424293/1.jpg",
+        "acervo/m48149424293/2.jpg",
+        "acervo/m48149424293/3.jpg",
+        "acervo/m48149424293/4.jpg",
+        "acervo/m48149424293/5.jpg",
+        "acervo/m48149424293/6.jpg",
+        "acervo/m48149424293/7.jpg",
+        "acervo/m48149424293/8.jpg",
+        "acervo/m48149424293/9.jpg",
+        "acervo/m48149424293/10.jpg",
+        "acervo/m48149424293/11.jpg",
+        "acervo/m48149424293/12.jpg",
+        "acervo/m48149424293/13.jpg",
+        "acervo/m48149424293/14.jpg",
+        "acervo/m48149424293/15.jpg",
+        "acervo/m48149424293/16.jpg",
+        "acervo/m48149424293/17.jpg",
+        "acervo/m48149424293/18.jpg",
+        "acervo/m48149424293/19.jpg"
+      ]
+    },
+    {
+      "id": "m33557684905",
+      "title_ja": "希少 ミハエル・シューマッハ F1 フェラーリ DEKRA キャップ 帽子",
+      "bloqueado": "PEÇA FALSA — identificada pelo Caio em 13/07/2026. Não usar em LP, post, story ou oferta. Substituída no destaque por m48149424293.",
+      "tags": [
+        "boné",
+        "schumacher",
+        "ferrari",
+        "dekra",
+        "f1",
+        "falsa",
+        "bloqueado"
+      ],
+      "sold": false,
+      "photos": [
+        "acervo/m33557684905/1.jpg",
+        "acervo/m33557684905/2.jpg",
+        "acervo/m33557684905/3.jpg",
+        "acervo/m33557684905/4.jpg",
+        "acervo/m33557684905/5.jpg",
+        "acervo/m33557684905/6.jpg",
+        "acervo/m33557684905/7.jpg"
+      ]
+    },
+    {
+      "id": "m33986204509",
+      "title_ja": "FERRARI F1 PELTOR　ミハエルシューマッハ",
+      "tags": [
+        "colecionável",
+        "peltor",
+        "ferrari",
+        "schumacher",
+        "2000",
+        "box"
+      ],
+      "sold": false,
+      "photos": [
+        "acervo/m33986204509/1.jpg",
+        "acervo/m33986204509/2.jpg",
+        "acervo/m33986204509/3.jpg",
+        "acervo/m33986204509/4.jpg",
+        "acervo/m33986204509/5.jpg",
+        "acervo/m33986204509/6.jpg",
+        "acervo/m33986204509/7.jpg"
+      ]
+    },
+    {
+      "id": "m17195738050",
+      "title_ja": "ミハエルシューマッハ 1996年 記念ジャケット ウインドブレーカー L レッド",
+      "tags": [
+        "roupa",
+        "jaqueta",
+        "corta-vento",
+        "schumacher",
+        "1996",
+        "vintage"
+      ],
+      "sold": false,
+      "photos": [
+        "acervo/m17195738050/1.jpg",
+        "acervo/m17195738050/2.jpg",
+        "acervo/m17195738050/3.jpg",
+        "acervo/m17195738050/4.jpg",
+        "acervo/m17195738050/5.jpg",
+        "acervo/m17195738050/6.jpg",
+        "acervo/m17195738050/7.jpg",
+        "acervo/m17195738050/8.jpg",
+        "acervo/m17195738050/9.jpg",
+        "acervo/m17195738050/10.jpg",
+        "acervo/m17195738050/11.jpg",
+        "acervo/m17195738050/12.jpg",
+        "acervo/m17195738050/13.jpg"
+      ]
+    },
+    {
+      "id": "m81050866958",
+      "title_ja": "F1 ロータス 2013 レプリカ ポロシャツ キッズ 11〜12歳",
+      "tags": [
+        "camiseta",
+        "polo",
+        "lotus",
+        "2013",
+        "infantil",
+        "novo"
+      ],
+      "sold": false,
+      "photos": [
+        "acervo/m81050866958/1.jpg",
+        "acervo/m81050866958/2.jpg",
+        "acervo/m81050866958/3.jpg",
+        "acervo/m81050866958/4.jpg"
+      ]
+    },
+    {
+      "id": "m84757728097",
+      "title_ja": "F1 ブラックキャップ (Benetton Formula 1 Racing Team)",
+      "tags": [
+        "boné",
+        "benetton",
+        "f1",
+        "90s",
+        "preto"
+      ],
+      "sold": false,
+      "photos": [
+        "acervo/m84757728097/1.jpg",
+        "acervo/m84757728097/2.jpg",
+        "acervo/m84757728097/3.jpg",
+        "acervo/m84757728097/4.jpg",
+        "acervo/m84757728097/5.jpg",
+        "acervo/m84757728097/6.jpg",
+        "acervo/m84757728097/7.jpg",
+        "acervo/m84757728097/8.jpg"
+      ]
+    },
     {
       "id": "m23690681862",
       "title_ja": "鈴鹿サーキット F1 日本グランプリ '90 記念キャップ SUZUKA",
-      "tags": [],
+      "tags": [
+        "boné",
+        "suzuka",
+        "gp-japão",
+        "90s"
+      ],
       "sold": false,
       "photos": [
         "acervo/m23690681862/1.jpg",
@@ -20,7 +174,13 @@
     {
       "id": "m50127608359",
       "title_ja": "美品　Red Bull HONDA F1 日本グランプリ 2019 キャップ",
-      "tags": [],
+      "tags": [
+        "boné",
+        "red-bull",
+        "honda",
+        "gp-japão",
+        "2019"
+      ],
       "sold": false,
       "photos": [
         "acervo/m50127608359/1.jpg",
@@ -55,6 +215,45 @@
         "acervo/m71370664392/5.jpg",
         "acervo/m71370664392/6.jpg",
         "acervo/m71370664392/7.jpg"
+      ]
+    },
+    {
+      "id": "m81651185430",
+      "title_ja": "Mercedes-Benz F1 ピットシャツ チームシャツ XXL 半袖シャツ",
+      "tags": [],
+      "sold": false,
+      "photos": [
+        "acervo/m81651185430/1.jpg",
+        "acervo/m81651185430/2.jpg",
+        "acervo/m81651185430/3.jpg",
+        "acervo/m81651185430/4.jpg",
+        "acervo/m81651185430/5.jpg",
+        "acervo/m81651185430/6.jpg",
+        "acervo/m81651185430/7.jpg",
+        "acervo/m81651185430/8.jpg",
+        "acervo/m81651185430/9.jpg",
+        "acervo/m81651185430/10.jpg",
+        "acervo/m81651185430/11.jpg",
+        "acervo/m81651185430/12.jpg"
+      ]
+    },
+    {
+      "id": "m52523476368",
+      "title_ja": "BMW ピットシャツ XXL Castrol ネイビー レーシングシャツ F1",
+      "tags": [],
+      "sold": false,
+      "photos": [
+        "acervo/m52523476368/1.jpg",
+        "acervo/m52523476368/2.jpg",
+        "acervo/m52523476368/3.jpg",
+        "acervo/m52523476368/4.jpg",
+        "acervo/m52523476368/5.jpg",
+        "acervo/m52523476368/6.jpg",
+        "acervo/m52523476368/7.jpg",
+        "acervo/m52523476368/8.jpg",
+        "acervo/m52523476368/9.jpg",
+        "acervo/m52523476368/10.jpg",
+        "acervo/m52523476368/11.jpg"
       ]
     }
   ]

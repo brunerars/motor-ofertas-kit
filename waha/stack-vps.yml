@@ -1,0 +1,95 @@
+version: "3.8"
+
+# WAHA — WhatsApp HTTP API (disparo das ofertas da NSC) · Docker Swarm + Traefik
+#
+# COMO SUBIR (Portainer → Stacks → Add stack → Web editor: colar isto)
+#   1. DNS: registro A `waha` -> IP da VPS, Cloudflare DNS-only (NUNCA proxied,
+#      senao o Let's Encrypt nao valida e o websocket do WhatsApp sofre).
+#   2. Env da stack (Portainer → Environment variables): as WAHA_*/WHATSAPP_*
+#      abaixo, incluindo WAHA_HOOK_URL. Valores vem do .env local do projeto.
+#      NAO colar valor neste arquivo.
+#   3. Deploy → abrir https://waha.arvsystems.cloud/dashboard → escanear o QR.
+#
+# POR QUE O DOMINIO E SO PRA VOCE:
+#   O n8n fala com o WAHA por DENTRO da network_public, em http://waha:3000.
+#   Nao passa pela internet, nao usa o dominio, nao gasta TLS. O dominio existe
+#   so pra voce abrir o dashboard e escanear o QR do celular.
+
+services:
+  waha:
+    image: devlikeapro/waha:latest
+
+    networks:
+      network_public:
+        aliases:
+          # Alias explicito: em Swarm o servico vira `<stack>_<service>`, entao sem
+          # isto o n8n teria que chamar `waha_waha:3000`. Com o alias, `http://waha:3000`
+          # funciona de qualquer stack na mesma rede.
+          - waha
+
+    volumes:
+      # A sessao do WhatsApp (~52MB). Sem volume = QR novo a cada redeploy.
+      - waha_sessions:/app/.sessions
+      # Chromium (engine WEBJS) estoura o /dev/shm padrao de 64MB e morre sem dizer
+      # por que. `shm_size:` NAO funciona em Swarm -> tmpfs e o jeito que funciona.
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 1073741824
+
+    environment:
+      # O WAHA REGERA essas credenciais a cada start se nao vierem daqui.
+      # Sem fixar, a API key muda sozinha e o n8n comeca a tomar 401 do nada.
+      WAHA_API_KEY: ${WAHA_API_KEY}
+      WAHA_DASHBOARD_USERNAME: ${WAHA_DASHBOARD_USERNAME}
+      WAHA_DASHBOARD_PASSWORD: ${WAHA_DASHBOARD_PASSWORD}
+      WHATSAPP_SWAGGER_USERNAME: ${WHATSAPP_SWAGGER_USERNAME}
+      WHATSAPP_SWAGGER_PASSWORD: ${WHATSAPP_SWAGGER_PASSWORD}
+      WHATSAPP_DEFAULT_ENGINE: WEBJS
+      # Sem isto a sessao volta PARADA depois de um restart: o container sobe,
+      # o disparo falha, e nada avisa.
+      WHATSAPP_RESTART_ALL_SESSIONS: "True"
+      # INBOUND (ciclo do lead): o WAHA faz POST aqui a cada mensagem RECEBIDA.
+      # O n8n casa o "Estou interessado! (mXXXX)" com a peca e grava o lead.
+      # Path secreto: e o unico freio dessa rota (o WAHA nao assina o POST).
+      # `message` = so o que CHEGA. `message.any` incluiria os proprios envios ->
+      # cada oferta postada no grupo viraria um lead fantasma. O Code node filtra
+      # fromMe/@g.us de novo mesmo assim: cinto e suspensorio.
+      WHATSAPP_HOOK_URL: ${WAHA_HOOK_URL}
+      WHATSAPP_HOOK_EVENTS: message
+
+    deploy:
+      mode: replicated
+      # 1 e OBRIGATORIO. Uma sessao de WhatsApp nao se divide entre replicas —
+      # 2 replicas = duas instancias brigando pelo mesmo numero = sessao derrubada.
+      replicas: 1
+      placement:
+        constraints:
+          # Prende num no so: o volume da sessao e LOCAL do no. Se o servico migrar,
+          # acha um volume vazio e pede QR de novo. (Swarm de 1 no: inofensivo.)
+          - node.role == manager
+      resources:
+        limits:
+          # WEBJS sobe um Chromium de verdade. Sem teto ele briga por RAM com o
+          # n8n/Baserow na mesma VPS. Se cair com OOM, subir pra 3G.
+          memory: 2G
+        reservations:
+          memory: 1G
+      restart_policy:
+        condition: any
+        delay: 10s
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.waha.rule=Host(`waha.arvsystems.cloud`)
+        - traefik.http.routers.waha.entrypoints=websecure
+        - traefik.http.routers.waha.tls.certresolver=letsencryptresolver
+        - traefik.http.services.waha.loadbalancer.server.port=3000
+        - traefik.docker.network=network_public
+
+volumes:
+  waha_sessions:
+    driver: local
+
+networks:
+  network_public:
+    external: true

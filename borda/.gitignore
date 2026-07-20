@@ -1,0 +1,28 @@
+# Borda — .gitignore próprio. Self-contained de propósito: quando esta pasta virar
+# kit/templates/borda/ (Fase 1 do hub), as proteções viajam junto com ela.
+
+# Segredos. O BASEROW_TOKEN_BORDA vive aqui — nunca no repo.
+.env
+.env.*
+!.env.example
+
+# Build
+.next/
+out/
+node_modules/
+*.tsbuildinfo
+next-env.d.ts
+
+# Saída dos harness de verificação: regeneram a cada corrida e só servem pra olhar
+# na hora. Versionar PNG que muda toda rodada é ruído em diff pra sempre.
+drive.png
+shots/
+.impeccable/
+
+# Vercel — o project.json amarra o deploy a ESTE projeto.
+# A lp/ versionou o dela e por isso duas lojas no mesmo checkout fariam deploy uma
+# por cima da outra. Não repetir o erro.
+.vercel/
+
+# saída do shot:dark
+shots-dark/

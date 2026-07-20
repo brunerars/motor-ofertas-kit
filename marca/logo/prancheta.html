@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1600, initial-scale=1"/>
+<title>Nippon Speed Co. · Prancheta de logo</title>
+<!-- impeccable-disable tight-leading em-dash-overuse numbered-section-markers -- Anton is a condensed poster face (~1.28x); tight display leading is intentional (same waiver as the LP). The em-dashes the detector counts are in code comments and CSS custom properties (--red, --ink), not in body copy: the visible text has none (Bruno does not use them). The 01..08 numbers are the IDs of the generated symbols, so he can say "I want 02" — they are identifiers, not an editorial scaffold. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Michroma&family=Saira:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   PRANCHETA DE LOGO — Nippon Speed Co.
+   Comparação pra ESCOLHA. Símbolos = /nanobanana (raster, i2i a
+   partir de marca/logo.jpeg). Lockups = HTML/tipografia real.
+   Testes que matam logo ruim: 64px, favicon 32px, avatar, mono.
+   ============================================================ */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#fff; --hair:#ddddd7;
+  --dark-grey:#5d5d5d; --mid-grey:#8a8a86;
+  --red:#c82a2a; --red-bright:#ff5347; --red-logo:#e60000;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+.wrap{ max-width:1520px; margin:0 auto; padding:64px 48px 96px; }
+
+h1,h2,h3{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
+h1{ font-size:64px; line-height:1; }
+h2{ font-size:36px; line-height:1.05; }
+.eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
+  letter-spacing:.2em; font-size:13px; color:var(--red); margin:0 0 10px; }
+.lede{ margin:14px 0 0; font-size:18px; line-height:1.6; color:var(--dark-grey); max-width:820px; }
+.note{ margin:8px 0 0; font-size:14px; line-height:1.6; color:var(--mid-grey); }
+
+.sec{ margin-top:72px; }
+.sec-head{ border-top:2px solid var(--ink); padding-top:20px; margin-bottom:32px; }
+
+/* ---------- Grade de símbolos ---------- */
+.grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; }
+.card{ border:1px solid var(--hair); border-radius:10px; background:var(--white); overflow:hidden; }
+.card-top{ display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px 20px; border-bottom:1px solid var(--hair); }
+.card-name{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:22px; letter-spacing:.02em; }
+.tag{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.1em;
+  font-size:10px; padding:5px 10px; border-radius:9999px; }
+.tag-ok{ background:#e8f3ec; color:#1c6b3f; }
+.tag-warn{ background:#fdeaea; color:#a31f1f; }
+.tag-mid{ background:#f0efec; color:var(--dark-grey); }
+
+.stage{ display:grid; grid-template-columns:1fr 1fr; }
+.stage > div{ display:flex; align-items:center; justify-content:center; padding:28px; min-height:190px; }
+.on-paper{ background:var(--paper); }
+.on-ink{ background:var(--ink); }
+.stage img{ max-width:100%; max-height:130px; object-fit:contain; }
+
+.tests{ display:flex; align-items:center; gap:26px; padding:18px 20px; border-top:1px solid var(--hair); flex-wrap:wrap; }
+.test{ display:flex; flex-direction:column; align-items:center; gap:7px; }
+.test span{ font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--mid-grey); font-weight:700; }
+.avatar{ width:86px; height:86px; border-radius:50%; background:var(--ink);
+  display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.avatar img{ width:70px; height:70px; object-fit:contain; }
+.px64{ width:64px; height:64px; display:flex; align-items:center; justify-content:center; }
+.px64 img{ max-width:64px; max-height:64px; object-fit:contain; }
+.px32{ width:32px; height:32px; display:flex; align-items:center; justify-content:center; }
+.px32 img{ max-width:32px; max-height:32px; object-fit:contain; }
+.mono{ filter:grayscale(1) contrast(2.2); }
+.verdict{ padding:14px 20px; border-top:1px solid var(--hair); font-size:13.5px; line-height:1.55; color:var(--dark-grey); }
+.verdict b{ color:var(--ink); }
+
+/* ---------- Lockups ---------- */
+.lock-row{ display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:28px; }
+.lock{ border:1px solid var(--hair); border-radius:10px; overflow:hidden; }
+.lock-head{ padding:14px 20px; border-bottom:1px solid var(--hair); background:var(--white);
+  display:flex; align-items:center; justify-content:space-between; }
+.lock-title{ font-family:"Archivo",sans-serif; font-weight:700; font-size:13px;
+  text-transform:uppercase; letter-spacing:.12em; }
+.lock-font{ font-size:11px; color:var(--mid-grey); letter-spacing:.06em; }
+.lock-stage{ padding:44px 32px; display:flex; align-items:center; justify-content:center; min-height:180px; }
+
+/* O lockup em si (tipografia real, não imagem) */
+.lockup{ display:flex; align-items:center; gap:26px; }
+.lockup img{ height:78px; width:auto; }
+.words{ display:flex; flex-direction:column; gap:4px; line-height:1; }
+.w-nippon{ text-transform:uppercase; }
+.w-speed{ text-transform:uppercase; color:var(--red-logo); }
+/* trilha A — geométrica larga (aproximação da fonte do Caio) */
+.ta .w-nippon{ font-family:"Michroma",sans-serif; font-size:38px; letter-spacing:.02em; }
+.ta .w-speed{ font-family:"Anton",sans-serif; font-size:40px; letter-spacing:.06em; }
+/* trilha B — Anton puro (o design system que já está no ar) */
+.tb .w-nippon{ font-family:"Anton",sans-serif; font-size:52px; letter-spacing:.03em; }
+.tb .w-speed{ font-family:"Anton",sans-serif; font-size:52px; letter-spacing:.03em; }
+/* empilhado */
+.lockup.stack{ flex-direction:column; gap:16px; }
+.lockup.stack .words{ align-items:center; }
+.lockup.stack img{ height:92px; }
+
+.on-ink .w-nippon{ color:var(--paper); }
+.on-ink .w-speed{ color:var(--red-bright); }
+.on-paper .w-nippon{ color:var(--ink); }
+.on-paper .w-speed{ color:var(--red); }
+
+/* ---------- Paleta ---------- */
+.pal{ display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; }
+.sw{ width:150px; border:1px solid var(--hair); border-radius:8px; overflow:hidden; background:var(--white); }
+.sw-c{ height:64px; }
+.sw-t{ padding:9px 11px; font-size:11px; line-height:1.5; }
+.sw-t b{ display:block; font-size:12px; }
+.mono-t{ font-family:ui-monospace,Menlo,monospace; color:var(--dark-grey); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Nippon Speed Co. · exploração de marca</p>
+    <h1>Prancheta<br/>de logo</h1>
+    <p class="lede">Oito direções de <b>símbolo</b> geradas a partir da logo do Caio (image-to-image, sem texto: IA erra letra). O <b>lockup</b> é tipografia de verdade, montada aqui. A logo só é boa se sobreviver aos testes pequenos: 64px, favicon 32px, avatar e monocromático.</p>
+    <p class="note">O que está no ar hoje NÃO é essa logo: é a “brandline” em CSS (bandeirinha xadrez + Anton). Escolher a logo é escolher qual das duas identidades manda.</p>
+  </header>
+
+  <!-- ================= PALETA ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Base</p>
+      <h2>O vermelho da logo × o vermelho do site</h2>
+      <p class="note">Medido na logo do Caio: o hinomaru é <b>#e60000</b> e o “SPEED CO.” é <b>#c80000</b>, praticamente o <b>#c82a2a</b> que o design system já usa. Ou seja, não há conflito real de cor: o site e a logo já falam o mesmo vermelho.</p>
+    </div>
+    <div class="pal">
+      <div class="sw"><div class="sw-c" style="background:#e60000"></div><div class="sw-t"><b>Hinomaru</b><span class="mono-t">#e60000</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#c80000"></div><div class="sw-t"><b>Wordmark do Caio</b><span class="mono-t">#c80000</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#c82a2a"></div><div class="sw-t"><b>--red (site)</b><span class="mono-t">#c82a2a</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#ff5347"></div><div class="sw-t"><b>--red-bright</b><span class="mono-t">#ff5347</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#111"></div><div class="sw-t"><b>--ink</b><span class="mono-t">#111111</span></div></div>
+      <div class="sw"><div class="sw-c" style="background:#f5f5f5;border-bottom:1px solid #ddddd7"></div><div class="sw-t"><b>--paper</b><span class="mono-t">#f5f5f5</span></div></div>
+    </div>
+  </section>
+
+  <!-- ================= SÍMBOLOS ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Passo 1</p>
+      <h2>Oito direções de símbolo</h2>
+      <p class="note">Cada card mostra como fica no claro e no escuro, e depois os testes de tamanho pequeno, que é o que separa logo de desenho bonito. A versão escura é gerada invertendo preto e branco e preservando o vermelho.</p>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">01 · Cruzadas refinadas</span><span class="tag tag-ok">fiel à original</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-01-cruzadas-refinadas-alpha.png" alt="Bandeiras cruzadas refinadas"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-01-cruzadas-refinadas-dark.png" alt="Bandeiras cruzadas refinadas, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-01-cruzadas-refinadas-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-01-cruzadas-refinadas-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-01-cruzadas-refinadas-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-01-cruzadas-refinadas-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict">É a original, só que <b>limpa e vetorial</b>. Ganha em fidelidade e perde no avatar: é horizontal (3,3:1), então encolhe demais dentro do círculo.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">02 · Emblema circular</span><span class="tag tag-ok">melhor pra avatar</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-02-emblema-circular-alpha.png" alt="Emblema circular"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-02-emblema-circular-dark.png" alt="Emblema circular, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-02-emblema-circular-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-02-emblema-circular-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-02-emblema-circular-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-02-emblema-circular-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict">O único que <b>nasce redondo</b>: preenche o círculo do avatar e do favicon sem sobrar borda. Mantém as duas bandeiras. É o candidato mais “marca” do lote.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">03 · Sol xadrez</span><span class="tag tag-warn">morre pequeno</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-03-sol-xadrez-alpha.png" alt="Sol e xadrez fundidos"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-03-sol-xadrez-dark.png" alt="Sol e xadrez fundidos, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-03-sol-xadrez-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-03-sol-xadrez-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-03-sol-xadrez-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-03-sol-xadrez-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict">Ideia boa (o sol virando xadrez), execução <b>barulhenta</b>. No favicon vira uma mancha. Descartaria.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">04 · Escudo / crest</span><span class="tag tag-mid">detalhe fino demais</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-04-escudo-crest-alpha.png" alt="Escudo de equipe"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-04-escudo-crest-dark.png" alt="Escudo de equipe, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-04-escudo-crest-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-04-escudo-crest-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-04-escudo-crest-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-04-escudo-crest-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict">Cara de <b>equipe de corrida</b>, e o formato vertical cabe bem no avatar. Mas o xadrez e as bandeirinhas do topo são finos: a 32px viram sujeira.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">05 · Patch bordado</span><span class="tag tag-mid">pro produto físico</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-05-patch-bordado-alpha.png" alt="Patch bordado"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-05-patch-bordado-dark.png" alt="Patch bordado, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-05-patch-bordado-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-05-patch-bordado-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-05-patch-bordado-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-05-patch-bordado-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict">Não serve como logo digital (é <b>textura de bordado</b>, raster), mas é ótima referência do que mandar pra etiqueta e pro boné. Guardaria como aplicação, não como marca.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">06 · Monoline</span><span class="tag tag-warn">perdeu o xadrez</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-06-monoline-alpha.png" alt="Monoline minimalista"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-06-monoline-dark.png" alt="Monoline minimalista, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-06-monoline-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-06-monoline-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-06-monoline-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-06-monoline-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict">Elegante, mas o xadrez virou <b>grade vazia</b>: sem os quadrados pretos preenchidos, não lê mais como bandeira de chegada. Bonito e sem significado.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">07 · Hanko (carimbo)</span><span class="tag tag-warn">veio com kanji</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-07-hanko-alpha.png" alt="Carimbo japonês"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-07-hanko-dark.png" alt="Carimbo japonês, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-07-hanko-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-07-hanko-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-07-hanko-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-07-hanko-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict"><b>Quebrou a regra:</b> eu proibi texto e ele desenhou um kanji (parece 競, “competição”). Visualmente é o mais autoral do lote e o vermelho fica lindo, mas <b>não dá pra publicar um caractere que a IA inventou</b> sem um japonês conferir. Se você gostar da direção, refaço o carimbo sem o kanji.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-name">08 · Selo de garagem</span><span class="tag tag-ok">mais robusto</span></div>
+        <div class="stage">
+          <div class="on-paper"><img src="exploracao/simbolo-08-selo-garagem-alpha.png" alt="Selo de garagem retrô"/></div>
+          <div class="on-ink"><img src="exploracao/simbolo-08-selo-garagem-dark.png" alt="Selo de garagem retrô, versão escura"/></div>
+        </div>
+        <div class="tests">
+          <div class="test"><div class="avatar"><img src="exploracao/simbolo-08-selo-garagem-dark.png" alt=""/></div><span>Avatar</span></div>
+          <div class="test"><div class="px64"><img src="exploracao/simbolo-08-selo-garagem-alpha.png" alt=""/></div><span>64px</span></div>
+          <div class="test"><div class="px32"><img src="exploracao/simbolo-08-selo-garagem-alpha.png" alt=""/></div><span>Favicon</span></div>
+          <div class="test"><div class="px64 mono"><img src="exploracao/simbolo-08-selo-garagem-alpha.png" alt=""/></div><span>Mono</span></div>
+        </div>
+        <p class="verdict">O contorno grosso <b>segura o desenho no tamanho pequeno</b> melhor que o 01. Tem cara de oficina/speed shop. É o 01 com mais osso.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= LOCKUPS ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <p class="eyebrow">Passo 2</p>
+      <h2>A tipografia: as duas trilhas</h2>
+      <p class="note"><b>Trilha A</b> = a logo manda (wordmark largo geométrico, aproximado com Michroma, já que a fonte original do Caio não veio). <b>Trilha B</b> = o design system manda (Anton, o mesmo que já está na LP, nos posts e nos destaques). Mesmo símbolo nas duas, pra comparar só a letra.</p>
+    </div>
+
+    <div class="lock-row">
+      <div class="lock">
+        <div class="lock-head"><span class="lock-title">Trilha A · 01 cruzadas</span><span class="lock-font">Michroma + Anton</span></div>
+        <div class="lock-stage on-ink">
+          <div class="lockup ta">
+            <img src="exploracao/simbolo-01-cruzadas-refinadas-dark.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+        <div class="lock-stage on-paper">
+          <div class="lockup ta">
+            <img src="exploracao/simbolo-01-cruzadas-refinadas-alpha.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lock">
+        <div class="lock-head"><span class="lock-title">Trilha B · 01 cruzadas</span><span class="lock-font">Anton (design system)</span></div>
+        <div class="lock-stage on-ink">
+          <div class="lockup tb">
+            <img src="exploracao/simbolo-01-cruzadas-refinadas-dark.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+        <div class="lock-stage on-paper">
+          <div class="lockup tb">
+            <img src="exploracao/simbolo-01-cruzadas-refinadas-alpha.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lock-row">
+      <div class="lock">
+        <div class="lock-head"><span class="lock-title">Trilha A · 02 emblema (empilhado)</span><span class="lock-font">Michroma + Anton</span></div>
+        <div class="lock-stage on-ink">
+          <div class="lockup stack ta">
+            <img src="exploracao/simbolo-02-emblema-circular-dark.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+        <div class="lock-stage on-paper">
+          <div class="lockup stack ta">
+            <img src="exploracao/simbolo-02-emblema-circular-alpha.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lock">
+        <div class="lock-head"><span class="lock-title">Trilha B · 02 emblema (empilhado)</span><span class="lock-font">Anton (design system)</span></div>
+        <div class="lock-stage on-ink">
+          <div class="lockup stack tb">
+            <img src="exploracao/simbolo-02-emblema-circular-dark.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+        <div class="lock-stage on-paper">
+          <div class="lockup stack tb">
+            <img src="exploracao/simbolo-02-emblema-circular-alpha.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lock-row">
+      <div class="lock">
+        <div class="lock-head"><span class="lock-title">Trilha A · 08 selo</span><span class="lock-font">Michroma + Anton</span></div>
+        <div class="lock-stage on-ink">
+          <div class="lockup ta">
+            <img src="exploracao/simbolo-08-selo-garagem-dark.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+        <div class="lock-stage on-paper">
+          <div class="lockup ta">
+            <img src="exploracao/simbolo-08-selo-garagem-alpha.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lock">
+        <div class="lock-head"><span class="lock-title">Trilha B · 08 selo</span><span class="lock-font">Anton (design system)</span></div>
+        <div class="lock-stage on-ink">
+          <div class="lockup tb">
+            <img src="exploracao/simbolo-08-selo-garagem-dark.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+        <div class="lock-stage on-paper">
+          <div class="lockup tb">
+            <img src="exploracao/simbolo-08-selo-garagem-alpha.png" alt=""/>
+            <div class="words"><span class="w-nippon">Nippon</span><span class="w-speed">Speed Co.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

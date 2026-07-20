@@ -69,4 +69,4 @@ Depois de processar as URLs, montar/atualizar `marca/acervo/index.json` = array 
 - Não versionar a key (vem do `.env`, fora do git).
 
 ## Relacionado
-`roteiro-lp.md` · `logistica-mercari.md` · memórias `motor-ofertas-nsc`, `vercel-deploy-lp-gotchas`. Curadoria humana no centro do fluxo.
+`docs/roteiro-lp.md` · `docs/logistica-mercari.md` · memórias `motor-ofertas-nsc`, `vercel-deploy-lp-gotchas`. Curadoria humana no centro do fluxo.
