@@ -52,13 +52,27 @@ Regras herdadas do `/post-feed` (duras): **fato real** (não inventar era/ano/pi
   - **NUNCA** usar item com `"bloqueado"` (ex.: `m33557684905`, boné DEKRA falso) nem `sold: true` sem ele confirmar. Se o único match é bloqueado/vendido, PARE e pergunte.
 - **Capa + capítulos (slides 1–4)** — do **banco visual** (`marca/mood/index.json`, saída da skill `pinterest-mood`):
   - Se o `mood/index.json` **existir**: case a `descrição`/`tags` de cada imagem com o tema de cada slide e proponha a seleção (capa = imagem de maior impacto do tema; capítulos = uma por beat). Mostre ao Bruno o que escolheu — a curadoria/licenciamento de foto é **humana**.
+  - **Três filtros duros, nessa ordem:** (a) **ano correto** — capítulo de 1989 leva foto de 1989, sempre; (b) **resolução** — `≥1080×835` pra faixa de capítulo, senão o capítulo vira tipográfico; (c) **conteúdo** — nada de miniatura de kit, wallpaper, fan edit ou imagem com marca d'água (só se pega abrindo a imagem).
   - Se o `mood/index.json` **não existir ainda** (Fatia 2 não rodou) ou não houver match bom: **fallback** = capa tipográfica + capítulos design-system puro (line-art/tipografia), exatamente como o `/post-feed` já faz sem foto. O post sai mesmo sem Pinterest.
 - **Nota de licenciamento**: fotos do mood (Pinterest) são de terceiros → registrar a origem na `legenda.md` e só publicar com o Bruno liberando (mesma regra do `/post-feed`).
 
 ### 5. Build + render (delegado ao /post-feed)
-Daqui, **siga o `/post-feed`** (não reimplemente): monte o `post.html` a partir do `template.html`, copie as fotos selecionadas pra pasta do post (`s2..4.jpg` = mood/capa; `foto.jpg` = peça do acervo), e rode o render headless (Edge, `--window-size=1080,1440`, `#s1..#s5`) → `slide-1..5.png`.
-- Saída: `marca/conteudo/storytelling/<NN>-<slug>/` (prefixo numérico, sem `#`/espaço no nome).
-- Confira os PNGs (enquadramento/legibilidade) e rode **`impeccable detect = 0`**.
+Daqui, **siga o `/post-feed`** (não reimplemente): monte o `post.html` a partir do `template.html`, copie as fotos selecionadas pra pasta do post (`capa.jpg`, `s2..4.jpg` = mood; `foto.jpg` = peça do acervo), e rode o render headless (Edge, `--window-size=1080,1440`, `#s1..#s5`) → `slide-1..5.png`.
+- Saída: `marca/conteudo/storytelling/<NN>-<slug>/` (prefixo numérico, sem `#`/espaço no nome — o `#` quebra a URL `file:///...#sN`).
+
+**Passe de enquadramento (o lever de craft mais barato).** Ajuste `object-position` foto a foto pra não cortar rosto, carro ou ponto de interesse. Não deixe no default. Regra prática: numa foto com um sujeito lateral, use a porcentagem que joga o sujeito pro lado e libera espaço negativo pro título.
+
+**Capa: escolha o tratamento pela proporção da foto.**
+- Foto retrato ou próxima de 3:4 → **capa full-bleed** padrão do template (`.cover-bg` + scrim).
+- Foto **panorâmica** (mais larga que ~1,6:1) → **capa em faixa** (`.cover-band`, altura ~470px, imagem dentro, título no bloco de tinta embaixo). Full-bleed num 3:4 cortaria 60–70% da largura e mataria a composição. Foi exatamente o que aconteceu no `04-suzuka-cobrou-duas-vezes`: a foto 3297×1328 com os dois pilotos em pontas opostas perdia um deles no corte.
+
+**Armadilha de tipografia (Anton + acento).** Em caixa alta com fonte condensada, `line-height` apertado faz o **diacrítico da linha de baixo encostar na linha de cima**: no `04`, o til de "JAPÃO" tocou a barriga do "O" acima e "DO" passou a ler "DQ". `.94` quebrava, `1.06` ainda quebrava, **`1.2` resolveu**. Se o título tiver Ã/Õ/Â/Ê, dê folga. **O detector não pega isso** — só a leitura do PNG.
+
+### 5b. Os três gates (obrigatórios, nessa ordem)
+1. **Detector (determinístico).** `node .claude/skills/impeccable/scripts/detect.mjs --json <post.html>` → **exit 0**. Falso-positivo conhecido só se waivado inline **com motivo escrito** (`<!-- impeccable-disable <regra> -- motivo -->`), porque o `post.html` é documento standalone. Já mapeados: Anton ~1.28× → `tight-leading`; kickers de capítulo → `repeated-section-kickers`.
+2. **`/impeccable critique <post.html>`** — register **`brand.md`** (carrossel = o design É o produto). Roda review de design + detector em avaliações isoladas e sintetiza, triando falso-positivo. Resolva P0/P1 ou justifique por escrito.
+3. **Leitura visual dos PNGs.** Abra **cada slide** e critique enquadramento, legibilidade do texto sobre foto, hierarquia e **continuidade da sequência** (o detector olha 1 arquivo, não 5 peças). **Screenshot que não foi lido não conta.** Iterar e re-renderizar faz parte; entregar na primeira tentativa sem olhar, não.
+4. **Gate factual.** Cada capítulo confere ano da foto × afirmação do texto, usando o discriminador visual registrado no `mood/index.json`.
 
 ### 6. Legenda
 `legenda.md` = a Legenda da ideia refinada na voz do Bruno + hashtags de nicho + nota de licenciamento das fotos de mood usadas. Frontmatter no padrão dos outros posts (tipo/projeto/formato `3:4 (1080x1440)`/peça/status).

@@ -11,6 +11,18 @@ Enche a **biblioteca visual** de uma marca (`marca/mood/`) a partir de pins/boar
 > **Curadoria é humana:** Bruno/Caio mandam os links; a skill só processa a lista. Sem link, não roda.
 > **Licenciamento:** imagem de terceiros (Pinterest) = risco de copyright em feed comercial. A skill baixa e descreve; **publicar só com o Bruno liberando** (a nota de origem vai no `index.json` e na `legenda.md` do post).
 
+## Realidade da fonte (medido em 23/07, não suposto)
+**Pinterest é fonte de MOOD, não de imagem-herói.** Numa rodada real: 44 stills baixados em 5 buscas, **5 passaram** o piso de 1080 de largura e 2 desses já eram repetidos. Não crie expectativa de capa full-bleed 1080×1440 vinda daqui.
+- **Busca dirigida não sobe o teto.** Rodamos uma busca genérica e depois 4 dirigidas por capítulo: o resultado veio praticamente igual, porque o Pinterest serve imagem em resolução de web. Vale fazer busca por beat pra ganhar **variedade de assunto**, não resolução.
+- **Piso de resolução sozinho NÃO basta.** As duas imagens "de alta" novas daquela rodada eram uma **miniatura de kit escala** e um **wallpaper de celular com recorte em fundo branco**. Passaram no piso e eram lixo. Por isso existe o filtro de conteúdo abaixo.
+
+### Os dois filtros (aplicar sempre)
+1. **Resolução.** Faixa de capítulo (`.ph`) precisa de **≥ 1080 × 835**. Capa full-bleed precisaria de 1080×1440 e quase nunca aparece. Descartar abaixo disso, ou marcar `uso: "só referência"`.
+2. **Conteúdo.** Descartar o que não é foto de arquivo real: **miniatura/kit escala · wallpaper e fan edit · print de vídeo com legenda queimada · imagem com marca d'água**. Isso só se pega **abrindo a imagem** (passo 3), nunca pelos metadados.
+
+### A armadilha do ano
+Buscar por um ano devolve o ano vizinho. "Suzuka 1990" trouxe **maioria de 1989** (as duas batidas Senna×Prost se confundem em toda a internet). **Sempre** preencher `ano` + `confianca_ano`, e quando houver discriminador visual objetivo, registrá-lo na `description` (ex.: em 1990 Senna era McLaren **#27** contra a Ferrari de Prost; em 1989 os dois eram McLaren).
+
 Ao ser invocado, anuncie: **"Rodando o pinterest-mood (banco visual)."**
 
 ## Frente (mesma regra das skills de conteúdo)
@@ -52,12 +64,19 @@ gallery-dl -D "$DIR" "$URL" 2>&1 | tail -20
 {
   "file": "mood/<slug>/<arquivo>.jpg",
   "source_url": "<url do pin/board>",
+  "largura": 1772,
+  "altura": 1170,
+  "serve_para": "capitulo",
+  "ano": "1989",
+  "confianca_ano": "alta",
   "description": "<o que é, factual e curto>",
   "tags": ["90s","suzuka","arquivo","vermelho"],
-  "theme": "Suzuka 1990",
+  "theme": "Suzuka 1989",
   "used": false
 }
 ```
+`serve_para`: `capa` (≥1080×1440) · `capitulo` (≥1080×835) · `só referência` (abaixo disso).
+Item reprovado no filtro de conteúdo entra com `"bloqueado": "<motivo>"` — nunca é apagado calado, pra não rebaixar o mesmo pin de novo na próxima rodada.
 > `used` marca o que já foi pra um post (o `/post-from-idea` seta ao usar), pra não repetir imagem entre posts.
 
 ## NÃO fazer

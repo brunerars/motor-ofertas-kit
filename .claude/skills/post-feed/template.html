@@ -11,7 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-/* NIPPON SPEED CO. — CARROSSEL NARRATIVO (feed = branding) · 4:5 1080x1350 · design system V1 */
+/* NIPPON SPEED CO. — CARROSSEL NARRATIVO (feed = branding) · 3:4 1080x1440 · design system V1
+   3:4 é o padrão do feed desde 2026: sobe inteiro e bate com a grade do perfil. Ver [[post-feed-formato-3x4]]. */
 :root{
   --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
   --dark-grey:#5d5d5d; --mid-grey:#676763; --hair:#ddddd7;
@@ -21,7 +22,7 @@
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; background:#2a2a2a; }
 body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
-.slide{ width:1080px; height:1350px; position:relative; overflow:hidden; display:none; flex-direction:column; }
+.slide{ width:1080px; height:1440px; position:relative; overflow:hidden; display:none; flex-direction:column; }
 .slide:target{ display:flex; }
 body:not(:has(.slide:target)) #s1{ display:flex; }
 .slide-inner{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:96px 88px; }
@@ -64,6 +65,13 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
   background:linear-gradient(180deg, rgba(17,17,17,.5) 0%, rgba(17,17,17,.2) 30%, rgba(17,17,17,.5) 58%, rgba(17,17,17,.96) 100%); }
 .cover-mid{ display:flex; flex-direction:column; gap:24px; }
 .cover-title{ font-size:190px; line-height:.86; text-shadow:0 3px 34px rgba(0,0,0,.55); }
+/* CAPA EM FAIXA (variante) — usar quando a foto for PANORÂMICA (mais larga que ~1,6:1).
+   Full-bleed num 3:4 corta 60-70% da largura e mata a composição. A faixa preserva o
+   enquadramento original e ainda dá bloco de tinta pro título. Nesse modo o slide vira
+   .slide-ink (com .glow + .grain) e o título cai pra ~158px. Ver 04-suzuka-cobrou-duas-vezes. */
+.cover-band{ position:relative; width:100%; height:470px; overflow:hidden; border-radius:var(--radius-md);
+  border:3px solid rgba(245,245,245,.16); box-shadow:0 20px 48px rgba(0,0,0,.45); }
+.cover-band img{ width:100%; height:100%; object-fit:cover; object-position:center center; display:block; }
 .cover-sub{ margin:0; font-size:38px; line-height:1.4; max-width:840px; color:rgba(245,245,245,.92); text-shadow:0 2px 16px rgba(0,0,0,.55); }
 .cover-foot{ display:flex; align-items:center; gap:18px; }
 .rule{ height:3px; width:96px; background:var(--red-bright); border-radius:3px; }
@@ -90,7 +98,10 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 .slide-ink .cta-line b{ color:var(--red-bright); }
 .slide-ink .cta-handle{ color:var(--paper); }
 .piece-meta{ display:flex; flex-direction:column; gap:12px; }
-.piece-name{ font-size:82px; line-height:.94; }
+/* line-height 1.2, não .94: em caixa alta com Anton (condensada), o diacrítico da linha de baixo
+   encosta na linha de cima. Com "JAPÃO" embaixo, o til tocava o "O" e "DO" lia como "DQ".
+   Se o nome da peça tiver Ã/Õ/Â/Ê, essa folga é obrigatória. O detector NÃO pega isso. */
+.piece-name{ font-size:82px; line-height:1.2; }
 .piece-body{ margin:0; font-size:32px; line-height:1.5; color:var(--dark-grey); max-width:900px; }
 .piece-body b{ color:var(--ink); font-weight:700; }
 .cta{ display:flex; flex-direction:column; gap:14px; padding-top:22px; border-top:2px solid var(--hair); }
