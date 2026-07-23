@@ -9,7 +9,7 @@ status: pronto para publicar
 # Post #1 — "Como funciona" (carrossel)
 
 **Arquivos:** `slide-1.png` … `slide-5.png` (nessa ordem no carrossel).
-**Fonte:** `como-funciona.html` (design system V1, render headless 1080×1440).
+**Fonte:** `como-funciona.html` (design system V1, render headless 1080×1350).
 
 > ✅ **@ confirmado (14/07/2026):** o perfil é [@nipponspeedco](https://www.instagram.com/nipponspeedco/). O handle usado nos slides e na legenda está correto, nada a trocar.
 
