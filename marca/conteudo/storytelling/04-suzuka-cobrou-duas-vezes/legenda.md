@@ -1,7 +1,7 @@
 ---
 tipo: conteudo
 projeto: motor-ofertas
-formato: carrossel Instagram 3:4 (1080x1440) · 5 slides
+formato: carrossel Instagram 3:4 (1080x1440) · 6 slides
 post: "Suzuka cobrou duas vezes" (STORYTELLING NARRATIVO · 1989 x 1990)
 peca: acervo m23690681862 (boné GP Japão '90)
 origem: reel @rodaccki (instagram-reference) + banco visual Pinterest (pinterest-mood)
@@ -11,8 +11,10 @@ status: mock de workflow · NÃO publicável (ver licenciamento)
 
 # Storytelling narrativo — "Suzuka cobrou duas vezes"
 
-**Arquivos:** `slide-1..5.png` (nessa ordem) · `foto.jpg` (peça, acervo `m23690681862`) · `capa.jpg` + `s2/s3/s4.jpg` (fotos de arquivo) · fonte `post.html`.
-**Modelo:** feed = história. Capa em faixa + 3 capítulos com foto + slide da peça com CTA pro grupo. Sem badge de venda.
+**Arquivos:** `slide-1..6.png` (nessa ordem) · `foto.jpg` (peça, acervo `m23690681862`) · `capa.jpg` + `s2/s3/s4.jpg` (fotos de arquivo) · fonte `post.html`.
+**Modelo:** feed = história. Capa em faixa + 3 capítulos com foto + **1 capítulo tipográfico** (a admissão) + slide da peça com CTA pro grupo. Sem badge de venda.
+
+> **Por que 6 e não 5 (ajuste do Bruno):** na versão de 5 o slide de 1990 empilhava o troco e a admissão na mesma respiração, pra caber. Agora o troco tem o slide dele e a admissão tem o dela. O slide da admissão é **tipográfico puro**: depois de 3 fotos seguidas ele dá respiro de ritmo, e admissão é declaração, não ação.
 
 **O ângulo:** o que o reel de origem (e o post `01-suzuka1990`) não diz é que **em 1989 Senna e Prost eram companheiros de McLaren**. É esse contraste que sustenta o carrossel: em 89 a briga é dentro do mesmo box, em 90 Prost já está na Ferrari.
 
@@ -50,7 +52,8 @@ As 4 fotos de arquivo vieram do Pinterest e são **de terceiros, sem licença**.
 | 2 | `s2.jpg` | pinterest.com/pin/297941331573892735 | 1989 |
 | 3 | `s3.jpg` | pinterest.com/pin/109493834660519115 | 1989 |
 | 4 | `s4.jpg` | pinterest.com/pin/448248969145612888 | **1990** |
-| 5 (peça) | `foto.jpg` | acervo `m23690681862/1.jpg` | própria ✅ |
+| 5 (admissão) | — | **tipográfico, sem foto** | 1991 |
+| 6 (peça) | `foto.jpg` | acervo `m23690681862/1.jpg` | própria ✅ |
 
 **Gate factual aplicado:** os capítulos de 1989 usam foto de 1989 e o de 1990 usa foto de 1990. O discriminador é o número na carroceria: em 1990 Senna era **McLaren #27** (branco) contra a **Ferrari** de Prost; em 1989 os dois estavam de McLaren. A busca "Suzuka 1990" no Pinterest devolve majoritariamente 1989, então esse check não é opcional.
 

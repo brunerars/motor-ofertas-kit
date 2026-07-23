@@ -70,6 +70,11 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 .story-title{ font-size:96px; line-height:.92; text-shadow:0 2px 24px rgba(0,0,0,.45); }
 .story-body{ margin:0; font-size:34px; line-height:1.5; color:rgba(245,245,245,.9); max-width:920px; }
 .story-body b{ color:var(--paper); font-weight:700; }
+/* Capítulo TIPOGRÁFICO: sem foto, o space-between joga tudo pro rodapé e o miolo vira buraco.
+   Centraliza o bloco no eixo vertical e dá peso de declaração ao título. */
+.slide-type .story-block{ margin:auto 0; }
+.slide-type .story-title{ font-size:136px; }
+.slide-type .story-body{ font-size:36px; max-width:880px; }
 .dots{ display:flex; gap:14px; align-items:center; margin-top:6px; }
 .dot{ width:14px; height:14px; border-radius:50%; border:2.5px solid rgba(245,245,245,.45); background:transparent; }
 .dot.on{ background:var(--red-bright); border-color:var(--red-bright); }
@@ -119,7 +124,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
       <p class="eyebrow">Companheiros de equipe</p>
       <h2 class="story-title">O mesmo box</h2>
       <p class="story-body">Senna e Prost brigavam pelo título correndo pela <b>mesma equipe</b>. Os dois de McLaren, com o mesmo carro. Na chicane, Prost fechou a porta e os dois bateram.</p>
-      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
     </div>
   </div>
 </section>
@@ -134,7 +139,7 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
       <p class="eyebrow">A decisão que virou polêmica</p>
       <h2 class="story-title">Venceu na pista<br/>perdeu na mesa</h2>
       <p class="story-body">Senna voltou empurrado pelos comissários, cortou a chicane e <b>ganhou a corrida</b>. Horas depois a direção de prova tirou a vitória dele. O título foi pro francês.</p>
-      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
     </div>
   </div>
 </section>
@@ -148,14 +153,30 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
     <div class="story-block">
       <p class="eyebrow">Um ano depois, na primeira curva</p>
       <h2 class="story-title">A conta chegou</h2>
-      <p class="story-body">Prost agora corria pela Ferrari, e era ele que precisava vencer. Largada, primeira curva, e <b>Senna não tirou o pé</b>. Um ano depois, admitiu que foi de propósito.</p>
-      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span></div>
+      <p class="story-body">Prost agora corria pela Ferrari, e era ele que precisava vencer. Largada, primeira curva, e <b>Senna não tirou o pé</b>. Os dois pararam na brita juntos, e o bicampeonato estava decidido antes da segunda curva.</p>
+      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 5 · A PEÇA + CTA -->
-<section class="slide slide-ink" id="s5">
+<!-- SLIDE 5 · A ADMISSÃO — capítulo TIPOGRÁFICO PURO (sem foto).
+     Depois de 3 slides com foto seguidos, o slide de tinta dá respiro de ritmo. E a admissão é
+     declaração, não ação: não existe foto que conte isso melhor que a própria frase. -->
+<section class="slide slide-ink slide-type" id="s5">
+  <div class="glow"></div><div class="grain"></div>
+  <div class="slide-inner">
+    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">1991</span></div>
+    <div class="story-block">
+      <p class="eyebrow">Um ano depois</p>
+      <h2 class="story-title">Ele mesmo<br/>contou</h2>
+      <p class="story-body">Senna admitiu que a batida na primeira curva foi <b>de propósito</b>, resposta ao que tinham feito com ele em 1989. Até hoje a arquibancada se divide entre quem chama de justiça e quem chama de vingança.</p>
+    </div>
+    <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span></div>
+  </div>
+</section>
+
+<!-- SLIDE 6 · A PEÇA + CTA -->
+<section class="slide slide-ink" id="s6">
   <div class="glow"></div><div class="grain"></div>
   <div class="slide-inner">
     <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">A peça</span></div>
