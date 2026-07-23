@@ -4,7 +4,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=1080, initial-scale=1"/>
 <title>Nippon Speed Co. · Suzuka cobrou duas vezes (carrossel feed)</title>
-<!-- impeccable-disable tight-leading repeated-section-kickers -- Anton condensed (~1.28x); tight leading intencional (waiver do design system V1). Kickers = capítulos distintos da narrativa (1989 / 1989 / 1990), não scaffold repetido. Corpo 1.5. -->
+<!-- impeccable-disable tight-leading -- Anton condensed (~1.28x); tight leading intencional (waiver do design system V1). Corpo 1.5. -->
+<!-- WAIVER REMOVIDO em 23/07 (critique, P1): `repeated-section-kickers` estava waivado com justificativa
+     FALSA ("kickers = 1989/1989/1990"). Aqueles anos são o `.chap`, outro elemento, no canto superior
+     direito. O `.eyebrow` waivado é "COMPANHEIROS DE EQUIPE" / "A DECISÃO QUE VIROU POLÊMICA" / etc, em
+     6 de 6 slides: é scaffold repetido, é a anti-referência declarada no PRODUCT.md, e o waiver estava
+     escondendo isso do detector. Defeito conhecido e aberto neste post; as direções novas atacam ele. -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -92,7 +97,9 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 .cta{ display:flex; flex-direction:column; gap:14px; padding-top:22px; border-top:2px solid rgba(245,245,245,.2); }
 .cta-line{ margin:0; font-size:29px; line-height:1.4; color:var(--paper); font-weight:600; }
 .cta-line b{ color:var(--red-bright); }
-.cta-handle{ font-family:"Anton",sans-serif; text-transform:lowercase; font-size:38px; letter-spacing:.01em; color:var(--paper); }
+/* Archivo, não Anton: condensada de display em caixa BAIXA perde o pingo do "i", e
+   "link na bio" lia como "llnk na blo". Handle e CTA vão sempre em fonte de corpo. */
+.cta-handle{ font-family:"Archivo",sans-serif; font-weight:800; text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--paper); }
 </style>
 </head>
 <body>

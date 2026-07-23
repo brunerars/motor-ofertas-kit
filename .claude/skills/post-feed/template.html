@@ -55,6 +55,12 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 
 
 .slide-photo .brandline-txt, .slide-cover .brandline-txt{ text-shadow:0 1px 10px rgba(0,0,0,.6); }
+/* ⚠️ EYEBROW = USO EXCEPCIONAL, NÃO GRAMÁTICA DE SEÇÃO.
+   Rótulo minúsculo em caixa alta tracked acima de TODO título é anti-referência declarada no PRODUCT.md
+   ("slide de apresentação corporativa") e o tell nº1 de IA numa peça. No carrossel 04 ele estava em 6 de 6
+   slides e foi o P1 do critique. Regra: no máximo 1 slide, e só quando for voz deliberada com informação
+   real. Nos capítulos, quem já carrega informação é o ANO (`.chap`) — aumentar ele em vez de pôr um
+   segundo rótulo por cima. NÃO waivar `repeated-section-kickers` para silenciar isso. */
 .eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.2em;
   font-size:26px; color:var(--red-bright); margin:0; }
 .slide-paper .eyebrow{ color:var(--red); }
@@ -107,7 +113,9 @@ h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transfor
 .cta{ display:flex; flex-direction:column; gap:14px; padding-top:22px; border-top:2px solid var(--hair); }
 .cta-line{ margin:0; font-size:29px; line-height:1.4; color:var(--ink); font-weight:600; }
 .cta-line b{ color:var(--red); }
-.cta-handle{ font-family:"Anton",sans-serif; text-transform:lowercase; font-size:38px; letter-spacing:.01em; color:var(--ink); }
+/* Archivo, não Anton: condensada de display em caixa BAIXA perde o pingo do "i", e
+   "link na bio" lia como "llnk na blo". Handle e CTA vão sempre em fonte de corpo. */
+.cta-handle{ font-family:"Archivo",sans-serif; font-weight:800; text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--ink); }
 </style>
 </head>
 <body>

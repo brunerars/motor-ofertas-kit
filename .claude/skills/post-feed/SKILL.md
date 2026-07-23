@@ -1,6 +1,6 @@
 ---
 name: post-feed
-description: Gera um carrossel NARRATIVO pro FEED (Instagram) da marca — história primeiro (capa + capítulos com foto de arquivo curada ou gráfico line-art), e o produto só no último slide como desfecho + CTA pro grupo. Design system V1, 4:5 (1080x1350) → PNG + legenda. FEED = autoridade/branding, NÃO vende. Use quando o Bruno pedir um post de storytelling/história pro feed.
+description: Gera um carrossel NARRATIVO pro FEED (Instagram) da marca — história primeiro (capa + capítulos com foto de arquivo curada ou gráfico line-art), e o produto só no último slide como desfecho + CTA pro grupo. Design system V1, 3:4 (1080x1440) → PNG + legenda. FEED = autoridade/branding, NÃO vende. Use quando o Bruno pedir um post de storytelling/história pro feed.
 ---
 
 # Post Feed — carrossel narrativo (autoridade + branding)
@@ -8,6 +8,9 @@ description: Gera um carrossel NARRATIVO pro FEED (Instagram) da marca — hist�
 O FEED conta HISTÓRIA. A marca vira referência de cultura de automobilismo; a venda acontece noutro canal (stories/fixados/WhatsApp → skill `/post-stories`). Aqui o produto entra **só no último slide**, como recompensa emocional + CTA pro grupo. Ver [[nsc-conteudo-dois-canais]].
 
 > **Regras duras**
+> - **Eyebrow é uso EXCEPCIONAL, não gramática de seção.** Rótulo minúsculo caixa alta tracked acima de todo título é anti-referência declarada no `PRODUCT.md` e o tell nº1 de IA. No máximo 1 slide, e só com informação real. Nos capítulos quem carrega informação é o **ano** — aumentar ele em vez de empilhar um segundo rótulo. **Nunca** waivar `repeated-section-kickers` pra silenciar isso: waiver com motivo falso esconde defeito real (aconteceu no 04).
+> - **Display condensada (Anton) só em CAIXA ALTA.** Em caixa baixa o "i" perde o pingo: `link na bio` lê `llnk na blo`. Handle e CTA vão em Archivo.
+> - **Diacrítico em display pede `line-height >= 1.2`.** Com apertado, o til de "JAPÃO" encosta no "O" da linha de cima e "DO" lê "DQ". `.94` e `1.06` quebram.
 > - **Sem badge de venda** e sem preço. O feed não é catálogo.
 > - **Fato tem que ser real** — não inventar era/ano/piloto. Na dúvida, suavizar ou perguntar. [[rigor-em-conclusao-de-dados]]
 > - **Voz do Bruno**: sem travessão, redondo e direto. [[voz-bruno-redondo]]
@@ -41,7 +44,7 @@ EDGE="/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 DIR="<caminho-absoluto-da-pasta-do-post>"
 for n in 1 2 3 4 5; do
   "$EDGE" --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
-    --window-size=1080,1350 --virtual-time-budget=6000 \
+    --window-size=1080,1440 --virtual-time-budget=6000 \
     --screenshot="$DIR/slide-$n.png" "file:///$DIR/post.html#s$n"
 done
 ```
