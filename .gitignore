@@ -4,6 +4,11 @@
 !.env.example
 .credentials.json
 bw-jwt.txt
+# Cookies de sessão (Instagram/Pinterest p/ yt-dlp e gallery-dl) = credencial viva.
+# Quem tem o arquivo entra na conta. O canônico mora FORA de qualquer repo, em
+# Desktop/Gerador-Conteudos/Conteudo-Teste/www.instagram.com_cookies.txt
+*cookies*.txt
+*.cookies
 
 # Workflows n8n COM os segredos preenchidos (espelho do que roda em prod).
 # Ficam SÓ na máquina do Bruno: ele exporta de lá / importa direto, sem editar token na mão.
