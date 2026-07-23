@@ -25,6 +25,7 @@
   --mclaren:#c8102e;   /* faixa Marlboro da MP4/5 (1989) e MP4/6 (1991) */
   --ferrari:#d10a11;   /* rosso da Ferrari 641, o carro de Prost em 1990 */
   --gold:#c9a227;      /* o bordado dourado do boné do GP do Japão 1990 */
+  --red-bright:#ff5347; /* acento do slide da peça: o dourado ficava barrento no escuro e destoava do resto — o fecho volta pro vermelho da marca */
 }
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; background:#2a2a2a; }
@@ -53,7 +54,7 @@ body:not(:has(.slide:target)) #s1{ display:flex; }
 .era-mclaren{ background:var(--mclaren); }
 .era-ferrari{ background:var(--ferrari); }
 .era-paper{ background:var(--paper); }
-.era-gold{ background:var(--gold); }
+.era-gold{ background:var(--red-bright); }
 .era-split{ background:linear-gradient(90deg, var(--paper) 0 50%, var(--ferrari) 50% 100%); }
 
 /* Fita do tempo: 1989 · 1989 · 1990 · 1991 · a peça. É a espinha do carrossel,
@@ -66,7 +67,7 @@ body:not(:has(.slide:target)) #s1{ display:flex; }
 .c2,.c3{ background:var(--paper); }
 .c4{ background:var(--ferrari); }
 .c5{ background:var(--mclaren); }
-.c6{ background:var(--gold); }
+.c6{ background:var(--red-bright); }
 
 /* ---- Poço da foto: retângulo de aresta dura. Sem scrim, sem fade, sem texto por cima. ---- */
 .well{ position:relative; overflow:hidden; }
@@ -138,15 +139,15 @@ h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform
 
 /* ---- s6 · a peça ---- */
 .piece-head{ display:flex; align-items:flex-start; gap:40px; }
-.piece-yr{ font-family:"Anton",sans-serif; font-size:124px; line-height:.86; color:var(--gold); flex:0 0 auto; }
+.piece-yr{ font-family:"Anton",sans-serif; font-size:124px; line-height:.86; color:var(--red-bright); flex:0 0 auto; }
 .piece-name{ font-size:80px; line-height:1.2; }
 .piece-bd{ margin:26px 0 0; font-size:32px; line-height:1.5; color:var(--paper); max-width:880px; }
-.piece-bd b{ font-weight:700; color:var(--gold); }
-.cta{ margin-top:32px; padding-top:26px; border-top:3px solid var(--gold); }
+.piece-bd b{ font-weight:700; color:var(--red-bright); }
+.cta{ margin-top:32px; padding-top:26px; border-top:3px solid var(--red-bright); }
 .cta-line{ margin:0; font-size:29px; line-height:1.4; color:var(--paper); font-weight:600; max-width:860px; }
 /* Archivo, não Anton: condensada em caixa baixa perde o pingo do "i" (link -> llnk). */
 .cta-handle{ display:block; margin-top:16px; font-family:"Archivo",sans-serif; font-weight:800;
-  text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--gold); }
+  text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--red-bright); }
 </style>
 </head>
 <body>
@@ -243,7 +244,7 @@ h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform
   <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
   <div class="era-rule era-mclaren"></div>
   <figure class="well" style="flex:0 0 660px; margin:0">
-    <img src="s5.jpg" style="object-position:center 40%" alt="Ayrton Senna no cockpit da McLaren-Honda, visor levantado, olhar pensativo"/>
+    <img src="s5.jpg" style="object-position:center 38%" alt="Ayrton Senna encostado na barreira de pneus, mão no queixo, olhando a pista, capacete ao lado"/>
   </figure>
   <div class="field field-red">
     <span class="yr">1991</span>
