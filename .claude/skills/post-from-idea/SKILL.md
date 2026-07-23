@@ -20,6 +20,8 @@ Esta skill é da **frente corrente**. Leia `./conteudo/config.yaml` e a tríade 
 
 Do config, use `notion_ideias_conteudo_id`, `notion_marca` e `loja`.
 
+> **Raiz da frente (importante — esta skill tem cópia na raiz do vault):** todos os caminhos `marca/...` e `conteudo/...` daqui são relativos à **raiz da frente resolvida** (ex.: `projetos/Nippon-Speed/`), NÃO ao cwd. Rodando da raiz do vault, prefixe tudo com `projetos/<Frente>/`. Rodando de dentro da pasta da loja, use como está.
+
 > Esta é a instância **NSC** (depende do `template.html` do `/post-feed` e do design system da NSC). Outra frente só ganha a ponte quando tiver o próprio `/post-feed`.
 
 ## Passo a passo

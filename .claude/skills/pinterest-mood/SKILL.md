@@ -16,6 +16,8 @@ Ao ser invocado, anuncie: **"Rodando o pinterest-mood (banco visual)."**
 ## Frente (mesma regra das skills de conteúdo)
 Salva em `<frente corrente>/marca/mood/`. Se rodar da raiz do vault ou ambíguo, **pergunte a frente** ou aceite por argumento; nunca um default silencioso. Esta é a instância NSC.
 
+> **Raiz da frente (importante — esta skill tem cópia na raiz do vault):** os caminhos `marca/...` são relativos à **raiz da frente resolvida** (ex.: `projetos/Nippon-Speed/`), NÃO ao cwd. O `BASE` do comando abaixo é justamente isso — preencha com o caminho da frente.
+
 ## Input
 - 1+ URLs de **pin** (`pinterest.com/pin/...`) ou **board** (`pinterest.com/<user>/<board>/`), coladas ou num arquivo.
 - (opcional) um `slug` de tema pro lote (ex.: `suzuka`, `ferrari-vermelha`, `era-turbo`) → agrupa em `marca/mood/<slug>/`. Sem slug, deriva do board/pin.
