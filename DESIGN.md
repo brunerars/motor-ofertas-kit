@@ -17,6 +17,19 @@ colors:
   logoRed: "#e60000"
   stage: "#2a2a2a"
   shadow: "#000000"
+  era1989McLarenRed: "#c8102e"
+  era1990FerrariRed: "#d10a11"
+  era1990SuzukaGold: "#c9a227"
+  liveryLotusGreen: "#004225"
+  liveryLotusYellow: "#f5d016"
+  liveryJpsGold: "#c6a961"
+  liveryFerrari70Red: "#d40000"
+  liveryMarlboroRed: "#e1140a"
+  liveryWilliamsBlue: "#0b3c8c"
+  liveryCamelYellow: "#f2c500"
+  liveryBenettonGreen: "#00875a"
+  liveryWestSilver: "#c9cbd0"
+  liveryFerrariModernRed: "#b4021a"
 typography:
   display:
     fontFamily: "Anton"
@@ -59,6 +72,47 @@ verdade (kicker, marcador ativo, ênfase), e o branco-papel é o texto. Sem terc
 
 Transparências de `ink`, `paper`, `white` e `redBright` são o mesmo token com alfa. Não introduzir cinza
 novo: o cinza claro "por elegância" é o defeito nº1 de legibilidade.
+
+### Paleta de era (camada opcional, para carrossel de linha do tempo)
+
+Herança do sistema que o **Caio** já usava nas artes de ano (`marca/referencia/Nippon Speed Co. bruno/`):
+a cor do slide **vem da livery daquele carro naquele ano**, não do vermelho-símbolo genérico de F1. É
+camada **aditiva**: só entra em post cuja narrativa é datada, e o `logoRed` do lockup segue imune.
+
+| Token | Valor | De onde vem | Contraste |
+|---|---|---|---|
+| `era1989McLarenRed` | `#c8102e` | faixa Marlboro da McLaren MP4/5 (1989) e MP4/5B–MP4/6 (1990–91) | 5,9:1 com `paper` |
+| `era1990FerrariRed` | `#d10a11` | rosso da Ferrari 641, o carro de Prost em 1990 | 5,6:1 com `paper` |
+| `era1990SuzukaGold` | `#c9a227` | o bordado dourado do boné do GP do Japão 1990 (a peça) | 7,8:1 sobre `ink` |
+
+**Branco da McLaren = `paper`.** Não criar token novo para ele: a livery branca da MP4/5 é o mesmo
+branco-papel do sistema, e duplicar token por narrativa é como o sistema apodrece.
+
+**Regra de uso:** um slide, uma era. Dois campos de cor no mesmo slide só quando o conflito cromático
+**é** o assunto (1990: Ferrari vermelha × McLaren branca). Fora disso, misturar liveries é o erro que o
+`PRODUCT.md` chama de destruir a credibilidade de quem reconhece o carro.
+
+### Paleta de livery (post tipo LINHA DO TEMPO, sem foto)
+
+Quando o post é catálogo de carros por época, **a livery é a identidade visual** e substitui a foto de
+arquivo. Cada slide vira um campo chapado na cor daquele carro. Ganho duplo: escapa do sourcing de foto
+(8 carros = 8 chances de errar o modelo) e o post fica **publicável**, sem imagem de terceiros.
+
+| Token | Valor | Carro / de onde vem | Texto por cima |
+|---|---|---|---|
+| `liveryLotusGreen` | `#004225` | British Racing Green do Lotus 25 (1962-67) | claro |
+| `liveryLotusYellow` | `#f5d016` | faixa amarela do Team Lotus | acento |
+| `liveryJpsGold` | `#c6a961` | dourado John Player Special do Lotus 72 | acento sobre tinta |
+| `liveryFerrari70Red` | `#d40000` | rosso da Ferrari 312T (anos 70) | claro |
+| `liveryMarlboroRed` | `#e1140a` | vermelho Marlboro da McLaren MP4/4 (1988) | acento sobre papel |
+| `liveryWilliamsBlue` | `#0b3c8c` | azul Canon Williams do FW14B (1992) | claro |
+| `liveryCamelYellow` | `#f2c500` | amarelo Camel do FW14B | acento |
+| `liveryBenettonGreen` | `#00875a` | verde Benetton do B194 (1994) | claro |
+| `liveryWestSilver` | `#c9cbd0` | prata West da McLaren MP4/13 (1998) | **escuro** |
+| `liveryFerrariModernRed` | `#b4021a` | rosso da Ferrari F2004 (2004) | claro |
+
+⚠️ **Campo claro pede texto escuro.** `liveryWestSilver` e o papel branco da MP4/4 invertem a tinta —
+conferir contraste em cada um, não herdar o padrão do campo escuro.
 
 ## Tipografia
 
