@@ -58,6 +58,36 @@ Conferidos e mantidos: 15/16 e 93,75% da MP4/4 · 9 vitórias em 16 do Mansell �
 | 8 | McLaren MP4/13 | `liveryWestSilver` | **escura** |
 | 9 | Ferrari F2004 | `liveryFerrariModernRed` | clara |
 
+## Duas versões (escolher uma)
+
+| | **v1 — só cor** | **v2 — foto + cor** |
+|---|---|---|
+| Arquivos | `post.html` · `slide-1..10.png` | `post-v2.html` · `v2-slide-1..10.png` |
+| Visual | campo chapado na livery, tipografia manda | foto do carro + campo na cor da livery embaixo |
+| Licença | ✅ **publicável** (zero imagem de terceiro) | ⚠️ **8 fotos de terceiros** — mesma trava dos posts 01 e 04 |
+| Força | mais autoral, escapa do slop, some o risco jurídico | reconhecimento imediato; a cor do campo continua a carroceria |
+
+> **O trade-off é esse:** a v2 comunica mais rápido, a v1 é a única que pode ir ao ar hoje. Decisão do Bruno.
+
+### Gate factual das fotos da v2 — os 8 carros conferidos
+
+| Carro | O que prova na foto |
+|---|---|
+| Lotus 25 | verde + amarelo Team Lotus |
+| Lotus 72 | JPS preto/dourado, **nome do Fittipaldi**, #1 |
+| Ferrari 312T | **"Niki Lauda"** escrito na lateral, #12 |
+| McLaren MP4/4 | **#12 = Senna em 1988** (em 89 ele era #1), "Powered by Honda" |
+| Williams FW14B | **#5 = Mansell**, Canon, em Mônaco |
+| Benetton B194 | Mild Seven + **"194" no airbox** |
+| McLaren MP4/13 | West/Mercedes, **#8 = Häkkinen** (Coulthard era #7) |
+| Ferrari F2004 | Marlboro + Vodafone, era certa |
+
+**Ressalvas de curadoria (não são erros):**
+- **3 fotos são de evento histórico moderno**, não de época: Lotus 25, Lotus 72 e **B194 (Goodwood — o piloto não é o Schumacher)**. As outras 5 são de época. As modernas são mais nítidas e saturadas; o grão do design ajuda a unificar, mas a diferença existe.
+- **3 abaixo de 1080 de largura:** Lotus 72 (736), FW14B (800), F2004 (924). Upscalam entre 1,2x e 1,5x — tolerável no feed, visível se ampliar.
+
+**Pendente:** o Caio vai fornecer a foto de **capa** e a de **fecho**. Hoje os slides 1 e 10 da v2 seguem sem foto (iguais aos da v1).
+
 ## Achados de produção (variante linha do tempo)
 
 - **Este post é uma VARIANTE, não o molde narrativo.** Catálogo não tem arco: sem `seam`, sem `plate`, sem slide de peça. Os módulos opcionais do template ficaram todos de fora — o que era o teste.
