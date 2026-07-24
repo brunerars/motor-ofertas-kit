@@ -120,6 +120,8 @@ body:not(:has(.slide:target)) #s1{ display:flex; }
   background:var(--ink); color:var(--paper); }
 .end-ttl{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase;
   font-size:132px; line-height:.92; }
+/* v2: 106px / 1.14 — a .92 os acentos de VOCE e ICONICO batiam na linha de cima. */
+.end.on-photo .end-ttl{ font-size:106px; line-height:1.14; }
 .end-bd{ margin:34px 0 0; font-size:36px; line-height:1.45; max-width:880px; color:rgba(245,245,245,.92); }
 .end-cta{ margin-top:44px; padding-top:28px; border-top:3px solid var(--accent); }
 .end-cta p{ margin:0; font-size:31px; line-height:1.4; font-weight:600; }
@@ -135,15 +137,32 @@ body:not(:has(.slide:target)) #s1{ display:flex; }
 .yr{ font-size:118px; }
 .spec{ margin:30px 0 0; }
 .spec div{ padding:15px 0; font-size:30px; }
+
+/* ---- v2: CAPA e FECHO com foto full-bleed + scrim ----
+   A capa e o fecho SAO as excecoes ao "aresta dura, sem scrim": aqui o tipo vive
+   por cima da imagem, entao o scrim e funcional (legibilidade), nao decorativo. */
+.bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+.scrim{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+.scrim-capa{ background:linear-gradient(180deg, rgba(17,17,17,.62) 0%, rgba(17,17,17,.30) 40%, rgba(17,17,17,.55) 78%, rgba(17,17,17,.90) 100%); }
+.scrim-fim{ background:linear-gradient(180deg, rgba(17,17,17,.38) 0%, rgba(17,17,17,.52) 30%, rgba(17,17,17,.86) 52%, rgba(17,17,17,.96) 74%, rgba(17,17,17,.98) 100%); }
+.slide > .strip, .slide > .era-rule, .slide > .swatches, .slide > .ribbon{ position:relative; z-index:3; }
+.cover, .end{ position:relative; z-index:2; }
+/* titulo no ALTO da capa: a nevoa da foto e o espaco negativo, o carro fica embaixo */
+.cover.on-photo{ background:transparent; justify-content:flex-start; padding-top:54px; }
+.cover.on-photo .cover-sub{ color:rgba(245,245,245,.95); }
+/* texto do fecho ancorado embaixo, onde o scrim e mais denso */
+.end.on-photo{ background:transparent; justify-content:flex-end; padding-bottom:26px; }
 </style>
 </head>
 <body>
 
 <!-- ══ 1 · CAPA ══ -->
 <section class="slide" id="s1">
+  <img class="bg" src="capa.jpg" style="object-position:center 72%" alt="Ferrari amarela de Formula 1 dos anos 60 sob chuva, piloto de capacete branco e goggles"/>
+  <div class="scrim scrim-capa"></div>
   <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
   <div class="era-rule" style="background:var(--accent)"></div>
-  <div class="cover">
+  <div class="cover on-photo">
     <h1 class="cover-ttl">Os carros que<br/>marcaram época</h1>
     <p class="cover-sub">De 1962 aos anos 2000, as máquinas que mudaram a Fórmula 1. Oito delas, uma por vez.</p>
   </div>
@@ -322,9 +341,11 @@ body:not(:has(.slide:target)) #s1{ display:flex; }
 
 <!-- ══ 10 · FECHO · engajamento (feed não vende) ══ -->
 <section class="slide" id="s10">
+  <img class="bg" src="final.jpg" style="object-position:center 42%" alt="Grid de carros de corrida dos anos 60 alinhados no paddock, pilotos e mecanicos em volta"/>
+  <div class="scrim scrim-fim"></div>
   <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
   <div class="era-rule" style="background:var(--accent)"></div>
-  <div class="end">
+  <div class="end on-photo">
     <h2 class="end-ttl">E pra você,<br/>qual foi o<br/>mais icônico?</h2>
     <p class="end-bd">Faltou algum nessa lista? Deixa nos comentários e marca aquele amigo que sabe de cor o ano de cada carro.</p>
     <div class="end-cta">

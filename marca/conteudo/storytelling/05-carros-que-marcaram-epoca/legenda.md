@@ -86,7 +86,10 @@ Conferidos e mantidos: 15/16 e 93,75% da MP4/4 · 9 vitórias em 16 do Mansell �
 - **3 fotos são de evento histórico moderno**, não de época: Lotus 25, Lotus 72 e **B194 (Goodwood — o piloto não é o Schumacher)**. As outras 5 são de época. As modernas são mais nítidas e saturadas; o grão do design ajuda a unificar, mas a diferença existe.
 - **3 abaixo de 1080 de largura:** Lotus 72 (736), FW14B (800), F2004 (924). Upscalam entre 1,2x e 1,5x — tolerável no feed, visível se ampliar.
 
-**Pendente:** o Caio vai fornecer a foto de **capa** e a de **fecho**. Hoje os slides 1 e 10 da v2 seguem sem foto (iguais aos da v1).
+**Capa e fecho da v2 (feitos 23/07):**
+- **Capa** `capa.jpg` — Ferrari amarela dos anos 60 sob chuva (2433x3622). Escolhida pelo espaco negativo de nevoa no alto, onde o titulo vive; o carro emerge embaixo. Full-bleed + scrim.
+- **Fecho** `final.jpg` — grid de carros dos anos 60 no paddock (1168x1752). Escolhida por casar semanticamente com a pergunta "qual foi o mais iconico?": varios carros, escolha um.
+- Capa e fecho sao as **excecoes** ao "aresta dura, sem scrim" do sistema: o tipo vive por cima da imagem, entao o scrim e funcional (legibilidade), nao decorativo.
 
 ## Achados de produção (variante linha do tempo)
 
