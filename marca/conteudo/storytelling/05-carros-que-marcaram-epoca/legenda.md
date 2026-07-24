@@ -5,7 +5,7 @@ formato: carrossel Instagram 3:4 (1080x1440) · 10 slides
 post: "Os carros que marcaram época" (LINHA DO TEMPO · catálogo de 8 carros por era)
 peca: nenhuma (fecho é engajamento, não venda)
 origem: ideia crua do Caio
-status: DUAS VERSÕES · v1 ✅ publicável (sem foto) · v2 ⚠️ 10 fotos de terceiros
+status: APROVADO (v1 e v2) · aguardando post · fotos do Pinterest = risco assumido, não trava (decisão Bruno 24/07)
 ---
 
 # Linha do tempo — "Os carros que marcaram época"

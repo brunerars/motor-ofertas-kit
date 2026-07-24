@@ -80,16 +80,16 @@ Daqui, **siga o `/post-feed`** (não reimplemente): monte o `post.html` a partir
 ### 6. Legenda
 `legenda.md` = a Legenda da ideia refinada na voz do Bruno + hashtags de nicho + nota de licenciamento das fotos de mood usadas. Frontmatter no padrão dos outros posts (tipo/projeto/formato `3:4 (1080x1440)`/peça/status).
 
-### 7. Fechar o loop (sem publicar)
-- **Publicação é manual do Bruno** — a skill NÃO marca `Publicado` (isso significaria "postado"). Deixe a ideia em `Em Produção` e **registre o caminho do post gerado** (comentário na página ou na `CTA Sugerida`/corpo), pra rastrear o que já tem arte pronta.
-- Entregue pro Bruno revisar: mostre os 5 slides + a legenda. Quando ele postar de verdade, ele arrasta pra `Publicado` no kanban.
-
-> Divergência consciente do plano (que dizia "→ Publicado"): publicação é ação manual do Bruno, então o gate `Publicado` é dele, não da skill. A skill entrega a arte pronta.
+### 7. Fechar o loop (sem aprovar nem postar)
+Kanban de 4 etapas: **Ideia → Em Produção → Aprovado → Postado**. Os dois últimos são **gates humanos**.
+- A skill deixa a ideia em **`Em Produção`** (a arte ficou pronta, mas quem aprova é o Bruno) e **registra o caminho do post gerado** (comentário na página ou na `CTA Sugerida`/corpo), pra rastrear o que já tem arte pronta.
+- Entregue pro Bruno revisar: mostre os slides + a legenda. **Ele** arrasta pra `Aprovado` quando bate o martelo, e pra `Postado` quando publica de verdade.
+- A skill **NUNCA** marca `Aprovado` nem `Postado` — self-aprovar mataria o gate humano, que é a tese do método.
 
 ## NÃO fazer
 - Não escolher a ideia sozinho quando o Bruno não apontou (a curadoria/priorização é dele).
 - Não usar peça `bloqueado`/falsa nem foto de mood sem o Bruno liberar.
-- Não marcar `Publicado` (só o Bruno, ao postar).
+- Não marcar `Aprovado` nem `Postado` (são gates do Bruno; a skill para em `Em Produção`).
 - Não inventar fato histórico nem meter badge/preço no feed.
 
 ## Relacionado
