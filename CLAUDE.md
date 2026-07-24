@@ -104,6 +104,18 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - [x] Produto piloto → item Mercari m71370664392
 - [x] Chaves (travavam o Bloco Ofertas): Firecrawl · Baserow (base+token) · **WAHA** (`WAHA_URL`, `WAHA_API_KEY`, `WAHA_GROUP_ID`) → `.env`, fora do git. *(A Z-API saiu do fluxo em 16/07; as `ZAPI_*` seguem no `.env` só como rollback, marcadas como desativadas.)*
 
+## Estado atual (2026-07-23) — Motor de conteúdo PROVADO ponta a ponta + diagramação nova promovida a template
+O ciclo inteiro rodou com artefato real, e o conjunto de skills provou que **cria diagramação nova** a partir das referências da própria marca, não só recicla.
+
+- [x] **Pipeline ponta a ponta.** Pinterest + reel (`@rodaccki`) → banco visual descrito (`marca/mood/`, 15 imgs com ano/confiança) → 1 referência + 2 ideias no Notion → **kanban** (view "Kanban · Nippon Speed Co") → carrossel de 6 slides em `marca/conteudo/storytelling/04-suzuka-cobrou-duas-vezes/`.
+- [x] **`PRODUCT.md` + `DESIGN.md` declarados** na raiz do projeto. Sem eles o impeccable **trava** (`NO_PRODUCT_MD`) e as regras de drift não rodam. O drift só liga com os tokens no **frontmatter YAML**. Rodar sempre **da pasta da frente** (o `context.mjs` resolve a raiz pelo cwd).
+- [x] **Diagramação nova, medida.** Baseline 25/40 (falhava AI slop nas 2 ordens) → 3 direções com referência real nomeada (pôster / revista japonesa / **paleta por era**, esta herdada das artes de ano do Caio) → 32/28/32 → a escolhida refinada a **34/40**. Exploração + `comparar.html` em `marca/conteudo/exploracao/`.
+- [x] **Template `/post-feed` promovido** para "As Eras": base fixa (marca · fio de era · poço de aresta dura · campo de cor · **fita do tempo**) + módulos opcionais (`plate`, `seam`, paleta de era). **Eyebrow removido do template** (era o defeito nº1, 6 de 6 slides, e anti-referência do `PRODUCT.md`).
+- **Cicatrizes embutidas na skill:** recorte do produto = **máscara dura + erosão + feather**, nunca alpha matting (deixa halo felpudo) e **nunca gerativo** (redesenha e falsifica a peça) · Anton só caixa alta (caixa baixa perde o pingo do "i") · diacrítico pede `line-height ≥ 1.16` · `object-fit:contain` sem altura fixa estoura o container · pipe mascara o exit do detector.
+- ⚠️ **ABERTO — o teste que importa:** rodar o template num **tema diferente** do Suzuka (era única, sem `seam`/`plate`). Os módulos opcionais nunca foram exercitados. E rodar a **2ª frente (ACBK)** — trava: o `@` do Instagram dela ainda é placeholder.
+- ⚠️ **Verde no detector não é prova de qualidade.** Ele deu exit 0 em peças com defeito visível; quem pegou foi o olho do Bruno (bordado "dourado" inventado, enquadramento, tamanho da peça). Os gates humanos são load-bearing.
+- Método em `pesquisa/pesquisa-skills-claude/`: [[metodo-pipeline-conteudo]] · [[metodo-direcao-visual-nova]]. Memória: `motor-conteudo-multi-frente`.
+
 ## Estado atual (2026-07-22) — Motor de conteúdo Instagram (referência→roteiro) + reel-builder; carrossel Suzuka virou Reel
 Sessão fora do fluxo do vault (rodou no terminal `Conteudo-Teste`). Nasceu um motor de conteúdo reutilizável pras lojas e a primeira skill de montagem de vídeo. Nada disso é do Bloco Ofertas — é a camada de **conteúdo/branding** da NSC.
 
