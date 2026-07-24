@@ -16,7 +16,7 @@ O FEED conta HISTÓRIA. A marca vira referência de cultura de automobilismo; a 
 > - **Voz do Bruno**: sem travessão, redondo e direto. [[voz-bruno-redondo]]
 > - **Curadoria/licenciamento de foto é HUMANA.** Foto de arquivo de terceiros = risco de copyright → só entra se o Bruno liberar. Foto da própria peça é sempre segura.
 > - **Anton só em CAIXA ALTA.** Em caixa baixa o "i" perde o pingo (`link na bio` lê `llnk na blo`). Handle e CTA em Archivo.
-> - **Diacrítico em display pede `line-height ≥ 1.16`.** Apertado, o til de "JAPÃO" encosta no "O" de cima e "DO" lê "DQ".
+> - **Diacrítico: piso de `line-height:1.16` já é ESTRUTURAL no `template.html`** (regra no fim do CSS, ganha de qualquer valor acima). Aconteceu 3x antes de virar regra: "JAPÃO"→"DQ", "ÉPOCA" colidindo, "VOCÊ"/"ICÔNICO" batendo. **Não reintroduza leading apertado em título de texto.** Exceção documentada: `.yr` (só dígitos).
 
 ## Input
 - **Tema** da história. Pode sair do banco `marca/conteudo/ideias-feed.md` ou de uma ideia curada no Notion (via `/post-from-idea`).

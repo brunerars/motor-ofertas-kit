@@ -122,9 +122,13 @@ conferir contraste em cada um, não herdar o padrão do campo escuro.
 - **Pareamento legítimo:** condensada de display + humanista de corpo. Eixo de contraste real, não duas
   sans parecidas.
 
-> **Folga de diacrítico (regra dura).** Anton é condensada: com `line-height` apertado, o til/acento da
-> linha de baixo encosta na linha de cima. Medido: "JAPÃO" sob "DO" fez o "O" ler como "Q". `.94` quebra,
-> `1.06` ainda quebra, **`1.2` resolve**. Título display com Ã/Õ/Â/Ê exige `line-height ≥ 1.2`.
+> **Folga de diacrítico — PISO ESTRUTURAL `line-height: 1.16`.** Anton é condensada: com leading apertado,
+> o acento da linha de baixo (Ã Õ Â Ê É) encosta na linha de cima e o glifo lê errado. Medido três vezes:
+> "JAPÃO" sob "DO" fez "DO" ler "DQ" (`.94` e `1.06` quebram) · "ÉPOCA" sob "QUE" colidiu (`.90` quebra) ·
+> "VOCÊ"/"ICÔNICO" com acentos batendo (`.92` quebra).
+> **Desde 24/07 isto é regra no `template.html` do `/post-feed`**, aplicada por último no CSS pra ganhar de
+> qualquer valor acima — não depende mais de lembrar. **Exceção: `.yr`**, que é só dígito e segue tight
+> (é a assinatura da diagramação); se entrar texto nesse slot, tire-o da exceção.
 > **O detector não pega isso** — só a leitura do PNG renderizado.
 
 ## Layout — carrossel de feed (3:4, 1080×1440)

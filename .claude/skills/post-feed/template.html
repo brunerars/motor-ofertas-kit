@@ -173,6 +173,25 @@ h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform
    ("link na bio" lia "llnk na blo"). Handle e CTA sempre em fonte de corpo. */
 .cta-handle{ display:block; margin-top:16px; font-family:"Archivo",sans-serif; font-weight:800;
   text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PISO DE LEADING PARA DIACRÍTICO — regra estrutural, deliberadamente por último
+   ═══════════════════════════════════════════════════════════════════════════
+   Anton é condensada. Com leading apertado, o acento da linha de baixo (Ã Õ Â Ê É)
+   encosta na linha de cima e o glifo passa a ler errado. Medido:
+     · "JAPÃO" sob "DO"  → o "DO" lia "DQ"   (.94 quebra · 1.06 ainda quebra · 1.2 resolve)
+     · "ÉPOCA" sob "QUE" → linhas colidindo   (.90 quebra · 1.12 resolve)
+     · "VOCÊ" / "ICÔNICO" → acentos batendo    (.92 quebra · 1.14 resolve)
+   Três vezes em dois posts, sempre pego só na leitura do PNG, NUNCA pelo detector.
+   Título em PT-BR quase sempre leva acento, então isto é PISO no template e não
+   nota de rodapé: vem por último de propósito, pra ganhar de qualquer valor acima.
+
+   ÚNICA EXCEÇÃO — .yr: só dígitos, nunca leva acento. Segue tight porque o ano
+   gigante é a assinatura da diagramação. Se algum dia entrar TEXTO nesse slot,
+   tire-o da exceção.
+   ═══════════════════════════════════════════════════════════════════════════ */
+h1, h2, .cover-ttl, .ttl, .piece-name{ line-height:1.16; }
+.yr{ line-height:.82; }   /* exceção: dígitos, ver acima */
 </style>
 </head>
 <body>
