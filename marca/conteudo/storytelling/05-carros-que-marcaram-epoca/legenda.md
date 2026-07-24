@@ -5,12 +5,14 @@ formato: carrossel Instagram 3:4 (1080x1440) · 10 slides
 post: "Os carros que marcaram época" (LINHA DO TEMPO · catálogo de 8 carros por era)
 peca: nenhuma (fecho é engajamento, não venda)
 origem: ideia crua do Caio
-status: ✅ PUBLICÁVEL — zero imagem de terceiros
+status: DUAS VERSÕES · v1 ✅ publicável (sem foto) · v2 ⚠️ 10 fotos de terceiros
 ---
 
 # Linha do tempo — "Os carros que marcaram época"
 
-**Arquivos:** `slide-1..10.png` · fonte `post.html`. **Sem nenhuma imagem** — a livery de cada carro é a identidade visual do slide.
+**Duas versões prontas** (comparação e trade-off na seção "Duas versões", abaixo):
+- **v1** — `post.html` · `slide-1..10.png`. Sem nenhuma imagem: a livery de cada carro é a identidade visual. **Publicável.**
+- **v2** — `post-v2.html` · `v2-slide-1..10.png`. Foto do carro + campo na cor da livery, mais capa e fecho. **8 fotos de carro + capa + fecho = 10 imagens de terceiros.**
 
 **Por que sem foto.** Eram 8 carros diferentes: 8 sourcings, 8 chances de errar o modelo (Lotus 25 × 33, MP4/4 × MP4/5, F2004 × F2003), e o colecionador nota. A livery resolve melhor e de quebra faz este ser **o primeiro post publicável** — os posts 01 e 04 estão travados como mock por foto de terceiro sem licença.
 
