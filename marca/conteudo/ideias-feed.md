@@ -12,7 +12,7 @@ Banco de histórias de F1 pra popular o feed. A F1 tem material infinito; aqui a
 ## Como funciona a esteira
 1. **Ideia** entra no backlog abaixo (gancho + história + foto ideal + pilar).
 2. **Curadoria de foto** (Caio/Bruno): acha a imagem que casa com o tema (acervo, arquivo histórico, ou foto nova). Sem foto que faça sentido, o post não sai — ou vira editorial puro (só tipografia/gráfico do design system, sem depender de foto).
-3. **Produção**: monto o HTML no template do design system → render headless → PNG(s) 4:5 (1080×1350) + legenda na voz do Bruno.
+3. **Produção**: monto o HTML no template do design system → render headless → PNG(s) 3:4 (1080×1440) + legenda na voz do Bruno.
 4. **Publicação**: manual do Bruno.
 
 > Ideia de evolução: virar a skill **`/ideias-feed`** (gera/expande este banco sob demanda por tema/era) ou um workflow que dispara N ideias de uma vez. Por ora este arquivo é o motor v1 — dá pra ir enchendo à mão e comigo.
@@ -54,7 +54,7 @@ Ordem pensada pro grid abrir coeso (alterna tinta/papel, editorial/storytelling)
 ---
 
 ## 📚 Banco de ideias (backlog completo)
-Vai enchendo aqui. Cada uma pode virar post único 4:5 ou carrossel.
+Vai enchendo aqui. Cada uma pode virar post único 3:4 ou carrossel.
 
 ### EDITORIAL — história & cultura F1
 - **💡 As eras da F1 (70s → hoje)** — carrossel, 1 era por slide (reaproveita a timeline da LP: clássica/turbo/Senna/era vermelha/híbridos). Gancho: "não é só coisa antiga". _Foto ideal:_ 1 carro-ícone por era (Caio) ou line-art puro.
@@ -88,8 +88,8 @@ Cada peça do acervo vira um mini-post de história. Foto já existe; falta a cu
 ---
 
 ## Regras de produção (herdadas)
-- Design system **V1 "Editorial Garage"** (tokens/ícones/grão da LP). Formato **4:5 (1080×1350)**. `impeccable detect = 0`.
-- Voz do Bruno: **sem travessão, redondo e direto** ([[voz-bruno-redondo]]).
+- Design system **V1 "Editorial Garage"** (tokens/ícones/grão da LP). Formato **3:4 (1080×1440)**. `impeccable detect = 0`.
+- Voz do Bruno: **sem travessão, redondo e direto** (voz-bruno-redondo).
 - **FEED**: sem badge de venda; produto só no fim, como CTA pro grupo. **STORIES/FIXADOS/WPP**: badge **verde "SOB ENCOMENDA"** + "fala com a gente".
 - CTA padrão: **Link na bio · @nipponspeedco** (trocar quando o @ oficial existir).
 - Render: Edge headless `--window-size=1080,1350 --virtual-time-budget=6000`.

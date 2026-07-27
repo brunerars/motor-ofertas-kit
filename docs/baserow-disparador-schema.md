@@ -50,7 +50,8 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 | Campo | Tipo | Notas |
 |---|---|---|
 | `lead` | text (primário) | rótulo: `nome_wa` ou, sem nome, o telefone |
-| `phone` | text | número do interessado, sem `@c.us`. **PII** (ver abaixo) |
+| `phone` | text | número do interessado, sem `@c.us`. **PII** (ver abaixo). Vem do WAHA resolvendo o LID (ver abaixo) — **pode vir vazio** se não resolver |
+| `wa_id` | text | o id cru do WhatsApp (`21522181840928@lid` ou `5511...@c.us`). A identidade **estável** da pessoa: é a chave de dedup quando o `phone` não resolve |
 | `nome_wa` | text | `notifyName` do WhatsApp; pode vir vazio |
 | `mercari_id` | text | a chave crua (sobrevive mesmo se a peça sumir da 556) |
 | `peca` | **link_row → 556** | o link de verdade: clicar no lead abre a peça. O n8n preenche com `[row_id]` |
@@ -62,7 +63,37 @@ Fonte da fila do `/agenda` → `/dispara-oferta`. Self-hosted ARV.
 > **Guarda os dois: `peca` (link) e `mercari_id` (texto).** O link é pra você navegar no Baserow; o texto é o que o n8n filtra (`filter__mercari_id__equal`) sem precisar resolver relação. Filtrar por link é chato; navegar por texto é chato. Cada um faz o que faz bem.
 > **O link quer `row_id`, não `mercari_id`** → por isso o workflow busca a peça na 556 **antes** de gravar o lead. Peça não encontrada = grava o lead com o link vazio (perder o lead por causa do link seria pior).
 
-**Dedup:** o workflow faz `GET …/?user_field_names=true&filter__mercari_id__equal=<id>` antes de inserir. Mesma pessoa + mesma peça = não insere nem avisa de novo. O mesmo GET dá o **ordinal** ("2ª pessoa") de graça.
+## Dedup: insert-and-reconcile, não read-then-write
+**O WAHA às vezes entrega o mesmo evento duas vezes.** Medido em 16/07: uma mensagem → 2 leads, gravados com **36ms** e **145ms** de diferença.
+
+Contra isso, perguntar-antes-de-inserir (`GET` com filtro → `POST`) **não tem defesa**: as duas execuções fazem o GET antes de qualquer INSERT e nenhuma enxerga a outra. Resultado: 2 linhas, 2 pings, e o ordinal inflado ("3ª pessoa" havendo 2 pessoas, porque contava **linha** e não **gente**). Contra mensagens de verdade, separadas por segundos, o dedup antigo funcionava — provado no mesmo teste: 3 cliques no CTA, só o 1º gerou linha.
+
+**O certo seria o banco arbitrar, mas este Baserow não tem unique constraint** (a API de campos não expõe `field_constraints`). Então:
+
+```
+Montar a linha → gravar lead (SEMPRE) → Espera 3s → leads desta peça (GET)
+  → Reconciliar + ordinal → Sou a linha que vale?
+       sim → Montar aviso → avisar Bruno
+       não → apagar minha linha (e fica calado)
+```
+- **Não precisa de lock.** As duas execuções chegam à mesma conclusão sozinhas: o Baserow dá `row_id` crescente, e *"o menor id vence"* é uma regra que ambas conseguem avaliar sem falar uma com a outra.
+- **A espera de 3s** garante que as duas já gravaram antes de qualquer uma reconsultar (a defasagem medida foi 36-145ms; 3s é folga de 20×). Custo: o ping chega 3s depois. Ninguém nota.
+- **`Baserow: apagar minha linha` só apaga a linha que aquela execução criou** (`meu_id` vem do próprio insert), nunca a de outro.
+- **Ordinal conta pessoas distintas**, não linhas.
+- ⚠️ **Fail-safe ao contrário do disparo, de propósito.** Se a reconciliação não se acha na lista, ela **mantém** a linha e avisa. Aqui o pior caso é o Bruno ver 2 pings; perder um lead é perder venda. No disparo é o oposto (prefere perder a peça a duplicar) — lá quem leva a mensagem duplicada é o cliente.
+
+## ⚠️ LID: o `from` do WhatsApp não é telefone
+O WhatsApp entrega o remetente como **LID** (identidade interna): `from = "21522181840928@lid"`. O `from.split('@')[0]` gravava **o LID** em `phone` e o aviso saía com `wa.me/21522181840928`, que não abre.
+
+Quem traduz é o WAHA: `GET /api/contacts?contactId=<lid>&session=<s>` →
+```json
+{"id":"5511974052313@c.us", "number":"21522181840928", "pushname":"..."}
+```
+- **Usar `id`.** O campo **`number` é o LID de novo** — armadilha.
+- **LID desconhecido volta `200` com `id` = o próprio LID** (`{"id":"99999999999999@lid"}`). Status 200 não prova nada: **o teste é o sufixo `@c.us`**.
+- **Tamanho não serve de teste:** LID tem 14 dígitos, celular BR tem 13.
+- Não resolveu → `phone` fica **vazio** e o aviso **omite o `wa.me`** em vez de mandar link quebrado. O `wa_id` segura a identidade pro dedup.
+- Existe também `GET /api/{session}/lids/{lid}` → `{lid, pn}` (devolve `pn: null` pro desconhecido). Serve pro mesmo fim.
 
 ## ⚠️ PII — isto aqui é dado de pessoa, não de peça
 A `LEADS` guarda **telefone e nome de cliente**. É a primeira tabela do projeto com dado pessoal:

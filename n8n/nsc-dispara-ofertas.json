@@ -84,6 +84,18 @@
               "name": "espera_var_s",
               "value": "46",
               "type": "string"
+            },
+            {
+              "id": "j0",
+              "name": "janela_ini",
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "id": "j1",
+              "name": "janela_fim",
+              "value": "24",
+              "type": "string"
             }
           ]
         },
@@ -97,7 +109,7 @@
         -180,
         0
       ],
-      "notes": "Cadencia mora AQUI, nos 3 campos cron_min/espera_min_s/espera_var_s. O node 'Espera humana' e o teto do 'Filtrar aprovados' leem os dois do mesmo lugar - mudar so um era o que quebrava o outro em silencio. Pra 5min de verdade: espera_min_s=240, espera_var_s=121 (da 4 a 6min)."
+      "notes": "Cadencia e janela moram AQUI. cron_min/espera_min_s/espera_var_s: o node \"Espera humana\" e o teto do \"Filtrar aprovados\" leem os mesmos campos, e o teto se recalcula sozinho - mudar so um era o que quebrava o outro em silencio. Pra 5min de verdade: espera_min_s=240, espera_var_s=121 (da 4 a 6min). janela_ini/janela_fim: horario de Sao Paulo, fim EXCLUSIVO (9 e 21 = das 9h as 20h59). Pra testar fora do horario, abrir aqui (ex.: 0 e 24) e FECHAR DEPOIS - senao o robo posta de madrugada."
     },
     {
       "parameters": {
@@ -124,7 +136,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Portao de aprovacao. Aprovado = sai ja · Agendado = so quando scheduled_at venceu.\n// NUNCA dispara Fila. Sem photo_url/caption, pula (evita post quebrado no grupo).\n//\n// O n8n NAO monta legenda: le o `caption` pronto do Baserow e repassa cru.\n// Quem escreve o texto e a skill /agenda. Mudou o formato da mensagem? Nao mexe aqui.\n// JANELA: so dispara entre 9h e 21h (America/Sao_Paulo).\n// Post de madrugada nao e lido por ninguem e ainda cheira a robo.\n// Fora da janela a fila espera: ninguem perde o lugar, so sai mais tarde.\n//\n// TIMEZONE: NAO usar new Date().getHours() - o container do n8n roda em UTC,\n// e 9-21 UTC seria 6-18 no Brasil (dispararia as 6 da manha e pararia as 18h).\nconst horaBR = Number(new Date().toLocaleString('en-US', {\n  timeZone: 'America/Sao_Paulo', hour: '2-digit', hour12: false\n})) % 24;\nif (horaBR < 9 || horaBR >= 21) return [];\n\nconst cfg = $('Config').first().json;\nconst now = new Date().toISOString();\nconst rows = ($input.first().json.results) || [];\nconst out = [];\nfor (const r of rows) {\n  const st = (r.status && r.status.value) ? r.status.value : r.status;\n  const due = st === 'Aprovado' || (st === 'Agendado' && r.scheduled_at && r.scheduled_at <= now);\n  if (!due) continue;\n  if (!r.photo_url || !r.caption) continue;\n  // Payload do WAHA montado aqui: o file.url e aninhado e nao cabe em body keypair.\n  // O WAHA busca a foto na URL publica do Baserow (o CDN do Mercari daria 403).\n  out.push({ json: {\n    row_id: r.id,\n    payload: {\n      session: cfg.waha_session,\n      chatId: cfg.group_id,\n      file: { url: r.photo_url },\n      caption: r.caption\n    }\n  }});\n}\n// Quem espaca um a um agora e o Loop Over Items + o Wait logo depois. Antes isto\n// virava rajada (5 aprovados = 5 posts seguidos), que e o padrao que derruba conta\n// no WEBJS.\n//\n// TETO = ANTI-DUPLICATA, nao cadencia. Se o loop passar do intervalo do cron, a\n// execucao seguinte comeca com esta ainda rodando, ve as MESMAS linhas (que ainda\n// nao viraram Disparado) e posta TUDO DE NOVO no grupo.\n// Por isso o teto se calcula da mesma fonte da espera (Config), em vez de ser um\n// numero cravado: trocar a espera de 90s pra 225s deixava um teto de 15 valendo\n// 56min contra um cron de 30min. Silencioso e caro.\nconst cronS = Number(cfg.cron_min || 30) * 60;\nconst esperaMax = Number(cfg.espera_min_s || 180) + Number(cfg.espera_var_s || 46);\nconst porPeca = esperaMax + 15;          // +15s: o envio pelo WAHA e lento (Chromium)\nconst teto = Math.max(1, Math.floor((cronS * 0.75) / porPeca));   // 25% de folga\nreturn out.slice(0, teto);"
+        "jsCode": "// Portao de aprovacao. Aprovado = sai ja · Agendado = so quando scheduled_at venceu.\n// NUNCA dispara Fila. Sem photo_url/caption, pula (evita post quebrado no grupo).\n//\n// O n8n NAO monta legenda: le o `caption` pronto do Baserow e repassa cru.\n// Quem escreve o texto e a skill /agenda. Mudou o formato da mensagem? Nao mexe aqui.\nconst cfg = $('Config').first().json;\n\n// JANELA (America/Sao_Paulo), lida do Config: janela_ini ate janela_fim, fim\n// EXCLUSIVO. Regra do Bruno (16/07): 9 as 24 = das 9h as 23h59. Meia-noite em\n// diante nao sai (hora 0 < 9).\n// Post de madrugada nao e lido por ninguem e ainda cheira a robo. Fora da janela\n// a fila espera: ninguem perde o lugar, so sai mais tarde.\n//\n// Este return [] e a PRIMEIRA coisa que acontece: fora do horario o node devolve\n// vazio sem sequer olhar status. \"Nao esta identificando o Aprovado\" as 23h e\n// isto aqui, nao o filtro.\n//\n// TIMEZONE: NAO usar new Date().getHours() - o container do n8n roda em UTC,\n// e 9-21 UTC seria 6-18 no Brasil (dispararia as 6 da manha e pararia as 18h).\nconst horaBR = Number(new Date().toLocaleString('en-US', {\n  timeZone: 'America/Sao_Paulo', hour: '2-digit', hour12: false\n})) % 24;\nconst jIni = Number(cfg.janela_ini !== undefined && cfg.janela_ini !== '' ? cfg.janela_ini : 9);\nconst jFim = Number(cfg.janela_fim !== undefined && cfg.janela_fim !== '' ? cfg.janela_fim : 24);\nif (horaBR < jIni || horaBR >= jFim) return [];\nconst now = new Date().toISOString();\nconst rows = ($input.first().json.results) || [];\nconst out = [];\nfor (const r of rows) {\n  const st = (r.status && r.status.value) ? r.status.value : r.status;\n  const due = st === 'Aprovado' || (st === 'Agendado' && r.scheduled_at && r.scheduled_at <= now);\n  if (!due) continue;\n  if (!r.photo_url || !r.caption) continue;\n  // Payload do WAHA montado aqui: o file.url e aninhado e nao cabe em body keypair.\n  // O WAHA busca a foto na URL publica do Baserow (o CDN do Mercari daria 403).\n  out.push({ json: {\n    row_id: r.id,\n    payload: {\n      session: cfg.waha_session,\n      chatId: cfg.group_id,\n      file: { url: r.photo_url },\n      caption: r.caption\n    }\n  }});\n}\n// Quem espaca um a um e o Loop Over Items + o Wait logo depois. Antes isto virava\n// rajada (5 aprovados = 5 posts seguidos), que e o padrao que derruba conta no WEBJS.\n//\n// TETO = bound de sanidade, NAO e mais o anti-duplicata.\n// Ate 16/07 o teto era a unica defesa contra rodadas sobrepostas, e nao dava conta:\n// ele so garante que UMA rodada caiba no cron. Nao impede uma SEGUNDA execucao de\n// nascer no meio (Test workflow na mao, ou 2 workflows ativos) e postar da mesma\n// lista. Foi assim que 3 pecas viraram 5 posts em 16/07.\n// Quem impede duplicata agora e o par \"reler a linha\" + \"marcar Disparado antes de\n// enviar\", dentro do loop. Este teto so evita uma fila absurda numa rodada so.\nconst cronS = Number(cfg.cron_min || 30) * 60;\nconst esperaMax = Number(cfg.espera_min_s || 180) + Number(cfg.espera_var_s || 46);\nconst porPeca = esperaMax + 15;          // +15s: o envio pelo WAHA e lento (Chromium)\nconst teto = Math.max(1, Math.floor((cronS * 0.75) / porPeca));   // 25% de folga\nreturn out.slice(0, teto);"
       },
       "id": "b1000000-0000-4000-8000-000000000004",
       "name": "Filtrar aprovados",
@@ -151,7 +163,7 @@
         "sendBody": true,
         "contentType": "json",
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($json.payload) }}",
+        "jsonBody": "={{ JSON.stringify({ session: $('Config').item.json.waha_session, chatId: $('Config').item.json.group_id, file: { url: $json.photo_url }, caption: $json.caption }) }}",
         "options": {
           "timeout": 120000
         }
@@ -161,15 +173,15 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        740,
+        1340,
         -40
       ],
-      "notes": "Era Z-API (/send-image + header Client-Token). Agora WAHA: /api/sendImage + header X-Api-Key. O WAHA envia por um Chromium de verdade -> timeout de 120s. Com o padrao (5s) a requisicao estoura, a linha NAO vira Disparado, mas o post SAI mesmo assim = duplicata no proximo tick."
+      "notes": "Payload montado a partir da linha relida (o PATCH do Baserow devolve a linha inteira), nao do retrato do topo da rodada: legenda editada depois da aprovacao sai certa. O WAHA envia por um Chromium de verdade -> timeout de 120s (o padrao de 5s estoura). Se falhar, falha alto: a execucao para e aparece no historico. Melhor que duplicar calado."
     },
     {
       "parameters": {
         "method": "PATCH",
-        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/{{ $('Filtrar aprovados').item.json.row_id }}/?user_field_names=true",
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/{{ $json.id }}/?user_field_names=true",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -191,10 +203,6 @@
             {
               "name": "posted_at",
               "value": "={{ $now.toISO() }}"
-            },
-            {
-              "name": "wa_message_id",
-              "value": "={{ $json.id && $json.id._serialized ? $json.id._serialized : $json.id }}"
             }
           ]
         },
@@ -205,10 +213,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        940,
+        1140,
         -40
       ],
-      "notes": "wa_message_id: a Z-API devolvia $json.messageId (string). O WAHA devolve `id`, que vem string OU objeto {_serialized}. A expressao cobre os dois."
+      "notes": "O CADEADO. Marca Disparado ANTES do envio: quem chegar depois rele, ve Disparado e pula. Marcar depois deixava o post cair no grupo com a linha ainda Aprovado - janela de duplicata. Contrapartida assumida: se o WAHA falhar, a peca fica Disparado sem ter saido. Da pra ver (wa_message_id vazio) e e mais barato que postar 2x no grupo. row id = $json.id, direto da linha relida (nada de $() atravessando o loop)."
     },
     {
       "parameters": {
@@ -240,6 +248,141 @@
       ],
       "webhookId": "d4e40000-0000-4000-8000-0000000000ff",
       "notes": "Espera aleatoria ANTES de cada envio, lida do Config (espera_min_s + rand(espera_var_s)). O que protege a conta e nao sair em rajada; o numero exato nao importa, a ausencia de padrao sim. Mudou aqui? Nao - muda no Config, senao o teto do Filtrar desalinha."
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/{{ $json.row_id }}/?user_field_names=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-000000000020",
+      "name": "Baserow: reler a linha",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        -40
+      ],
+      "notes": "O estado que vale e o de AGORA, nao o do topo da rodada. Entre listar e enviar passam ate 20min: outra execucao pode ter disparado esta peca, e o Bruno pode ter editado a legenda ou descartado. Sem este node, o loop posta de um retrato velho - foi a causa da duplicata de 16/07."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "g1",
+              "leftValue": "={{ $json.status ? ($json.status.value || $json.status) : '' }}",
+              "rightValue": "Disparado",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "g2",
+              "leftValue": "={{ $json.status ? ($json.status.value || $json.status) : '' }}",
+              "rightValue": "Descartado",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "g3",
+              "leftValue": "={{ $json.photo_url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "g4",
+              "leftValue": "={{ $json.caption }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "g5",
+              "leftValue": "={{ $json.posted_at }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-000000000021",
+      "name": "Ainda da pra disparar?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        940,
+        -40
+      ],
+      "notes": "O CADEADO TEM DUAS CHAVES, e a segunda e a que importa. status: pula Disparado/Descartado. posted_at: pula QUALQUER linha que ja saiu no grupo, nao importa o status. Por que a segunda existe: `status` e o campo que todo mundo mexe (Bruno na UI, Caio na borda). Devolver uma linha postada pra `Aprovado` fazia o cron repostar no grupo real - `Aprovado` e destino legitimo e o gate nao olhava mais nada. Foi achado em 16/07 com as rows 28/29 ja agendadas pra sair 2x. `posted_at` so o cron escreve, entao ele nao mente. Repostar de proposito agora exige limpar o posted_at na mao no Baserow - o atrito e a feature. FALSO nao e erro: volta pro Loop e pega a proxima peca."
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/{{ $('Baserow: marcar Disparado').item.json.id }}/?user_field_names=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "keypair",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "wa_message_id",
+              "value": "={{ $json.id && $json.id._serialized ? $json.id._serialized : $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-000000000022",
+      "name": "Baserow: gravar message id",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        -40
+      ],
+      "onError": "continueRegularOutput",
+      "notes": "O WAHA devolve `id`, que vem string OU objeto {_serialized}. A expressao cobre os dois. onError=continue: o id e rastreio (liga a linha ao post pro /confere-ofertas), nao o disparo. Perder o id nao pode derrubar o resto da fila - a peca ja foi pro grupo."
     }
   ],
   "connections": {
@@ -291,7 +434,7 @@
       "main": [
         [
           {
-            "node": "Baserow: marcar Disparado",
+            "node": "Baserow: gravar message id",
             "type": "main",
             "index": 0
           }
@@ -314,7 +457,7 @@
       "main": [
         [
           {
-            "node": "WAHA: enviar oferta",
+            "node": "Baserow: reler a linha",
             "type": "main",
             "index": 0
           }
@@ -322,6 +465,46 @@
       ]
     },
     "Baserow: marcar Disparado": {
+      "main": [
+        [
+          {
+            "node": "WAHA: enviar oferta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: reler a linha": {
+      "main": [
+        [
+          {
+            "node": "Ainda da pra disparar?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ainda da pra disparar?": {
+      "main": [
+        [
+          {
+            "node": "Baserow: marcar Disparado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow: gravar message id": {
       "main": [
         [
           {

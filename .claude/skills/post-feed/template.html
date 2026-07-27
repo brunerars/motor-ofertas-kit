@@ -4,182 +4,336 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=1080, initial-scale=1"/>
 <title>Nippon Speed Co. · Carrossel narrativo (feed)</title>
-<!-- TEMPLATE /post-feed — copiar pra marca/conteudo/storytelling/<NN>-<slug>/ (sem "#" no nome da pasta: quebra o render por #sN), pôr as fotos como s2.jpg/s3.jpg... e a peça como foto.jpg; trocar os {{...}}.
-     Duplicar/remover slides de capítulo conforme a história (3-4). Dois tipos de capítulo: (A) COM FOTO, (B) TIPOGRÁFICO PURO. -->
-<!-- impeccable-disable tight-leading repeated-section-kickers broken-image -- Anton condensed (~1.28x); tight leading intencional (waiver do V1). Kickers = capítulos distintos da narrativa, não scaffold. Corpo 1.5. broken-image: ESTE É UM TEMPLATE — capa.jpg/s2.jpg/foto.jpg são placeholders preenchidos por post; nos posts reais as imagens existem. -->
+<!-- impeccable-disable tight-leading broken-image -- Anton é condensada (~1.28x): o leading apertado nos
+     títulos é intencional e faz parte do design system V1. broken-image: ESTE É UM TEMPLATE — capa.jpg,
+     s2.jpg, foto-cut.jpg são placeholders substituídos por post; nos posts reais as imagens existem. -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-/* NIPPON SPEED CO. — CARROSSEL NARRATIVO (feed = branding) · 4:5 1080x1350 · design system V1 */
+/* ============================================================================
+   NIPPON SPEED CO. — TEMPLATE DE CARROSSEL NARRATIVO (FEED) · 3:4 · 1080x1440
+   Diagramação "AS ERAS" — promovida em 2026-07-23 depois de medida contra a
+   anterior: 25/40 -> 34/40, e virando o teste de AI slop nas duas ordens.
+   Herda o sistema das artes de ano do Caio (marca/referencia/):
+     1. o campo de cor do slide vem do ASSUNTO daquele capítulo, não de um acento fixo
+     2. o marcador (ano/era) é corpo estrutural gigante, não rótulo de canto
+     3. o texto vive em campo chapado, nunca carimbado por cima da foto
+     4. a foto é retângulo de ARESTA DURA: sem scrim, sem fade, sem gradiente
+
+   ── BASE FIXA (todo slide) ──────────────────────────────────────────────────
+   .strip (marca) · .era-rule (fio de cor) · conteúdo · .ribbon (fita) · .grain
+
+   ── MÓDULOS OPCIONAIS (só quando a história pedir) ──────────────────────────
+   .plate      → capa com tese de dois períodos ("1989 uma equipe | 1990 duas")
+   .seam       → o ano rachado ao meio: use SÓ quando o conflito de dois lados
+                 É o assunto daquele slide. Num post de era única, não use.
+   .field-red  → campo colorido: o slide de declaração / virada
+   paleta de era → cores por período. Só em narrativa DATÁVEL, e cada cor nova
+                 tem que ser declarada no DESIGN.md antes (senão o detector acusa).
+
+   ⚠️ NÃO existe eyebrow neste template, de propósito. Rótulo minúsculo em caixa
+   alta tracked acima de todo título é anti-referência declarada no PRODUCT.md e
+   foi o defeito nº1 da diagramação antiga (aparecia em 6 de 6 slides). Quem
+   carrega a informação aqui é o ANO, em corpo grande.
+   ========================================================================== */
 :root{
-  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
-  --dark-grey:#5d5d5d; --mid-grey:#676763; --hair:#ddddd7;
-  --red:#c82a2a; --red-ink:#a31f1f; --red-bright:#ff5347;
-  --radius-md:12px; --radius-pill:9999px;
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --stage:#2a2a2a;
+  --logo:#e60000;      /* disco do lockup: NUNCA muda com o slide */
+  --accent:#ff5347;    /* acento da marca: fio, fita ativa, ênfase, CTA */
+  /* Cores de era (OPCIONAL) — exemplos declarados no DESIGN.md. Trocar por
+     período conforme a narrativa; declarar no DESIGN.md antes de usar. */
+  --era-a:#c8102e;     /* ex.: faixa Marlboro da McLaren MP4/5 */
+  --era-b:#d10a11;     /* ex.: rosso da Ferrari 641 */
 }
 *{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; background:#2a2a2a; }
+html,body{ margin:0; padding:0; background:var(--stage); }
 body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
-.slide{ width:1080px; height:1350px; position:relative; overflow:hidden; display:none; flex-direction:column; }
+
+.slide{ width:1080px; height:1440px; position:relative; overflow:hidden;
+  display:none; flex-direction:column; background:var(--ink); }
 .slide:target{ display:flex; }
 body:not(:has(.slide:target)) #s1{ display:flex; }
-.slide-inner{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:96px 88px; }
-.slide-ink{ background:var(--ink); color:var(--paper); }
-.slide-photo{ background:var(--ink); color:var(--paper); }
-.slide-paper{ background:linear-gradient(180deg, var(--paper) 0%, var(--whitesmoke) 100%); color:var(--ink); }
-.glow{ position:absolute; inset:0; z-index:0; pointer-events:none;
-  background:
-    radial-gradient(ellipse 62% 44% at 84% 12%, rgba(255,83,71,.17) 0%, transparent 70%),
-    radial-gradient(ellipse 52% 52% at 8% 90%, rgba(255,255,255,.05) 0%, transparent 70%); }
-.grain{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.42;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+
+/* Grão: matéria de impresso; disfarça o upscale da foto de arquivo (sempre web-res). */
+.grain{ position:absolute; inset:0; z-index:9; pointer-events:none; opacity:.34;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   background-size:256px 256px; }
-/* Capítulo COM FOTO: foto sangra do topo + fade pra tinta */
-.ph{ position:absolute; top:0; left:0; width:100%; height:58%; object-fit:cover; z-index:0; }
-.ph-fade{ position:absolute; top:0; left:0; width:100%; height:62%; z-index:1; pointer-events:none;
-  background:linear-gradient(180deg, rgba(17,17,17,.5) 0%, rgba(17,17,17,.05) 16%, rgba(17,17,17,0) 48%, rgba(17,17,17,.85) 84%, var(--ink) 100%); }
-h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
-.brandline{ display:flex; align-items:center; gap:18px; }
-.brandline-txt{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; letter-spacing:.04em; line-height:1; }
-/* Logo oficial (kit: marca/logo/kit) — lockup horizontal.
-   O disco #e60000 e a cor da marca: nao muda com o slide. O ponto quadrado herda a tinta. */
-.brandline-txt{ display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
-.lg-disc{ width:.5em; height:.5em; border-radius:50%; background:#e60000; flex:0 0 auto; margin:0 .28em; }
-.lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+
+/* ---- Cromo constante ---- */
+.strip{ flex:0 0 116px; background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; padding:0 88px; }
+.wordmark{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; line-height:1;
+  display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.disc{ width:.5em; height:.5em; border-radius:50%; background:var(--logo); flex:0 0 auto; margin:0 .28em; }
+.sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
   align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
-.brandline .chap{ margin-left:auto; font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase;
-  letter-spacing:.14em; font-size:21px; color:#e6e6e2; text-shadow:0 1px 8px rgba(0,0,0,.6); }
-.slide-paper .brandline .chap{ color:var(--mid-grey); text-shadow:none; }
+/* Fio da era: anuncia a cor do capítulo antes de qualquer palavra */
+.era-rule{ flex:0 0 7px; }
+.era-accent{ background:var(--accent); }
+.era-a{ background:var(--era-a); }
+.era-b{ background:var(--era-b); }
+.era-paper{ background:var(--paper); }
+.era-split{ background:linear-gradient(90deg, var(--paper) 0 50%, var(--era-b) 50% 100%); }
 
+/* Fita do tempo: substitui os dots. Cada célula = um slide, com a cor daquele
+   capítulo. A espinha da narrativa fica visível em TODOS os slides.
+   Ajustar o nº de células ao nº de slides. */
+.ribbon{ flex:0 0 46px; background:var(--ink); display:flex; align-items:flex-end;
+  gap:6px; padding:0 88px 16px; }
+.cell{ flex:1 1 0; height:9px; opacity:.3; }
+.cell.on{ height:22px; opacity:1; }
+.c1{ background:linear-gradient(90deg, var(--paper) 0 50%, var(--era-b) 50% 100%); }
+.c2,.c3{ background:var(--paper); }
+.c4{ background:var(--era-b); }
+.c5{ background:var(--era-a); }
+.c6{ background:var(--accent); }
 
-.slide-photo .brandline-txt, .slide-cover .brandline-txt{ text-shadow:0 1px 10px rgba(0,0,0,.6); }
-.eyebrow{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.2em;
-  font-size:26px; color:var(--red-bright); margin:0; }
-.slide-paper .eyebrow{ color:var(--red); }
-/* Capa (imagem de impacto curada pelo Bruno como capa.jpg; padrão escuro) */
-.slide-cover{ background:var(--ink); color:var(--paper); }
-.cover-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
-.cover-scrim{ position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:linear-gradient(180deg, rgba(17,17,17,.5) 0%, rgba(17,17,17,.2) 30%, rgba(17,17,17,.5) 58%, rgba(17,17,17,.96) 100%); }
-.cover-mid{ display:flex; flex-direction:column; gap:24px; }
-.cover-title{ font-size:190px; line-height:.86; text-shadow:0 3px 34px rgba(0,0,0,.55); }
-.cover-sub{ margin:0; font-size:38px; line-height:1.4; max-width:840px; color:rgba(245,245,245,.92); text-shadow:0 2px 16px rgba(0,0,0,.55); }
-.cover-foot{ display:flex; align-items:center; gap:18px; }
-.rule{ height:3px; width:96px; background:var(--red-bright); border-radius:3px; }
-.cover-foot .yr{ font-family:"Archivo",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.14em; font-size:24px; color:#dcdcd8; text-shadow:0 1px 10px rgba(0,0,0,.6); }
-/* Capítulo (texto na faixa de baixo) */
-.story-block{ display:flex; flex-direction:column; gap:22px; }
-.story-title{ font-size:96px; line-height:.92; text-shadow:0 2px 24px rgba(0,0,0,.45); }
-.slide-ink .story-title{ text-shadow:none; }
-.story-body{ margin:0; font-size:34px; line-height:1.5; color:rgba(245,245,245,.9); max-width:920px; }
-.story-body b{ color:var(--paper); font-weight:700; }
-.dots{ display:flex; gap:14px; align-items:center; margin-top:6px; }
-.dot{ width:14px; height:14px; border-radius:50%; border:2.5px solid rgba(245,245,245,.45); background:transparent; }
-.dot.on{ background:var(--red-bright); border-color:var(--red-bright); }
-/* Slide da peça (final) */
-.frame{ position:relative; width:100%; height:560px; border:3px solid var(--ink); border-radius:var(--radius-md);
-  overflow:hidden; background:var(--white); box-shadow:0 20px 48px rgba(17,17,17,.12); }
-.frame img{ width:100%; height:100%; object-fit:cover; object-position:center 42%; display:block; }
-/* slide da peça no ESCURO (feed/entretenimento; branco é só /post-stories) */
-.slide-ink .frame{ border-color:rgba(245,245,245,.22); background:var(--ink); box-shadow:0 20px 48px rgba(0,0,0,.45); }
-.slide-ink .piece-body{ color:rgba(245,245,245,.82); }
-.slide-ink .piece-body b{ color:var(--paper); }
-.slide-ink .cta{ border-top-color:rgba(245,245,245,.2); }
-.slide-ink .cta-line{ color:var(--paper); }
-.slide-ink .cta-line b{ color:var(--red-bright); }
-.slide-ink .cta-handle{ color:var(--paper); }
-.piece-meta{ display:flex; flex-direction:column; gap:12px; }
-.piece-name{ font-size:82px; line-height:.94; }
-.piece-body{ margin:0; font-size:32px; line-height:1.5; color:var(--dark-grey); max-width:900px; }
-.piece-body b{ color:var(--ink); font-weight:700; }
-.cta{ display:flex; flex-direction:column; gap:14px; padding-top:22px; border-top:2px solid var(--hair); }
-.cta-line{ margin:0; font-size:29px; line-height:1.4; color:var(--ink); font-weight:600; }
-.cta-line b{ color:var(--red); }
-.cta-handle{ font-family:"Anton",sans-serif; text-transform:lowercase; font-size:38px; letter-spacing:.01em; color:var(--ink); }
+/* ---- Poço da foto: ARESTA DURA. Sem scrim, sem fade, sem texto por cima. ---- */
+.well{ position:relative; overflow:hidden; }
+.well img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ---- Campo: onde o texto mora ---- */
+.field{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:56px 88px; }
+.field-paper{ background:var(--paper); color:var(--ink); }
+.field-ink{ background:var(--ink); color:var(--paper); }
+.field-red{ background:var(--era-a); color:var(--paper); }   /* módulo: slide de declaração */
+
+/* ---- Escada tipográfica: corpo 34 · título 96 · ANO 236 ----
+   O degrau do ANO é o que a diagramação antiga não tinha (saltava de 38 pra 82). */
+h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
+.yr{ font-family:"Anton",sans-serif; font-size:236px; line-height:.82; letter-spacing:-.01em; }
+.ttl{ font-size:96px; line-height:.95; margin-top:40px; }
+.bd{ margin:30px 0 0; font-size:34px; line-height:1.5; max-width:880px; }
+.bd b{ font-weight:700; }
+.field-paper .yr{ color:var(--era-a); }
+.field-paper .bd{ color:var(--ink); }
+.field-ink .bd{ color:var(--paper); }
+.field-red .yr{ color:var(--paper); font-size:150px; }
+.field-red .ttl{ font-size:96px; margin-top:20px; }
+.field-red .bd{ color:var(--paper); }
+/* RITMO: alternar a hierarquia entre capítulos do MESMO período, senão eles
+   leem como slide repetido. No 1º o ANO manda; no seguinte o TÍTULO manda. */
+.field-titulo .yr{ font-size:132px; }
+.field-titulo .ttl{ font-size:110px; margin-top:22px; }
+
+/* ---- s1 · capa ---- */
+.cover-copy{ flex:1; display:flex; flex-direction:column; justify-content:center;
+  padding:0 88px; background:var(--ink); color:var(--paper); }
+.cover-ttl{ font-size:150px; line-height:.92; }
+.cover-sub{ margin:26px 0 0; font-size:38px; line-height:1.6; max-width:860px; color:var(--paper); }
+/* Chips: trazem a cor de era pra CIMA e ensinam o código já no gancho.
+   Fazem a miniatura da grade mostrar cor em vez de só preto. */
+.cover-sub .chip-a{ color:var(--ink); background:var(--paper); padding:1px 12px; font-weight:800; }
+.cover-sub .chip-b{ color:var(--paper); background:var(--era-b); padding:1px 12px; font-weight:800; }
+/* MÓDULO .plate — só quando a história contrasta dois períodos */
+.plate{ flex:0 0 200px; display:flex; }
+.plate-half{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; padding:0 44px 0 88px; }
+.plate-a{ background:var(--paper); color:var(--ink); }
+.plate-b{ background:var(--era-b); color:var(--paper); padding-left:52px; }
+.plate-yr{ font-family:"Anton",sans-serif; font-size:112px; line-height:.86; }
+.plate-a .plate-yr{ color:var(--era-a); }
+.plate-lb{ font-size:27px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; margin-top:10px; }
+
+/* ---- MÓDULO .seam · a costura: o conflito cromático É a história ----
+   Metade de cada cor; o ano cai em cima da emenda e troca de cor no meio.
+   USAR SÓ quando dois lados opostos são o assunto do slide.
+
+   A emenda é a FRONTEIRA entre os dois campos, não uma coordenada: cada metade
+   carrega metade do ano ({{ANO_A}}/{{ANO_B}}), encostada na borda. O corte cai
+   entre os dígitos por construção, seja qual for a largura deles.
+   NÃO voltar a centralizar o ano inteiro e cortar com clip-path em 50%: o "1" do
+   Anton tem 70px contra 111px dos outros dígitos, então o meio do texto não é o
+   meio de "19|90" — no Suzuka isso errava 17px e deixava faixa branca no 2º "9". */
+.seam{ flex:0 0 330px; position:relative; overflow:hidden; display:flex; }
+.seam-half{ flex:1 1 0; display:flex; align-items:flex-start; padding-top:30px; }
+.seam-l{ background:var(--era-b); justify-content:flex-end; }
+.seam-r{ background:var(--paper); justify-content:flex-start; }
+.seam-yr{ font-family:"Anton",sans-serif; font-size:240px; line-height:.82;
+  letter-spacing:-.01em; margin:0; }
+/* devolve o letter-spacing negativo que sobra depois do último glifo — sem isso o
+   último dígito da esquerda transborda ~2px por cima da emenda */
+.seam-l .seam-yr{ color:var(--paper); margin-right:.01em; }
+.seam-r .seam-yr{ color:var(--era-b); }
+.seam-tags{ position:absolute; left:0; right:0; bottom:30px; display:flex; }
+.seam-tag{ flex:1 1 0; font-size:28px; font-weight:800; letter-spacing:.1em; }
+.seam-tag-l{ padding-left:88px; color:var(--paper); }
+.seam-tag-r{ padding-left:52px; color:var(--era-b); }
+
+/* ---- Slide da PEÇA · card branco ----
+   O produto é o herói do fecho: RECORTADO (ver receita no SKILL.md) e emoldurado
+   num card branco que flutua sobre o slide escuro. Padroniza a vitrine.
+   height fixo + min-height:0 é obrigatório: com object-fit:contain a imagem
+   quadrada estica a altura do card e estoura o layout. */
+.product-card{ flex:0 0 560px; height:560px; min-height:0; margin:24px 80px 6px;
+  border-radius:12px; background:var(--white); overflow:hidden;
+  display:flex; align-items:center; justify-content:center; padding:12px;
+  box-shadow:0 18px 46px rgba(0,0,0,.45); }
+.product-card img{ max-width:100%; max-height:100%; object-fit:contain; display:block; }
+.piece-head{ display:flex; align-items:flex-start; gap:40px; }
+.piece-yr{ font-family:"Anton",sans-serif; font-size:104px; line-height:.86; color:var(--accent); flex:0 0 auto; }
+/* line-height 1.16+: Anton é condensada e o acento da linha de baixo encosta na
+   de cima (ex.: "JAPÃO" sob "DO" fez "DO" ler como "DQ"). Com Ã/Õ/Â/Ê, dar folga. */
+.piece-name{ font-size:64px; line-height:1.16; }
+.piece-bd{ margin:26px 0 0; font-size:32px; line-height:1.5; color:var(--paper); max-width:880px; }
+.piece-bd b{ font-weight:700; color:var(--accent); }
+.cta{ margin-top:32px; padding-top:26px; border-top:3px solid var(--accent); }
+.cta-line{ margin:0; font-size:29px; line-height:1.4; color:var(--paper); font-weight:600; max-width:860px; }
+/* Archivo, não Anton: condensada em caixa BAIXA perde o pingo do "i"
+   ("link na bio" lia "llnk na blo"). Handle e CTA sempre em fonte de corpo. */
+.cta-handle{ display:block; margin-top:16px; font-family:"Archivo",sans-serif; font-weight:800;
+  text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PISO DE LEADING PARA DIACRÍTICO — regra estrutural, deliberadamente por último
+   ═══════════════════════════════════════════════════════════════════════════
+   Anton é condensada. Com leading apertado, o acento da linha de baixo (Ã Õ Â Ê É)
+   encosta na linha de cima e o glifo passa a ler errado. Medido:
+     · "JAPÃO" sob "DO"  → o "DO" lia "DQ"   (.94 quebra · 1.06 ainda quebra · 1.2 resolve)
+     · "ÉPOCA" sob "QUE" → linhas colidindo   (.90 quebra · 1.12 resolve)
+     · "VOCÊ" / "ICÔNICO" → acentos batendo    (.92 quebra · 1.14 resolve)
+   Três vezes em dois posts, sempre pego só na leitura do PNG, NUNCA pelo detector.
+   Título em PT-BR quase sempre leva acento, então isto é PISO no template e não
+   nota de rodapé: vem por último de propósito, pra ganhar de qualquer valor acima.
+
+   ÚNICA EXCEÇÃO — .yr: só dígitos, nunca leva acento. Segue tight porque o ano
+   gigante é a assinatura da diagramação. Se algum dia entrar TEXTO nesse slot,
+   tire-o da exceção.
+   ═══════════════════════════════════════════════════════════════════════════ */
+h1, h2, .cover-ttl, .ttl, .piece-name{ line-height:1.16; }
+.yr{ line-height:.82; }   /* exceção: dígitos, ver acima */
 </style>
 </head>
 <body>
 
-<!-- SLIDE 1 · CAPA — imagem de IMPACTO curada pelo Bruno (capa.jpg), full-bleed + escurecido + título por cima.
-     object-position: enquadrar o essencial da foto. Se ainda não houver imagem, trocar <img> por <div class="glow"></div><div class="grain"></div> (capa tipográfica). -->
-<section class="slide slide-cover" id="s1">
-  <img class="cover-bg" src="capa.jpg" style="object-position:center 42%" alt="{{ALT_CAPA}}"/>
-  <div class="cover-scrim"></div>
-  <div class="slide-inner">
-    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span></div>
-    <div class="cover-mid">
-      <p class="eyebrow">{{KICKER_CAPA}}</p>                 <!-- ex: Japão · 21 de outubro de 1990 -->
-      <h1 class="cover-title">{{TITULO<br/>CAPA}}</h1>       <!-- ex: Suzuka<br/>1990 -->
-      <p class="cover-sub">{{SUBTITULO_GANCHO}}</p>
-    </div>
-    <div class="cover-foot"><span class="rule"></span><span class="yr">Uma história · arrasta →</span></div>
+<!-- ══ SLIDE 1 · CAPA ═══════════════════════════════════════════════════════
+     Título em cima (é ele que segura a MINIATURA na grade do perfil), faixa de
+     foto no meio, e a tese na placa de baixo. Foto panorâmica vai em FAIXA:
+     full-bleed num 3:4 cortaria 60-70% da largura e mataria a composição.
+     Sem foto boa? Tira a <figure> e deixa título + placa. -->
+<section class="slide" id="s1">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-split"></div>
+  <div class="cover-copy">
+    <h1 class="cover-ttl">{{TITULO<br/>DA CAPA}}</h1>
+    <p class="cover-sub">{{GANCHO}} <span class="chip-a">{{PERIODO_A}}</span> {{...}} <span class="chip-b">{{PERIODO_B}}</span> {{...}}</p>
   </div>
+  <figure class="well" style="flex:0 0 370px; margin:0">
+    <img src="capa.jpg" style="object-position:center 40%" alt="{{ALT_CAPA}}"/>
+  </figure>
+  <!-- MÓDULO .plate — remover em post de período único -->
+  <div class="plate">
+    <div class="plate-half plate-a"><span class="plate-yr">{{PERIODO_A}}</span><span class="plate-lb">{{TESE_A}}</span></div>
+    <div class="plate-half plate-b"><span class="plate-yr">{{PERIODO_B}}</span><span class="plate-lb">{{TESE_B}}</span></div>
+  </div>
+  <footer class="ribbon"><i class="cell c1 on"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
 </section>
 
-<!-- SLIDE 2 · CAPÍTULO COM FOTO (tipo A) — duplicar pra cada fase que tenha foto curada -->
-<section class="slide slide-photo" id="s2">
-  <img class="ph" src="s2.jpg" style="object-position:center 40%" alt="{{ALT}}"/>  <!-- ajustar object-position pra enquadrar -->
-  <div class="ph-fade"></div>
-  <div class="slide-inner">
-    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">{{CAPITULO}}</span></div>
-    <div class="story-block">
-      <p class="eyebrow">{{KICKER}}</p>
-      <h2 class="story-title">{{TITULO}}</h2>
-      <p class="story-body">{{CORPO_2_3_LINHAS}}</p>
-      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-    </div>
+<!-- ══ SLIDE 2 · CAPÍTULO · foto em cima, ANO manda ═════════════════════════ -->
+<section class="slide" id="s2">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-a"></div>
+  <figure class="well" style="flex:0 0 620px; margin:0">
+    <img src="s2.jpg" style="object-position:center 50%" alt="{{ALT}}"/>
+  </figure>
+  <div class="field field-paper">
+    <span class="yr">{{ANO}}</span>
+    <h2 class="ttl">{{TITULO}}</h2>
+    <p class="bd">{{CORPO_2_3_LINHAS}}</p>
   </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2 on"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
 </section>
 
-<!-- SLIDE 3 · CAPÍTULO TIPOGRÁFICO PURO (tipo B) — usar quando NÃO houver foto curada pra fase.
-     Opcional: pôr um line-art/diagrama (traçado de circuito, esquema) dentro de .story-block. -->
-<section class="slide slide-ink" id="s3">
-  <div class="glow"></div><div class="grain"></div>
-  <div class="slide-inner">
-    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">{{CAPITULO}}</span></div>
-    <div class="story-block">
-      <p class="eyebrow">{{KICKER}}</p>
-      <h2 class="story-title">{{TITULO}}</h2>
-      <p class="story-body">{{CORPO_2_3_LINHAS}}</p>
-      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
-    </div>
+<!-- ══ SLIDE 3 · CAPÍTULO · ESPELHADO (campo em cima) e TÍTULO manda ════════
+     Mesmo período do s2 de propósito: a cor não muda porque ainda não tem
+     motivo. O que muda é a ORDEM (campo/foto) e a HIERARQUIA (.field-titulo),
+     senão os dois leem como slide repetido. -->
+<section class="slide" id="s3">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-a"></div>
+  <div class="field field-paper field-titulo">
+    <span class="yr">{{ANO}}</span>
+    <h2 class="ttl">{{TITULO<br/>EM DUAS LINHAS}}</h2>
+    <p class="bd">{{CORPO_2_3_LINHAS}}</p>
   </div>
+  <figure class="well" style="flex:0 0 520px; margin:0">
+    <img src="s3.jpg" style="object-position:center 58%" alt="{{ALT}}"/>
+  </figure>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3 on"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
 </section>
 
-<!-- SLIDE 4 · mais um capítulo COM FOTO (exemplo) -->
-<section class="slide slide-photo" id="s4">
-  <img class="ph" src="s4.jpg" style="object-position:center 40%" alt="{{ALT}}"/>
-  <div class="ph-fade"></div>
-  <div class="slide-inner">
-    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">{{CAPITULO}}</span></div>
-    <div class="story-block">
-      <p class="eyebrow">{{KICKER}}</p>
-      <h2 class="story-title">{{TITULO}}</h2>
-      <p class="story-body">{{CORPO_2_3_LINHAS}}</p>
-      <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot on"></span><span class="dot"></span></div>
+<!-- ══ SLIDE 4 · CLÍMAX · com MÓDULO .seam ══════════════════════════════════
+     A virada. Alinhar o eixo da costura com o eixo da foto (se na foto o lado
+     A está à esquerda, a metade A da costura fica à esquerda).
+     O ano entra PARTIDO em duas metades ({{ANO_A}}="19" + {{ANO_B}}="90"): cada
+     lado encosta na emenda, e a divisão cai entre os dígitos sozinha.
+     Post de período único: trocar .seam por um .field normal. -->
+<section class="slide" id="s4">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-b"></div>
+  <figure class="well" style="flex:0 0 460px; margin:0">
+    <img src="s4.jpg" style="object-position:center 45%" alt="{{ALT}}"/>
+  </figure>
+  <div class="seam">
+    <div class="seam-half seam-l"><span class="seam-yr">{{ANO_A}}</span></div>
+    <div class="seam-half seam-r"><span class="seam-yr">{{ANO_B}}</span></div>
+    <div class="seam-tags">
+      <span class="seam-tag seam-tag-l">{{LADO_A}}</span>
+      <span class="seam-tag seam-tag-r">{{LADO_B}}</span>
     </div>
   </div>
+  <div class="field field-ink">
+    <h2 class="ttl" style="margin-top:0">{{TITULO}}</h2>
+    <p class="bd">{{CORPO_2_3_LINHAS}}</p>
+  </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4 on"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
 </section>
 
-<!-- SLIDE 5 · A PEÇA + CTA (sempre o último; SEM badge; só CTA pro grupo; padrão ESCURO) -->
-<section class="slide slide-ink" id="s5">
-  <div class="glow"></div><div class="grain"></div>
-  <div class="slide-inner">
-    <div class="brandline"><span class="brandline-txt">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span><span class="chap">A peça</span></div>
-    <div class="frame">
-      <img src="foto.jpg" alt="{{ALT_DA_PECA}}"/>
+<!-- ══ SLIDE 5 · DECLARAÇÃO · campo colorido ════════════════════════════════
+     O beat emocional. Leva foto igual os outros (slide sem foto vira buraco),
+     mas o CAMPO é colorido — é o único do carrossel, o que o mantém distinto.
+     Foto de RETRATO/reflexiva aqui, não de ação. -->
+<section class="slide" id="s5">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-a"></div>
+  <figure class="well" style="flex:0 0 660px; margin:0">
+    <img src="s5.jpg" style="object-position:center 38%" alt="{{ALT}}"/>
+  </figure>
+  <div class="field field-red">
+    <span class="yr">{{ANO}}</span>
+    <h2 class="ttl">{{TITULO}}</h2>
+    <p class="bd">{{CORPO_2_3_LINHAS}}</p>
+  </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5 on"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ SLIDE 6 · A PEÇA · card branco ═══════════════════════════════════════
+     Produto RECORTADO no branco (receita no SKILL.md). SEM badge, SEM preço:
+     o feed não vende, a venda é no /post-stories. -->
+<section class="slide" id="s6">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-accent"></div>
+  <figure class="product-card">
+    <img src="foto-cut.jpg" alt="{{ALT_DA_PECA}}"/>
+  </figure>
+  <div class="field field-ink">
+    <div class="piece-head">
+      <span class="piece-yr">{{ANO_DA_PECA}}</span>
+      <h2 class="piece-name">{{NOME<br/>DA PEÇA}}</h2>
     </div>
-    <div class="piece-meta">
-      <p class="eyebrow">{{KICKER_PECA}}</p>
-      <h2 class="piece-name">{{NOME_PECA}}</h2>
-    </div>
-    <p class="piece-body">{{AMARRACAO_PECA_HISTORIA}}</p>
+    <p class="piece-bd">{{AMARRACAO_PECA_HISTORIA}}</p>
     <div class="cta">
-      <p class="cta-line">Peças com história assim, garimpadas no Japão, aparecem <b>toda semana no nosso grupo.</b></p>
+      <p class="cta-line">Peças com história assim, garimpadas no Japão, aparecem toda semana no nosso grupo.</p>
       <span class="cta-handle">link na bio · @nipponspeedco</span>
     </div>
   </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6 on"></i></footer>
+  <div class="grain"></div>
 </section>
 
 </body>

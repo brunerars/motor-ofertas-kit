@@ -1,0 +1,157 @@
+# Borda do Caio — a primeira instância do hub
+
+> A tela por papel onde o Caio opera a loja sozinho. **Construída em 16/07.** Runbook: [`../borda/README.md`](../borda/README.md).
+> Contexto de produto: [[arquitetura-hub]] · plano da sessão: `~/.claude/plans/h-algo-bem-jarvis-resilient-swan.md`.
+
+## O que é, e por que não é uma IDE
+
+O produto que se vende (implementação high-ticket) entrega ao dono de negócio uma **borda por papel**:
+uma superfície estreita por função, onde ele vê **só o que ele faz**. Sem pasta, sem arquivo, sem terminal.
+
+Isso não é opinião de design, é a lição que a ARV já cobrou: o CEO rejeitou análise pronta
+(*"mostrar o dado etapa a etapa e deixar o Andre concluir"*) e a conclusão registrada foi
+**"o produto certo aqui era menos inteligente de propósito"**. O `garimpo/index.html` é a outra
+metade da prova: é a única coisa deste vault que um não-técnico já opera sozinho, e é um form
+estático. A referência de mercado (MazyoHub) entrega VS Code no navegador pro empresário — é
+justamente o que o nosso próprio material diz que não funciona.
+
+## A decisão travada: a v1 não tem IA
+
+O estado da loja **já mora no Baserow**. Checando verbo por verbo contra o schema:
+
+| Ação | IA? | O que é de fato |
+|---|---|---|
+| Ver fila · aprovar · editar legenda · agendar · descartar · marcar que sumiu | **não** | `GET`/`PATCH` em `rows/table/556` |
+| Colar link | **não** | **já existe e roda** (`garimpo/`, no ar desde 15/07) |
+| Enriquecer link | sim | `/agenda` — fica com o Bruno |
+| Gerar post | sim | `/post-stories` — fica com o Bruno |
+
+A prova é do próprio projeto: `agenda/SKILL.md:43` — *"Aprovação = humana, no Baserow (barato, sem
+webhook)"*. **A borda é uma pele por papel em cima do flip que o Bruno já faz na mão.** O cron lê
+`Aprovado`/`Agendado` e não sabe (nem precisa saber) quem escreveu.
+
+**Os dois portões continuam existindo, sem mecanismo novo:** quem enriquece é o Bruno rodando
+`/agenda`, então **o enriquecimento já É a conferida dele** — a mesma que pegou a condição
+subestimada da row 5 e a peça falsa do boné DEKRA. O aprovar do Caio é o gate **comercial**
+(preço, encaixe no nicho, Tam).
+
+> ⚠️ **Quando o enriquecimento for automatizado (v3), a conferida do Bruno some calada.**
+> Não é um detalhe de implementação: é a remoção silenciosa do freio que já pegou peça falsa duas
+> vezes. Reinserir um freio explícito nesse momento, ou aceitar por escrito que ele saiu.
+
+## O chat ficou de fora, e é o corte mais importante
+
+Sem agente rodando server-side, um chat é teatro: o Caio digita e não acontece nada. O canal que
+já funciona entre os dois é o WhatsApp, e ele é melhor que qualquer chat construído numa semana.
+Chat entra quando existir o serviço do agente (v3), **ou nunca**.
+
+## Stack, e o que decidiu
+
+**Next.js na Vercel, Route Handlers como proxy. Nada novo na VPS.**
+
+Quem decide é o token: o `BASEROW_TOKEN` dos workflows é escopo *all tables*. No browser ele não
+vaza "a fila" — entrega a **`LEADS` (telefone de cliente)** e o `price_jpy` (referência de custo).
+Isso mata "estático batendo direto no Baserow", que seria o caminho mais barato. O `secret` do
+garimpo é aceitável porque lá **só escreve rascunho**; a borda **lê**.
+
+Vercel porque o deploy já foi feito duas vezes neste projeto, a rotina está escrita e não tem
+container, DNS nem Traefik no caminho. **FastAPI na VPS é a casa do agente (v3+), não de 6 rotas de
+CRUD** — a borda *chama* o agente, nunca o hospeda.
+
+**Um deploy por loja**, não multi-tenant: o deploy da loja B não tem credencial pra ler a tabela da
+loja A. Isolamento vira infra em vez de `if`, e um filtro esquecido não é possível quando não há o
+que filtrar.
+
+## A costura da generalização
+
+```
+v1:  getLoja() → lê env (BASEROW_TABLE_ID)          ← 1 loja, no ar hoje
+v2+: getLoja() → lê a LOJAS por LOJA_SLUG, cacheia  ← hub-compliant
+```
+
+`getLoja()` **nasceu `async` mesmo lendo env**: na v2 vira chamada de rede. Síncrona agora e async
+depois obrigaria a mexer em todo call-site — aí não seria costura, seria remendo.
+Ninguém lê `BASEROW_TABLE_ID` fora do `lib/loja.ts`, o que honra a regra do
+[[arquitetura-hub]]: *"nenhum node volta a ter id de loja literal"*.
+
+| 100% template | Instância NSC |
+|---|---|
+| o fluxo fila → aprovar → agendar → no ar · auth · cliente Baserow · middleware · o mock · o harness de screenshot | cores/fontes · formato da legenda · Mercari/JPY/regex `m\d+` · semântica do Tam |
+
+Na Fase 1 do hub, `borda/` migra pra `kit/templates/borda/` com os mesmos `__PLACEHOLDER__` do
+`garimpo/` — que é o único artefato do repo que já fez isso certo.
+
+## Verificado em 16/07 (com o que, e com o que não)
+
+- ✅ **Portão:** sem cookie, página → 307 pro login e **API → 401 JSON** (não HTML: um fetch que
+  recebe login em HTML falha no `.json()` com um erro que não diz nada).
+- ✅ **Vazamento:** o payload da API **não tem `price_jpy` nem `wa_message_id`**.
+- ✅ **Freios do servidor** (botão desabilitado não é segurança): `Disparado`/`Vendido` → **403**
+  (são do cron) · aprovar sem preço → **409** · mexer em `price_brl` → rejeitado pela allowlist.
+- ✅ **`status` sai por TEXTO**, nunca por id — provado no mock.
+- ✅ **UTF-8** (acento + 🏁) atravessa inteiro, mandando por `--data-binary @arquivo`.
+- ✅ **390 e 1440**, nenhuma tela rola na horizontal.
+- ~~✅ **A fila esconde rascunho cru** e conta como *"1 peça chegando"*.~~ **REVERTIDO em 17/07** — ver abaixo.
+- ⚠️ **NÃO verificado: o ciclo real ponta a ponta.** A DISPARADOR tem 3 linhas e **todas já foram
+  disparadas** — não existe peça em `Fila` (a row 23 do plano sumiu; a fila foi limpa depois do 16/07).
+  A Fila foi provada contra o **mock**, não contra o Baserow real.
+  **Não se flipou peça `Disparado` → `Fila` pra testar:** aprovar depois faria o cron **repostar no
+  grupo real**. O teste de verdade é o Bruno rodar `/agenda` num link novo e o Caio aprovar.
+
+## 17/07 — o Caio deixou de ficar cego, e a alegação de PII estava errada
+
+### A fila mostra o rascunho cru (reverte a decisão de 16/07)
+Esconder o cru era "não mostrar lixo pro Caio". O custo apareceu na **#31 real**: ele mandou o *"Boné Ferrari Michael Schumacher 1997"* e **esqueceu o preço**. Sem preço não há legenda → não pode ser aprovada; o `/agenda` **também segura** nesse caso; e a borda escondia. A peça ficou entalada, invisível justo pra quem podia consertar. **Rascunho cru não é lixo: é o formulário dele esperando conserto.**
+
+Junto: **`title_pt` e `price_brl` entraram na allowlist** (os 2 campos que ele digita no form; o link fica de fora — link errado = Descartar e reenviar). Não havia razão de segurança pra trava: o que vaza margem é o `price_jpy`, e esse continua cortado. **O `/agenda` segue igual** — ele refina o título, e o Caio revisa e corrige **depois**, antes de aprovar.
+
+> ⚠️ **Editar título/preço NÃO muda o que sai no grupo.** O n8n manda **só o `caption`**. Título e preço são insumos que o `/agenda` usou pra montar a legenda; mexer neles depois não a reescreve. A borda **não pode** remontar legenda (é IA, é do `/agenda`, a v1 não tem IA) — então ela **avisa**: `precoDivergente()` já existia, `tituloDivergente()` é o irmão novo.
+
+### 🔴 A PII não estava sendo segurada por quem a doc dizia
+A doc creditava o **escopo do token** (*"401 na 557"*). **Não é ele.** A 556 tem um campo `LEADS` (link_row → 557), criado sozinho junto com a relação, e campo link do Baserow traz o **campo primário** da linha ligada — que na LEADS é o **nome/telefone**. Medido com o token da borda:
+
+```
+#27 -> LEADS = [{"id": 15, "value": "bruno constantinou"}]   ← o nome CHEGA no servidor
+GET /rows/table/557/  -> 401                                  ← a 557 direta segue barrada
+```
+
+Quem segura é o **`paraBorda()`** (`lib/baserow.ts`) montar o objeto **campo a campo**: o que ele não conhece, não passa. **Nunca trocar aquele map por um spread de `row`.** O guard novo (`npm run guards`) congela isso: faz `grep` pelo nome da fixture no payload de `/api/ofertas`.
+
+Isso viabilizou o **contador de interesse** sem token novo nem campo novo: `qtdLeads = row.LEADS.length`. **Só o `.length`, nunca o `value`.**
+
+### Contraste: o selo mais visível estava ilegível no escuro
+`.selo-disparado` (o *"Saiu 17/07"*) era `color:var(--white)` sobre `background:var(--ink)`. No tema escuro o `--ink` vira `#efeee9` e o `--white` **não vira** → **fundo branco com letra branca, 1.05:1**. Passou por review, por 9 guards e pelo harness de screenshot — **nenhum deles olha contraste**, e o `shot.mjs` só fotografa o tema claro.
+
+- Fix: `color:var(--paper)` — vira junto. **Regra: nunca parear um token que vira (`--ink`, `--paper`) com um que não vira (`--white`, `--red`).**
+- `npm run contraste` — calcula o contraste real de todo par `color`+`background` nos **dois** temas. Achou mais 2 (`.selo-aprovado` e `.banner-ok` em 3.84:1); `--green` ficou 14% mais escuro, mesmo matiz.
+- `npm run shot:dark` — o `shot.mjs` só via o claro, que é metade da UI.
+
+## O que falta
+
+- **v1:**
+  - [x] **Token escopado na DISPARADOR** — `BASEROW_TOKEN_BORDA`, próprio (≠ o dos workflows). `npm run smoke` prova: lê a 556 e toma **401 na 557**. A borda não alcança telefone de cliente nem que queira.
+  - [x] **Versionado** — `bf83097`. Auditado valor por valor dos dois `.env` contra os 36 arquivos: nenhum segredo entrou.
+  - [x] **NO AR: https://nsc-borda.vercel.app** — projeto `nsc-borda` (`prj_7S3N3eH36rO6FLZRUIp3EXFso909`), scope `brunoconstantinou-4051s-projects`, SSO **desligado na criação** (não depois: ligado, o Caio toma tela de login da Vercel e acha que a borda quebrou). 9 env vars plantadas via API; `BASEROW_LEADS_TABLE_ID` **não** vai pra Vercel — é só do smoke, a app nunca lê. **Verificado em produção** (12/12): portão 307/401-JSON · senha errada recusada · login + fila real (3 peças) · sem `price_jpy`/`wa_message_id` no payload.
+  - [ ] **Uma peça real em `Fila`** — hoje a 556 tem 3 linhas e **nenhuma em `Fila`** (nem rascunho do form). Depende de link novo do Caio → Bruno roda `/agenda`. **É o pré-requisito do teste que importa**, e não dá pra forjar: flipar uma linha `Disparado` de volta faria o cron repostar no grupo real.
+  - [ ] **O Caio aprovar 1 peça real sozinho, sem perguntar nada.**
+- **v2:** absorve o garimpo (URL única) · botão "pedir post" → fila de pedidos → o Bruno roda
+  `/post-stories` → o PNG aparece na borda · `aprovado_por` + timestamp · leads **se** o recorte de
+  PII for decidido.
+- **v3:** enriquecimento automático (n8n + Claude API) **+ reinserir a conferida que some** ·
+  `/nova-loja` cria o projeto Vercel da borda · FastAPI + Agent SDK **só se o chat se provar**.
+
+## O risco que não é de código
+
+> **Corrigido em 16/07 (Bruno):** ~~a conversa com o Caio está desmarcada desde 24/06~~ — **ela já
+> aconteceu e virou tudo isto**. O levantamento não está parado: o form do garimpo, o modelo de
+> preço (R$ fechado, frete e impostos por conta da NSC), o formato da legenda e a semântica do Tam
+> saíram todos dela. A borda **não** é tech correndo sozinha na frente do cliente.
+
+O que continua valendo, em escala menor: o **layout** da borda é o que o Bruno acha que o Caio quer.
+O que a loja faz está levantado; o que a *tela* deve mostrar, não.
+
+**O teste que importa:** o Caio abre no celular, aprova uma peça sozinho e **não pergunta nada**.
+Se ele perguntar, a borda falhou como produto mesmo com o código certo.
+
+> O Caio **já está no grupo e acompanhando**: às 23:36 de 16/07 ele reagiu ao teste do disparo com
+> *"testando 3 em 3 min?"*. O canal pra validar a borda está aberto — é mandar o link.

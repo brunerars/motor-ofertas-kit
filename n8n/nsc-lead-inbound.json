@@ -88,7 +88,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// WAHA inbound -> lead. So mensagem que CHEGA e que cita uma peca.\n//\n// REGRA DURA - o Config esta com includeOtherFields=true, entao o body do\n// webhook chega aqui dentro do $input junto com os tokens. Nao chamar\n// $('Webhook...') pelo nome: ao importar por cima de um canvas existente o n8n\n// renomeia os nos (Config -> Config1) e a referencia morre em silencio.\n//\n// NAO usar barra invertida em regex: some ao colar o codigo na mao no n8n.\nconst inp = $input.first().json;\nconst body = inp.body || {};\nconst p = body.payload || {};\n\n// 1) Nunca reagir ao proprio envio.\nif (p.fromMe) return [];\n\nconst from = String(p.from || '');\nif (!from) return [];\n\n// 2) Ignorar GRUPO. O hook dispara pra tudo - inclusive a oferta que o bot\n//    acabou de postar. Sem este freio, cada disparo viraria um lead fantasma.\nif (from.indexOf('@g.us') > -1) return [];\n\n// 3) Precisa citar uma peca. O CTA manda \"Estou interessado! (m71370664392)\".\nconst texto = String(p.body || '');\nconst m = texto.match(/m[0-9]+/i);\nif (!m) return [];   // \"oi\" solto nao vira lead; o Bruno le no WhatsApp normal\n\nconst d = p._data || {};\nreturn [{ json: {\n  mercari_id: m[0].toLowerCase(),\n  phone: from.split('@')[0],\n  nome_wa: String(p.notifyName || d.notifyName || p.pushName || '').trim(),\n  mensagem: texto,\n  recebido_em: new Date().toISOString()\n}}];"
+        "jsCode": "// WAHA inbound -> lead. So mensagem que CHEGA e que cita uma peca.\n//\n// REGRA DURA - o Config esta com includeOtherFields=true, entao o body do\n// webhook chega aqui dentro do $input junto com os tokens. Nao chamar\n// $('Webhook...') pelo nome: ao importar por cima de um canvas existente o n8n\n// renomeia os nos (Config -> Config1) e a referencia morre em silencio.\n//\n// NAO usar barra invertida em regex: some ao colar o codigo na mao no n8n.\nconst inp = $input.first().json;\nconst body = inp.body || {};\nconst p = body.payload || {};\n\n// 1) Nunca reagir ao proprio envio.\nif (p.fromMe) return [];\n\nconst from = String(p.from || '');\nif (!from) return [];\n\n// 2) Ignorar GRUPO. O hook dispara pra tudo - inclusive a oferta que o bot\n//    acabou de postar. Sem este freio, cada disparo viraria um lead fantasma.\nif (from.indexOf('@g.us') > -1) return [];\n\n// 3) Precisa citar uma peca. O CTA manda \"Estou interessado! (m71370664392)\".\nconst texto = String(p.body || '');\nconst m = texto.match(/m[0-9]+/i);\nif (!m) return [];   // \"oi\" solto nao vira lead; o Bruno le no WhatsApp normal\n\nconst d = p._data || {};\n// wa_id = o id cru do WhatsApp. Pode ser LID (@lid) ou telefone (@c.us).\n// Quem traduz e o node 'WAHA: resolver o numero'. NAO usar isto como telefone.\nreturn [{ json: {\n  mercari_id: m[0].toLowerCase(),\n  wa_id: from,\n  phone_bruto: from.split('@')[0],\n  nome_wa: String(p.notifyName || d.notifyName || p.pushName || '').trim(),\n  mensagem: texto,\n  recebido_em: new Date().toISOString()\n}}];"
       },
       "id": "c3d30000-0000-4000-8000-000000000003",
       "name": "Filtrar + montar lead",
@@ -101,7 +101,7 @@
     },
     {
       "parameters": {
-        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/?user_field_names=true&filter__mercari_id__equal={{ $json.mercari_id }}",
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.table_id }}/?user_field_names=true&filter__mercari_id__equal={{ $('Filtrar + montar lead').item.json.mercari_id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -143,22 +143,22 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        340,
-        -140
+        1260,
+        0
       ],
-      "notes": "Um GET so responde 'essa pessoa ja pediu?' (dedup) e 'e a quantesima?' (ordinal)."
+      "notes": "Roda DEPOIS de gravar, nao antes. Antes era o dedup e perdia pra corrida do WAHA (mesmo evento 2x, 36ms de diferenca: as duas consultavam antes de qualquer uma gravar). Agora e a reconciliacao: ja gravei, quem mais esta aqui?"
     },
     {
       "parameters": {
-        "jsCode": "// Junta as duas consultas e monta a linha do lead.\n//  - $input          = os leads QUE JA EXISTEM desta peca (dedup + ordinal)\n//  - achar a peca    = a linha da 556 (row_id pro link + title_pt pro aviso)\nconst lead = $('Filtrar + montar lead').first().json;\nconst leadRows = ($input.first().json.results) || [];\nconst pecaRows = ($('Baserow: achar a peca').first().json.results) || [];\n\n// Mesma pessoa + mesma peca = nao duplica linha NEM aviso. (2 mensagens do\n// mesmo cliente nao podem virar 2 pings no zap do Bruno.)\nconst eu = String(lead.phone).trim();\nfor (const r of leadRows) {\n  if (String(r.phone || '').trim() === eu) return [];\n}\n\nconst peca = pecaRows.length ? pecaRows[0] : null;\nconst titulo = (peca && peca.title_pt) ? peca.title_pt : lead.mercari_id;\n\n// A linha vai montada daqui: o HTTP node so faz JSON.stringify($json.row).\n// Campo `peca` = link_row -> quer um ARRAY de row_id, nao o mercari_id.\n// Peca nao encontrada (link solto): grava o lead assim mesmo, com peca vazia.\n// Perder o lead por causa do link seria pior que um link faltando.\nconst row = {\n  lead: lead.nome_wa || lead.phone,\n  phone: lead.phone,\n  nome_wa: lead.nome_wa,\n  mercari_id: lead.mercari_id,\n  peca: peca ? [peca.id] : [],\n  mensagem: lead.mensagem,\n  recebido_em: lead.recebido_em,\n  status: 'Novo',\n  avisado_vendido: false\n};\n\nreturn [{ json: {\n  row: row,\n  ordinal: leadRows.length + 1,\n  peca_titulo: titulo,\n  phone: lead.phone,\n  nome_wa: lead.nome_wa\n}}];"
+        "jsCode": "// Monta a linha do lead.\n//  - $input = 'Baserow: achar a peca' = a linha da 556 (row_id pro link `peca`\n//    + title_pt pro aviso do Bruno). NAO sao os leads: o dedup saiu daqui e foi\n//    pra 'Reconciliar + ordinal', depois do INSERT.\nconst lead = $('Filtrar + montar lead').first().json;\n\n// TELEFONE DE VERDADE. O `from` do WhatsApp vem como LID (identidade interna),\n// nao como numero: gravar ele em `phone` gerava \"wa.me/21522181840928\", link morto.\n// O campo certo do contato e `id` (o `number` e o LID de novo).\n// LID desconhecido volta com id terminando em @lid -> nao resolveu -> phone fica\n// vazio e o aviso omite o wa.me, em vez de mandar um link quebrado.\nconst contato = $('WAHA: resolver o numero').first().json || {};\nconst contatoId = String(contato.id || '');\nconst phone = contatoId.indexOf('@c.us') > -1 ? contatoId.split('@')[0] : '';\nlead.phone = phone;\nlead.nome_wa = lead.nome_wa || String(contato.pushname || '').trim();\n\n// Sem telefone resolvido o dedup nao tem chave estavel -> cai pro wa_id, que e\n// estavel por pessoa do mesmo jeito. So nao serve de link.\nconst chave = phone || String(lead.wa_id || '');\nconst pecaRows = ($input.first().json.results) || [];   // agora o input e a peca\n\n// O DEDUP NAO MORA MAIS AQUI. Ele vivia neste ponto (GET antes do INSERT) e\n// perdia pra corrida: o WAHA entrega o mesmo evento 2x com ~40ms de diferenca,\n// e as duas execucoes consultavam antes de qualquer uma gravar.\n// Agora grava-se sempre e reconcilia-se depois, em 'Reconciliar + ordinal'.\n// NUNCA confiar em results[0]. Filtro VAZIO nao devolve zero linhas: o Baserow\n// ignora o filtro e devolve a TABELA INTEIRA -> results[0] = a 1a linha da 556,\n// sempre a mesma. Foi o bug de 17/07 - TODO lead caiu na Camisa Lotus, inclusive\n// os do bone Ferrari, e o aviso do Bruno nomeava a peca errada.\n// Nasceu quando o no do LID entrou no meio da cadeia e orfanou o {{ $json.\n// mercari_id }} daqui. Ninguem viu porque o link continuou plausivel.\n// `mercari_id` tambem nao tem unique constraint neste Baserow, entao rascunho\n// duplicado do form cairia no mesmo buraco por outro caminho.\n// Casar explicitamente e a trava: peca ERRADA e pior que peca NENHUMA.\nconst peca = pecaRows.find(function (r) { return r.mercari_id === lead.mercari_id; }) || null;\nconst titulo = (peca && peca.title_pt) ? peca.title_pt : lead.mercari_id;\n\n// A linha vai montada daqui: o HTTP node so faz JSON.stringify($json.row).\n// Campo `peca` = link_row -> quer um ARRAY de row_id, nao o mercari_id.\n// Peca nao encontrada (link solto): grava o lead assim mesmo, com peca vazia.\n// Perder o lead por causa do link seria pior que um link faltando.\nconst row = {\n  lead: lead.nome_wa || phone || lead.wa_id,\n  phone: lead.phone,\n  wa_id: lead.wa_id,\n  nome_wa: lead.nome_wa,\n  mercari_id: lead.mercari_id,\n  peca: peca ? [peca.id] : [],\n  mensagem: lead.mensagem,\n  recebido_em: lead.recebido_em,\n  status: 'Novo',\n  avisado_vendido: false\n};\n\n// ordinal nao sai daqui: so da pra saber a posicao depois de gravar.\nreturn [{ json: { row: row, peca_titulo: titulo } }];"
       },
       "id": "c3d30000-0000-4000-8000-000000000006",
-      "name": "Dedup + ordinal",
+      "name": "Montar a linha",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        540,
-        -140
+        860,
+        0
       ]
     },
     {
@@ -185,22 +185,22 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        740,
-        -140
+        1060,
+        0
       ],
-      "notes": "A linha vem montada do Code (inclusive o link 'peca' como array de row_id). status por TEXTO ('Novo'): com user_field_names=true o single_select aceita o value, sem precisar do id da opcao."
+      "notes": "Grava SEMPRE, sem perguntar. Se for duplicata, a reconciliacao logo abaixo apaga esta linha. Perguntar antes era o que nao funcionava."
     },
     {
       "parameters": {
-        "jsCode": "// Monta o aviso pro Bruno. O lead JA foi gravado - se este no falhar, o dado\n// esta salvo e so o ping se perde.\nconst cfg = $('Config').first().json;\nconst d = $('Dedup + ordinal').first().json;\n\nconst quem = d.nome_wa || d.phone;\nconst nth = d.ordinal > 1 ? ' (' + d.ordinal + 'a pessoa)' : '';\nconst texto = '🔔 Lead: ' + quem + '\\n' + d.peca_titulo + nth + '\\nwa.me/' + d.phone;\n\n// Sem admin_id nao ha pra quem avisar. O lead continua gravado.\nconst destino = String(cfg.admin_id || '').trim();\nif (!destino) return [];\n\nreturn [{ json: { payload: {\n  session: cfg.waha_session,\n  chatId: destino,\n  text: texto\n}}}];"
+        "jsCode": "// Monta o aviso pro Bruno. O lead JA foi gravado - se este no falhar, o dado\n// esta salvo e so o ping se perde.\nconst cfg = $('Config').first().json;\nconst d = $('Reconciliar + ordinal').first().json;\n\nconst quem = d.nome_wa || d.phone || d.wa_id;\nconst nth = d.ordinal > 1 ? ' (' + d.ordinal + 'a pessoa)' : '';\n\n// So monta o wa.me se o numero foi resolvido de verdade (ver 'WAHA: resolver o\n// numero'). Link com LID dentro nao abre no WhatsApp - melhor nao mandar link\n// nenhum e dizer o porque do que mandar um que o Bruno clica e toma erro.\nconst linha3 = d.phone\n  ? 'wa.me/' + d.phone\n  : 'numero nao resolvido - procura por \"' + quem + '\" no WhatsApp da loja';\n\nconst texto = '\\u{1F514} Lead: ' + quem + '\\n' + d.peca_titulo + nth + '\\n' + linha3;\n\n// Sem admin_id nao ha pra quem avisar. O lead continua gravado.\nconst destino = String(cfg.admin_id || '').trim();\nif (!destino) return [];\n\nreturn [{ json: { payload: {\n  session: cfg.waha_session,\n  chatId: destino,\n  text: texto\n}}}];"
       },
       "id": "c3d30000-0000-4000-8000-000000000008",
       "name": "Montar aviso",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        940,
-        -140
+        1860,
+        -80
       ]
     },
     {
@@ -229,11 +229,129 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1140,
-        -140
+        2060,
+        -80
       ],
       "notes": "timeout 120s como o de imagem: o WAHA envia por um Chromium de verdade e e lento. onError=continue: o lead ja esta gravado, so o ping se perde.",
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Config').item.json.waha_url }}/api/contacts?contactId={{ $json.wa_id }}&session={{ $('Config').item.json.waha_session }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Api-Key",
+              "value": "={{ $('Config').item.json.waha_api_key }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "id": "c1000000-0000-4000-8000-000000000010",
+      "name": "WAHA: resolver o numero",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        0
+      ],
+      "onError": "continueRegularOutput",
+      "notes": "O WhatsApp entrega o remetente como LID (21522181840928@lid), nao como telefone. Este node traduz: devolve {\"id\":\"5511974052313@c.us\"}. USAR O CAMPO `id` - o campo `number` e o LID de novo (armadilha). LID desconhecido volta 200 com id=<o proprio lid>, entao quem valida e o sufixo @c.us, nao o status. onError=continue: sem numero o lead ainda vale (o Bruno acha pelo nome no WhatsApp)."
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "seconds"
+      },
+      "id": "c1000000-0000-4000-8000-000000000020",
+      "name": "Espera (anti-corrida)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1160,
+        0
+      ],
+      "webhookId": "c1000000-0000-4000-8000-0000000000fe",
+      "notes": "Da tempo da execucao gemea gravar a linha dela antes de eu reconsultar - senao as duas reconciliam cegas e as duas se acham vencedoras. A defasagem medida em 16/07 foi de 36ms e 145ms; 3s e folga de 20x. Custo: o ping do lead chega 3s mais tarde. Ninguem nota."
+    },
+    {
+      "parameters": {
+        "jsCode": "// RECONCILIACAO. Ja gravei minha linha; agora descubro se ela e a que vale.\n//\n// Nao ha lock e nao precisa: as duas execucoes chegam na MESMA conclusao\n// sozinhas, porque o Baserow da row_id crescente e \"o menor id vence\" e uma\n// regra que as duas conseguem avaliar sem falar uma com a outra.\n// (O certo seria o banco arbitrar com unique constraint, mas este Baserow nao\n// tem: a API de campos nao expoe field_constraints.)\nconst minha = $('Baserow: gravar lead').first().json;\nconst todas = ($input.first().json.results) || [];\n\n// A chave da pessoa: telefone quando o WAHA resolveu o LID, senao o proprio\n// wa_id (que e estavel por pessoa do mesmo jeito - so nao serve de link).\nfunction chaveDe(r) {\n  return String((r && r.phone) || '').trim() || String((r && r.wa_id) || '').trim();\n}\nconst eu = chaveDe(minha);\n\n// irmas = linhas da MESMA pessoa nesta peca, inclusive a minha.\nconst irmas = todas.filter(function (r) { return chaveDe(r) && chaveDe(r) === eu; });\nconst meNaLista = irmas.some(function (r) { return r.id === minha.id; });\n\n// FAIL-SAFE: se eu nao me acho na lista, algo saiu do script (filtro, paginacao,\n// replicacao atrasada). Nesse caso MANTENHO a linha e aviso.\n// Aqui o pior caso e o Bruno ver 2 pings; perder um lead e perder venda.\n// (No disparo o fail-safe e o oposto - la quem leva a duplicata e o cliente.)\nlet souEu = true;\nif (meNaLista) {\n  const menor = irmas.reduce(function (a, b) { return a.id < b.id ? a : b; });\n  souEu = menor.id === minha.id;\n}\n\n// ORDINAL = quantas PESSOAS distintas chegaram nesta peca ate mim.\n// Contar LINHAS era o que dava \"3a pessoa\" havendo 2 pessoas: a duplicata contava.\nconst pessoas = [];\ntodas.forEach(function (r) {\n  if (r.id > minha.id) return;                 // quem chegou depois nao conta\n  const k = chaveDe(r);\n  if (k && pessoas.indexOf(k) === -1) pessoas.push(k);\n});\n\nreturn [{ json: {\n  sou_eu: souEu,\n  meu_id: minha.id,\n  ordinal: Math.max(1, pessoas.length),\n  peca_titulo: $('Montar a linha').first().json.peca_titulo,\n  phone: minha.phone || '',\n  wa_id: minha.wa_id || '',\n  nome_wa: minha.nome_wa || ''\n}}];"
+      },
+      "id": "c1000000-0000-4000-8000-000000000021",
+      "name": "Reconciliar + ordinal",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "r1",
+              "leftValue": "={{ $json.sou_eu }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000022",
+      "name": "Sou a linha que vale?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        0
+      ],
+      "notes": "Sim = avisa o Bruno. Nao = eu sou a duplicata: apago a minha linha e fico calado. A execucao gemea, que gravou 36ms antes, e quem avisa."
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "={{ $('Config').item.json.baserow_url }}/api/database/rows/table/{{ $('Config').item.json.leads_table_id }}/{{ $json.meu_id }}/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Token {{ $('Config').item.json.baserow_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000023",
+      "name": "Baserow: apagar minha linha",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1860,
+        120
+      ],
+      "onError": "continueRegularOutput",
+      "notes": "So apaga a linha que ESTA execucao criou (meu_id vem do proprio insert), nunca a de outro. onError=continue: falhar aqui deixa uma linha duplicada no Baserow, o que e chato mas inofensivo."
     }
   ],
   "connections": {
@@ -263,7 +381,7 @@
       "main": [
         [
           {
-            "node": "Baserow: achar a peca",
+            "node": "WAHA: resolver o numero",
             "type": "main",
             "index": 0
           }
@@ -274,7 +392,7 @@
       "main": [
         [
           {
-            "node": "Baserow: leads desta peca",
+            "node": "Montar a linha",
             "type": "main",
             "index": 0
           }
@@ -285,18 +403,7 @@
       "main": [
         [
           {
-            "node": "Dedup + ordinal",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Dedup + ordinal": {
-      "main": [
-        [
-          {
-            "node": "Baserow: gravar lead",
+            "node": "Reconciliar + ordinal",
             "type": "main",
             "index": 0
           }
@@ -307,7 +414,7 @@
       "main": [
         [
           {
-            "node": "Montar aviso",
+            "node": "Espera (anti-corrida)",
             "type": "main",
             "index": 0
           }
@@ -319,6 +426,68 @@
         [
           {
             "node": "WAHA: avisar Bruno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WAHA: resolver o numero": {
+      "main": [
+        [
+          {
+            "node": "Baserow: achar a peca",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar a linha": {
+      "main": [
+        [
+          {
+            "node": "Baserow: gravar lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Espera (anti-corrida)": {
+      "main": [
+        [
+          {
+            "node": "Baserow: leads desta peca",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reconciliar + ordinal": {
+      "main": [
+        [
+          {
+            "node": "Sou a linha que vale?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sou a linha que vale?": {
+      "main": [
+        [
+          {
+            "node": "Montar aviso",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow: apagar minha linha",
             "type": "main",
             "index": 0
           }

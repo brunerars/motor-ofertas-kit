@@ -1,7 +1,7 @@
 ---
 tipo: conteudo
 projeto: motor-ofertas
-formato: carrossel Instagram 4:5 (1080x1350)
+formato: carrossel Instagram 3:4 (1080x1440)
 post: "Como funciona"
 status: pronto para publicar
 ---
@@ -9,7 +9,7 @@ status: pronto para publicar
 # Post #1 — "Como funciona" (carrossel)
 
 **Arquivos:** `slide-1.png` … `slide-5.png` (nessa ordem no carrossel).
-**Fonte:** `como-funciona.html` (design system V1, render headless 1080×1350).
+**Fonte:** `como-funciona.html` (design system V1, render headless 1080×1440).
 
 > ✅ **@ confirmado (14/07/2026):** o perfil é [@nipponspeedco](https://www.instagram.com/nipponspeedco/). O handle usado nos slides e na legenda está correto, nada a trocar.
 

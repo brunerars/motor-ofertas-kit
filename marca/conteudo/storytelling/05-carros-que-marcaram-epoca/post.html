@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080, initial-scale=1"/>
+<title>Nippon Speed Co. · Os carros que marcaram época (linha do tempo)</title>
+<!-- impeccable-disable tight-leading -- Anton é condensada (~1.28x): leading apertado nos títulos é
+     intencional no design system V1. Este post NÃO tem foto: a livery de cada carro É a identidade
+     visual, então não há placeholder de imagem e nenhum waiver de broken-image é necessário. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================================
+   NIPPON SPEED CO. — VARIANTE "LINHA DO TEMPO" do template As Eras · 3:4 1080x1440
+   Ideia crua do Caio. Catálogo de 8 carros por época, não narrativa.
+   O que muda em relação ao molde narrativo:
+     · SEM foto — a LIVERY de cada carro é a identidade visual do slide
+     · SEM slide de peça — o fecho é engajamento (feed não vende)
+     · SEM seam/plate — não há conflito de dois lados nem tese de dois períodos
+     · a fita do rodapé vira LINHA DO TEMPO de verdade (10 células, cor por carro)
+   Ganho: zero foto de terceiro = PUBLICÁVEL (os posts 01 e 04 estão travados por licença).
+   ========================================================================== */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --stage:#2a2a2a;
+  --logo:#e60000; --accent:#ff5347;
+  /* liveries — declaradas no DESIGN.md */
+  --lotus-green:#004225; --lotus-yellow:#f5d016; --jps-gold:#c6a961;
+  --ferrari70:#d40000;   --marlboro:#e1140a;     --williams:#0b3c8c;
+  --camel:#f2c500;       --benetton:#00875a;     --west:#c9cbd0;
+  --ferrari-modern:#b4021a;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:var(--stage); }
+body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+.slide{ width:1080px; height:1440px; position:relative; overflow:hidden;
+  display:none; flex-direction:column; background:var(--ink); }
+.slide:target{ display:flex; }
+body:not(:has(.slide:target)) #s1{ display:flex; }
+.grain{ position:absolute; inset:0; z-index:9; pointer-events:none; opacity:.30;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size:256px 256px; }
+
+/* ---- cromo constante ---- */
+.strip{ flex:0 0 116px; background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; padding:0 88px; }
+.wordmark{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; line-height:1;
+  display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.disc{ width:.5em; height:.5em; border-radius:50%; background:var(--logo); flex:0 0 auto; margin:0 .28em; }
+.sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+  align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
+.era-rule{ flex:0 0 9px; }
+
+/* ---- LINHA DO TEMPO no rodapé: 10 células, cada uma na cor do seu carro ---- */
+.ribbon{ flex:0 0 46px; background:var(--ink); display:flex; align-items:flex-end;
+  gap:5px; padding:0 88px 16px; }
+.cell{ flex:1 1 0; height:9px; opacity:.32; }
+.cell.on{ height:22px; opacity:1; }
+.k1{ background:var(--paper); }
+.k2{ background:var(--lotus-green); }
+.k3{ background:var(--jps-gold); }
+.k4{ background:var(--ferrari70); }
+.k5{ background:var(--marlboro); }
+.k6{ background:var(--williams); }
+.k7{ background:var(--benetton); }
+.k8{ background:var(--west); }
+.k9{ background:var(--ferrari-modern); }
+.k10{ background:var(--accent); }
+
+/* ---- campo do carro ---- */
+.field{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:64px 88px; }
+.yr{ font-family:"Anton",sans-serif; font-size:150px; line-height:.82; letter-spacing:-.01em; }
+.car{ font-family:"Anton",sans-serif; font-weight:400; margin:14px 0 0; text-transform:uppercase;
+  font-size:88px; line-height:1.04; letter-spacing:.01em; }
+.tag{ margin:16px 0 0; font-size:38px; line-height:1.3; font-weight:600; }
+/* Ficha técnica: linhas com fio fino. Sem bullet de hífen — é o acabamento amador
+   das artes originais, e o que a gente herda é o SISTEMA, não o acabamento. */
+.spec{ margin:38px 0 0; border-top:2px solid currentColor; }
+.spec div{ padding:17px 0; font-size:31px; line-height:1.35; border-bottom:2px solid currentColor; }
+.spec b{ font-weight:800; }
+/* Campo ESCURO → texto claro (default) */
+.f-dark{ color:var(--paper); }
+.f-dark .yr{ color:var(--white); }
+.f-dark .tag{ color:rgba(245,245,245,.92); }
+.f-dark .spec{ border-color:rgba(245,245,245,.34); }
+.f-dark .spec div{ border-color:rgba(245,245,245,.34); }
+/* Campo CLARO → texto escuro. Prata e papel invertem a tinta: conferir sempre. */
+.f-light{ color:var(--ink); }
+.f-light .yr{ color:var(--ink); }
+.f-light .tag{ color:rgba(17,17,17,.86); }
+.f-light .spec{ border-color:rgba(17,17,17,.28); }
+.f-light .spec div{ border-color:rgba(17,17,17,.28); }
+
+/* ---- capa ---- */
+.cover{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 88px;
+  background:var(--ink); color:var(--paper); }
+/* 118px / 1.12: a 158px a quebra planejada virou 4 linhas no render e o acento do "É"
+   colidiu com a linha de cima. Título de capa com diacrítico pede folga de verdade. */
+.cover-ttl{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase;
+  font-size:118px; line-height:1.12; letter-spacing:.01em; }
+.cover-sub{ margin:30px 0 0; font-size:40px; line-height:1.35; max-width:880px; color:rgba(245,245,245,.92); }
+/* A régua de liveries: o post inteiro resumido em cor. É o que faz a capa
+   funcionar na MINIATURA da grade — vira uma barra colorida reconhecível. */
+.swatches{ flex:0 0 210px; display:flex; }
+.sw{ flex:1 1 0; display:flex; align-items:flex-end; justify-content:center; padding-bottom:22px; }
+.sw span{ font-family:"Anton",sans-serif; font-size:30px; letter-spacing:.02em; }
+.sw-1{ background:var(--lotus-green); color:var(--paper); }
+/* JPS é preto+dourado, mas preto sobre o fundo preto do slide vira buraco na régua.
+   O dourado carrega a identidade na barra; o preto fica no slide do carro. */
+.sw-2{ background:var(--jps-gold); color:var(--ink); }
+.sw-3{ background:var(--ferrari70); color:var(--paper); }
+.sw-4{ background:var(--paper); color:var(--marlboro); }
+.sw-5{ background:var(--williams); color:var(--camel); }
+.sw-6{ background:var(--benetton); color:var(--paper); }
+.sw-7{ background:var(--west); color:var(--ink); }
+.sw-8{ background:var(--ferrari-modern); color:var(--paper); }
+
+/* ---- fecho (engajamento, não venda) ---- */
+.end{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 88px;
+  background:var(--ink); color:var(--paper); }
+.end-ttl{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase;
+  font-size:132px; line-height:.92; }
+.end-bd{ margin:34px 0 0; font-size:36px; line-height:1.45; max-width:880px; color:rgba(245,245,245,.92); }
+.end-cta{ margin-top:44px; padding-top:28px; border-top:3px solid var(--accent); }
+.end-cta p{ margin:0; font-size:31px; line-height:1.4; font-weight:600; }
+.end-handle{ display:block; margin-top:16px; font-family:"Archivo",sans-serif; font-weight:800;
+  text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- ══ 1 · CAPA ══ -->
+<section class="slide" id="s1">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--accent)"></div>
+  <div class="cover">
+    <h1 class="cover-ttl">Os carros que<br/>marcaram época</h1>
+    <p class="cover-sub">De 1962 aos anos 2000, as máquinas que mudaram a Fórmula 1. Oito delas, uma por vez.</p>
+  </div>
+  <div class="swatches">
+    <div class="sw sw-1"><span>62</span></div>
+    <div class="sw sw-2"><span>70</span></div>
+    <div class="sw sw-3"><span>75</span></div>
+    <div class="sw sw-4"><span>88</span></div>
+    <div class="sw sw-5"><span>92</span></div>
+    <div class="sw sw-6"><span>94</span></div>
+    <div class="sw sw-7"><span>98</span></div>
+    <div class="sw sw-8"><span>04</span></div>
+  </div>
+  <footer class="ribbon"><i class="cell k1 on"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 2 · LOTUS 25 · British Racing Green ══ -->
+<section class="slide" id="s2">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--lotus-yellow)"></div>
+  <div class="field f-dark" style="background:var(--lotus-green)">
+    <span class="yr">1962</span>
+    <h2 class="car">Lotus 25</h2>
+    <p class="tag">A revolução do monocoque</p>
+    <div class="spec">
+      <div>Primeiro chassi <b>monocoque em alumínio</b> da F1</div>
+      <div><b>7x mais rígido</b> que os concorrentes</div>
+      <div>Jim Clark · <b>2 títulos</b> (1963 e 1965)</div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2 on"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 3 · LOTUS 72 · John Player Special preto e dourado ══ -->
+<section class="slide" id="s3">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--jps-gold)"></div>
+  <div class="field f-dark" style="background:var(--ink)">
+    <span class="yr" style="color:var(--jps-gold)">1970</span>
+    <h2 class="car">Lotus 72</h2>
+    <p class="tag" style="color:var(--jps-gold)">O carro mais bonito já feito?</p>
+    <div class="spec">
+      <div><b>Radiadores laterais</b> pela primeira vez</div>
+      <div>Formato de <b>cunha aerodinâmica</b></div>
+      <div>Rindt em 1970, Fittipaldi em 1972</div>
+      <div><b>3 títulos</b> de construtores</div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3 on"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 4 · FERRARI 312T · rosso anos 70 ══ -->
+<section class="slide" id="s4">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--paper)"></div>
+  <div class="field f-dark" style="background:var(--ferrari70)">
+    <span class="yr">1975</span>
+    <h2 class="car">Ferrari 312T</h2>
+    <p class="tag">O renascimento da Ferrari</p>
+    <div class="spec">
+      <div>Motor <b>boxer de 12 cilindros</b></div>
+      <div><b>Transmissão transversal</b>, o "T" do nome</div>
+      <div>Niki Lauda campeão em <b>1975 e 1977</b></div>
+      <div>A Ferrari volta ao topo</div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4 on"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 5 · McLAREN MP4/4 · branco Marlboro (campo CLARO, tinta escura) ══ -->
+<section class="slide" id="s5">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--marlboro)"></div>
+  <div class="field f-light" style="background:var(--paper)">
+    <span class="yr" style="color:var(--marlboro)">1988</span>
+    <h2 class="car">McLaren MP4/4</h2>
+    <p class="tag">A perfeição absoluta</p>
+    <div class="spec">
+      <div><b>15 vitórias em 16 corridas</b></div>
+      <div>Motor <b>Honda V6 turbo</b></div>
+      <div>Senna campeão, o primeiro título dele</div>
+      <div><b>93,75%</b> de aproveitamento</div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5 on"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 6 · WILLIAMS FW14B · azul Canon + amarelo Camel ══ -->
+<section class="slide" id="s6">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--camel)"></div>
+  <div class="field f-dark" style="background:var(--williams)">
+    <span class="yr" style="color:var(--camel)">1992</span>
+    <h2 class="car">Williams FW14B</h2>
+    <p class="tag">Tecnologia alienígena</p>
+    <div class="spec">
+      <div><b>Suspensão ativa</b> e controle de tração</div>
+      <div>Nigel Mansell · <b>9 vitórias em 16</b></div>
+      <div>O carro que levou Senna a querer a Williams</div>
+      <div>Tão avançado que <b>foi proibido</b></div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6 on"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 7 · BENETTON B194 · verde Benetton ══ -->
+<section class="slide" id="s7">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--paper)"></div>
+  <div class="field f-dark" style="background:var(--benetton)">
+    <span class="yr">1994</span>
+    <h2 class="car">Benetton B194</h2>
+    <p class="tag">O primeiro título de Schumacher</p>
+    <div class="spec">
+      <div>Motor <b>Ford V8</b></div>
+      <div><b>8 vitórias</b> na temporada</div>
+      <div>Michael Schumacher, primeiro título</div>
+      <div>Ano trágico, título polêmico, máquina vitoriosa</div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7 on"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 8 · McLAREN MP4/13 · prata West (campo CLARO, tinta escura) ══ -->
+<section class="slide" id="s8">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--ink)"></div>
+  <div class="field f-light" style="background:var(--west)">
+    <span class="yr">1998</span>
+    <h2 class="car">McLaren MP4/13</h2>
+    <p class="tag">A flecha de prata</p>
+    <div class="spec">
+      <div>Motor <b>Mercedes V10</b></div>
+      <div>Projeto de <b>Adrian Newey</b></div>
+      <div>Mika Häkkinen campeão · <b>9 vitórias</b></div>
+      <div>Quebrou a hegemonia da Ferrari</div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8 on"></i><i class="cell k9"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 9 · FERRARI F2004 · rosso moderno ══ -->
+<section class="slide" id="s9">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--paper)"></div>
+  <div class="field f-dark" style="background:var(--ferrari-modern)">
+    <span class="yr">2004</span>
+    <h2 class="car">Ferrari F2004</h2>
+    <p class="tag">Dominação total</p>
+    <div class="spec">
+      <div><b>15 vitórias em 18 corridas</b></div>
+      <div>Motor <b>V10 com mais de 900 cv</b></div>
+      <div>Schumacher, o <b>sétimo título</b></div>
+      <div><b>83%</b> de aproveitamento</div>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9 on"></i><i class="cell k10"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ 10 · FECHO · engajamento (feed não vende) ══ -->
+<section class="slide" id="s10">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule" style="background:var(--accent)"></div>
+  <div class="end">
+    <h2 class="end-ttl">E pra você,<br/>qual foi o<br/>mais icônico?</h2>
+    <p class="end-bd">Faltou algum nessa lista? Deixa nos comentários e marca aquele amigo que sabe de cor o ano de cada carro.</p>
+    <div class="end-cta">
+      <p>Memorabilia dessas eras, garimpada no Japão, aparece toda semana no nosso grupo.</p>
+      <span class="end-handle">link na bio · @nipponspeedco</span>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell k1"></i><i class="cell k2"></i><i class="cell k3"></i><i class="cell k4"></i><i class="cell k5"></i><i class="cell k6"></i><i class="cell k7"></i><i class="cell k8"></i><i class="cell k9"></i><i class="cell k10 on"></i></footer>
+  <div class="grain"></div>
+</section>
+
+</body>
+</html>

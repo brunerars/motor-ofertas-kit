@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080, initial-scale=1"/>
+<title>Nippon Speed Co. · Suzuka cobrou duas vezes · direção C (eras)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================================
+   NIPPON SPEED CO. — DIREÇÃO C: "AS ERAS"
+   Herda o sistema das artes de ano do Caio (marca/referencia/Nippon Speed Co. bruno/):
+     1. a cor do slide vem da LIVERY daquele carro naquele ano
+     2. o ano é corpo estrutural gigante, não rótulo de canto
+     3. texto vive em campo chapado, nunca carimbado por cima da foto
+   Não herda o acabamento: sem tarja preta em cima de tudo, sem bullet com hífen,
+   sem blur de fundo, sem sombra em tudo.
+   3:4 · 1080x1440 · 6 slides
+   ========================================================================== */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff;
+  --logo:#e60000;
+  /* paleta de era — declarada no DESIGN.md */
+  --mclaren:#c8102e;   /* faixa Marlboro da MP4/5 (1989) e MP4/6 (1991) */
+  --ferrari:#d10a11;   /* rosso da Ferrari 641, o carro de Prost em 1990 */
+  --gold:#c9a227;      /* o bordado dourado do boné do GP do Japão 1990 */
+  --red-bright:#ff5347; /* acento do slide da peça: o dourado ficava barrento no escuro e destoava do resto — o fecho volta pro vermelho da marca */
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#2a2a2a; }
+body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+
+.slide{ width:1080px; height:1440px; position:relative; overflow:hidden;
+  display:none; flex-direction:column; background:var(--ink); }
+.slide:target{ display:flex; }
+body:not(:has(.slide:target)) #s1{ display:flex; }
+
+/* Grão: matéria de impresso. Vem do design system V1; disfarça o upscale da foto de arquivo. */
+.grain{ position:absolute; inset:0; z-index:9; pointer-events:none; opacity:.34;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size:256px 256px; }
+
+/* ---- Cromo constante: tarja da marca no topo, fita do tempo no rodapé ---- */
+.strip{ flex:0 0 116px; background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; padding:0 88px; }
+.wordmark{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:30px; line-height:1;
+  display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.disc{ width:.5em; height:.5em; border-radius:50%; background:var(--logo); flex:0 0 auto; margin:0 .28em; }
+.sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto;
+  align-self:flex-end; margin-left:.04em; margin-bottom:.05em; }
+/* fio da era: anuncia a cor do capítulo antes de qualquer palavra */
+.era-rule{ flex:0 0 7px; }
+.era-mclaren{ background:var(--mclaren); }
+.era-ferrari{ background:var(--ferrari); }
+.era-paper{ background:var(--paper); }
+.era-gold{ background:var(--red-bright); }
+.era-split{ background:linear-gradient(90deg, var(--paper) 0 50%, var(--ferrari) 50% 100%); }
+
+/* Fita do tempo: 1989 · 1989 · 1990 · 1991 · a peça. É a espinha do carrossel,
+   e substitui os dots. Cada célula carrega a cor da era daquele slide. */
+.ribbon{ flex:0 0 46px; background:var(--ink); display:flex; align-items:flex-end;
+  gap:6px; padding:0 88px 16px; }
+.cell{ flex:1 1 0; height:9px; opacity:.3; }
+.cell.on{ height:22px; opacity:1; }
+.c1{ background:linear-gradient(90deg, var(--paper) 0 50%, var(--ferrari) 50% 100%); }
+.c2,.c3{ background:var(--paper); }
+.c4{ background:var(--ferrari); }
+.c5{ background:var(--mclaren); }
+.c6{ background:var(--red-bright); }
+
+/* ---- Poço da foto: retângulo de aresta dura. Sem scrim, sem fade, sem texto por cima. ---- */
+.well{ position:relative; overflow:hidden; }
+.well img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ---- Campo de era: onde o texto mora ---- */
+.field{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:56px 88px; }
+.field-paper{ background:var(--paper); color:var(--ink); }
+.field-ink{ background:var(--ink); color:var(--paper); }
+.field-red{ background:var(--mclaren); color:var(--paper); }
+
+/* ---- Escada tipográfica: corpo 34 · título 96 · ANO 236 ---- */
+h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase; letter-spacing:.01em; }
+.yr{ font-family:"Anton",sans-serif; font-size:236px; line-height:.82; letter-spacing:-.01em; }
+.ttl{ font-size:96px; line-height:.95; margin-top:40px; }
+.bd{ margin:30px 0 0; font-size:34px; line-height:1.5; max-width:880px; }
+.bd b{ font-weight:700; }
+.field-paper .yr{ color:var(--mclaren); }
+.field-paper .bd{ color:var(--ink); }
+.field-ink .bd{ color:var(--paper); }
+/* s3 tem hierarquia INVERTIDA da s2 pra não ler como slide repetido (mesmo ano, mesma cor
+   de propósito): na s2 o ANO manda (estabelece 1989); na s3 o TÍTULO manda (a história já
+   está em 1989, o que importa agora é o que aconteceu). */
+.field-s3 .yr{ font-size:132px; }
+.field-s3 .ttl{ font-size:110px; margin-top:22px; }
+
+/* ---- s1 · capa ---- */
+.cover-copy{ flex:1; display:flex; flex-direction:column; justify-content:center;
+  padding:0 88px; background:var(--ink); color:var(--paper); }
+.cover-ttl{ font-size:150px; line-height:.92; }
+.cover-sub{ margin:26px 0 0; font-size:38px; line-height:1.6; max-width:860px; color:var(--paper); }
+/* Traz a cor de era pra CIMA (o critique: a capa só usava o sistema na placa do rodapé).
+   1989 = campo branco da McLaren · 1990 = vermelho Ferrari. Ensina o código já no gancho,
+   e faz a miniatura mostrar cor em vez de só preto. */
+.cover-sub .y89{ color:var(--ink); background:var(--paper); padding:1px 12px; font-weight:800; }
+.cover-sub .y90{ color:var(--paper); background:var(--ferrari); padding:1px 12px; font-weight:800; }
+.plate{ flex:0 0 200px; display:flex; }
+.plate-half{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; padding:0 44px 0 88px; }
+.plate-89{ background:var(--paper); color:var(--ink); }
+.plate-90{ background:var(--ferrari); color:var(--paper); padding-left:52px; }
+.plate-yr{ font-family:"Anton",sans-serif; font-size:112px; line-height:.86; }
+.plate-89 .plate-yr{ color:var(--mclaren); }
+.plate-lb{ font-size:27px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; margin-top:10px; }
+
+/* ---- s4 · a costura: o conflito cromático É a história ----
+   Metade Ferrari vermelha, metade McLaren branca. O "1990" cai exatamente em cima da
+   emenda: "19" sai branco no vermelho, "90" sai vermelho no branco. Nenhum outro slide
+   tem duas liveries — em 1990 eram dois times, e é isso que a barra diz.
+
+   A emenda é a FRONTEIRA entre os dois campos, não uma coordenada: cada metade
+   carrega metade do ano, encostada na borda, e o corte cai entre os dígitos por
+   construção. A versão anterior centralizava "1990" inteiro e cortava em 50% com
+   clip-path — errava 17px, porque o "1" do Anton tem 70px contra 111px dos outros
+   dígitos: o meio do texto não é o meio de "19|90". Sobrava faixa branca no 2º "9". */
+.seam{ flex:0 0 330px; position:relative; overflow:hidden; display:flex; }
+.seam-half{ flex:1 1 0; display:flex; align-items:flex-start; padding-top:30px; }
+.seam-l{ background:var(--ferrari); justify-content:flex-end; }
+.seam-r{ background:var(--paper); justify-content:flex-start; }
+.seam-yr{ font-family:"Anton",sans-serif; font-size:240px; line-height:.82;
+  letter-spacing:-.01em; margin:0; }
+/* devolve o letter-spacing negativo que sobra depois do último glifo — sem isso o
+   "9" da esquerda transborda ~2px por cima da emenda */
+.seam-l .seam-yr{ color:var(--paper); margin-right:.01em; }
+.seam-r .seam-yr{ color:var(--ferrari); }
+.seam-tags{ position:absolute; left:0; right:0; bottom:30px; display:flex; }
+.seam-tag{ flex:1 1 0; font-size:28px; font-weight:800; letter-spacing:.1em; }
+.seam-tag-l{ padding-left:88px; color:var(--paper); }
+.seam-tag-r{ padding-left:52px; color:var(--ferrari); }
+
+/* ---- s5 · a confissão ----
+   Agora com foto (igual os outros capítulos): retrato do Senna no cockpit, visor levantado,
+   olhar pensativo — o tom da confissão, não da ação. O campo segue VERMELHO (a MP4/6 de 1991
+   era branca com faixa vermelha; aqui o vermelho é o chão da fala), único campo colorido do
+   carrossel, o que mantém o slide distinto sem depender de foto de ação que não existe. */
+.field-red .yr{ color:var(--paper); font-size:150px; }
+.field-red .ttl{ font-size:96px; margin-top:20px; }
+.field-red .bd{ font-size:34px; color:var(--paper); max-width:900px; }
+
+/* ---- s6 · a peça no CARD BRANCO ----
+   O produto é o herói do fecho: recortado (rembg, pixels reais preservados) e emoldurado num
+   card branco que flutua sobre o slide escuro. Padroniza a apresentação do produto e destaca a
+   peça do fundo. object-fit:contain = o boné inteiro aparece, sem corte. */
+.product-card{ flex:0 0 560px; height:560px; min-height:0; margin:24px 80px 6px;
+  border-radius:12px; background:var(--white); overflow:hidden;
+  display:flex; align-items:center; justify-content:center; padding:12px;
+  box-shadow:0 18px 46px rgba(0,0,0,.45); }
+.product-card img{ max-width:100%; max-height:100%; object-fit:contain; display:block; }
+.piece-head{ display:flex; align-items:flex-start; gap:40px; }
+.piece-yr{ font-family:"Anton",sans-serif; font-size:104px; line-height:.86; color:var(--red-bright); flex:0 0 auto; }
+.piece-name{ font-size:64px; line-height:1.16; }
+.piece-bd{ margin:26px 0 0; font-size:32px; line-height:1.5; color:var(--paper); max-width:880px; }
+.piece-bd b{ font-weight:700; color:var(--red-bright); }
+.cta{ margin-top:32px; padding-top:26px; border-top:3px solid var(--red-bright); }
+.cta-line{ margin:0; font-size:29px; line-height:1.4; color:var(--paper); font-weight:600; max-width:860px; }
+/* Archivo, não Anton: condensada em caixa baixa perde o pingo do "i" (link -> llnk). */
+.cta-handle{ display:block; margin-top:16px; font-family:"Archivo",sans-serif; font-weight:800;
+  text-transform:lowercase; font-size:34px; letter-spacing:.005em; color:var(--red-bright); }
+</style>
+</head>
+<body>
+
+<!-- ══ SLIDE 1 · CAPA ══════════════════════════════════════════════════════
+     O título em cima (legível em miniatura), a foto panorâmica inteira no meio
+     (2,48:1 — full-bleed num 3:4 cortaria os dois homens fora), e a tese da
+     história na placa de baixo: 1989 branco = uma equipe · 1990 vermelho = duas. -->
+<section class="slide" id="s1">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-split"></div>
+  <div class="cover-copy">
+    <h1 class="cover-ttl">Suzuka<br/>cobrou<br/>duas vezes</h1>
+    <p class="cover-sub">Em <span class="y89">1989</span> eles dividiam o mesmo box. Em <span class="y90">1990</span> já eram inimigos declarados.</p>
+  </div>
+  <figure class="well" style="flex:0 0 370px; margin:0">
+    <img src="capa.jpg" style="object-position:center 40%" alt="Prost e Senna saindo da pista por lados opostos do guard-rail em Suzuka, 1989"/>
+  </figure>
+  <div class="plate">
+    <div class="plate-half plate-89"><span class="plate-yr">1989</span><span class="plate-lb">Uma equipe</span></div>
+    <div class="plate-half plate-90"><span class="plate-yr">1990</span><span class="plate-lb">Duas equipes</span></div>
+  </div>
+  <footer class="ribbon"><i class="cell c1 on"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ SLIDE 2 · 1989 · O MESMO BOX ═════════════════════════════════════════
+     Campo branco-papel = a carroceria da MP4/5. O vermelho é a faixa Marlboro.
+     Foto em cima, texto embaixo. -->
+<section class="slide" id="s2">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-mclaren"></div>
+  <figure class="well" style="flex:0 0 620px; margin:0">
+    <img src="s2.jpg" style="object-position:center 50%" alt="As duas McLaren de Senna e Prost travadas uma na outra na chicane de Suzuka, 1989"/>
+  </figure>
+  <div class="field field-paper">
+    <span class="yr">1989</span>
+    <h2 class="ttl">O mesmo box</h2>
+    <p class="bd">Senna e Prost brigavam pelo título correndo pela <b>mesma equipe</b>. Os dois de McLaren, com o mesmo carro. Na chicane, Prost fechou a porta e os dois bateram.</p>
+  </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2 on"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ SLIDE 3 · 1989 · VENCEU NA PISTA ════════════════════════════════════
+     Mesma paleta do s2 de propósito: mesmo ano, mesmo carro, mesma equipe.
+     O que muda é a ordem — texto em cima, foto embaixo. O sistema segura o
+     ritmo sem trocar de cor, porque a cor ainda não tem motivo pra mudar. -->
+<section class="slide" id="s3">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-mclaren"></div>
+  <div class="field field-paper field-s3">
+    <span class="yr">1989</span>
+    <h2 class="ttl">Venceu na pista<br/>perdeu na mesa</h2>
+    <p class="bd">Senna voltou empurrado pelos comissários, cortou a chicane e <b>ganhou a corrida</b>. Horas depois a direção de prova tirou a vitória dele. O título foi pro francês.</p>
+  </div>
+  <figure class="well" style="flex:0 0 520px; margin:0">
+    <img src="s3.jpg" style="object-position:center 58%" alt="Comissários japoneses empurrando a McLaren de Senna de volta pra corrida em Suzuka, 1989"/>
+  </figure>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3 on"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ SLIDE 4 · 1990 · A CONTA CHEGOU ═════════════════════════════════════
+     A virada cromática. Na foto a Ferrari está embaixo à esquerda e a McLaren
+     branca em cima à direita — a costura embaixo continua esse eixo. -->
+<section class="slide" id="s4">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-ferrari"></div>
+  <figure class="well" style="flex:0 0 460px; margin:0">
+    <img src="s4.jpg" style="object-position:center 45%" alt="A Ferrari de Prost e a McLaren de Senna soltando faísca na primeira curva de Suzuka, 1990"/>
+  </figure>
+  <div class="seam">
+    <div class="seam-half seam-l"><span class="seam-yr">19</span></div>
+    <div class="seam-half seam-r"><span class="seam-yr">90</span></div>
+    <div class="seam-tags">
+      <span class="seam-tag seam-tag-l">PROST · FERRARI</span>
+      <span class="seam-tag seam-tag-r">SENNA · McLAREN</span>
+    </div>
+  </div>
+  <div class="field field-ink">
+    <h2 class="ttl" style="margin-top:0">A conta chegou</h2>
+    <p class="bd">Prost agora corria pela Ferrari, e era ele que precisava vencer. Largada, primeira curva, e <b>Senna não tirou o pé</b>. Os dois pararam na brita juntos, e o bicampeonato estava decidido antes da segunda curva.</p>
+  </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4 on"></i><i class="cell c5"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ SLIDE 5 · 1991 · ELE MESMO CONTOU ═══════════════════════════════════
+     Sem foto: a admissão é declaração, não ação. A MP4/6 de 1991 era branca com
+     faixa vermelha — aqui a livery entra invertida, vermelho de chão e branco de
+     texto. É o slide mais alto do carrossel porque é a hora em que ele fala. -->
+<section class="slide" id="s5">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-mclaren"></div>
+  <figure class="well" style="flex:0 0 660px; margin:0">
+    <img src="s5.jpg" style="object-position:center 38%" alt="Ayrton Senna encostado na barreira de pneus, mão no queixo, olhando a pista, capacete ao lado"/>
+  </figure>
+  <div class="field field-red">
+    <span class="yr">1991</span>
+    <h2 class="ttl">Ele mesmo contou</h2>
+    <p class="bd">Senna admitiu que a batida na primeira curva foi <b>de propósito</b>, resposta ao que tinham feito com ele em 1989. Até hoje a arquibancada se divide entre justiça e vingança.</p>
+  </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5 on"></i><i class="cell c6"></i></footer>
+  <div class="grain"></div>
+</section>
+
+<!-- ══ SLIDE 6 · A PEÇA ════════════════════════════════════════════════════
+     O ano continua sendo o rótulo estrutural, agora em dourado — a cor sai do
+     bordado do próprio boné. A linha do tempo fecha em 1990, que é a temporada
+     de onde a peça veio. -->
+<section class="slide" id="s6">
+  <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
+  <div class="era-rule era-gold"></div>
+  <figure class="product-card">
+    <img src="foto-cut.jpg" alt="Boné oficial do GP do Japão de 1990 recortado no branco, com o traçado do circuito de Suzuka e a coroa de louros bordados"/>
+  </figure>
+  <div class="field field-ink">
+    <div class="piece-head">
+      <span class="piece-yr">1990</span>
+      <h2 class="piece-name">Boné oficial<br/>GP do Japão</h2>
+    </div>
+    <p class="piece-bd">Da temporada em que a conta foi acertada. Traz o <b>traçado do circuito de Suzuka</b> e a coroa de louros bordados.</p>
+    <div class="cta">
+      <p class="cta-line">Peças com história assim, garimpadas no Japão, aparecem toda semana no nosso grupo.</p>
+      <span class="cta-handle">link na bio · @nipponspeedco</span>
+    </div>
+  </div>
+  <footer class="ribbon"><i class="cell c1"></i><i class="cell c2"></i><i class="cell c3"></i><i class="cell c4"></i><i class="cell c5"></i><i class="cell c6 on"></i></footer>
+  <div class="grain"></div>
+</section>
+
+</body>
+</html>
