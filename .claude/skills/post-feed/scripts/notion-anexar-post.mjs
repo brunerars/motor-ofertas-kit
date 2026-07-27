@@ -74,9 +74,16 @@ function normalizePageId(raw) {
   return `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${id.slice(16, 20)}-${id.slice(20)}`;
 }
 
+/**
+ * Prints and aborts. Throws instead of process.exit() on purpose: exiting while
+ * a fetch socket is still open crashes node on Windows with a libuv assertion,
+ * which buries the actual error message under a stack trace.
+ */
 function die(msg) {
   console.error(`\n  erro: ${msg}\n`);
-  process.exit(1);
+  const e = new Error(msg);
+  e.name = "ExitError";
+  throw e;
 }
 
 // ------------------------------------------------------------------- http
@@ -167,51 +174,61 @@ function findExistingArt(children, titulo) {
 
 // ---------------------------------------------------------------------- main
 
-const args = parseArgs(process.argv.slice(2));
-if (!args.files.length) {
-  die("uso: node notion-anexar-post.mjs --page <id-ou-url> [--replace] slide-1.png slide-2.png ...");
-}
-TOKEN = loadToken();
-const pageId = normalizePageId(args.page);
-const files = args.files.map((f) => resolve(f));
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (!args.files.length) {
+    die("uso: node notion-anexar-post.mjs --page <id-ou-url> [--replace] slide-1.png slide-2.png ...");
+  }
+  TOKEN = loadToken();
+  const pageId = normalizePageId(args.page);
+  const files = args.files.map((f) => resolve(f));
 
-const existing = findExistingArt(await listChildren(pageId), args.titulo);
-if (existing && !args.replace) {
-  die(
-    `a pagina ja tem "${args.titulo}" (${existing.length - 1} imagem/ns).\n` +
-      "  Rode com --replace pra trocar a arte, ou mude --titulo pra anexar uma segunda leva."
-  );
-}
+  const existing = findExistingArt(await listChildren(pageId), args.titulo);
+  if (existing && !args.replace) {
+    die(
+      `a pagina ja tem "${args.titulo}" (${existing.length - 1} imagem/ns).\n` +
+        "  Rode com --replace pra trocar a arte, ou mude --titulo pra anexar uma segunda leva."
+    );
+  }
 
-// Upload everything BEFORE touching the page: a failure halfway leaves the page
-// untouched instead of half-populated.
-console.log(`\n  ${files.length} slides -> ${pageId}\n`);
-const uploaded = [];
-for (const f of files) {
-  const u = await uploadFile(f);
-  uploaded.push(u);
-  console.log(`  ok  ${u.filename}  ${(u.bytes / 1024).toFixed(0)}KB`);
-}
+  // Upload everything BEFORE touching the page: a failure halfway leaves the page
+  // untouched instead of half-populated.
+  console.log(`\n  ${files.length} slides -> ${pageId}\n`);
+  const uploaded = [];
+  for (const f of files) {
+    const u = await uploadFile(f);
+    uploaded.push(u);
+    console.log(`  ok  ${u.filename}  ${(u.bytes / 1024).toFixed(0)}KB`);
+  }
 
-if (existing) {
-  for (const id of existing) await notion(`/blocks/${id}`, { method: "DELETE" });
-  console.log(`\n  substituido: ${existing.length} blocos antigos removidos`);
-}
+  if (existing) {
+    for (const id of existing) await notion(`/blocks/${id}`, { method: "DELETE" });
+    console.log(`\n  substituido: ${existing.length} blocos antigos removidos`);
+  }
 
-const children = [
-  {
-    type: "heading_3",
-    heading_3: { rich_text: [{ type: "text", text: { content: args.titulo } }] },
-  },
-  ...uploaded.map((u, i) => ({
-    type: "image",
-    image: {
-      type: "file_upload",
-      file_upload: { id: u.id },
-      caption: [{ type: "text", text: { content: `slide ${i + 1}` } }],
+  const children = [
+    {
+      type: "heading_3",
+      heading_3: { rich_text: [{ type: "text", text: { content: args.titulo } }] },
     },
-  })),
-];
+    ...uploaded.map((u, i) => ({
+      type: "image",
+      image: {
+        type: "file_upload",
+        file_upload: { id: u.id },
+        caption: [{ type: "text", text: { content: `slide ${i + 1}` } }],
+      },
+    })),
+  ];
 
-await notion(`/blocks/${pageId}/children`, { method: "PATCH", body: { children } });
-console.log(`\n  anexado: "${args.titulo}" + ${uploaded.length} imagens\n`);
+  await notion(`/blocks/${pageId}/children`, { method: "PATCH", body: { children } });
+  console.log(`\n  anexado: "${args.titulo}" + ${uploaded.length} imagens\n`);
+}
+
+try {
+  await main();
+} catch (e) {
+  // die() already printed the friendly message; anything else is a real surprise.
+  if (e?.name !== "ExitError") console.error(`\n  erro inesperado: ${e?.stack || e}\n`);
+  process.exitCode = 1;
+}
