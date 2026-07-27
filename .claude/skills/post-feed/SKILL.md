@@ -30,7 +30,7 @@ O FEED conta HISTÓRIA. A marca vira referência de cultura de automobilismo; a 
 1. **Capa** — título grande (é ele que segura a **miniatura na grade**), faixa de foto, e a tese. Foto **panorâmica vai em faixa**, nunca full-bleed (num 3:4 cortaria 60-70% da largura).
 2. **Capítulo com foto** — poço de **aresta dura** (sem scrim, sem fade) + campo de cor com ano/título/corpo.
 3. **Capítulo espelhado** — inverte a ordem (campo em cima, foto embaixo) **e** a hierarquia (`.field-titulo`: título manda, ano recua). Obrigatório entre dois capítulos do **mesmo período**, senão leem como slide repetido.
-4. **Clímax** — módulo `.seam` (o ano rachado ao meio) **só quando o conflito de dois lados é o assunto**. Alinhar o eixo da costura com o eixo da foto.
+4. **Clímax** — módulo `.seam` (o ano rachado ao meio) **só quando o conflito de dois lados é o assunto**. Alinhar o eixo da costura com o eixo da foto. O ano entra **partido** (`{{ANO_A}}`="19" + `{{ANO_B}}`="90"), uma metade por campo: a emenda é a fronteira dos dois blocos, então a divisão cai entre os dígitos sozinha. **Nunca** centralizar o ano inteiro e cortar em 50% com `clip-path` — o `1` do Anton tem 70px contra 111px dos outros dígitos, o meio do texto não é o meio de `19|90`, e sobra faixa de cor errada dentro do dígito.
 5. **Declaração** — campo colorido (`.field-red`), único do carrossel. **Leva foto** (slide sem foto vira buraco), de **retrato/reflexiva**, não de ação.
 6. **A peça** — card branco com o produto recortado. Sem badge, sem preço.
 
