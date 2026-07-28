@@ -33,7 +33,7 @@ Runbook acionável. O `README.md` explica **o que é**; aqui é **como rodar** (
 
 ## Com / sem vault Obsidian
 - **No vault:** vive em `projetos/motor-ofertas/`; o `CLAUDE.md` linka outras notas (`[[caio-logistica-japao]]` etc.).
-- **Standalone (repo próprio):** a pasta é auto-suficiente (skills + cérebro + docs + n8n + `.env.example`). Os `[[links]]` viram texto fora do Obsidian, mas nada quebra.
+- **Standalone (repo próprio):** a pasta é auto-suficiente (skills + cérebro + docs + n8n + `.env.example`). Os `links` viram texto fora do Obsidian, mas nada quebra.
 
 ## Estrutura
 ```

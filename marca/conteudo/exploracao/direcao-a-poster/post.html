@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080, initial-scale=1"/>
+<title>Nippon Speed Co. · Suzuka cobrou duas vezes — DIREÇÃO A: cartaz de corrida</title>
+
+<!-- ===========================================================================
+     DIREÇÃO A — CARTAZ DE GRAND PRIX (serigrafia, 1960-70)
+
+     Referência real: os cartazes oficiais do Grande Prêmio de Mônaco pintados por
+     Michael Turner (1962-1973) e a escola europeia de cartaz de circuito do período
+     (Le Mans, Monza, Nürburgring). Impressão em 2-3 tintas chapadas, faixa de prova
+     no topo com nome do circuito e data, tipo enorme medido pra ler de longe, imagem
+     reduzida a forma pela separação de cor, tarja do organizador no pé.
+
+     Regras que a direção impõe (e que o post atual quebrava):
+     - ZERO eyebrow tracked acima de título. Zero em 6 de 6, não "no máximo 1".
+     - ZERO 01/02/03 e ZERO dots.
+     - ZERO gradiente, ZERO raio de canto, ZERO scrim, ZERO glow. Chapado e cortado.
+     - Texto NUNCA em cima de foto solta — isso é colagem, a anti-referência nº1.
+       Quando o tipo encosta na foto ele está dentro de uma CHAPA sólida, que é como
+       serigrafia sobrepõe camada. A foto é forma ou é bloco, nunca é papel de parede.
+     =========================================================================== -->
+
+<!-- impeccable-disable tight-leading -- Anton é condensada (~1.28x de altura real por
+     linha): display de 102-330px com line-height .9-1.06 é a medida do cartaz, não
+     aperto de parágrafo. Corpo em Archivo fica em 1.45-1.48. Exceção travada e
+     testada em render: display com Ã/Õ/Â/Ê em linhas consecutivas ("BONÉ OFICIAL /
+     GP DO JAPÃO") usa 1.2, senão o til encosta na linha de cima — o detector não
+     pega isso, só a leitura do PNG. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#111111; --paper:#f5f5f5; --red:#c82a2a; --logo-red:#e60000;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#2a2a2a; }
+body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+
+.slide{ width:1080px; height:1440px; position:relative; overflow:hidden;
+  display:none; flex-direction:column; background:var(--ink); color:var(--paper); }
+.slide:target{ display:flex; }
+body:not(:has(.slide:target)) #s1{ display:flex; }
+
+/* Grão de impresso — matéria de papel, não efeito. Por cima de todas as camadas. */
+.grao{ position:absolute; inset:0; z-index:9; pointer-events:none; opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size:256px 256px; }
+
+/* ---------- FAIXA DE PROVA (topo) ----------
+   O cabeçalho do cartaz: circuito + data. É o mesmo componente nos 6 slides porque
+   cartaz de série tem cabeçalho de série. Não confundir com kicker: barra full-bleed
+   colada no trim, Anton 34px, data numa aba de papel do lado oposto. O eyebrow do
+   post atual era Archivo 26px tracked .2em, vermelho, dentro do bloco de texto e
+   logo acima da headline — outro elemento, outra função, outro lugar. */
+.prova{ flex:0 0 auto; height:106px; display:flex; align-items:stretch;
+  background:var(--ink); border-bottom:7px solid var(--red); position:relative; z-index:4; }
+.prova-nome{ flex:1; display:flex; align-items:center; padding:0 36px 0 56px;
+  font-family:"Anton",sans-serif; font-size:34px; line-height:1; color:var(--paper);
+  text-transform:uppercase; letter-spacing:.055em; white-space:nowrap; overflow:hidden; }
+.prova-ano{ flex:0 0 auto; display:flex; align-items:center; padding:0 40px;
+  background:var(--paper); color:var(--ink); text-transform:uppercase;
+  font-family:"Anton",sans-serif; font-size:44px; line-height:1; letter-spacing:.045em; }
+
+/* ---------- CAMPO (miolo do cartaz) ---------- */
+.campo{ flex:1; display:flex; flex-direction:column; min-height:0; position:relative; }
+.campo-vermelho{ background:var(--red); }
+.campo-papel{ background:var(--paper); color:var(--ink); }
+
+/* ---------- ZEBRA de curva ----------
+   Substitui os dots: divide o campo da tarja e é elemento de circuito, não marcador
+   de slide. Não carrega progresso — cartaz não tem paginação. */
+.zebra{ flex:0 0 auto; height:28px; position:relative; z-index:4;
+  background:repeating-linear-gradient(115deg, var(--red) 0 28px, var(--paper) 28px 56px); }
+
+/* ---------- TARJA (rodapé de organizador/patrocinador) ---------- */
+.tarja{ flex:0 0 auto; height:100px; background:var(--paper); color:var(--ink);
+  display:flex; align-items:center; justify-content:space-between; padding:0 56px; position:relative; z-index:4; }
+.lockup{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:31px; line-height:1;
+  display:inline-flex; align-items:center; white-space:nowrap; letter-spacing:.022em; }
+.lg-disc{ width:.5em; height:.5em; border-radius:50%; background:var(--logo-red); flex:0 0 auto; margin:0 .28em; }
+.lg-sq{ width:.17em; height:.17em; background:currentColor; flex:0 0 auto; align-self:flex-end;
+  margin-left:.04em; margin-bottom:.05em; }
+.tarja-dir{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:27px; line-height:1;
+  letter-spacing:.07em; }
+
+h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform:uppercase; }
+
+/* ---------- 1 · CAPA ---------- */
+/* A foto panorâmica (2,48:1) entra INTEIRA, full-bleed, sem corte e sem moldura —
+   1080 de largura dá 435 de altura no ratio original. Separação de duas tintas
+   (cinza forçado + multiply sobre a chapa vermelha): os dois pilotos viram silhueta
+   preta num campo vermelho. Deixa de ser janela e vira forma, que é o pedido. */
+.capa-foto{ flex:0 0 auto; width:100%; height:434px; background:var(--red);
+  overflow:hidden; isolation:isolate; }
+.capa-foto img{ width:100%; height:100%; object-fit:cover; object-position:center 42%;
+  display:block; filter:grayscale(1) brightness(1.24) contrast(1.62); mix-blend-mode:multiply; }
+/* Bloco tipográfico ancorado no pé do campo, com o silêncio vermelho por cima:
+   é onde o cartaz respira. Duas linhas medidas pra fechar no mesmo trim direito em
+   escalas muito diferentes — hierarquia por tamanho, não por rótulo. */
+.capa-tipo{ flex:1; display:flex; flex-direction:column; justify-content:flex-end;
+  padding:0 56px 54px; min-height:0; }
+.capa-l1{ font-size:330px; line-height:.9; letter-spacing:-.005em; color:var(--paper); }
+.capa-l2{ font-family:"Anton",sans-serif; text-transform:uppercase; font-size:124px;
+  line-height:1; letter-spacing:.005em; color:var(--ink); margin-top:10px; }
+.capa-sub{ margin:36px 0 0; font-size:34px; line-height:1.45; color:var(--paper);
+  font-weight:500; max-width:900px; }
+
+/* ---------- 2-4 · CAPÍTULO ---------- */
+/* A foto de arquivo NÃO é duotone aqui: ela é a prova de procedência, e a livery
+   (McLaren branco-vermelho, macacão laranja dos comissários) é o que o colecionador
+   reconhece. O que muda contra o post atual é o corte — bloco chapado de aresta dura,
+   sem fade pra tinta, sem moldura, sem raio, sem scrim. */
+.cap-foto{ flex:1; min-height:0; width:100%; overflow:hidden; }
+.cap-foto img{ width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.08) saturate(1.06); }
+/* A CHAPA: bloco de tinta que sobe por cima da aresta de baixo da foto e sangra pelo
+   trim esquerdo. É camada de serigrafia, não texto carimbado em foto. */
+.chapa{ align-self:flex-start; background:var(--ink); position:relative; z-index:3;
+  margin-top:-138px; padding:22px 64px 28px 56px; max-width:1012px; }
+.chapa h2{ font-size:102px; line-height:1.06; letter-spacing:.005em; }
+.corpo{ flex:0 0 auto; padding:34px 56px 48px; }
+.corpo p{ margin:0; font-size:34px; line-height:1.48; color:var(--paper); max-width:940px; }
+.corpo b{ font-weight:800; }
+
+/* ---------- 5 · DECLARAÇÃO (chapa de papel) ---------- */
+/* Único slide sem foto. Sem imagem, a objeção do design system a fundo claro ("lava
+   a foto") não se aplica — e a folha impressa é o corte de ritmo depois de três
+   capítulos escuros. O tipo ocupa o campo inteiro: é o slide de tese. */
+.decl{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 56px; min-height:0; }
+.decl h2{ font-size:224px; line-height:.94; letter-spacing:-.008em; color:var(--ink); }
+.decl p{ margin:52px 0 0; font-size:37px; line-height:1.45; color:var(--ink); max-width:930px; font-weight:500; }
+.decl b{ color:var(--red); font-weight:800; }
+
+/* ---------- 6 · A PEÇA ---------- */
+/* A foto do boné é a única imagem do carrossel que fica em cor cheia: é o objeto
+   real, e o bordado dourado é o argumento. Tudo em volta é cartaz; ela não é. */
+.peca-foto{ flex:0 0 auto; width:100%; height:566px; overflow:hidden; }
+.peca-foto img{ width:100%; height:100%; object-fit:cover; object-position:center 46%;
+  display:block; filter:contrast(1.06) saturate(1.04); }
+/* Chapa de papel com o nome da peça = a legenda do cartaz. line-height 1.2 é
+   obrigatório aqui: É e Ã caem em linhas consecutivas. */
+.peca-chapa{ align-self:flex-start; background:var(--paper); color:var(--ink); position:relative; z-index:3;
+  margin-top:-44px; padding:24px 62px 30px 56px; max-width:1016px; }
+.peca-chapa h2{ font-size:104px; line-height:1.2; letter-spacing:.005em; }
+.peca-corpo{ flex:1; display:flex; flex-direction:column; justify-content:flex-start;
+  padding:32px 56px 0; min-height:0; }
+.peca-corpo > p{ margin:0; font-size:32px; line-height:1.45; color:var(--paper); max-width:940px; font-weight:500; }
+.peca-corpo b{ font-weight:800; }
+.peca-cta{ margin-top:40px; padding:0 0 40px; }
+.peca-cta p{ margin:0; font-size:31px; line-height:1.42; color:var(--paper); font-weight:700; max-width:940px;
+  border-top:6px solid var(--paper); padding-top:26px; }
+</style>
+</head>
+<body>
+
+<!-- ============ 1 · CAPA ============ -->
+<section class="slide" id="s1">
+  <div class="prova">
+    <div class="prova-nome">Grande Prêmio do Japão · Suzuka</div>
+    <div class="prova-ano">1989 · 1990</div>
+  </div>
+  <div class="campo campo-vermelho">
+    <div class="capa-foto">
+      <img src="capa.jpg" alt="Senna e Prost deixando a pista por lados opostos do guard-rail em Suzuka, 1989"/>
+    </div>
+    <div class="capa-tipo">
+      <h1 class="capa-l1">Suzuka</h1>
+      <div class="capa-l2">Cobrou duas vezes</div>
+      <p class="capa-sub">Em 1989 eles dividiam o mesmo box. Em 1990 já eram inimigos declarados.</p>
+    </div>
+  </div>
+  <div class="zebra"></div>
+  <div class="tarja">
+    <span class="lockup">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
+    <span class="tarja-dir">Arrasta →</span>
+  </div>
+  <div class="grao"></div>
+</section>
+
+<!-- ============ 2 · 1989, o mesmo box ============ -->
+<section class="slide" id="s2">
+  <div class="prova">
+    <div class="prova-nome">Suzuka · Os dois de McLaren</div>
+    <div class="prova-ano">1989</div>
+  </div>
+  <div class="campo">
+    <div class="cap-foto">
+      <img src="s2.jpg" style="object-position:center 58%" alt="As duas McLaren de Senna e Prost travadas uma na outra na chicane de Suzuka, 1989"/>
+    </div>
+    <div class="chapa"><h2>O mesmo box</h2></div>
+    <div class="corpo">
+      <p>Senna e Prost brigavam pelo título correndo pela <b>mesma equipe</b>. Os dois de McLaren, com o mesmo carro. Na chicane, Prost fechou a porta e os dois bateram.</p>
+    </div>
+  </div>
+  <div class="zebra"></div>
+  <div class="tarja">
+    <span class="lockup">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
+    <span class="tarja-dir">@nipponspeedco</span>
+  </div>
+  <div class="grao"></div>
+</section>
+
+<!-- ============ 3 · 1989, a mesa ============ -->
+<section class="slide" id="s3">
+  <div class="prova">
+    <div class="prova-nome">Suzuka · Direção de prova</div>
+    <div class="prova-ano">1989</div>
+  </div>
+  <div class="campo">
+    <div class="cap-foto">
+      <img src="s3.jpg" style="object-position:center 50%" alt="Comissários japoneses empurrando a McLaren de Senna para ele voltar à corrida em Suzuka, 1989"/>
+    </div>
+    <div class="chapa"><h2>Venceu na pista<br/>perdeu na mesa</h2></div>
+    <div class="corpo">
+      <p>Senna voltou empurrado pelos comissários, cortou a chicane e <b>ganhou a corrida</b>. Horas depois a direção de prova tirou a vitória dele. O título foi pro francês.</p>
+    </div>
+  </div>
+  <div class="zebra"></div>
+  <div class="tarja">
+    <span class="lockup">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
+    <span class="tarja-dir">@nipponspeedco</span>
+  </div>
+  <div class="grao"></div>
+</section>
+
+<!-- ============ 4 · 1990, a conta ============ -->
+<section class="slide" id="s4">
+  <div class="prova">
+    <div class="prova-nome">Suzuka · McLaren e Ferrari</div>
+    <div class="prova-ano">1990</div>
+  </div>
+  <div class="campo">
+    <div class="cap-foto">
+      <img src="s4.jpg" style="object-position:center 44%" alt="A McLaren de Senna e a Ferrari de Prost se tocando com faísca na primeira curva de Suzuka, 1990"/>
+    </div>
+    <div class="chapa"><h2>A conta chegou</h2></div>
+    <div class="corpo">
+      <p>Prost agora corria pela Ferrari, e era ele que precisava vencer. Largada, primeira curva, e <b>Senna não tirou o pé</b>. Os dois pararam na brita juntos, e o bicampeonato estava decidido antes da segunda curva.</p>
+    </div>
+  </div>
+  <div class="zebra"></div>
+  <div class="tarja">
+    <span class="lockup">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
+    <span class="tarja-dir">@nipponspeedco</span>
+  </div>
+  <div class="grao"></div>
+</section>
+
+<!-- ============ 5 · 1991, a admissão ============ -->
+<section class="slide" id="s5">
+  <div class="prova">
+    <div class="prova-nome">Suzuka · A admissão</div>
+    <div class="prova-ano">1991</div>
+  </div>
+  <div class="campo campo-papel">
+    <div class="decl">
+      <h2>Ele<br/>mesmo<br/>contou</h2>
+      <p>Senna admitiu que a batida na primeira curva foi <b>de propósito</b>, resposta ao que tinham feito com ele em 1989. Até hoje a arquibancada se divide entre quem chama de justiça e quem chama de vingança.</p>
+    </div>
+  </div>
+  <div class="zebra"></div>
+  <div class="tarja">
+    <span class="lockup">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
+    <span class="tarja-dir">@nipponspeedco</span>
+  </div>
+  <div class="grao"></div>
+</section>
+
+<!-- ============ 6 · A PEÇA ============ -->
+<section class="slide" id="s6">
+  <div class="prova">
+    <div class="prova-nome">Acervo · Nippon Speed Co.</div>
+    <div class="prova-ano">1990</div>
+  </div>
+  <div class="campo campo-vermelho">
+    <div class="peca-foto">
+      <img src="foto.jpg" alt="Boné oficial do GP do Japão de 1990 em Suzuka, com o traçado do circuito bordado em dourado"/>
+    </div>
+    <div class="peca-chapa"><h2>Boné oficial<br/>GP do Japão 1990</h2></div>
+    <div class="peca-corpo">
+      <p>Da temporada em que a conta foi acertada. Traz o <b>traçado de Suzuka bordado em dourado</b> e a coroa de louros na aba.</p>
+      <div class="peca-cta">
+        <p>Peças com história assim, garimpadas no Japão, aparecem toda semana no nosso grupo.</p>
+      </div>
+    </div>
+  </div>
+  <div class="zebra"></div>
+  <div class="tarja">
+    <span class="lockup">Nippon<span class="lg-disc"></span>Speed Co<span class="lg-sq"></span></span>
+    <span class="tarja-dir">Link na bio · @nipponspeedco</span>
+  </div>
+  <div class="grao"></div>
+</section>
+
+</body>
+</html>

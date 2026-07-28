@@ -1,0 +1,15 @@
+# Teste reel-builder — carrossel Suzuka 1990 -> Reel 9:16 animado (montagem, sem API)
+output: out/reel.mp4
+slide_duration: 3.8
+transition: 0.5
+slides:
+  - source: "C:/Users/BMC/Desktop/Obsidian-Brain/Brain do Lester/projetos/Nippon-Speed/marca/feed/01-suzuka1990/slide-1.png"
+    duration: 3.2
+  - source: "C:/Users/BMC/Desktop/Obsidian-Brain/Brain do Lester/projetos/Nippon-Speed/marca/feed/01-suzuka1990/slide-2.png"
+    duration: 4.2
+  - source: "C:/Users/BMC/Desktop/Obsidian-Brain/Brain do Lester/projetos/Nippon-Speed/marca/feed/01-suzuka1990/slide-3.png"
+    duration: 4.2
+  - source: "C:/Users/BMC/Desktop/Obsidian-Brain/Brain do Lester/projetos/Nippon-Speed/marca/feed/01-suzuka1990/slide-4.png"
+    duration: 4.2
+  - source: "C:/Users/BMC/Desktop/Obsidian-Brain/Brain do Lester/projetos/Nippon-Speed/marca/feed/01-suzuka1990/slide-5.png"
+    duration: 4.4

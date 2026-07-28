@@ -83,6 +83,11 @@ Daqui, **siga o `/post-feed`** (não reimplemente): monte o `post.html` a partir
 ### 7. Fechar o loop (sem aprovar nem postar)
 Kanban de 4 etapas: **Ideia → Em Produção → Aprovado → Postado**. Os dois últimos são **gates humanos**.
 - A skill deixa a ideia em **`Em Produção`** (a arte ficou pronta, mas quem aprova é o Bruno) e **registra o caminho do post gerado** (comentário na página ou na `CTA Sugerida`/corpo), pra rastrear o que já tem arte pronta.
+- **Anexe os slides na página** — caminho local não é arte visível, e a ideia é onde o Bruno revisa:
+  ```
+  node .claude/skills/post-feed/scripts/notion-anexar-post.mjs --page <url-da-ideia> <pasta>/slide-*.png
+  ```
+  Upload nativo (PNG 1x original, sem recompressão e sem hospedagem pública no meio). Pede `NOTION_TOKEN` no `.env` da raiz do vault + a integração conectada na página. Rodar de novo **recusa** em vez de duplicar; pra trocar a arte, `--replace`.
 - Entregue pro Bruno revisar: mostre os slides + a legenda. **Ele** arrasta pra `Aprovado` quando bate o martelo, e pra `Postado` quando publica de verdade.
 - A skill **NUNCA** marca `Aprovado` nem `Postado` — self-aprovar mataria o gate humano, que é a tese do método.
 

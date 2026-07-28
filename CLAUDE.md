@@ -104,6 +104,26 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 - [x] Produto piloto → item Mercari m71370664392
 - [x] Chaves (travavam o Bloco Ofertas): Firecrawl · Baserow (base+token) · **WAHA** (`WAHA_URL`, `WAHA_API_KEY`, `WAHA_GROUP_ID`) → `.env`, fora do git. *(A Z-API saiu do fluxo em 16/07; as `ZAPI_*` seguem no `.env` só como rollback, marcadas como desativadas.)*
 
+## Estado atual (2026-07-27) — Post do Suzuka corrigido + o loop do Notion FECHOU (a arte agora sobe)
+Duas coisas: um defeito de tipografia que só o olho pega, e a última perna que faltava no motor de conteúdo.
+
+- [x] **A emenda do `1990` no slide 4 era 17px fora — e o erro era estrutural, não de ajuste.** O ano rachado era um `1990` **centralizado**, duplicado e cortado em 50% por `clip-path` sobre um gradiente de duas paradas: **três coisas cravadas em 50%** dependendo de a métrica da fonte concordar. Ela não concorda — o `1` do Anton tem **70px contra ~111px** dos outros dígitos, então o meio do texto cai 17px à direita da fronteira `19|90` e o corte pegava **dentro do segundo `9`**, deixando faixa branca nele.
+  - **Conserto:** cada metade do ano mora num bloco de 50% encostado na borda. A emenda vira a **fronteira entre os dois campos**, não uma coordenada, e o corte cai entre os dígitos **por construção** — qualquer que seja a largura do dígito. O gradiente sai; a cor vem de cada metade.
+  - **Medido, não olhado:** colunas de tinta do PNG. Antes o 3º dígito ia de 526 a 636, atravessando a emenda (540). Depois: vão de **538 a 545** com a emenda dentro dele. Detalhe: `letter-spacing` negativo sobra depois do último glifo da esquerda e faz ele transbordar ~2px — devolvido com `margin-right` do mesmo valor.
+  - **Trade-off aceito:** o conjunto fica 17px à direita do centro do slide (1,6%). A referência óptica passa a ser a emenda, que é o conceito do slide.
+  - **O fix foi pro `template.html` do `/post-feed` também** (o ano entra partido, `{{ANO_A}}`/`{{ANO_B}}`), senão renascia no próximo post com ano rachado. As 3 cópias do template com o mesmo md5.
+- [x] **`storytelling/04-suzuka-cobrou-duas-vezes` passou a ser a direção C.** A pasta que a ideia do Notion referencia ainda tinha a diagramação **antiga** (eyebrow + dots, sem paleta de era) — eram duas verdades pro mesmo post. Promovida; a anterior fica inteira e renderizável em `_v1-antiga/`.
+- [x] **A arte agora SOBE pro Notion, em qualidade original.** O loop terminava num **caminho local** escrito na página: quem quisesse ver o post tinha que abrir a pasta na máquina do Bruno. Script novo `.claude/skills/post-feed/scripts/notion-anexar-post.mjs` faz **upload nativo** (File Upload API, `Notion-Version: 2026-03-11`) e anexa na página da ideia.
+  - **Validado ponta a ponta** na ideia do Suzuka: 6 imagens na ordem, e o PNG **volta do Notion com md5 e tamanho idênticos** ao local (1.110.904 bytes) — é o mesmo arquivo que vai pro Instagram, sem recompressão.
+  - **Idempotente:** rodar de novo **recusa** em vez de duplicar; só troca com `--replace`.
+  - **Descartado com número:** Google Drive via MCP aceita binário, mas exigiria emitir ~1,9MB de **base64 por slide** como argumento de tool (centenas de milhares de tokens) e ainda entregaria link externo em vez de anexo.
+  - **Setup (feito):** integração interna **"CLAUDE"** conectada na página-mãe *🎬 Instagram Content Machine (ACBK)* → toda ideia nova já nasce acessível. `NOTION_TOKEN` no `.env` da **raiz do vault** (gitignored), porque o motor é multi-frente.
+  - Gotcha embutido: `process.exit()` com socket de fetch aberto dispara **assertion do libuv no Windows** e enterra a mensagem útil no stack trace — `die()` lança e o `main()` captura.
+- ⚠️ **ABERTO — rotacionar o `NOTION_TOKEN`:** passou pelo chat em 27/07 e ficou gravado no transcript da sessão em disco.
+- ⚠️ **ABERTO — `s5.jpg` (slide da admissão) sem origem rastreada:** não bate com nenhum arquivo do `mood/suzuka-1990/`; entrou no commit `552fb7a`. Registrado na tabela de licenciamento da `legenda.md`. Confirmar antes de publicar.
+- **Código:** PR draft **#2** em `brunerars/motor-ofertas-kit` (branch `fix/seam-1990-alinhamento`, base `feat/motor-ofertas-garimpo`). Os arquivos já foram copiados pro checkout normal, então o Obsidian mostra a versão corrigida. Memória: `emenda-tipografica-por-construcao`.
+> **Verde no detector segue não sendo prova:** o impeccable deu `[]` nas **duas** versões, a errada e a certa. Quem pegou foi o olho do Bruno; quem provou foi a medição de pixel.
+
 ## Estado atual (2026-07-23) — Motor de conteúdo PROVADO ponta a ponta + diagramação nova promovida a template
 O ciclo inteiro rodou com artefato real, e o conjunto de skills provou que **cria diagramação nova** a partir das referências da própria marca, não só recicla.
 

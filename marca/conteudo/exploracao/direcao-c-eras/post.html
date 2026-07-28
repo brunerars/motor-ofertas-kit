@@ -115,14 +115,23 @@ h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform
 /* ---- s4 · a costura: o conflito cromático É a história ----
    Metade Ferrari vermelha, metade McLaren branca. O "1990" cai exatamente em cima da
    emenda: "19" sai branco no vermelho, "90" sai vermelho no branco. Nenhum outro slide
-   tem duas liveries — em 1990 eram dois times, e é isso que a barra diz. */
-.seam{ flex:0 0 330px; position:relative; overflow:hidden;
-  background:linear-gradient(90deg, var(--ferrari) 0 50%, var(--paper) 50% 100%); }
-.seam-yr{ position:absolute; left:0; right:0; top:30px;
-  text-align:center; font-family:"Anton",sans-serif; font-size:240px; line-height:.82;
+   tem duas liveries — em 1990 eram dois times, e é isso que a barra diz.
+
+   A emenda é a FRONTEIRA entre os dois campos, não uma coordenada: cada metade
+   carrega metade do ano, encostada na borda, e o corte cai entre os dígitos por
+   construção. A versão anterior centralizava "1990" inteiro e cortava em 50% com
+   clip-path — errava 17px, porque o "1" do Anton tem 70px contra 111px dos outros
+   dígitos: o meio do texto não é o meio de "19|90". Sobrava faixa branca no 2º "9". */
+.seam{ flex:0 0 330px; position:relative; overflow:hidden; display:flex; }
+.seam-half{ flex:1 1 0; display:flex; align-items:flex-start; padding-top:30px; }
+.seam-l{ background:var(--ferrari); justify-content:flex-end; }
+.seam-r{ background:var(--paper); justify-content:flex-start; }
+.seam-yr{ font-family:"Anton",sans-serif; font-size:240px; line-height:.82;
   letter-spacing:-.01em; margin:0; }
-.seam-a{ color:var(--paper); clip-path:inset(0 50% 0 0); }
-.seam-b{ color:var(--ferrari); clip-path:inset(0 0 0 50%); }
+/* devolve o letter-spacing negativo que sobra depois do último glifo — sem isso o
+   "9" da esquerda transborda ~2px por cima da emenda */
+.seam-l .seam-yr{ color:var(--paper); margin-right:.01em; }
+.seam-r .seam-yr{ color:var(--ferrari); }
 .seam-tags{ position:absolute; left:0; right:0; bottom:30px; display:flex; }
 .seam-tag{ flex:1 1 0; font-size:28px; font-weight:800; letter-spacing:.1em; }
 .seam-tag-l{ padding-left:88px; color:var(--paper); }
@@ -229,8 +238,8 @@ h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform
     <img src="s4.jpg" style="object-position:center 45%" alt="A Ferrari de Prost e a McLaren de Senna soltando faísca na primeira curva de Suzuka, 1990"/>
   </figure>
   <div class="seam">
-    <p class="seam-yr seam-a">1990</p>
-    <p class="seam-yr seam-b">1990</p>
+    <div class="seam-half seam-l"><span class="seam-yr">19</span></div>
+    <div class="seam-half seam-r"><span class="seam-yr">90</span></div>
     <div class="seam-tags">
       <span class="seam-tag seam-tag-l">PROST · FERRARI</span>
       <span class="seam-tag seam-tag-r">SENNA · McLAREN</span>

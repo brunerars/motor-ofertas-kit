@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1080, initial-scale=1"/>
+<title>Nippon Speed Co. · Suzuka cobrou duas vezes — direção B (revista japonesa)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ===========================================================================
+   NIPPON SPEED CO. — DIREÇÃO B · "PÁGINA DE REVISTA JAPONESA DE BANCA"
+   Ancoragem: Racing On / Auto Sport (JP, 1989-92) — mook de corrida impresso
+   em papel barato: hashira (running head) na margem externa alternando
+   verso/recto, nombre (número de página) num quadrado de tinta vermelha
+   colado na quina, legenda vertical rente à foto, ficha de dados com fio
+   grosso, fotos de tamanhos desiguais sangrando por bordas diferentes.
+   Tokens: os mesmos do DESIGN.md (Anton + Archivo + ink/paper/red/redBright).
+   O que muda é a COMPOSIÇÃO: cada página é um campo com coordenadas próprias,
+   não uma pilha ancorada embaixo em x=88.
+   =========================================================================== */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
+  --hair:#ddddd7; --dark-grey:#5d5d5d; --mid-grey:#676763;
+  --red:#c82a2a; --red-ink:#a31f1f; --red-bright:#ff5347; --logo-red:#e60000;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#2a2a2a; }
+body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+.slide{ width:1080px; height:1440px; position:relative; overflow:hidden; display:none;
+  background:var(--ink); color:var(--paper); }
+.slide:target{ display:block; }
+body:not(:has(.slide:target)) #s1{ display:block; }
+
+/* Grão de impressão barata — matéria de papel, não filtro de foto. */
+.grain{ position:absolute; inset:0; z-index:6; pointer-events:none; opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size:256px 256px; }
+
+h1,h2{ font-family:"Anton", sans-serif; font-weight:400; margin:0; text-transform:uppercase; }
+
+/* ---- HASHIRA (running head) + NOMBRE (número de página) -------------------
+   Sistema real de revista, não rótulo decorativo: cada página carrega o nome
+   da seção (que muda: abertura / 1989 / 1990 / 1991 / acervo) e o número da
+   página da matéria (32 a 37, como uma matéria de 6 páginas numa edição).
+   A margem externa alterna: página par à esquerda, ímpar à direita. */
+.rail{ position:absolute; top:0; bottom:0; width:92px; z-index:5; }
+.rail-l{ left:0; } .rail-r{ right:0; }
+.rail span, .rail p{ text-shadow:0 2px 12px rgba(0,0,0,.8); }
+.rail-mark{ position:absolute; top:54px; left:50%; transform:translateX(-50%);
+  writing-mode:vertical-rl; font-family:"Anton",sans-serif; font-size:24px;
+  letter-spacing:.05em; text-transform:uppercase; color:var(--paper); white-space:nowrap;
+  display:inline-flex; align-items:center; }
+.lg-disc{ width:.46em; height:.46em; border-radius:50%; background:var(--logo-red);
+  flex:0 0 auto; margin:.3em 0; }
+.rail-sec{ position:absolute; bottom:146px; left:50%; transform:translateX(-50%);
+  writing-mode:vertical-rl; font-family:"Anton",sans-serif; font-size:32px;
+  letter-spacing:.045em; text-transform:uppercase; color:var(--red-bright); white-space:nowrap; }
+.rail-num{ position:absolute; bottom:0; width:92px; height:92px; background:var(--red);
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Anton",sans-serif; font-size:46px; color:var(--white); line-height:1; }
+.rail-l .rail-num{ left:0; } .rail-r .rail-num{ right:0; }
+
+/* ---- LEGENDA VERTICAL (tategaki de latim: rotacionada 90°, rente à foto) ---
+   Piso de 23px: o PNG de 1080 é exibido na largura do celular (~390pt), então
+   todo tamanho aqui vale ~0,36× na tela. 19px viraria 7pt e ninguém leria. */
+.vcap{ position:absolute; z-index:4; writing-mode:vertical-rl;
+  font-size:23px; line-height:1.5; font-weight:500; color:rgba(245,245,245,.9);
+  letter-spacing:.005em; }
+.vcap .cred{ color:rgba(245,245,245,.62); font-weight:400; }
+.on-photo{ text-shadow:0 2px 14px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.7); }
+
+/* ---- LEGENDA HORIZONTAL (sob foto em faixa) ------------------------------- */
+.hcap{ position:absolute; z-index:4; margin:0; font-size:22px; line-height:1.5;
+  color:rgba(245,245,245,.78); }
+.hcap .cred{ color:rgba(245,245,245,.62); }
+.sq{ display:inline-block; width:11px; height:11px; background:var(--red-bright);
+  margin-right:11px; vertical-align:.06em; }
+
+/* ---- FICHA DE DADOS (o segundo canal de leitura) -------------------------- */
+.ficha{ position:absolute; z-index:4; border-top:5px solid var(--red); }
+.ficha-h{ margin:0; padding:13px 0 9px; font-size:18px; font-weight:800;
+  text-transform:uppercase; letter-spacing:.15em; color:rgba(245,245,245,.72); }
+.fr{ display:flex; align-items:baseline; gap:16px; padding:11px 0 13px;
+  border-top:2px solid rgba(245,245,245,.17); }
+.fl{ flex:0 0 auto; min-width:138px; font-size:18px; font-weight:800; text-transform:uppercase;
+  letter-spacing:.13em; color:rgba(245,245,245,.72); }
+.fv{ font-size:26px; font-weight:500; line-height:1.3; color:var(--paper); }
+/* ficha em faixa horizontal (usada na página 34) */
+.ficha-row{ display:flex; }
+.ficha-row .cell{ flex:1; padding:16px 26px 4px; border-left:2px solid rgba(245,245,245,.17); }
+.ficha-row .cell:first-child{ padding-left:0; border-left:0; }
+.ficha-row .fl{ display:block; min-width:0; margin-bottom:9px; }
+
+/* ---- CORPO E TÍTULOS ------------------------------------------------------ */
+.body{ position:absolute; z-index:4; margin:0; font-size:33px; line-height:1.5;
+  color:rgba(245,245,245,.93); }
+.body b{ color:var(--white); font-weight:700; }
+.tit{ position:absolute; z-index:4; line-height:.92; letter-spacing:.005em; }
+
+/* ---- FOTOS ----------------------------------------------------------------
+   Largura SEMPRE explícita: em imagem posicionada, `width:auto` com left+right
+   resolve pela proporção intrínseca e o `right` é ignorado — foi o que cortou
+   o Prost da capa e encolheu a faixa da p.34 na primeira renderização. */
+.ph{ position:absolute; z-index:1; object-fit:cover; display:block; }
+
+/* =================== P.32 · ABERTURA ======================================= */
+#s1 .ph{ left:148px; top:0; width:932px; height:466px; object-position:center 50%; }
+#s1 .bar{ position:absolute; z-index:4; left:52px; top:452px; width:824px; height:14px;
+  background:var(--red); }
+#s1 .tit{ left:52px; top:466px; width:824px; background:var(--ink);
+  padding:30px 34px 38px 36px; font-size:122px; }
+#s1 .cover-sub{ position:absolute; z-index:4; left:150px; top:906px; width:520px; margin:0;
+  font-size:33px; line-height:1.42; color:rgba(245,245,245,.9); }
+#s1 .vcap{ right:44px; top:896px; width:150px; height:404px; }
+#s1 .ficha{ left:150px; top:1112px; width:600px; }
+#s1 .drag{ position:absolute; z-index:4; right:52px; bottom:58px; margin:0;
+  font-family:"Anton",sans-serif; font-size:29px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--red-bright); }
+
+/* =================== P.33 · 1989, A CORRIDA =============================== */
+#s2 .ph{ left:0; top:0; width:744px; height:788px; object-position:center 56%; }
+#s2 .vcap{ left:772px; top:62px; width:122px; height:594px; }
+#s2 .tit{ left:52px; top:844px; width:640px; font-size:106px; }
+#s2 .body{ left:52px; top:1078px; width:522px; }
+#s2 .ficha{ left:616px; top:1078px; width:322px; }
+
+/* =================== P.34 · 1989, A MESA ==================================
+   line-height 1.0 no título: com .92 a vírgula de "PISTA," descia dentro da
+   linha de baixo e lia como um apóstrofo solto depois de "MESA". */
+#s3 .tit{ left:150px; top:84px; width:842px; font-size:90px; line-height:1; }
+#s3 .bar{ position:absolute; z-index:4; left:150px; top:300px; width:286px; height:14px;
+  background:var(--red); }
+#s3 .ph{ left:0; top:350px; width:1080px; height:500px; object-position:center 54%; }
+#s3 .hcap{ left:150px; top:878px; width:760px; }
+#s3 .body{ left:150px; top:968px; width:842px; column-count:2; column-gap:56px; }
+#s3 .ficha{ left:150px; top:1206px; right:52px; }
+
+/* =================== P.35 · 1990, A CONTA (clímax) ======================== */
+#s4 .ph{ inset:0; width:100%; height:100%; object-position:center center; }
+#s4 .scrim{ position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(17,17,17,.62) 0%, rgba(17,17,17,.12) 26%, rgba(17,17,17,.42) 54%, rgba(17,17,17,.93) 78%, var(--ink) 100%),
+    linear-gradient(90deg, rgba(17,17,17,.72) 0%, rgba(17,17,17,.1) 34%, rgba(17,17,17,0) 60%); }
+#s4 .vcap{ left:54px; top:84px; width:122px; height:520px; }
+#s4 .tit{ left:0; top:700px; width:712px; background:var(--red); color:var(--white);
+  padding:34px 46px 40px 56px; font-size:112px; }
+#s4 .body{ left:56px; top:1030px; width:596px; }
+#s4 .ficha{ left:682px; top:1030px; width:258px; }
+#s4 .ficha .fl{ min-width:108px; }
+
+/* =================== P.36 · 1991, A ADMISSÃO (tipográfica) ================ */
+/* Sem foto: a página se sustenta por coluna estreita + título vertical na
+   margem + linha do tempo em pé de página. Nenhum campo vazio sobra. */
+#s5 .tit{ left:150px; top:100px; width:700px; font-size:138px; }
+#s5 .bar{ position:absolute; z-index:4; left:150px; top:394px; width:286px; height:14px;
+  background:var(--red); }
+#s5 .body{ left:150px; top:450px; width:520px; }
+#s5 .marg{ position:absolute; z-index:4; left:706px; top:106px; width:100px; height:620px;
+  writing-mode:vertical-rl; margin:0; font-size:22px; line-height:1.5; font-weight:500;
+  color:rgba(245,245,245,.72); }
+#s5 .pull{ position:absolute; z-index:4; left:812px; top:104px; width:186px; height:660px;
+  writing-mode:vertical-rl; font-family:"Anton",sans-serif; font-size:94px; line-height:1.05;
+  letter-spacing:.02em; text-transform:uppercase; color:var(--red-bright); }
+#s5 .ficha{ left:150px; top:856px; right:52px; }
+#s5 .fr{ align-items:baseline; gap:26px; padding:18px 0 20px; }
+#s5 .fy{ flex:0 0 auto; width:128px; font-family:"Anton",sans-serif; font-size:54px;
+  line-height:1; color:var(--red-bright); }
+#s5 .ft{ font-size:27px; line-height:1.45; color:rgba(245,245,245,.93); }
+
+/* =================== P.37 · ACERVO (a peça) =============================== */
+#s6 .ph{ left:0; top:0; width:646px; height:700px; object-position:72% 38%; }
+#s6 .vcap{ left:676px; top:64px; width:122px; height:452px; }
+#s6 .tit{ left:52px; top:748px; width:560px; font-size:76px; line-height:1.2; }
+#s6 .ficha{ left:590px; top:744px; width:350px; }
+#s6 .ficha .fl{ min-width:112px; }
+#s6 .body{ left:52px; top:1022px; width:560px; font-size:32px; }
+#s6 .rail-sec{ bottom:246px; }
+#s6 .cta{ position:absolute; z-index:4; left:0; right:0; bottom:0; height:200px;
+  background:var(--red); padding:36px 92px 0 52px; }
+#s6 .cta-line{ margin:0; font-size:28px; line-height:1.42; font-weight:600; color:var(--white);
+  max-width:800px; }
+/* Handle em Archivo 800, não em Anton: em Anton caixa baixa o pingo do "i"
+   some no peso da haste e "link na bio" lê "llnk na blo". Defeito herdado do
+   post atual — só aparece no PNG, o detector não pega. */
+#s6 .cta-handle{ display:block; margin-top:16px; font-family:"Archivo",sans-serif;
+  font-weight:800; font-size:30px; letter-spacing:.005em; color:var(--white); }
+#s6 .rail-num{ background:var(--ink); color:var(--red-bright); }
+</style>
+</head>
+<body>
+
+<!-- ===================== P.32 · ABERTURA ================================== -->
+<section class="slide" id="s1">
+  <img class="ph" src="capa.jpg" alt="Senna e Prost deixam a pista por lados opostos do guard-rail em Suzuka, 1989"/>
+  <span class="bar"></span>
+  <h1 class="tit">Suzuka<br/>cobrou<br/>duas vezes</h1>
+  <p class="cover-sub">Em 1989 eles dividiam o mesmo box. Em 1990 já eram inimigos declarados.</p>
+  <p class="vcap on-photo">Senna e Prost deixam a pista por lados opostos do guard-rail, ainda com capacete. <span class="cred">Foto: arquivo, autoria não identificada.</span></p>
+  <div class="ficha">
+    <p class="ficha-h">Dados da matéria</p>
+    <div class="fr"><span class="fl">Circuito</span><span class="fv">Suzuka, Mie</span></div>
+    <div class="fr"><span class="fl">Provas</span><span class="fv">GP do Japão, 1989 e 1990</span></div>
+    <div class="fr"><span class="fl">Páginas</span><span class="fv">32 a 37</span></div>
+  </div>
+  <p class="drag">Arrasta →</p>
+  <div class="rail rail-l">
+    <span class="rail-mark">Nippon<span class="lg-disc"></span>Speed Co.</span>
+    <span class="rail-sec">Abertura</span>
+    <span class="rail-num">32</span>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- ===================== P.33 · 1989, A CORRIDA =========================== -->
+<section class="slide" id="s2">
+  <img class="ph" src="s2.jpg" alt="As duas McLaren de Senna e Prost travadas uma na outra na chicane de Suzuka, 1989"/>
+  <p class="vcap on-photo">As duas McLaren travadas uma na outra depois do toque na chicane. Suzuka, 1989. <span class="cred">Foto: arquivo, autoria não identificada.</span></p>
+  <h2 class="tit">O mesmo<br/>box</h2>
+  <p class="body">Senna e Prost brigavam pelo título correndo pela <b>mesma equipe</b>. Os dois de McLaren, com o mesmo carro. Na chicane, Prost fechou a porta e os dois bateram.</p>
+  <div class="ficha">
+    <p class="ficha-h">Na pista</p>
+    <div class="fr"><span class="fl">Senna</span><span class="fv">McLaren</span></div>
+    <div class="fr"><span class="fl">Prost</span><span class="fv">McLaren</span></div>
+    <div class="fr"><span class="fl">Onde</span><span class="fv">Chicane</span></div>
+  </div>
+  <div class="rail rail-r">
+    <span class="rail-mark">Nippon<span class="lg-disc"></span>Speed Co.</span>
+    <span class="rail-sec">1989 · A corrida</span>
+    <span class="rail-num">33</span>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- ===================== P.34 · 1989, A MESA ============================== -->
+<section class="slide" id="s3">
+  <h2 class="tit">Venceu na pista,<br/>perdeu na mesa</h2>
+  <span class="bar"></span>
+  <img class="ph" src="s3.jpg" alt="Comissários japoneses empurrando a McLaren de Senna de volta à corrida em Suzuka, 1989"/>
+  <p class="hcap"><span class="sq"></span>Os comissários empurram a McLaren de volta para a corrida, na saída da chicane. Suzuka, 1989. <span class="cred">Foto: arquivo, autoria não identificada.</span></p>
+  <p class="body">Senna voltou empurrado pelos comissários, cortou a chicane e <b>ganhou a corrida</b>. Horas depois a direção de prova tirou a vitória dele. O título foi pro francês.</p>
+  <div class="ficha">
+    <div class="ficha-row">
+      <div class="cell"><span class="fl">Na pista</span><span class="fv">Passou primeiro</span></div>
+      <div class="cell"><span class="fl">Na mesa</span><span class="fv">Sem a vitória</span></div>
+      <div class="cell"><span class="fl">Título</span><span class="fv">Prost</span></div>
+    </div>
+  </div>
+  <div class="rail rail-l">
+    <span class="rail-mark">Nippon<span class="lg-disc"></span>Speed Co.</span>
+    <span class="rail-sec">1989 · A mesa</span>
+    <span class="rail-num">34</span>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- ===================== P.35 · 1990, A CONTA (clímax) ==================== -->
+<section class="slide" id="s4">
+  <img class="ph" src="s4.jpg" alt="A McLaren branca de Senna e a Ferrari vermelha de Prost se tocando na primeira curva de Suzuka, 1990"/>
+  <div class="scrim"></div>
+  <p class="vcap on-photo">McLaren e Ferrari lado a lado na entrada da primeira curva. Suzuka, 1990. <span class="cred">Foto: arquivo, autoria não identificada.</span></p>
+  <h2 class="tit">A conta<br/>chegou</h2>
+  <p class="body">Prost agora corria pela Ferrari, e era ele que precisava vencer. Largada, primeira curva, e <b>Senna não tirou o pé</b>. Os dois pararam na brita juntos, e o bicampeonato estava decidido antes da segunda curva.</p>
+  <div class="ficha">
+    <p class="ficha-h">Na pista</p>
+    <div class="fr"><span class="fl">Senna</span><span class="fv">McLaren</span></div>
+    <div class="fr"><span class="fl">Prost</span><span class="fv">Ferrari</span></div>
+    <div class="fr"><span class="fl">Onde</span><span class="fv">Curva 1</span></div>
+  </div>
+  <div class="rail rail-r">
+    <span class="rail-mark">Nippon<span class="lg-disc"></span>Speed Co.</span>
+    <span class="rail-sec">1990 · A conta</span>
+    <span class="rail-num">35</span>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- ===================== P.36 · 1991, A ADMISSÃO ==========================
+     Página sem foto. Em vez de um bloco centralizado com buraco em cima e
+     embaixo, a página é um campo: título grande em medida estreita, corpo
+     numa coluna de 520px, marginália e título vertical ocupando a margem
+     externa, e a linha do tempo fechando o pé. -->
+<section class="slide" id="s5">
+  <h2 class="tit">Ele mesmo<br/>contou</h2>
+  <span class="bar"></span>
+  <p class="body">Senna admitiu que a batida na primeira curva foi <b>de propósito</b>, resposta ao que tinham feito com ele em 1989. Até hoje a arquibancada se divide entre quem chama de justiça e quem chama de vingança.</p>
+  <p class="marg">Justiça ou vingança: a arquibancada nunca resolveu.</p>
+  <span class="pull">De propósito</span>
+  <div class="ficha">
+    <p class="ficha-h">A conta, ano a ano</p>
+    <div class="fr"><span class="fy">1989</span><span class="ft">Vence em Suzuka e perde a vitória na mesa. O título vai pro francês.</span></div>
+    <div class="fr"><span class="fy">1990</span><span class="ft">Não tira o pé na primeira curva. Os dois na brita, bicampeonato decidido.</span></div>
+    <div class="fr"><span class="fy">1991</span><span class="ft">Conta que a batida foi de propósito, resposta ao que fizeram em 1989.</span></div>
+  </div>
+  <div class="rail rail-l">
+    <span class="rail-mark">Nippon<span class="lg-disc"></span>Speed Co.</span>
+    <span class="rail-sec">1991 · A admissão</span>
+    <span class="rail-num">36</span>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- ===================== P.37 · ACERVO (a peça) =========================== -->
+<section class="slide" id="s6">
+  <img class="ph" src="foto.jpg" alt="Boné oficial do GP do Japão de 1990 com o traçado de Suzuka bordado em dourado"/>
+  <p class="vcap on-photo">Boné oficial do GP do Japão de 1990, com o traçado de Suzuka na frente. <span class="cred">Foto: acervo Nippon Speed Co.</span></p>
+  <h2 class="tit">Boné oficial<br/>GP do Japão<br/>1990</h2>
+  <div class="ficha">
+    <p class="ficha-h">A peça</p>
+    <div class="fr"><span class="fl">Temporada</span><span class="fv">1990</span></div>
+    <div class="fr"><span class="fl">Detalhe</span><span class="fv">Traçado bordado em dourado</span></div>
+    <div class="fr"><span class="fl">Na aba</span><span class="fv">Coroa de louros</span></div>
+    <div class="fr"><span class="fl">Origem</span><span class="fv">Garimpo no Japão</span></div>
+  </div>
+  <p class="body">Da temporada em que a conta foi acertada. Traz o <b>traçado de Suzuka bordado em dourado</b> e a coroa de louros na aba.</p>
+  <div class="cta">
+    <p class="cta-line">Peças com história assim, garimpadas no Japão, aparecem toda semana no nosso grupo.<span class="cta-handle">link na bio · @nipponspeedco</span></p>
+  </div>
+  <div class="rail rail-r">
+    <span class="rail-mark">Nippon<span class="lg-disc"></span>Speed Co.</span>
+    <span class="rail-sec">Acervo</span>
+    <span class="rail-num">37</span>
+  </div>
+  <div class="grain"></div>
+</section>
+
+</body>
+</html>
