@@ -19,7 +19,7 @@ Utilitário leve, desacoplado de `/lp` e `/agenda`: recebe URL(s) do Mercari →
 ## Tom de voz (padrão dessa vertente)
 - **Colecionador falando com colecionador.** "Garimpo", "peça que marcou época", "acervo". Nada de linguagem de e-commerce genérico.
 - **Escassez honesta:** peça única, quando sai não volta. Sem falsa urgência/countdown.
-- **Direto e sem promessa vazia:** procedência, nota fiscal, curadoria. Nunca inventar prazo/preço (ver [[logistica-mercari]]).
+- **Direto e sem promessa vazia:** procedência e curadoria. A copy saiu **sem "nota fiscal"** na revisão com o Caio (08/07). Nunca inventar prazo/preço (ver [[logistica-mercari]]).
 - **Nostalgia como gancho:** a era/época do item é o enredo (ex: F1 anos 80–90).
 - Português BR, frases curtas, verbo no presente.
 
@@ -33,26 +33,24 @@ Utilitário leve, desacoplado de `/lp` e `/agenda`: recebe URL(s) do Mercari →
 7. **Footer** — logo, tag origem→destino, ano.
 
 ## Design (padrão)
-- Base **escura + 1 acento** da marca (NSC = vermelho de corrida `#E10600`). Fundo `#0B0B0C`, superfície `#141416`, texto `#F5F5F5`, mudo `#A2A2A2`.
+- O padrão da NSC virou **claro/editorial** desde a V1 "Editorial Garage" (07/07): tinta `#111` sobre papel `#f5f5f5`, vermelho de corrida como sinal. A fonte da verdade dos tokens é o `DESIGN.md` da frente — não este roteiro. Base escura foi a direção antiga. (fonte: [[2026-07-07 — LP Nippon Speed Co. redesign V1 + mobile-first]])
 - Tipografia: display condensado (Anton) + corpo (Archivo). Uppercase nos títulos.
 - Motivo temático com parcimônia (xadrez de bandeira, hinomaru).
 
 ## Regras técnicas (não repetir os erros já pegos)
 - **Self-contained** pra Vercel: fontes via Google Fonts CDN; imagens locais em `assets/`; nada de hotlink.
 - **Imagens de card:** não jogar screenshot cru como foto de passo — usar imagem tratada/gerada (ver nota abaixo). Recortar logos/heros pra bounding box (evitar canvas transparente gigante = elemento minúsculo).
-- **Motion:** progressive enhancement — conteúdo `opacity:1` por padrão, reveal via IntersectionObserver, nunca preso invisível. Ver [[design-system-extract-motion-gotcha]].
-- **Mobile-first (obrigatório):** base = mobile, `min-width` adiciona desktop; `clamp()` testado em ~360px; hero `100svh`; CTAs full-width ≥44px; bloco `@media (max-width:600px)` dedicado; sem overflow lateral. Gate antes do deploy: `impeccable detect`=0 + screenshots headless 390 e 1440. Ver [[lp-mobile-first-standard]].
+- **Motion:** progressive enhancement — conteúdo `opacity:1` por padrão, reveal via IntersectionObserver, nunca preso invisível. Ver design-system-extract-motion-gotcha.
+- **Mobile-first (obrigatório):** base = mobile, `min-width` adiciona desktop; `clamp()` testado em ~360px; hero `100svh`; CTAs full-width ≥44px; bloco `@media (max-width:600px)` dedicado; sem overflow lateral. Gate antes do deploy: `impeccable detect`=0 + screenshots headless 390 e 1440. Ver lp-mobile-first-standard.
 - **CTA:** todos apontam pro grupo. Placeholder `REPLACE_ME` até ter o link real.
 - **Preço:** "sob consulta no grupo" (padrão atual).
 
 ## Imagens dos passos "como funciona"
-Screenshots crus ficam feios como foto de card. Opções (em ordem de preferência):
-1. Gerar 3 imagens branded por IA (`/nanobanana`) no clima da marca (garimpo/importação/entrega).
-2. Referências reais tratadas (foto de peça, caixa etiquetada, print do grupo desfocado).
-3. Ícone/ilustração minimalista + fundo da paleta (sem foto).
+- **Seção sem imagem à altura vira demonstração nativa, não card com foto.** As artes prontas de terceiro rebaixavam a página; "como funciona" e a linha do tempo foram refeitas com o próprio design system (ícone line-art traçando-se ao scroll, eixo que se desenha). Imagem de terceiro só entra se for melhor que o desenho. (fonte: [[2026-07-07 — LP Nippon Speed Co. redesign V1 + mobile-first]])
+- Se precisar de foto: referência real tratada (peça, caixa etiquetada, print do grupo desfocado); recorte de produto é rembg local (`cutout-produto-rembg-nao-gerativo`), nunca gerativo.
 
 ## Fluxo de deploy (teste rápido)
-`vercel --prod --token=$VERCEL_TOKEN --yes` de dentro da pasta da LP → URL de teste pro cliente ver. Ajuste aqui → redeploy → novo link.
+`vercel --prod --token=$VERCEL_TOKEN --yes` de dentro da pasta da LP → URL de teste pro cliente ver. Ajuste aqui → redeploy → novo link. **Link de teste é sempre separado do oficial; promover pro oficial só com aprovação do Caio/Bruno** (regra de 08/07).
 
 ## Relacionado
-[[logistica-mercari]] · [[motor-ofertas-nsc]] · [[design-system-extract-motion-gotcha]] · [[producao-conteudo-direcao]]
+[[logistica-mercari]] · `motor-ofertas-nsc` · design-system-extract-motion-gotcha · producao-conteudo-direcao
