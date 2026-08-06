@@ -125,6 +125,11 @@ Duas coisas: um defeito de tipografia que só o olho pega, e a última perna que
 - **Código:** PR draft **#2** em `brunerars/motor-ofertas-kit` (branch `fix/seam-1990-alinhamento`, base `feat/motor-ofertas-garimpo`). Os arquivos já foram copiados pro checkout normal, então o Obsidian mostra a versão corrigida. Memória: `emenda-tipografica-por-construcao`.
 > **Verde no detector segue não sendo prova:** o impeccable deu `[]` nas **duas** versões, a errada e a certa. Quem pegou foi o olho do Bruno; quem provou foi a medição de pixel.
 
+## Anatomia do pod (régua de 06/08 — ver ANATOMIA-DE-POD no ECOSSISTEMA do vault)
+- **Posts novos nascem em `conteudo/posts/NN-slug/vN/`** (o esquema canônico do vault, com `notas.md`/`legenda.md`/`comparar.html`). O legado fica onde está, em `marca/conteudo/` — não migrar.
+- **O trio de estado, cada um com um papel:** este `CLAUDE.md` é o cérebro no repo (a verdade técnica) · `motor-ofertas-nsc.md` é o hub de Estado no vault (aliases, wikilinks, "onde parei") · `docs/historico-estados.md` é a arqueologia por data. Não fundir.
+- **Pendência registrada no registry do vault:** enxugar este CLAUDE.md pro alvo ≤80 linhas do padrão de pod (hoje ele é o doc legado pré-`/pod`).
+
 ## Histórico
 Estados anteriores (2026-07-02 → 2026-07-23) em [[historico-estados]] (`docs/historico-estados.md`) — gotchas e decisões de cada rodada.
 
