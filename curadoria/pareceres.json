@@ -1,0 +1,213 @@
+{
+  "_schema": "Contrato de saída do agente de curadoria. Toda entrada de 'sinais' exige evidencia + fonte. 'o_que_nao_sei' nunca vem vazio. Sem nota agregada — ver METODO.md.",
+  "_rodada": "etapa-1-prototipo",
+  "_avaliado_em": "2026-08-07",
+  "_avaliador": "manual (Claude olhando fotos + texto), pré-app",
+  "pareceres": [
+    {
+      "id": "m71164960236",
+      "titulo_vendedor": "未使用　1997年製フェラーリ公式ライセンスミハエル・シューマッハ記念　キャップ",
+      "preco_jpy": 2400,
+      "vendedor": { "nome": "minto☆", "avaliacoes_boas": 4279, "avaliacoes_ruins": 0 },
+      "sinais": [
+        {
+          "classe": "CORRECAO",
+          "severidade": "nao_publicar_assim",
+          "afirmacao": "O ano '1997年製' (fabricado em 1997) está errado. A etiqueta diz ©1997, que é o ano do copyright do design da Ferrari, não o ano de fabricação da peça.",
+          "evidencia": "Etiqueta amarela: 'Official Licenced Product ©1997 Ferrari Spa / Under Licence to NICE MAN SPORTS'",
+          "fonte": "foto_2"
+        },
+        {
+          "classe": "CORRECAO",
+          "severidade": "nao_publicar_assim",
+          "afirmacao": "O conteúdo do boné contradiz 1997. Ele comemora título mundial (coroa de louros + 'F1 WORLD CHAMPIONSHIP' + número 1 ao lado do escudo). Schumacher não foi campeão em 1997 — foi excluído da classificação final do campeonato após a colisão com Villeneuve em Jerez, e naquele ano seu carro levava o número 5. O #1 com Schumacher na Ferrari só existe em 1996 e de 2001 a 2005.",
+          "evidencia": "Bordado frontal 'F1 WORLD CHAMPIONSHIP' com logo do globo, escudo Ferrari + '1' na lateral, coroa de louros na aba",
+          "fonte": "foto_1, foto_4, foto_6"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Licenciamento oficial consistente. Nice Man Sports era licenciada real de produtos Ferrari no período, e a etiqueta interna com o cavallino corrobora.",
+          "evidencia": "Etiqueta pendurada + etiqueta interna amarela com cavallino rampante",
+          "fonte": "foto_2, foto_5"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Estado 'não usado' é sustentado: etiqueta de produto ainda presa por fio, sem marca de uso na aba ou na faixa interna.",
+          "evidencia": "Tag pendurada intacta; interior limpo",
+          "fonte": "foto_1, foto_5"
+        }
+      ],
+      "recomendacao": "Peça provavelmente legítima e vendedor com reputação forte (4279/0). O problema é a data. Publicar como '1997' expõe a loja ao público que mais entende de F1 — um colecionador identifica na hora. Corrigir para 'era Schumacher/Ferrari' sem cravar ano, ou pedir ao vendedor foto de etiqueta interna com código de produção.",
+      "o_que_nao_sei": [
+        "O ano real de fabricação. A etiqueta só dá o copyright; nada na peça datou a produção.",
+        "Se é de 1996 (Schumacher #1 na estreia pela Ferrari) ou da série 2001-2004. O design não desambigua nas fotos disponíveis."
+      ]
+    },
+    {
+      "id": "m53001823873",
+      "titulo_vendedor": "Tommy Hilfiger ロータスlotusレーシングシャツ 半袖 90s",
+      "preco_jpy": 6000,
+      "vendedor": { "nome": "シンイチ", "avaliacoes_boas": 342, "avaliacoes_ruins": 0 },
+      "sinais": [
+        {
+          "classe": "VALOR",
+          "severidade": "achado_principal",
+          "afirmacao": "É memorabilia do ÚLTIMO ANO do Team Lotus original (1994). O patch peitoral diz 'Team Lotus with MUGEN HONDA' — a Lotus só usou motor Mugen-Honda em 1994, e a equipe entrou em colapso financeiro no fim daquela temporada e nunca mais correu. É uma peça de fim de dinastia: a equipe de Colin Chapman, Jim Clark e Senna (1985-87).",
+          "evidencia": "Patch bordado 'Team Lotus with MUGEN HONDA'; conjunto de patrocinadores Loctite, Hitachi, Mobil 1, Tommy Hilfiger, Pepe Jeans — todos da Lotus em 1994",
+          "fonte": "foto_1"
+        },
+        {
+          "classe": "VALOR",
+          "severidade": "achado_principal",
+          "afirmacao": "O vendedor não sabe o que tem. A descrição inteira é 'camisa de trabalho manga curta multicolorida com patches de patrocinador' — zero menção a 1994, ao fim do Team Lotus ou ao fato de ser a primeira incursão da Tommy Hilfiger na F1 (antes da Ferrari em 1998). Preço de 6000 JPY é de camisa Tommy vintage genérica.",
+          "evidencia": "Descrição completa do anúncio: '- ブランド: Tommy Hilfiger / - スタイル: 半袖ワークシャツ / - デザイン: レーシングスポンサーロゴパッチ'",
+          "fonte": "descricao"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Etiqueta consistente com Tommy Hilfiger dos anos 90: 'MADE IN MACAU / 100% COTTON', logo bandeira da era, tamanho L/G.",
+          "evidencia": "Etiqueta de gola",
+          "fonte": "foto_8"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "atencao_na_legenda",
+          "afirmacao": "As manchas são reais, visíveis e declaradas ('傷や汚れあり' = com danos/sujeira). Pontos amarelados espalhados no painel branco e perto do patch peitoral.",
+          "evidencia": "Manchas amareladas no tecido branco",
+          "fonte": "foto_3, foto_9"
+        }
+      ],
+      "recomendacao": "A peça mais valiosa das cinco, e a mais subprecificada. A história ('o último ano do Team Lotus') é argumento de compra e é pauta de post de feed pronta. Mas a condição é o freio: as manchas no branco são visíveis e precisam aparecer na foto da oferta, não só na legenda.",
+      "o_que_nao_sei": [
+        "Se é peça de equipe (usada pelo time nos boxes) ou merchandising vendido ao público. As duas existiram; a diferença muda muito o valor e as fotos não resolvem.",
+        "Se as manchas saem com lavagem profissional."
+      ]
+    },
+    {
+      "id": "m35956987972",
+      "titulo_vendedor": "【90sビンテージ】　ホンダ　F1グランプリ キャップ　アイルトン•セナ　帽子",
+      "preco_jpy": 5000,
+      "vendedor": { "nome": "AFTRMTH", "avaliacoes_boas": 1052, "avaliacoes_ruins": 0 },
+      "sinais": [
+        {
+          "classe": "ATRIBUICAO",
+          "severidade": "nao_publicar_assim",
+          "afirmacao": "Não há nada de Ayrton Senna nesta peça. É merchandising da Honda F1 Collection: o bordado diz 'GRAND-PRIX RACING TEAM / HONDA / F-1' e a etiqueta lateral diz 'HONDA F1 COLLECTION'. O nome do Senna aparece SÓ no bloco de keywords no fim da descrição, junto com McLaren, Suzuka e 'rare' — é SEO de vendedor, prática padrão no Mercari.",
+          "evidencia": "Bordado frontal e etiqueta lateral não mencionam piloto nenhum; no anúncio 'アイルトンセナ / Ayrton Senna' aparece apenas na lista de keywords final",
+          "fonte": "foto_1, foto_5, descricao"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Composição declarada bate exatamente com a etiqueta: feltro, lã 80% / rayon 20%.",
+          "evidencia": "Etiqueta 'NO.9W71 ... (フェルト) 毛 80% レーヨン 20%'",
+          "fonte": "foto_11"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "atencao_na_legenda",
+          "afirmacao": "O furo declarado existe e é pequeno. Vendedor honesto: apontou o defeito e indicou a foto exata ('画像5').",
+          "evidencia": "Furo único no painel lateral, ~3mm",
+          "fonte": "foto_5"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Construção consistente com vintage: feltro de lã, fecho plástico da era, etiqueta tecida com código de produto.",
+          "evidencia": "Fecho plástico vermelho de encaixe; etiqueta amarelada pelo tempo",
+          "fonte": "foto_9, foto_11"
+        }
+      ],
+      "recomendacao": "Peça boa e vendedor confiável, mas o título é uma armadilha. Traduzir literalmente vira 'Boné Honda F1 Ayrton Senna' e vende expectativa que a peça não entrega — quem comprar querendo memorabilia do Senna recebe um boné da Honda. Publicar como 'Honda F1 Grand-Prix Racing Team, era dos motores Honda'. A ligação com Senna (Honda motorizou a McLaren dos títulos dele, 1988-92) pode ser contada como CONTEXTO na legenda, nunca como atribuição.",
+      "o_que_nao_sei": [
+        "O ano. 'Anos 90' é consistente com a construção, mas nada na peça datou. O código NO.9W71 pode ser de produção e não foi decodificado.",
+        "Se a Honda F1 Collection era merchandising oficial de circuito ou linha de varejo."
+      ]
+    },
+    {
+      "id": "m58417466217",
+      "titulo_vendedor": "90s Benetton F1 ポロシャツ イタリア製 Ford elf L",
+      "preco_jpy": 9800,
+      "vendedor": { "nome": "JETSETTER", "avaliacoes_boas": 190, "avaliacoes_ruins": 0 },
+      "sinais": [
+        {
+          "classe": "VALOR",
+          "severidade": "achado_principal",
+          "afirmacao": "Datável em 1994 com precisão de um ano, contra o vago '1990年前後〜90s頃' do vendedor. A Mild Seven só virou patrocinadora-título da Benetton em 1994 (antes era Camel), e a Benetton usou motor Ford até 1994, mudando pra Renault em 1995. A interseção Mild Seven × Ford é uma temporada só: 1994 — o ano do primeiro título de Schumacher.",
+          "evidencia": "Patch 'MILD SEVEN' no peito + bordado 'Benetton Formula 1 Ford Racing Team'",
+          "fonte": "foto_1, foto_3"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "'MADE IN ITALY' do título confirmado na etiqueta de gola.",
+          "evidencia": "Etiqueta 'UNITED COLORS OF BENETTON / MADE IN ITALY'",
+          "fonte": "foto_3"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Single stitch na barra, declarado pelo vendedor e visível. É indicador de construção vintage genuína, coerente com a datação de 1994.",
+          "evidencia": "Barra com costura simples",
+          "fonte": "foto_3"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Conjunto de patrocinadores coerente entre si: Mild Seven, Ford, elf, Minol, Enervit — todos da Benetton do período.",
+          "evidencia": "Patches nas duas mangas e no peito",
+          "fonte": "foto_1, foto_2, foto_3"
+        }
+      ],
+      "recomendacao": "Peça coerente do início ao fim, com medidas reais informadas pelo vendedor (raro e bom). O ganho aqui é a datação: vender como '1994, a temporada do primeiro título do Schumacher' em vez de 'anos 90'. É a peça mais cara das cinco e a que melhor sustenta o preço com história.",
+      "o_que_nao_sei": [
+        "Se é peça de equipe ou linha de varejo da Benetton — a United Colors of Benetton vendia linha racing ao público, o que a etiqueta sugere, mas não fecha.",
+        "O estado real do azul (desbotamento). Só 3 fotos e nenhuma sob luz neutra."
+      ]
+    },
+    {
+      "id": "m15083004696",
+      "titulo_vendedor": "F1日本グランプリ 会場限定 鈴鹿サーキット 30回記念グッズ　復刻キャップ　赤",
+      "preco_jpy": 3800,
+      "vendedor": { "nome": "道後温泉♪", "avaliacoes_boas": 511, "avaliacoes_ruins": 0 },
+      "sinais": [
+        {
+          "classe": "CORRECAO",
+          "severidade": "nao_publicar_assim",
+          "afirmacao": "NÃO é peça vintage. É merchandising oficial de 2018, edição limitada de evento, com design retrô. O vendedor foi explícito: '復刻' (reedição) no título e 'イメージしたリバイバルグッズ' (produto revival inspirado em) na descrição. O risco é a tradução: 'SINCE 1962' bordado + coroa de louros + '30回記念' fazem a peça parecer antiga se o post não disser o ano.",
+          "evidencia": "Descrição: '鈴鹿サーキットで過去に販売されていた商品をイメージしたリバイバルグッズ... 2018年鈴鹿日本グランプリの会場で限定販売されていたもの'",
+          "fonte": "titulo, descricao"
+        },
+        {
+          "classe": "CORRECAO",
+          "severidade": "nao_publicar_assim",
+          "afirmacao": "Uma das 4 fotos não é da peça: é imagem de divulgação de terceiro com marca d'água visível ('Response', site japonês de notícias automotivas), mostrando as 3 cores do lançamento. Sobram 3 fotos reais utilizáveis, e essa não pode entrar no post por licenciamento.",
+          "evidencia": "Imagem de catálogo com fundo branco, 3 bonés lado a lado e marca d'água no canto inferior direito",
+          "fonte": "foto_4"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "A alegação '30回記念' confere. Suzuka sediou o GP do Japão de 1987 a 2006 (20 edições) e de 2009 a 2018 (10), somando exatamente 30 em 2018.",
+          "evidencia": "Cálculo sobre o calendário do GP do Japão; bate com a data declarada",
+          "fonte": "descricao"
+        },
+        {
+          "classe": "CONFIRMACAO",
+          "severidade": "usar_como_prova",
+          "afirmacao": "Estado novo sustentado: etiqueta ainda pendurada, sem marca de uso.",
+          "evidencia": "Tag presa no boné em duas fotos distintas",
+          "fonte": "foto_1, foto_3"
+        }
+      ],
+      "recomendacao": "Item legítimo e honestamente descrito, mas é outra categoria: colecionável de evento com 8 anos, não vintage. Ainda vende (edição limitada, comprável só no circuito), desde que o post diga '2018, edição limitada do 30º GP do Japão'. Não usar a foto 4.",
+      "o_que_nao_sei": [
+        "Quantas unidades foram feitas — 'edição limitada' de evento não tem número público.",
+        "Se as outras duas cores (branco e preto) mudam o valor relativo do vermelho."
+      ]
+    }
+  ]
+}

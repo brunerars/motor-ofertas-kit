@@ -41,3 +41,6 @@ _verify_tmp.html
 .DS_Store
 Thumbs.db
 *.err
+
+# curadoria: material bruto do Mercari (fotos + scrape) fica local
+curadoria/pecas/
