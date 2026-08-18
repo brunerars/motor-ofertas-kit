@@ -175,9 +175,9 @@ O gate escrito é: *"validar com UMA loja rodando pro Caio (NSC) antes de genera
 ---
 
 ## O que continua honesto
-- A tese de "loja em caixa" **segue hipótese: nunca se clonou uma segunda loja** e a NSC tem zero receita ([[padrao-construido-nao-vendido]]).
+- A tese de "loja em caixa" **segue hipótese: nunca se clonou uma segunda loja** e a NSC tem zero receita (padrao-construido-nao-vendido).
 - O moat continua sendo **velocidade de setup + garimpo do Caio, não a tech** — este documento é sobre a velocidade, e não muda o resto.
 - A conversa com o Caio pra levantar o sistema-template **está desmarcada desde 24/06** enquanto a tech correu sozinha.
 - A bifurcação **produto/kit × consultoria+cérebro** (02/07) segue sem revisita. O escopo aqui (hub operado pelo Bruno) é compatível com as duas.
 
-Ver [[motor-ofertas-nsc]] · [[caio-logistica-japao]] · `README.md` · `SETUP.md` · `docs/baserow-disparador-schema.md`
+Ver `motor-ofertas-nsc` · [[caio-logistica-japao]] · `README.md` · `SETUP.md` · `docs/baserow-disparador-schema.md`

@@ -104,4 +104,4 @@ A `LEADS` guarda **telefone e nome de cliente**. É a primeira tabela do projeto
 ## Estado
 1 linha real (`Benetton F1 boné`, row 3, `Fila`) inserida no setup como teste.
 
-Ver [[motor-ofertas-nsc]] · skill `/agenda` (a construir).
+Ver `motor-ofertas-nsc` · skill `/agenda` (a construir).

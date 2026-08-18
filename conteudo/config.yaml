@@ -1,0 +1,12 @@
+# Config da loja/marca para o kit de conteúdo Instagram (skills instagram-reference / instagram-saved-scanner)
+# Este arquivo é auto-contido: as skills o leem a partir de ./conteudo/config.yaml da loja corrente.
+
+loja: "Nippon Speed Co."
+notion_marca: "Nippon Speed Co"            # valor da propriedade Marca/Loja nos databases do Notion
+instagram_username: "@nipponspeedco"        # @ da conta da NSC (trocar se o @ oficial mudar)
+
+# Databases compartilhados (modelo multi-loja: 1 par de DBs, separados pela propriedade Marca/Loja)
+notion_banco_referencias_id: "31063c2d-b20d-4d61-8477-205b6906f124"
+notion_ideias_conteudo_id: "48aae757-27f5-4aad-87e4-d444eb8fcb89"
+
+content_dir: "./conteudo"                   # onde ficam editorial-framework.md, voice-model.md, processed-videos.md

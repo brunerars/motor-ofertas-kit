@@ -45,4 +45,4 @@ Você retira com a gente ou recebe por Correios ou transportadora. Cada peça ch
 Valor de frete nacional fechado, percentual de imposto, "renda passiva", garantia de disponibilidade de peça específica. Prazo: usar **20 a 40 dias a partir da saída do Japão** — nunca prometer prazo cheio "porta a porta", que depende do garimpo.
 
 ## Relacionado
-[[caio-logistica-japao]] · [[roteiro-lp]] · [[motor-ofertas-nsc]]
+[[caio-logistica-japao]] · [[roteiro-lp]] · `motor-ofertas-nsc`

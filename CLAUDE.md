@@ -97,7 +97,7 @@ Isto tende a virar um **kit "loja-in-a-box"** de setup rápido, com duas camadas
 **Cron de produção = n8n hospedado** (Schedule Trigger → GET Baserow `Aprovado` → POST **WAHA** `/api/sendImage` → PATCH `Disparado`). Não usar cloud-routine do Claude (session-only) nem subir VPS worker novo. Mesma lógica já provada aqui.
 > **O n8n fala com o WAHA por dentro da `network_public`** (`http://waha:3000`, alias de rede) — não usa domínio, não passa pela internet, não gasta TLS. O domínio `waha.arvsystems.cloud` existe só pro Bruno abrir o dashboard e escanear o QR. **WAHA local não serve pra produção:** o n8n é hospedado e não alcança `localhost` — mesma parede que criou o `photo_url`.
 
-**ROI/porém:** validar com **UMA loja rodando pro Caio (NSC)** antes de generalizar o kit. Moat = velocidade de setup + know-how de garimpo do Caio, não a tech. Depois: organizar em repo separando template × instância. Liga com `crm-slotter-produto` · `framework-operacao`.
+**ROI/porém:** validar com **UMA loja rodando pro Caio (NSC)** antes de generalizar o kit. Moat = velocidade de setup + know-how de garimpo do Caio, não a tech. Depois: organizar em repo separando template × instância. Liga com `crm-slotter-produto` e com o funil de produtos em [[PRODUTOS]] (o `framework-operacao` que ficava citado aqui foi apagado em 29/07 — não recriar).
 
 ## Pendências de entrada (Bruno)
 - [x] Nome/marca + logo → Nippon Speed Co. (assets entregues)
