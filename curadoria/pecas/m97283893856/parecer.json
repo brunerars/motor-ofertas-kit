@@ -1,0 +1,85 @@
+{
+  "id": "m97283893856",
+  "titulo_vendedor": "90s YAMAHA レーシングジャケット F1 アイルトンセナ ホンダ レッド",
+  "preco_jpy": 39800,
+  "vendedor": { "nome": "pahpahvintage“フォロー割”", "avaliacoes_boas": 3124, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A peça não pode ser da era Senna, e quem prova isso é a etiqueta dela mesma. O rótulo de composição traz '発売元 株式会社ワイズギア' (Y'S GEAR), a subsidiária 100% da Yamaha Motor que cuida de acessórios e vestuário. A Y'S GEAR foi constituída em 20 de janeiro de 1997. Senna morreu em 1º de maio de 1994. Ou seja: a peça foi colocada no mercado por uma empresa que não existia enquanto o Senna era vivo. É possível que seja '90s' (1997-1999), mas é impossível que seja roupa de equipe do período dele.",
+      "evidencia": "Etiqueta interna: '発売元 株式会社ワイズギア / 静岡県浜松市板屋町110-5 / NA9902 / MADE IN CHINA', costurada no mesmo forro de tela branca onde estão a etiqueta de gola YAMAHA e o rótulo de modelo 'RY-440'",
+      "fonte": "foto_13, foto_14, foto_10",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "O site institucional da Y'S GEAR informa 設立 1997年1月20日 e capital 100% da Yamaha Motor Co., Ltd. O endereço da etiqueta (浜松市板屋町110-5) é anterior ao atual (浜松市中央区元城町115-10), o que é consistente com peça do fim dos anos 90 / começo dos 2000.",
+        "fonte": "ysgear.co.jp/profile/outline/ · ysgear.co.jp/profile/about/"
+      }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "O título cola YAMAHA em Ayrton Senna, Honda e McLaren, e essas coisas nunca se encontraram. Senna correu pela McLaren de 1988 a 1993, com motor Honda até 1992 e Ford em 1993. A Yamaha forneceu motor de F1 de 1989 a 1997 para Zakspeed, Brabham, Jordan, Tyrrell e Arrows. Nunca para a McLaren, e nunca para um carro que o Senna dirigiu. YAMAHA aqui é o FABRICANTE DA ROUPA, não uma ligação com a F1.",
+      "evidencia": "Etiqueta de gola preta com o diapasão e 'YAMAHA' costurada na tela branca do forro; nenhuma outra menção a Yamaha no exterior da peça",
+      "fonte": "titulo, foto_10, foto_8",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A própria Yamaha Motor lista sua passagem pela F1 como fornecedora de motor de 1989 a 1997: Zakspeed (1989), Brabham (1991), Jordan (1992), Tyrrell (1993-1996) e Arrows (1996-1997), em 116 corridas. A McLaren não aparece em nenhuma lista, e Senna não correu por nenhuma dessas equipes.",
+        "fonte": "global.yamaha-motor.com/stories/history/stories/0024.html · grandprix.com/gpe/eng-yamah.html"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "Os patches são de McLaren, e de McLaren especificamente da era Senna. Marlboro McLaren International no peito e nas costas, NACIONAL (o Banco Nacional, patrocinador pessoal do Senna) no ventre e nas costas, TAG Heuer na manga, COURTAULDS e HUGO BOSS no peito esquerdo. Esse é o conjunto de patrocinadores da McLaren do início dos anos 90. O desenho referencia a era certa; o que não bate é a peça ser dela.",
+      "evidencia": "Patches bordados grandes: 'Marlboro / McLAREN INTERNATIONAL' no peito direito e 'Marlboro' nas costas, 'NACIONAL' com o logo azul no ventre e nas costas, escudo 'TAG HEUER' na manga direita, 'COURTAULDS' e 'BOSS / HUGO BOSS' no peito esquerdo",
+      "fonte": "foto_1, foto_6, foto_11, foto_12",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Marlboro patrocinou a McLaren de 1974 a 1996; em 1992 os patrocinadores da McLaren incluíam Marlboro, Shell, Honda, Courtaulds, Boss e TAG Heuer. O banco brasileiro Nacional foi patrocinador pessoal do Senna por nove temporadas, associado ao capacete amarelo dele. Senna esteve na McLaren de 1988 a 1993.",
+        "fonte": "f1.fandom.com/wiki/Marlboro · raconteur.net (20 brands that defined F1) · senna.com"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "O campo de marca do anúncio diz 'VINTAGE' e o vendedor escreveu '【生産国、素材】画像参照' (veja nas imagens), então ele nunca declarou a origem em texto. As imagens dizem: modelo RY-440, tecido externo nylon 100%, forro nylon 100%, MADE IN CHINA. Quem lê só o título de 'YAMAHA 90s vintage' assume peça japonesa de época e vai receber outra coisa.",
+      "evidencia": "Rótulo '品質表示 · RY-440 · 表地 ナイロン100% · 裏地 ナイロン100%' e rótulo de cuidado com 'MADE IN CHINA' e instruções de lavagem à mão e velcro fechado",
+      "fonte": "foto_13, foto_14, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Divergência entre o campo de marca do Mercari, o que o vendedor deixou de escrever e o que as etiquetas mostram. Sinal interno ao anúncio.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O '加水分解' declarado na condição é hidrólise: o poliuretano do forro/revestimento se decompõe com a umidade do ar ao longo dos anos, fica pegajoso, esfarela e descola em pó ou lascas. É irreversível. Não existe restauração, só paliativo (talco ou bicarbonato pra tirar a grude). Quem compra está comprando uma peça cujo forro vai continuar se desfazendo, e isso precisa estar escrito na oferta, não escondido.",
+      "evidencia": "Condição declarada literal 'C(裏地加水分解)'; nas fotos do interior o painel claro do forro aparece manchado, com áreas rosadas/avermelhadas irregulares e aspecto encardido, muito pior que o exterior da peça",
+      "fonte": "descricao, foto_8, foto_9",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Fontes japonesas de outdoor e de brechó são unânimes: o poliuretano usado em revestimento, cola e fita de costura sofre 加水分解 pela umidade do ambiente, e uma vez iniciado o processo praticamente não se conserta — remover e reaplicar o revestimento é inviável técnica e economicamente. As saídas citadas são paliativas (talco de bebê, bicarbonato).",
+        "fonte": "bepal.net/archives/575094 · yamahack.com/3431 · emongroup.com/blog/wp/synthetic-leather-hydrolysis-care/"
+      }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A palavra 'Senna' no anúncio é keyword de SEO, não procedência. O bloco final da descrição empilha Ayrton Senna, McLaren, McLaren Honda, HONDA, Marlboro, Nacional, TAG Heuer, HUGO BOSS e Courtaulds como termos de busca, junto com a hashtag da loja e o código MM2545. Prática padrão de vendedor japonês, não fraude — mas se o nome do Senna sair do bloco de keywords e entrar na legenda da NSC como se fosse origem da peça, aí passa a ser problema da loja.",
+      "evidencia": "Bloco de keywords ao final da descrição: 'YAMAHA ヤマハ 90s 90年代 vintage ... Ayrton Senna アイルトンセナ McLaren マクラーレン McLaren Honda ... Marlboro マルボロ Nacional ナシオナル TAG HEUER ... HUGO BOSS ... Courtaulds ... MM2545'",
+      "fonte": "descricao, titulo",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Análise da estrutura do próprio anúncio: onde o nome aparece (bloco de keywords) versus onde ele não aparece (a peça).", "fonte": "" }
+    }
+  ],
+  "recomendacao": "É a peça mais cara do lote e a que tem o problema mais sério: o rótulo dela desmonta a história que o título vende. Se for comprada, ela não pode ser anunciada como jaqueta do Senna nem como peça da era McLaren-Honda — o distribuidor impresso na etiqueta, a Y'S GEAR, só passou a existir em 1997, três anos depois da morte dele. O jeito honesto de vender é o que ela realmente é: jaqueta Yamaha (Y'S GEAR) com patches da McLaren da era Senna, forro com hidrólise declarada e irreversível. Antes de decidir, pedir ao vendedor foto do forro em close mostrando se está pegajoso ou descascando, e perguntar se os patches são de fábrica.",
+  "o_que_nao_sei": [
+    "Se os patches de McLaren/Marlboro/Nacional são originais de fábrica ou foram aplicados depois em uma jaqueta Yamaha comum. Não achei nenhum produto Yamaha ou Y'S GEAR com patrocínio da McLaren em busca, e o METODO proíbe julgar isso por costura em foto de celular. Fica em aberto.",
+    "Se a Yamaha/Y'S GEAR alguma vez teve licença de Marlboro McLaren. Busquei e não achei. Existe e é comum o gênero 'Marlboro Yamaha' (a equipe de 500cc da Yamaha era patrocinada pela Marlboro), mas o conjunto desta peça, com McLaren International, Nacional e TAG Heuer, é de F1, não de motovelocidade.",
+    "Se o código 'NA9902' da etiqueta significa 1999. É uma pista plausível pra datar dentro de 1997-1999, mas não achei tabela de códigos da Y'S GEAR que confirme. Não usar como data.",
+    "O que é o patch oval prateado 'CYBER-TEX/CYBER-TECH' na manga esquerda. Provavelmente linha ou tecnologia de tecido da Yamaha, mas não confirmei.",
+    "A gravidade real da hidrólise. As fotos mostram manchas e descoloração no forro, mas foto não mostra se já está pegajoso, esfarelando ou apenas manchado. Isso muda completamente a experiência de quem vestir.",
+    "Se a peça é licenciada de alguma forma. Nenhuma das 14 fotos mostra texto de 'official licensed product', selo de licenciante ou etiqueta de detentor de marca dos patrocinadores."
+  ]
+}

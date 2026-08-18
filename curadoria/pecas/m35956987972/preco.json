@@ -1,0 +1,27 @@
+{
+  "id": "m35956987972",
+  "source_url": "https://jp.mercari.com/item/m35956987972",
+  "vendido": false,
+  "conta": {
+    "produto_jpy": 5000.0,
+    "taxa_naomi_jpy": 1750,
+    "taxa_naomi_pct": 0.35,
+    "frete_jp_jpy": 1000,
+    "soma_jpy": 7750.0,
+    "classe_volume": "M",
+    "classe_justificativa": "(nao classificada)",
+    "classe_e_fallback": true,
+    "margem_jpy": 4000,
+    "preco_jpy": 11750.0
+  },
+  "conversao": {
+    "a": 9.5311,
+    "b": 0.040396,
+    "rate": 30.5776,
+    "conferido_em": "2026-08-18T17:34:23",
+    "fonte": "api.wise.com/v3/comparisons (provider=wise)"
+  },
+  "preco_brl_bruto": 410.38,
+  "preco_brl": 420.0,
+  "calculado_em": "2026-08-18T17:34:23"
+}

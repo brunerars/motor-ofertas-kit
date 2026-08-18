@@ -1,0 +1,92 @@
+{
+  "id": "m13668803753",
+  "titulo_vendedor": "【USA製】90s Benetton F1 レーシングジャケット L",
+  "preco_jpy": 9500,
+  "vendedor": { "nome": "値下げ依頼OK❤️EwA❤️", "avaliacoes_boas": 1804, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A peça não é genericamente '90s': ela data de UMA temporada, 1991. O carro bordado nas costas carrega Pirelli nos quatro pneus e AUTOPOLIS no pontão, e a Benetton usou Pirelli em 1991 e só em 1991 (Goodyear em 1990 e Goodyear de novo em 1992). O patrocínio da Autopolis, o circuito japonês do Tsurumaki, entra em 1990 e some quando a Nippon Tri-Trust quebra na estouro da bolha. O cruzamento das duas coisas fecha em 1991.",
+      "evidencia": "Bordado das costas: 'PIRELLI' nas duas laterais dos pneus, 'PIRELLI 20' na placa da asa dianteira, 'AUTOPOLIS' no pontão azul, camelo + 'CAMEL' na cauda, 'Mobil 1', 'Ford' e 'UNITED COLORS OF BENETTON'",
+      "fonte": "foto_1, foto_9, foto_16",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito.",
+        "fonte": "en.wikipedia.org/wiki/Benetton_B191 · racefans.net (Benetton 40 years on) · racingcircuits.info/asia/japan/autopolis · crash.net (Paradise & Picasso)"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "O carro bordado é identificável por número: o 20 é o Benetton B191 do Nelson Piquet em 1991. Foi nesse carro que ele venceu o GP do Canadá de 1991, a única vitória do B191 e a última vitória do Piquet na F1. Ele se aposentou no fim daquela temporada.",
+      "evidencia": "Número '20' bordado na placa da asa dianteira, dentro do bloco preto da Pirelli, na frente do carro nas costas da jaqueta",
+      "fonte": "foto_1, foto_16",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Em 1991 a Benetton alinhou o 19 (Roberto Moreno, depois Michael Schumacher a partir de Spa) e o 20 (Nelson Piquet). 'Nelson Piquet gave the B191 its only win at the 1991 Canadian Grand Prix'.",
+        "fonte": "en.wikipedia.org/wiki/Benetton_B191"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "O vendedor não sabe o que tem. O título e a descrição param em '90s Benetton F1' e tratam Pirelli, Mobil 1, Ford e CAMEL como 'detalhes que simbolizam o automobilismo'. Nenhuma menção a 1991, a Piquet, à Autopolis ou ao fato de que essa é a temporada de estreia do Schumacher na equipe. Está anunciada a ¥9.500 como blusão vintage genérico.",
+      "evidencia": "Descrição literal: 'Pirelli、Mobil 1、Ford、CAMELなどモータースポーツを象徴するディテールも魅力です' e o bloco de keywords '90s、F1、レーシング、モータースポーツ、ヴィンテージ古着'",
+      "fonte": "titulo, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal interno ao anúncio: é o que o vendedor escreveu contra o que a peça mostra. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O 'USA製' do título é verdade e está na etiqueta, apesar da Benetton ser italiana. Não há contradição: isto é merchandising licenciado de equipe, e a etiqueta traz um número RN, que é registro da FTC americana emitido só pra empresa sediada nos EUA. A composição da etiqueta bate linha a linha com a descrição (algodão no tecido externo, acetato no forro).",
+      "evidencia": "Etiqueta de cuidado costurada no forro: 'C-3683 / RN 69079 / 100% COTTON SHELL / 100% ACETATE LINING / PROFESSIONALLY DRY CLEAN ONLY / MADE IN U.S.A.'",
+      "fonte": "foto_17, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A FTC confirma que o RN (Registered Identification Number) é emitido a empresa nos EUA que fabrica, importa, distribui ou comercializa produto têxtil, e pode substituir o nome na etiqueta. Não consegui, porém, resolver o RN 69079 pra um nome de empresa: a base da FTC não respondeu por busca e nenhum resultado público liga esse número a um fabricante.",
+        "fonte": "ftc.gov/business-guidance (Threading Your Way Through the Labeling Requirements) · rn.ftc.gov (sem resposta)"
+      }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A peça não carrega nome de piloto nenhum. 1991 é a temporada de estreia do Schumacher na Benetton, e a tentação de vender como 'jaqueta do Schumacher' vai aparecer sozinha. O carro bordado é o 20, do Piquet, não o 19 do Schumacher. Vender como Schumacher é atribuição falsa e o colecionador pega na hora.",
+      "evidencia": "Nenhum bordado, patch ou etiqueta com nome de piloto nas 17 fotos; o único identificador de carro é o número 20",
+      "fonte": "foto_1, foto_9, foto_16",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Schumacher estreou pela Benetton no GP da Bélgica de 1991 no carro 19, substituindo Roberto Moreno. O 20 foi do Piquet a temporada inteira.",
+        "fonte": "en.wikipedia.org/wiki/Benetton_B191"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O campo de marca do Mercari diz 'UNITED COLORS OF BENETTON', que é a etiqueta de moda. A etiqueta de gola da peça é outra coisa: 'Benetton Formula 1 RACING TEAM · TRADE MARK', a linha de equipe. Se essa marca for copiada pro post, a peça vira roupa de shopping em vez de memorabilia de F1.",
+      "evidencia": "Etiqueta de gola branca com o logo das pinceladas coloridas e o texto 'Benetton Formula 1 / RACING TEAM / TRADE MARK' + aba de tamanho 'L'",
+      "fonte": "foto_3, foto_8",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Divergência entre o campo de metadado do Mercari e a etiqueta física da própria peça. Nada externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O dano declarado é real, visível e está declarado — vendedor honesto. O amarelado nos punhos e as manchas no painel branco aparecem em várias fotos, exatamente como o anúncio diz.",
+      "evidencia": "Punhos creme claramente mais amarelos que a manga (fotos 6, 7, 13); pontos amarelados espalhados na manga branca e perto da emenda (fotos 12, 14, 15)",
+      "fonte": "foto_6, foto_7, foto_12, foto_14, foto_15, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Comparação entre condição declarada ('袖口や白地部分に黄ばみ・薄汚れがあります') e o que as fotos mostram. Puramente visual.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "Datar como 1991 e citar o carro pelo número: é o B191 número 20 do Nelson Piquet, o carro da última vitória dele na F1, no Canadá. Isso é história pronta pra post de feed e é o argumento que o vendedor não usou. Na legenda de venda, manter o amarelado dos punhos visível na foto, porque está declarado e aparece. Não escrever Schumacher em lugar nenhum: 1991 é o ano de estreia dele, mas o carro bordado é o do Piquet.",
+  "o_que_nao_sei": [
+    "Quem é o dono do RN 69079. A base da FTC não respondeu e nenhuma busca pública liga esse número a uma empresa, então o fabricante/licenciado por trás do 'MADE IN U.S.A.' segue sem nome.",
+    "Se a jaqueta foi FABRICADA em 1991. O que 1991 ancora é o conteúdo (a combinação de patrocinadores da temporada), não a data de produção — merchandising de equipe costuma continuar sendo feito depois. É a mesma armadilha do ©1997 do boné da Ferrari.",
+    "Se é peça de equipe (uso de box) ou merchandising de varejo. Nenhuma das 17 fotos mostra texto de 'official licensed product', código de produção ou etiqueta de licenciante.",
+    "Se o amarelado dos punhos e das manchas sai com limpeza profissional. A etiqueta manda dry clean only e nada nas fotos diz se é sujeira ou oxidação do tecido.",
+    "Se a Autopolis já aparecia nesse desenho de carro em 1990. Uma fonte diz que ela patrocinou a Benetton desde 1990; quem fecha o ano em 1991 é o Pirelli, não ela sozinha."
+  ]
+}

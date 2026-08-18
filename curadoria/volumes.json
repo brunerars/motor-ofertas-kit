@@ -1,0 +1,31 @@
+{
+  "_schema": "Classe de ocupacao de espaco na mala, que define a margem em ienes (P 3.000 / M 4.000 / G 6.000 / GG 10.000). Classificado por tipo de peca declarado no anuncio + medidas. E chute informado, nao medicao: o Bruno corrige antes de qualquer preco virar oferta.",
+  "_regua": {
+    "P": "envelope: chaveiro, pin, patch, adesivo, flamula",
+    "M": "pacote pequeno: bone, camiseta, camisa, polo",
+    "G": "pacote medio: jaqueta leve, blusao, moletom, anorak",
+    "GG": "volumoso: jaqueta com enchimento, pluma, macacao, capacete"
+  },
+  "_classificado_em": "2026-08-18",
+
+  "m56921610317": {"classe": "M", "porque": "bone de algodao, dobravel"},
+  "m58518090353": {"classe": "GG", "porque": "blusao com enchimento (中綿), volumoso"},
+  "m33604320797": {"classe": "M", "porque": "camiseta"},
+  "m63912161183": {"classe": "G", "porque": "blusao de algodao sem enchimento"},
+  "m84409745896": {"classe": "M", "porque": "camiseta"},
+  "m18390786233": {"classe": "M", "porque": "camiseta"},
+  "m10933095707": {"classe": "GG", "porque": "blusao com enchimento (中綿)"},
+  "m88760510115": {"classe": "G", "porque": "Harrington curta, forro leve"},
+  "m92121645867": {"classe": "G", "porque": "anorak meio-ziper, tamanho L largo"},
+  "m93339067779": {"classe": "G", "porque": "jaqueta de algodao full-zip, L"},
+  "m31939814908": {"classe": "G", "porque": "jaqueta de cetim acetato, forro de nylon, leve"},
+  "m24601571304": {"classe": "M", "porque": "camiseta deadstock"},
+  "m88172984233": {"classe": "G", "porque": "jumper/blusao, 76cm de comprimento"},
+  "m73359062125": {"classe": "GG", "porque": "pluma (down 70%), 86cm — a peca mais volumosa do lote"},
+  "m97609115294": {"classe": "G", "porque": "blusao de poliester, leve"},
+  "m13668803753": {"classe": "G", "porque": "jaqueta de algodao com forro de acetato"},
+  "m69497505984": {"classe": "G", "porque": "jaqueta de equipe, L"},
+  "m97283893856": {"classe": "G", "porque": "jaqueta de nylon"},
+
+  "m33557684905": {"classe": "M", "porque": "bone — controle negativo, peca reprovada pelo Caio em 13/07"}
+}

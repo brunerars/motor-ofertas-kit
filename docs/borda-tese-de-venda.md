@@ -1,6 +1,6 @@
 ---
 tipo: doc-de-venda
-frente: nippon-speed
+frente: nippon
 papel: FONTE de copy pra conteúdo sobre o Borda — o brief de venda do /post-from-idea consulta este doc antes de escrever qualquer peça
 status: RASCUNHO (Claude, 06/08) — aguardando revisão do Bruno antes de virar fonte
 fontes: borda/README.md · docs/borda-hub-caio.md · lib/caption.ts · PecaLida.tsx · docs/baserow-disparador-schema.md · PRODUCT.md · diario 17/07 e 20/07
@@ -92,8 +92,16 @@ peça falsa duas vezes" (aviso escrito em `docs/borda-hub-caio.md`).
 O Bruno vai evoluir o Borda em público e produtizar pra outras lojas/empresas:
 - **Agente de busca de ofertas** (Hermes agent) garimpando candidatos — com a
   curadoria humana mantida por cima.
-- **Nota de veracidade da peça**: o agente pontua a chance de a peça ser
-  legítima; a decisão continua humana (o gate ganha instrumento, não some).
+- ~~**Nota de veracidade da peça**~~ **REFUTADA em 07/08 e substituída em 18/08.**
+  Duas rodadas de curadoria mostraram que uma nota de autenticidade daria 8/10 em
+  quase tudo e esconderia o que importa: 9 de 19 peças têm trava e valor ao mesmo
+  tempo. O que sobreviveu e está no ar: **veredito de ação** (comprar · comprar e
+  reescrever · negociar preço · passar) mais **três eixos separados** (anúncio,
+  valor, raridade) e um selo de confiança da análise, todos DERIVADOS dos sinais,
+  nunca pedidos a um modelo. Ver `curadoria/METODO.md`.
+- **Base de fatos** (18/08, novo): 83 fatos verificados destilados dos pareceres,
+  que datam 17 de 19 peças sem gastar busca. É o que baixa o custo do agente de
+  busca de ofertas de viável-no-papel para viável-de-verdade.
 - **Outras lojas**: o kit "loja-in-a-box" com o Borda como painel do dono.
 
 CTA de conteúdo derivado disso: "me segue pra acompanhar a evolução desse

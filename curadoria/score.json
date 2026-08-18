@@ -1,0 +1,517 @@
+{
+  "_schema": "Veredito e eixos por peça. DERIVADO dos sinais do parecer: nenhum número aqui foi pedido a um modelo, cada ponto sobe ou desce por causa de um sinal que carrega evidência. Apagar e rodar score.py devolve igual.",
+  "_eixos": {
+    "anuncio": "0 a 5. Quanto do que o vendedor afirma se sustenta. 5 = nada a corrigir.",
+    "valor": "0 a 5. Quanto a peça é mais do que o vendedor sabe que tem.",
+    "raridade": "0 a 5. Só conta datação e peso histórico CONFIRMADOS por busca. Sem âncora devolve 0 e marca sem_base, em vez de inventar um meio-termo."
+  },
+  "_por_que_nao_uma_nota_so": "9 das 19 peças têm trava e valor ao mesmo tempo. Uma nota única faria a média de coisas opostas e esconderia as duas. Ver METODO.md.",
+  "_vereditos": {
+    "COMPRAR": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+    "COMPRAR, PEDIR FOTO": "A peça está certa; o material do anúncio é que não serve. Comprar e pedir foto limpa antes de montar o post.",
+    "COMPRAR E REESCREVER": "A peça é boa, a descrição do vendedor é que não presta. Comprar e jogar fora o texto dele.",
+    "NEGOCIAR PREÇO": "O prêmio que o vendedor cobrou está ancorado numa afirmação que caiu. Propor menos antes de fechar.",
+    "PASSAR": "A peça não é o que parece. Deixar passar."
+  },
+  "_gerado_em": "2026-08-18T18:49:54",
+  "_resumo": {
+    "COMPRAR": 8,
+    "COMPRAR, PEDIR FOTO": 2,
+    "COMPRAR E REESCREVER": 3,
+    "NEGOCIAR PREÇO": 2,
+    "PASSAR": 4
+  },
+  "pecas": [
+    {
+      "id": "m13668803753",
+      "source_url": "https://jp.mercari.com/item/m13668803753",
+      "title_pt": "Jaqueta de corrida 90s Benetton F1, fabricada nos EUA, L",
+      "preco_jpy_anuncio": 9500,
+      "preco_brl": 690.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 5,
+        "raridade": 5
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 3 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: peso histórico ancorado (4 menção(ões) confirmada(s))",
+        "confiança: 4 sinal(is) confirmado(s) por busca, 3 sem resposta"
+      ]
+    },
+    {
+      "id": "m93339067779",
+      "source_url": "https://jp.mercari.com/item/m93339067779",
+      "title_pt": "Jaqueta de corrida Benetton Formula 1 rara, equivalente a L",
+      "preco_jpy_anuncio": 31200,
+      "preco_brl": 1690.0,
+      "vendido": true,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 4,
+        "raridade": 4
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 2 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: peso histórico ancorado (1 menção(ões) confirmada(s))",
+        "confiança: 2 sinal(is) confirmado(s) por busca, 4 sem resposta"
+      ]
+    },
+    {
+      "id": "m88172984233",
+      "source_url": "https://jp.mercari.com/item/m88172984233",
+      "title_pt": "Jaqueta Rothmans Williams Renault",
+      "preco_jpy_anuncio": 4680,
+      "preco_brl": 470.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 3,
+        "raridade": 4
+      },
+      "raridade_sem_base": false,
+      "confianca": "alta",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação em janela curta, confirmada",
+        "raridade: peso histórico ancorado (2 menção(ões) confirmada(s))",
+        "confiança: 3 sinal(is) confirmado(s) por busca, 2 sem resposta"
+      ]
+    },
+    {
+      "id": "m33604320797",
+      "source_url": "https://jp.mercari.com/item/m33604320797",
+      "title_pt": "Camiseta Benetton F1 IMOLA, fabricada na Itália, M",
+      "preco_jpy_anuncio": 22000,
+      "preco_brl": 1200.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 2,
+        "raridade": 4
+      },
+      "raridade_sem_base": false,
+      "confianca": "alta",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: peso histórico ancorado (1 menção(ões) confirmada(s))",
+        "confiança: 4 sinal(is) confirmado(s) por busca, 1 sem resposta"
+      ]
+    },
+    {
+      "id": "m58518090353",
+      "source_url": "https://jp.mercari.com/item/m58518090353",
+      "title_pt": "Jaqueta acolchoada Ferrari F1 Michael Schumacher",
+      "preco_jpy_anuncio": 9800,
+      "preco_brl": 840.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 2,
+        "raridade": 4
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: peso histórico ancorado (1 menção(ões) confirmada(s))",
+        "confiança: 2 sinal(is) confirmado(s) por busca, 2 sem resposta"
+      ]
+    },
+    {
+      "id": "m24601571304",
+      "source_url": "https://jp.mercari.com/item/m24601571304",
+      "title_pt": "Camiseta oficial 90s Marlboro circuito de Suzuka F1 motorsport",
+      "preco_jpy_anuncio": 13800,
+      "preco_brl": 820.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 2,
+        "raridade": 2
+      },
+      "raridade_sem_base": false,
+      "confianca": "alta",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 4 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: o parecer registra que a datação não tem âncora",
+        "raridade: peso histórico ancorado (1 menção(ões) confirmada(s))",
+        "confiança: 5 sinal(is) confirmado(s) por busca, 2 sem resposta"
+      ]
+    },
+    {
+      "id": "m56921610317",
+      "source_url": "https://jp.mercari.com/item/m56921610317",
+      "title_pt": "Boné vintage 90s Benetton F1 racing",
+      "preco_jpy_anuncio": 9100,
+      "preco_brl": 600.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 2,
+        "raridade": 1
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: sem datação fechada",
+        "raridade: o parecer registra que a datação não tem âncora",
+        "confiança: 2 sinal(is) confirmado(s) por busca, 2 sem resposta"
+      ]
+    },
+    {
+      "id": "m63912161183",
+      "source_url": "https://jp.mercari.com/item/m63912161183",
+      "title_pt": "Blusão jaqueta Ferrari vermelho",
+      "preco_jpy_anuncio": 20000,
+      "preco_brl": 1170.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR",
+      "veredito_texto": "Sem trava. Comprar e publicar com o texto que o parecer entrega.",
+      "eixos": {
+        "anuncio": 5,
+        "valor": 2,
+        "raridade": 1
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: nenhuma trava",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: sem datação fechada",
+        "confiança: 2 sinal(is) confirmado(s) por busca, 3 sem resposta"
+      ]
+    },
+    {
+      "id": "m18390786233",
+      "source_url": "https://jp.mercari.com/item/m18390786233",
+      "title_pt": "Camiseta Ferrari F1 Schumacher licença oficial, anos 2000",
+      "preco_jpy_anuncio": 3200,
+      "preco_brl": 330.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR, PEDIR FOTO",
+      "veredito_texto": "A peça está certa; o material do anúncio é que não serve. Comprar e pedir foto limpa antes de montar o post.",
+      "eixos": {
+        "anuncio": 4,
+        "valor": 4,
+        "raridade": 5
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: 1 sinal(is) de não publicar assim",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: 2 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: peso histórico ancorado (4 menção(ões) confirmada(s))",
+        "confiança: 3 sinal(is) confirmado(s) por busca, 4 sem resposta"
+      ]
+    },
+    {
+      "id": "m97609115294",
+      "source_url": "https://jp.mercari.com/item/m97609115294",
+      "title_pt": "Blusão Honda F1 Collection McLaren Senna Berger RA121E V12",
+      "preco_jpy_anuncio": 12500,
+      "preco_brl": 830.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR, PEDIR FOTO",
+      "veredito_texto": "A peça está certa; o material do anúncio é que não serve. Comprar e pedir foto limpa antes de montar o post.",
+      "eixos": {
+        "anuncio": 4,
+        "valor": 2,
+        "raridade": 3
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: 1 sinal(is) de não publicar assim",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "confiança: 2 sinal(is) confirmado(s) por busca, 3 sem resposta"
+      ]
+    },
+    {
+      "id": "m10933095707",
+      "source_url": "https://jp.mercari.com/item/m10933095707",
+      "title_pt": "Jaqueta de corrida Ferrari Schumacher acolchoada com logos de patrocinadores F1",
+      "preco_jpy_anuncio": 15700,
+      "preco_brl": 1110.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR E REESCREVER",
+      "veredito_texto": "A peça é boa, a descrição do vendedor é que não presta. Comprar e jogar fora o texto dele.",
+      "eixos": {
+        "anuncio": 2,
+        "valor": 3,
+        "raridade": 3
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: 2 sinal(is) de não publicar assim",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "confiança: 3 sinal(is) confirmado(s) por busca, 4 sem resposta"
+      ]
+    },
+    {
+      "id": "m69497505984",
+      "source_url": "https://jp.mercari.com/item/m69497505984",
+      "title_pt": "Jaqueta Panasonic F1 L, Panasonic Toyota Racing",
+      "preco_jpy_anuncio": 14000,
+      "preco_brl": 900.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR E REESCREVER",
+      "veredito_texto": "A peça é boa, a descrição do vendedor é que não presta. Comprar e jogar fora o texto dele.",
+      "eixos": {
+        "anuncio": 4,
+        "valor": 2,
+        "raridade": 5
+      },
+      "raridade_sem_base": false,
+      "confianca": "alta",
+      "porque": [
+        "anúncio: 1 sinal(is) de não publicar assim",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: peso histórico ancorado (3 menção(ões) confirmada(s))",
+        "confiança: 3 sinal(is) confirmado(s) por busca, 2 sem resposta"
+      ]
+    },
+    {
+      "id": "m88760510115",
+      "source_url": "https://jp.mercari.com/item/m88760510115",
+      "title_pt": "Jaqueta Harrington 90s Magneti Marelli Ferrari",
+      "preco_jpy_anuncio": 11800,
+      "preco_brl": 800.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "COMPRAR E REESCREVER",
+      "veredito_texto": "A peça é boa, a descrição do vendedor é que não presta. Comprar e jogar fora o texto dele.",
+      "eixos": {
+        "anuncio": 2,
+        "valor": 2,
+        "raridade": 0
+      },
+      "raridade_sem_base": true,
+      "confianca": "baixa",
+      "porque": [
+        "anúncio: 2 sinal(is) de não publicar assim",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: sem base, nenhum sinal de valor confirmado por busca",
+        "confiança: 1 sinal(is) confirmado(s) por busca, 6 sem resposta"
+      ]
+    },
+    {
+      "id": "m84409745896",
+      "source_url": "https://jp.mercari.com/item/m84409745896",
+      "title_pt": "Camiseta 90s Benetton F1 Montreal, fabricada na Itália, M",
+      "preco_jpy_anuncio": 22000,
+      "preco_brl": 1200.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "NEGOCIAR PREÇO",
+      "veredito_texto": "O prêmio que o vendedor cobrou está ancorado numa afirmação que caiu. Propor menos antes de fechar.",
+      "eixos": {
+        "anuncio": 1,
+        "valor": 4,
+        "raridade": 5
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: 2 sinal(is) de não publicar assim",
+        "anúncio: 1 confirmação(ões) que sustentam o declarado",
+        "valor: 2 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: peso histórico ancorado (2 menção(ões) confirmada(s))",
+        "confiança: 2 sinal(is) confirmado(s) por busca, 5 sem resposta",
+        "veredito: ticket alto (22.000 ienes) com a datação ou a raridade derrubada"
+      ]
+    },
+    {
+      "id": "m31939814908",
+      "source_url": "https://jp.mercari.com/item/m31939814908",
+      "title_pt": "Jaqueta de corrida de cetim Ferrari 70s/80s extremamente rara, fabricada nos EUA, bordada",
+      "preco_jpy_anuncio": 38000,
+      "preco_brl": 2000.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "NEGOCIAR PREÇO",
+      "veredito_texto": "O prêmio que o vendedor cobrou está ancorado numa afirmação que caiu. Propor menos antes de fechar.",
+      "eixos": {
+        "anuncio": 2,
+        "valor": 1,
+        "raridade": 1
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: 2 sinal(is) de não publicar assim",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: 1 sinal(is) de valor, nenhum principal",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: o parecer registra que a datação não tem âncora",
+        "confiança: 4 sinal(is) confirmado(s) por busca, 3 sem resposta",
+        "veredito: ticket alto (38.000 ienes) com a datação ou a raridade derrubada"
+      ]
+    },
+    {
+      "id": "m33557684905",
+      "source_url": "https://jp.mercari.com/item/m33557684905",
+      "title_pt": "Bone Michael Schumacher Ferrari DEKRA (CONTROLE NEGATIVO - nao traduzir para venda)",
+      "preco_jpy_anuncio": 3780,
+      "preco_brl": 360.0,
+      "vendido": false,
+      "controle_negativo": true,
+      "veredito": "PASSAR",
+      "veredito_texto": "A peça não é o que parece. Deixar passar.",
+      "eixos": {
+        "anuncio": 0,
+        "valor": 2,
+        "raridade": 2
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: 4 sinal(is) de não publicar assim",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: sem datação fechada",
+        "raridade: peso histórico ancorado (1 menção(ões) confirmada(s))",
+        "confiança: 3 sinal(is) confirmado(s) por busca, 4 sem resposta"
+      ]
+    },
+    {
+      "id": "m92121645867",
+      "source_url": "https://jp.mercari.com/item/m92121645867",
+      "title_pt": "Jaqueta anorak Ferrari racing amarela",
+      "preco_jpy_anuncio": 32800,
+      "preco_brl": 1760.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "PASSAR",
+      "veredito_texto": "A peça não é o que parece. Deixar passar.",
+      "eixos": {
+        "anuncio": 2,
+        "valor": 2,
+        "raridade": 1
+      },
+      "raridade_sem_base": false,
+      "confianca": "baixa",
+      "porque": [
+        "anúncio: 2 sinal(is) de não publicar assim",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: 1 achado(s) principal(is)",
+        "raridade: datação fechada em uma temporada, confirmada",
+        "raridade: o parecer registra que a datação não tem âncora",
+        "confiança: 1 sinal(is) confirmado(s) por busca, 5 sem resposta"
+      ]
+    },
+    {
+      "id": "m73359062125",
+      "source_url": "https://jp.mercari.com/item/m73359062125",
+      "title_pt": "Pluma Honda Racing, em bom estado",
+      "preco_jpy_anuncio": 14000,
+      "preco_brl": 1030.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "PASSAR",
+      "veredito_texto": "A peça não é o que parece. Deixar passar.",
+      "eixos": {
+        "anuncio": 2,
+        "valor": 0,
+        "raridade": 1
+      },
+      "raridade_sem_base": false,
+      "confianca": "média",
+      "porque": [
+        "anúncio: 2 sinal(is) de não publicar assim",
+        "anúncio: 3 confirmação(ões) que sustentam o declarado",
+        "valor: nenhum sinal de valor",
+        "raridade: sem datação fechada",
+        "confiança: 2 sinal(is) confirmado(s) por busca, 4 sem resposta"
+      ]
+    },
+    {
+      "id": "m97283893856",
+      "source_url": "https://jp.mercari.com/item/m97283893856",
+      "title_pt": "Jaqueta de corrida 90s Yamaha F1 vermelha",
+      "preco_jpy_anuncio": 39800,
+      "preco_brl": 2080.0,
+      "vendido": false,
+      "controle_negativo": false,
+      "veredito": "PASSAR",
+      "veredito_texto": "A peça não é o que parece. Deixar passar.",
+      "eixos": {
+        "anuncio": 0,
+        "valor": 0,
+        "raridade": 1
+      },
+      "raridade_sem_base": false,
+      "confianca": "alta",
+      "porque": [
+        "anúncio: 3 sinal(is) de não publicar assim",
+        "anúncio: 2 confirmação(ões) que sustentam o declarado",
+        "valor: nenhum sinal de valor",
+        "raridade: sem datação fechada",
+        "confiança: 4 sinal(is) confirmado(s) por busca, 2 sem resposta"
+      ]
+    }
+  ]
+}

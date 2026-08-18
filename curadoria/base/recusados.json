@@ -1,0 +1,51 @@
+{
+  "_nota": "Fatos que a conferência humana recusou, com o motivo no chat da rodada. Guardados pra não serem repropostos sem alguém olhar de novo. Fato readmitido depois (com a janela fechada no que a checagem sustenta) SAI daqui: id nos dois arquivos faz a proxima destilacao recusar de novo um fato que ja esta em uso. Foi o caso de ford-benetton e marlboro-ferrari, removidos em 18/08.",
+  "recusados": [
+    {
+      "id": "marlboro-mclaren",
+      "tipo": "patrocinio",
+      "entidade": "Marlboro",
+      "contraparte": "McLaren",
+      "de": 1974,
+      "ate": 1996,
+      "afirmacao": "A Marlboro patrocinou a McLaren de 1974 a 1996.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856",
+        "m24601571304"
+      ],
+      "frase_origem": "Os patches são de McLaren, e de McLaren especificamente da era Senna.",
+      "detalhe_busca": "Marlboro patrocinou a McLaren de 1974 a 1996; em 1992 os patrocinadores da McLaren incluíam Marlboro, Shell, Honda, Courtaulds, Boss e TAG Heuer. O banco brasileiro Nacional foi patrocinador pessoal do Senna por nove temporadas, associado ao capacete amarelo dele. Senna esteve na McLaren de 1988 a 1993. || 'Marlboro World Championship Team' foi o nome da equipe BRM patrocinada pela Marlboro a partir de 1972, primeiro grande patrocínio da marca na F1; a Marlboro depois patrocinou McLaren (1974-1996) e Ferrari (1993-2017). Nenhuma dessas equipes aparece na peça."
+    },
+    {
+      "id": "benetton-1990-sem-titulo",
+      "tipo": "patrocinio",
+      "entidade": "Benetton",
+      "contraparte": null,
+      "de": 1990,
+      "ate": 1990,
+      "afirmacao": "Em 1990 a Benetton ainda não tinha patrocinador-título; a Camel só assumiu em 1991. Estampa de 1990 sem marca de tabaco é coerente.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m33604320797"
+      ],
+      "frase_origem": "está escrito 'Team 90. FORMULA - 1' no peito",
+      "detalhe_busca": "A Benetton correu a temporada de 1990 com o B190 (motor Ford HB V8), pilotos Nelson Piquet e Alessandro Nannini, depois Roberto Moreno. O par equipe×ano existe e a equipe estava ativa. Em 1990 a Benetton ainda não tinha patrocinador-título; a Camel só assume em 1991 — o que é coerente com uma estampa sem patrocinador de tabaco."
+    },
+    {
+      "id": "codigo-registro-chapeu-japones",
+      "tipo": "codigo",
+      "entidade": "Registro 全日本帽子協会 na etiqueta",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "Etiqueta com número de registro da 全日本帽子協会 é marca de produção japonesa, coerente com declaração de 日本製.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m56921610317"
+      ],
+      "frase_origem": "A etiqueta de cuidados traz 'MADE IN JAPAN'",
+      "detalhe_busca": "A 全日本帽子協会 (Associação Japonesa de Chapéus) é entidade real da indústria japonesa, fundada em junho de 1972 e depois renomeada 日本帽子協会. Etiqueta com esse registro é marca de produção japonesa, coerente com o 日本製 declarado."
+    }
+  ]
+}

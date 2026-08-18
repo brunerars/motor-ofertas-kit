@@ -1,0 +1,73 @@
+{
+  "id": "m88760510115",
+  "titulo_vendedor": "90s MAGNETI MARELLI FERRARI ハリントンジャケット",
+  "preco_jpy": 11800,
+  "vendedor": { "nome": "しあん", "avaliacoes_boas": 3429, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A marca da peça é MAGNETI MARELLI, não Ferrari. O brasão do peito diz, na ordem: MAGNETI MARELLI em cima, o escudo com o cavallino no meio e 'GRAND PRIX TEAM / SPONSORIZZATA DALLA' embaixo, que em italiano é 'equipe de Grand Prix patrocinada por'. A etiqueta de gola é da Magneti Marelli sobre bandeira italiana. O campo de marca do Mercari diz FERRARI e o título abre com MAGNETI MARELLI FERRARI. É peça de patrocinador, com o escudo Ferrari citado como quem foi patrocinado.",
+      "evidencia": "Bordado no peito 'MAGNETI MARELLI / escudo Ferrari com faixa CHAMPION / GRAND PRIX TEAM / SPONSORIZZATA DALLA'; etiqueta de gola tecida MAGNETI MARELLI sobre verde-branco-vermelho",
+      "fonte": "foto_9, foto_6, foto_5, titulo",
+      "checagem_externa": { "feita": true, "resultado": "confirma", "detalhe": "Magneti Marelli é fornecedora e patrocinadora da Ferrari em F1 de longa data e aparece na lista de patrocinadores da Ferrari de 1995, ao lado de Agip, Marlboro, Pioneer, Fiat e Telecom Italia. A leitura 'equipe patrocinada pela Magneti Marelli' bate com o papel real da empresa.", "fonte": "Formula 1 Wiki (Fandom), verbete Magneti Marelli; grandprix.com, história de patrocínio na F1" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "O '90s' do título não tem âncora. Aqui o método da combinação patrocinador x temporada NÃO funciona: a Magneti Marelli está ligada à Ferrari por décadas, não por uma janela fechada, então o par não data nada. Não há código de data, licença nem patrocinador-título na peça. Pelo METODO isto vira 'consistente com vintage, ano indeterminado' e para aí.",
+      "evidencia": "Nada na peça carrega ano. A única etiqueta com código é a interna, 'NO: FO-500', que é referência de produto e não data. Descrição do vendedor: '90年代 ヴィンテージ' e '当時物', sem justificativa.",
+      "fonte": "foto_7, descricao, titulo",
+      "checagem_externa": { "feita": true, "resultado": "nao_achei", "detalhe": "A busca devolveu a Magneti Marelli como patrocinadora da Ferrari por um intervalo de décadas, e ela patrocinou também Renault, Williams, Benetton, Minardi, Sauber e Alfa Romeo em períodos sobrepostos. Nenhuma janela fechada. A busca por datação do logotipo da Magneti Marelli (a versão sobre bandeira italiana) também não devolveu período. Sem âncora, não afirmo ano.", "fonte": "Formula 1 Wiki (Fandom), verbete Magneti Marelli; 1000logos e logos-world, história do logotipo Magneti Marelli" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "Não publicar o tamanho pela etiqueta. A etiqueta interna diz M, para 胸囲 84~92 cm e 身長 160~170 cm, que é grade japonesa. A medida que o próprio vendedor informa é 身幅 63 cm, o que não cabe nessa grade e é peça bem mais larga. Publicar as medidas, não a letra.",
+      "evidencia": "Etiqueta interna 'NO: FO-500 / サイズ 胸囲 84~92 / 身長 160~170 / M'; descrição do vendedor '身幅(脇の付け根)63' e '横幅広め ワイドシルエット'",
+      "fonte": "foto_7, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto entre a etiqueta na foto e as medidas escritas pelo vendedor. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A etiqueta interna é a peça de informação que o vendedor não usou: além do código FO-500, ela repete o mesmo carimbo do brasão, 'MAGNETI MARELLI / Ferrari / SPONSORIZZATA DALLA', e traz a grade de tamanho em japonês. Ou seja, o brasão bordado não é aplicação avulsa, ele faz parte do produto como ele foi etiquetado, e o produto foi montado para o mercado japonês. Isso é exatamente a narrativa da loja: peça que circulou no Japão.",
+      "evidencia": "Etiqueta interna com 胸囲/身長 em japonês e o texto impresso 'MAGNETI MARELLI / Ferrari / SPONSORIZZATA DALLA' abaixo da composição",
+      "fonte": "foto_7",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Leitura direta da etiqueta na foto. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A composição está na etiqueta e o vendedor não a informa: 表地 poliéster 65% e algodão 35%; forro do corpo algodão 100%; forro das mangas náilon 100%. Quem montar a legenda tem o dado, e ele corrige a leitura de 'algodão' que o aspecto de Harrington sugere.",
+      "evidencia": "Etiqueta interna '品質表示 / 表地 ポリエステル 65% 綿 35% / 裏地 身頃 綿 100% / 袖 ナイロン 100%'; a descrição do vendedor não cita material nenhum",
+      "fonte": "foto_7, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Leitura da etiqueta contra a descrição. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O formato declarado se sustenta. O vendedor chama de Harrington / Baracuta G9 e a peça tem os elementos do tipo: forro tartan inteiro, gola com dois botões, bolsos com pala e botão, punhos e barra em ribana. O puxador do zíper é gravado 'Ferrari' em script.",
+      "evidencia": "Forro tartan cobrindo corpo e mangas; gola com dois botões; puxador metálico com 'Ferrari' gravado em relevo",
+      "fonte": "foto_8, foto_4, foto_10",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto entre o formato declarado e o que as fotos mostram. Não estou afirmando nada sobre a peça ser original a partir da textura de bordado ou de etiqueta, o METODO proíbe.", "fonte": "" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A condição declarada é otimista para uma peça amarela. O vendedor marca 目立った傷や汚れなし ('sem danos ou sujeira aparentes') e só pede compreensão genérica com アタリやフェード de vintage. Nas fotos aparecem marcas escuras pontuais no amarelo, logo abaixo da gola e na frente esquerda perto da barra. Em peça clara isso aparece na foto da oferta, não adianta ficar só na legenda.",
+      "evidencia": "Pontos e riscos escuros no tecido amarelo abaixo da gola (foto_4) e na frente esquerda junto à barra e ao punho (foto_11)",
+      "fonte": "foto_4, foto_11, foto_1",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Dano visível nas fotos contra a condição declarada. Não há fato externo a conferir.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "Peça coerente, vendedor com reputação forte (3429/0) e uma história que ninguém está contando: é merchandising da Magneti Marelli, a fornecedora que patrocinava a Ferrari, e não uma jaqueta da Ferrari. Publicar assim, com o brasão como prova, é mais interessante do que 'jaqueta Ferrari' e é a versão verdadeira. Tirar o '90s' da legenda: não há como sustentar. Publicar medidas, nunca a letra M da etiqueta, e mostrar as marcas escuras na foto.",
+  "o_que_nao_sei": [
+    "O ano. Não há âncora externa nenhuma: Magneti Marelli e Ferrari andam juntas há décadas, e não achei datação para a versão do logotipo usada na etiqueta.",
+    "Se é brinde interno de patrocinador ou linha vendida ao público. A etiqueta japonesa com grade de tamanho e código FO-500 aponta para varejo, mas não fecha.",
+    "Quem fabricou. A etiqueta não nomeia fabricante nem licenciante, só Magneti Marelli e Ferrari.",
+    "Se a variação de tom no amarelo entre os painéis das costas (fotos 3 e 13) é costura de painel, luz ou desbotamento real. Nenhuma foto sob luz neutra resolve isso.",
+    "Se as marcas escuras saem em limpeza profissional.",
+    "O que a faixa 'CHAMPION' no topo do escudo referencia. Aparece bordada mas nada na peça diz de qual título ela fala."
+  ]
+}

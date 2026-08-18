@@ -1,0 +1,74 @@
+{
+  "_schema": "Natureza do problema de cada peça bloqueada. Os pareceres dizem QUAL é o problema; este arquivo diz DE QUE TIPO ele é, que é o que separa 'o vendedor descreveu errado' de 'essa peça não deveria ter entrado'. Classificado em 18/08 a partir dos pareceres. NÃO diz quem garimpou cada link: essa informação é do Bruno e do Caio, e a conversa pertence a eles.",
+  "_naturezas": {
+    "descricao_do_vendedor": "A peça é o que promete. O anúncio é que erra: keyword de SEO, copyright confundido com fabricação, data vaga ou larga demais. Ninguém aqui errou, é o padrão do Mercari, e é pra isso que o filtro existe.",
+    "a_peca_nao_e_o_que_parece": "A peça em si não é do nicho, não é da era, ou não é peça de equipe. Se foi comprada, foi escolha errada. Muda o critério de garimpo.",
+    "estado_da_peca": "Dano que compromete a venda.",
+    "material_do_anuncio": "As fotos é que não servem: montagem, letreiro sobreposto, quantidade insuficiente. Muda o que dá pra publicar, não a peça."
+  },
+  "_era_detectavel": "Antes de comprar, olhando o anúncio: sim | so_com_pesquisa | nao",
+  "_classificado_em": "2026-08-18",
+
+  "m97283893856": {
+    "origem": "a_peca_nao_e_o_que_parece",
+    "secundaria": "estado_da_peca",
+    "era_detectavel": "sim",
+    "nota": "A peça mais cara do lote. Não tem vínculo nenhum com Senna: a etiqueta é Y'S GEAR, empresa constituída em 1997, e Senna morreu em 1994. E é fabricada na China. Além disso o próprio vendedor declarou condição C, que na escala dele significa hidrólise do forro, que é irreversível. Os dois sinais estavam no anúncio, em texto, antes de qualquer análise."
+  },
+  "m92121645867": {
+    "origem": "a_peca_nao_e_o_que_parece",
+    "era_detectavel": "sim",
+    "nota": "Em 15 fotos não aparece um patrocinador, um número de carro, um piloto nem uma equipe. É linha lifestyle licenciada Nice Man Sports, não peça de Grand Prix. O vendedor foi honesto e escreveu que não sabe a época. A ¥32.800, é a segunda mais cara do lote."
+  },
+  "m73359062125": {
+    "origem": "a_peca_nao_e_o_que_parece",
+    "era_detectavel": "sim",
+    "nota": "Não é HRC e não é F1. O bordado diz HONDA MOTOR SPORTS, a etiqueta diz HONDA COLLECTION, e a fabricação é na China, por um fornecedor japonês de vestuário. O título do anúncio nunca prometeu F1: quem leu é que presumiu."
+  },
+
+  "m31939814908": {
+    "origem": "descricao_do_vendedor",
+    "era_detectavel": "so_com_pesquisa",
+    "nota": "Vendida como 70s e 80s extremamente rara a ¥38.000, e a datação não fecha: o telefone 818-705-1500 na etiqueta só pode existir a partir de 1984, quando o código de área foi criado. O RN também não prova fabricação nos EUA como o anúncio sugere. A etiqueta estava fotografada, mas só uma busca resolve, então não dá pra cobrar isso de olho."
+  },
+  "m84409745896": {
+    "origem": "descricao_do_vendedor",
+    "secundaria": "material_do_anuncio",
+    "era_detectavel": "sim",
+    "nota": "O título crava 90s e 激レア (super raro) e nada na peça ancora nem a década nem a raridade: a etiqueta só traz MADE IN ITALY e o tamanho. A ¥22.000 numa camiseta, o prêmio de raridade está sendo pago sem prova. A foto 5 ainda por cima é montagem com quatro camisetas, e só uma está à venda."
+  },
+  "m10933095707": {
+    "origem": "descricao_do_vendedor",
+    "era_detectavel": "sim",
+    "nota": "O título abre com Ferrari e o campo de marca diz Ferrari, mas a descrição termina com レプリカ, réplica, escrito pelo próprio vendedor. O erro de comunicação é dele. Mas a palavra estava lá, em japonês, no anúncio, e passou na curadoria. É o caso mais barato de corrigir daqui pra frente: ler a descrição inteira, não só o título."
+  },
+  "m69497505984": {
+    "origem": "descricao_do_vendedor",
+    "secundaria": "material_do_anuncio",
+    "era_detectavel": "so_com_pesquisa",
+    "nota": "Imprecisão, não erro: o vendedor diz 2002 a 2009 e a própria peça corta em 2002 a 2005, porque os patches são Michelin e a Toyota trocou pra Bridgestone em 2006. Isso melhora o anúncio em vez de derrubar. O problema real é outro: são só 3 fotos, nenhuma de punho, barra ou forro."
+  },
+  "m88760510115": {
+    "origem": "descricao_do_vendedor",
+    "era_detectavel": "sim",
+    "nota": "A marca da peça é MAGNETI MARELLI, não Ferrari: o brasão diz GRAND PRIX TEAM sponsorizzata dalla. A peça serve ao nicho, porque a Marelli foi fornecedora real da Ferrari, só não é o que o título vende. O 90s também não tem âncora, e aqui o método de patrocinador cruzado com temporada não ajuda, porque a Marelli está ligada à Ferrari há décadas."
+  },
+
+  "m18390786233": {
+    "origem": "material_do_anuncio",
+    "era_detectavel": "sim",
+    "nota": "A peça está certa e é barata, ¥3.200, e a datação até melhora com a análise: a estampa do F2002 fecha em 2002 e 2003. O único problema é que a melhor foto da estampa tem um letreiro preto sobreposto pelo vendedor e não dá pra reusar crua."
+  },
+  "m97609115294": {
+    "origem": "material_do_anuncio",
+    "era_detectavel": "sim",
+    "nota": "A peça é boa e o achado é sólido: o motor RA121E V12 crava 1991, e a dupla Senna e Berger bate. Duas coisas só pra registrar na legenda: é merchandise oficial da Honda, não peça de equipe, e duas das doze fotos são montagem do vendedor."
+  },
+
+  "m33557684905": {
+    "origem": "a_peca_nao_e_o_que_parece",
+    "era_detectavel": "sim",
+    "controle_negativo": true,
+    "nota": "Esta não entrou no lote de hoje: é o boné que o Caio reprovou em 13/07, colocado de volta na fila com o gabarito escondido, pra testar se o método enxerga sozinho. A bandeira bordada tem duas faixas, vermelha sobre branca, e a descrição promete a alemã, que tem três. A etiqueta da própria Michael Schumacher Collection traz o capacete em preto, vermelho e amarelo. A peça se contradiz sozinha."
+  }
+}

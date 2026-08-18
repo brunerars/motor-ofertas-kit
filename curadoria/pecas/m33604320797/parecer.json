@@ -1,0 +1,77 @@
+{
+  "id": "m33604320797",
+  "titulo_vendedor": "ベネトン F1 IMOLA Tシャツ イタリア製 M",
+  "preco_jpy": 22000,
+  "vendedor": { "nome": "ヤ**マ", "avaliacoes_boas": 494, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O '1990年前後' do vendedor tem âncora dentro da própria estampa: está escrito 'Team 90. FORMULA - 1' no peito, junto de 'RACE TEAM MEMBER'. É a única peça das três que carrega um número de ano no desenho.",
+      "evidencia": "Bloco de texto preto no peito esquerdo: 'Team 90. / FORMULA - 1 / RACE TEAM MEMBER', ao lado do selo amarelo 'UCB POWER 500Hp'",
+      "fonte": "foto_1, foto_2",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A Benetton correu a temporada de 1990 com o B190 (motor Ford HB V8), pilotos Nelson Piquet e Alessandro Nannini, depois Roberto Moreno. O par equipe×ano existe e a equipe estava ativa. Em 1990 a Benetton ainda não tinha patrocinador-título; a Camel só assume em 1991 — o que é coerente com uma estampa sem patrocinador de tabaco.",
+        "fonte": "en.wikipedia.org/wiki/Benetton_B190 · en.wikipedia.org/wiki/Benetton_Formula"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O 'シューマッハ加入以前' (antes da chegada do Schumacher) da descrição está certo. Schumacher só estreia na F1 em agosto de 1991, pela Jordan em Spa, e passa pra Benetton no GP da Itália do mesmo ano. Um desenho de 1990 é, por definição, anterior a ele.",
+      "evidencia": "Afirmação da descrição do anúncio conferida contra a estampa 'Team 90.'",
+      "fonte": "descricao, foto_1",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Estreia de Schumacher no GP da Bélgica de 1991 pela Jordan, substituindo Bertrand Gachot; contratado pela Benetton dias depois, correndo pela equipe já no GP da Itália de 1991, no lugar de Roberto Moreno.",
+        "fonte": "racefans.net/2011/08/25 (20 anos da estreia) · the-race.com (How Schumacher was snatched from Jordan)"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A ligação com a equipe está bordada na peça, não é só grafismo de moda: patch na manga com 'Benetton Formula 1 / RACING TEAM' e os quatro traços coloridos. E o 'イタリア製' declarado bate com a etiqueta de gola.",
+      "evidencia": "Patch bordado de contorno vermelho na manga direita; etiqueta de gola 'MADE IN ITALY / UNITED COLORS OF BENETTON / REGISTERED TRADE MARK' com etiqueta de tamanho 'M' separada",
+      "fonte": "foto_4, foto_3, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "'Benetton Formula' é o nome real da equipe de F1 do grupo, ativa de 1986 (GP do Brasil) a 2001 (GP do Japão), quando virou Renault F1 Team. O patch usa o nome oficial da equipe, não uma inspiração genérica.",
+        "fonte": "en.wikipedia.org/wiki/Benetton_Formula"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A camiseta é de circuito e o circuito tem história pra contar naquele mesmo ano: em 1990, no GP de San Marino em Imola, Alessandro Nannini subiu ao pódio pela Benetton (3º lugar, com a volta mais rápida da corrida). O vendedor vende 'raridade' e 'made in Italy' e não usa nada disso — vira pauta de post pronta, com fato conferível.",
+      "evidencia": "Faixa central azul e vermelha com 'IMOLA' + 'UNITED COLORS SPORT RACING' e 'Racetrack', combinada com o 'Team 90.' da mesma estampa",
+      "fonte": "foto_1, foto_2",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "GP de San Marino de 1990, em Imola: Nannini terminou em 3º com o Benetton B190 e cravou a volta mais rápida (1:27.156, volta 60).",
+        "fonte": "f1-fansite.com/f1-result/results-1990-formula-1-grand-prix-of-san-marino · f1.fandom.com/wiki/1990_San_Marino_Grand_Prix"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A quinta foto não é da peça: é uma montagem 2x2 com quatro camisetas da mesma série (MonteCarlo, Montreal, Mexico e IMOLA), sendo que só a IMOLA é este anúncio. Não é engano do vendedor, ele avisa na descrição que as outras três estão à venda à parte — mas sobram 4 fotos utilizáveis, não 5, e essa montagem não pode ir pro feed como se fosse a peça.",
+      "evidencia": "Colagem de quatro camisetas brancas sobre piso de madeira; três delas com faixas e nomes de circuito diferentes do anúncio",
+      "fonte": "foto_5, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Comparação interna entre as fotos do próprio anúncio, sem fato externo a conferir.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "É a peça com a melhor documentação das três: ano na estampa, patch oficial da equipe na manga e etiqueta Made in Italy coerente com o que foi declarado. O post se escreve sozinho com o gancho de Imola 1990 (Nannini no pódio), sem precisar inflar nada. Antes de fechar, pedir foto das costas e das axilas — o vendedor lista medidas mas não fotografou o verso, e a descrição admite genericamente '細かな使用感' e possíveis manchas não notadas. Se o Caio quiser série, o vendedor tem as outras três do mesmo lote à venda.",
+  "o_que_nao_sei": [
+    "Se 'Team 90.' significa a temporada de 1990 ou é só o nome da série de estampas. É a única âncora de ano da peça e ela é ambígua — na legenda, tratar como 'estampa que se identifica como Team 90' e não como data de fabricação cravada.",
+    "Se é peça de época ou reedição posterior. A Benetton tem hoje uma coleção 'Benetton Formula' ativa, lançada pelos 30 anos dos títulos mundiais; conferi a página oficial dessa coleção e ela NÃO lista camisetas de circuito (Imola, Monte Carlo, Montreal, Mexico), então não achei ligação — mas também não consigo descartar por foto.",
+    "Autenticidade da etiqueta e da estampa. Não julguei: foto de celular não sustenta essa conclusão.",
+    "O estado real do verso. Não há foto das costas, das axilas nem do baixo da barra, e branco de 35 anos costuma amarelar exatamente aí.",
+    "Se a peça é merchandising vendido ao público ou material de equipe. O patch diz 'RACING TEAM' e a estampa diz 'RACE TEAM MEMBER', mas isso é linguagem de estampa, não prova de uso pela equipe.",
+    "O que os selos 'UCB POWER 500Hp' e 'Pit Stop «WARM-UP»' referenciam. São grafismos da coleção, não especificação técnica: o Ford-Cosworth HB V8 3.5 que a Benetton usava em 1990 rendia entre 630 e 730 cv (Wikipedia, Ford-Cosworth HB engine), então o '500Hp' é decorativo e não deve entrar na legenda como dado."
+  ]
+}

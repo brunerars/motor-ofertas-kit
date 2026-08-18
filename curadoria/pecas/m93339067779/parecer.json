@@ -1,0 +1,73 @@
+{
+  "id": "m93339067779",
+  "titulo_vendedor": "【BENETTON】希少 ベネトンフォーミュラ1 レーシングジャケット L相当",
+  "preco_jpy": 31200,
+  "vendedor": { "nome": "古着好き☆さか", "avaliacoes_boas": 2256, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A jaqueta é datável em 1992, contra o '90s' do vendedor. O conjunto de patrocinadores fecha numa temporada só: Camel foi patrocinadora-título da Benetton apenas de 1991 a 1993 (saiu da Lotus no fim de 1990 e foi substituída pela Mild Seven em 1994); a Mobil era a parceira de combustível em 1991 e 1992, e em 1993 a Benetton passou pra Elf; o pneu Goodyear só entra em 1992 (em 1991 a Benetton corria com Pirelli); e a Technogym vira patrocinadora em 1992. A interseção Camel x Ford x Mobil 1 x Goodyear x Technogym existe em 1992 e em nenhum outro ano.",
+      "evidencia": "Estampa das costas 'CAMEL / Benetton Formula 1 Racing Team'; no peito, patches Ford e Mobil 1 mais o bordado Benetton Formula 1; manga direita com patch Goodyear; manga esquerda com patch TechnoGym; peito com VIVIL Breath Mints e SANYO",
+      "fonte": "foto_2, foto_3, foto_6, foto_8, foto_13, foto_14",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992.",
+        "fonte": "Wikipedia Benetton B191, B192 e B193; f1colours.wordpress.com (livery history Benetton); mult1formula.com sobre Technogym x Benetton"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "O vendedor não sabe o que está vendendo. A descrição inteira trata a peça como roupa vintage de brechó: fala de silhueta larga, de 'garota do vintage', de caimento unissex, e não cita temporada, piloto, motor nem patrocinador nenhum. O único dado de F1 no anúncio é a palavra CAMEL, jogada no meio da lista de atributos junto com 'full zip' e 'estampa grande nas costas'.",
+      "evidencia": "Descrição: '90s イタリア製 CAMEL キャメル フルジップ 背面ビッグプリント 刺繍ワッペン レーシングジャケット ブルゾンです' e 'メンズ サイズなので、古着女子の方も流行りのビッグシルエットでゆるだぼっと着て頂けます'",
+      "fonte": "descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal interno ao anúncio, não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "Nenhum piloto aparece na peça. Em 1992 a Benetton era a equipe do Michael Schumacher (com Martin Brundle), e foi o ano da primeira vitória dele na F1, em Spa. Isso é CONTEXTO da temporada e pode ser contado como história, mas não é atribuição: a jaqueta não carrega nome, número nem assinatura de piloto, e vender como 'jaqueta do Schumacher' seria inventar.",
+      "evidencia": "Varredura das 19 fotos: nenhum bordado, patch ou etiqueta com nome ou número de piloto; só marca, equipe e patrocinadores",
+      "fonte": "foto_3, foto_8, foto_16, foto_17",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Schumacher e Brundle correram o B192 em 1992 (carros 19 e 20). A dupla e o ano batem, mas nada disso está impresso na peça.",
+        "fonte": "Wikipedia Benetton B192; ficha de decalque Tabu Design para o B192 1992 (#19/#20 Schumacher/Brundle)"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A origem italiana declarada confere, e a peça é da linha oficial Benetton Formula, não uma jaqueta genérica da United Colors. A etiqueta de gola é a etiqueta específica da linha de corrida. O tamanho 50 do anúncio e a composição 100% algodão também batem com a etiqueta interna.",
+      "evidencia": "Etiqueta de gola tecida 'UNITED COLORS OF BENETTON — MADE IN ITALY / Benetton Formula'; etiqueta interna '50 ... MADE IN ITALY, US RN 64961, 100% COTONE / BAUMWOLLE / COTON / COTTON / ALGODON'",
+      "fonte": "foto_5, foto_15, foto_16",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto direto entre o texto do anúncio e o texto das etiquetas nas fotos.", "fonte": "" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A foto 1 é uma capa montada pelo vendedor, com texto japonês sobreposto ('Benetton / Formula 1 / 90s / イタリア製 / 刺繍 / L相当'). Não serve pro post como está. As fotos limpas da peça inteira são a 2 (costas) e a 3 (frente), e as de detalhe úteis são 6, 7, 8, 13 e 14; as fotos 11, 12 e 19 são close de tecido preto sem informação legível.",
+      "evidencia": "Texto branco com contorno preto sobreposto sobre a imagem da peça na foto 1",
+      "fonte": "foto_1",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal puramente visual, sobre o material do anúncio.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A condição declarada é '目立った傷や汚れなし' (sem danos ou sujeira notáveis), mas a foto 19 mostra manchas claras e uma área descolorida na barra e no forro que a descrição não menciona. Não dá pra fechar pela foto se é sujeira, brilho de flash ou desgaste do preto, e não dá mais pra perguntar ao vendedor.",
+      "evidencia": "Close da barra e do forro com manchas claras espalhadas e área com tonalidade diferente",
+      "fonte": "foto_19",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Observação direta das fotos contra a condição declarada.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "A peça já foi VENDIDA (sold: true no scrape de 18/08), então o valor aqui é de método, não de compra. Guardar a regra que ela ensinou: uma jaqueta de equipe com quatro ou cinco patrocinadores visíveis quase sempre fecha num ano só, e a checagem de combustível e pneu é o que fecha, não a marca de cigarro. Se aparecer outra Camel x Benetton, conferir Mobil ou Elf no peito e Goodyear ou Pirelli na manga antes de escrever o ano. E se ela reaparecer no mercado, a legenda certa é '1992, Camel Benetton Ford' — nunca 'jaqueta do Schumacher'.",
+  "o_que_nao_sei": [
+    "Se é peça de equipe (usada nos boxes) ou merchandising de varejo da Benetton Formula. A etiqueta 'Benetton Formula' é da linha de corrida, mas essa linha era vendida ao público, então ela não separa as duas coisas.",
+    "O estado real do tecido preto. Todas as fotos de detalhe são em preto sobre preto com flash, e a mancha da foto 19 não se resolve na imagem.",
+    "Se a jaqueta foi fabricada dentro da temporada de 1992 ou depois dela com a arte de 1992. Merchandising esportivo carrega o conjunto de patrocinadores de uma temporada e continua sendo produzido depois; o que está datado é a ARTE, não necessariamente a costura.",
+    "O preço de venda real. O anúncio marcava 31.200 JPY, mas o Mercari não expõe se houve desconto de negociação no fechamento."
+  ]
+}

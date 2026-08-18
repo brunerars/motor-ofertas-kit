@@ -1,0 +1,64 @@
+{
+  "id": "m56921610317",
+  "titulo_vendedor": "ビンテージ 90s F1 ベネトン　キャップ　帽子　レーシング",
+  "preco_jpy": 9100,
+  "vendedor": { "nome": "プロフ読んでフォロー割☆BRAVE", "avaliacoes_boas": 9654, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A etiqueta interna diz 'Benetton Formula 1' — é a linha de merchandising da equipe de F1, não roupa esportiva genérica da Benetton. O vendedor não usa isso: cadastrou a marca como 'UNITED COLORS OF BENETTON' e descreve a peça como cap vintage de 'sabor retrô esportivo', sem citar a etiqueta uma vez sequer.",
+      "evidencia": "Etiqueta branca costurada na faixa interna com o texto 'Benetton Formula 1' e os traços verdes da marca",
+      "fonte": "foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A Benetton Formula foi a equipe de F1 do grupo, do GP do Brasil de 1986 ao GP do Japão de 2001, quando virou Renault F1 Team. A Benetton Sportsystem (divisão de artigos esportivos do grupo nos anos 90, absorvida pela Playlife entre 1997 e 1999) produziu material licenciado da equipe, incluindo peças importadas do Japão. Ou seja, existe uma linha oficial 'Benetton Formula 1' de merchandising — o rótulo não é decorativo.",
+        "fonte": "en.wikipedia.org/wiki/Benetton_Formula · en.wikipedia.org/wiki/Playlife · listagens de Benetton Formula 1 Sportsystem no eBay"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O '90s' do título não tem âncora. Não há patrocinador, piloto, ano nem código de licença na peça: o único elemento datável é a própria etiqueta 'Benetton Formula 1', e ela abre uma janela de 1986 a 2001. Na legenda: consistente com vintage, ano indeterminado — não escrever 'anos 90' como fato.",
+      "evidencia": "Bordado frontal traz só 'BENETTON' e 'INTERNATIONAL SPORT SYSTEM' com bandeirinhas quadriculadas; nenhuma das 4 fotos mostra patrocinador, número, piloto ou selo com data",
+      "fonte": "titulo, foto_1, foto_2, foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Procurei a expressão exata 'INTERNATIONAL SPORT SYSTEM' em material Benetton e não achei nada. O que existe é a 'Benetton Sportsystem', divisão do grupo, que é escrita diferente e não datou nada aqui. Sem essa amarra, qualquer década vira chute.",
+        "fonte": "busca por 'Benetton cap INTERNATIONAL SPORT SYSTEM embroidered vintage' (só retornou Benetton Sport System / Nordica)"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O 'made in Japan / 日本製' da descrição é sustentado pela peça. A etiqueta de cuidados traz 'MADE IN JAPAN', 'フリーサイズ' (tamanho único) e o registro '全日本帽子協会1201'.",
+      "evidencia": "Etiqueta de cuidados na faixa interna, ao lado da etiqueta Benetton Formula 1",
+      "fonte": "foto_4, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A 全日本帽子協会 (Associação Japonesa de Chapéus) é entidade real da indústria japonesa, fundada em junho de 1972 e depois renomeada 日本帽子協会. Etiqueta com esse registro é marca de produção japonesa, coerente com o 日本製 declarado.",
+        "fonte": "boushi.or.jp e resultados de busca por 全日本帽子協会"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A condição declarada bate com as fotos, incluindo a parte chata. O vendedor declara '目立った傷や汚れなし / 細かな使用感・傷・汚れはあるが、目立たない' e é isso que se vê: exterior sem furo ou mancha aparente, e um leve amarelado/rosado na faixa e no forro interno, típico de uso.",
+      "evidencia": "Painéis vermelho e cinza limpos nas fotos frontais; forro branco com sombreado rosado na parte de cima do interior",
+      "fonte": "foto_1, foto_2, foto_3",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal puramente visual e interno à peça, não há fato externo a conferir.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "O argumento de venda desta peça é a etiqueta, não o boné. Vender como 'Benetton Formula 1 — a linha oficial da equipe de F1, feita no Japão' é mais forte e mais verdadeiro do que 'cap vintage anos 90', e o vendedor entregou isso de graça. Corrigir a década antes de publicar: escrever vintage sem ano. Se quiser fechar a datação, pedir ao vendedor foto da traseira (do fecho elástico) e da etiqueta em close com boa luz — quatro fotos é pouco pra um post e nenhuma mostra a nuca.",
+  "o_que_nao_sei": [
+    "O ano de fabricação. Nada na peça data — a janela honesta é 1986-2001, o período em que a Benetton Formula existiu.",
+    "O que o número 1201 da etiqueta 全日本帽子協会 codifica. Não achei documentação; pode ser número de associado do fabricante e não código de data, então não tratar como âncora de ano.",
+    "Quando a 全日本帽子協会 mudou de nome para 日本帽子協会. Se essa data existisse, a etiqueta com o nome antigo daria um teto de datação — não consegui confirmar o ano da mudança.",
+    "Se 'INTERNATIONAL SPORT SYSTEM' é a divisão Benetton Sportsystem escrita de outro jeito ou só grafismo da estampa. A busca não confirmou nenhum dos dois.",
+    "Autenticidade. Não dá pra julgar bordado, costura ou etiqueta por foto de celular, e não julguei.",
+    "O estado da traseira e do fecho: nenhuma das 4 fotos mostra a nuca do boné."
+  ]
+}

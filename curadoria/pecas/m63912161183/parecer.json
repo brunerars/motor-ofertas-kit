@@ -1,0 +1,67 @@
+{
+  "id": "m63912161183",
+  "titulo_vendedor": "Ferrari ブルゾン ジャケット レッド",
+  "preco_jpy": 20000,
+  "vendedor": { "nome": "たま", "avaliacoes_boas": 76, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A etiqueta interna não é de moda genérica: diz 'WORLD CHAMPIONSHIP TEAM', com uma seta branca sobre campo vermelho, e etiqueta de tamanho L costurada logo abaixo. 'World Championship Team' é a marcação usada em uma linha documentada de merchandising de F1 dos anos 90 ligada à Marlboro, patrocinadora histórica da Ferrari. O vendedor não menciona nada disso: o anúncio inteiro descreve 'blusão vermelho com o cavalo da Ferrari bordado nas costas', sem F1, sem equipe, sem época.",
+      "evidencia": "Etiqueta branca costurada no forro com o texto 'WORLD CHAMPIONSHIP TEAM' e seta/chevron branca sobre retângulo vermelho, mais etiqueta de tamanho 'L'",
+      "fonte": "foto_13, descricao, titulo",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Confirma que 'Marlboro World Championship Team' existe como linha de vestuário de F1 vintage (jaquetas, corta-ventos, couro) circulando em eBay, Etsy, Grailed e lojas de vintage, e que a Marlboro é parceira da Ferrari desde 1973, virando patrocinadora principal de 1997 a 2022. O que NÃO consegui confirmar em fonte não-comercial é o desenho exato desta etiqueta nem qual licenciado a fabricou.",
+        "fonte": "ebay.com/itm/204844545442 ('MARLBORO WORLD CHAMPIONSHIP TEAM FORMULA 1 F1 VINTAGE 90S RAIN JACKET'), grailed.com/collaborations/ferrari-marlboro, f1.fandom.com/wiki/Marlboro"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O campo 'marca' do Mercari traz FERRARI, mas nenhuma das 20 fotos mostra selo de licenciamento Ferrari. A única etiqueta de fabricante que aparece é a do 'WORLD CHAMPIONSHIP TEAM'. A NSC não pode escrever 'produto oficial Ferrari' nesta peça: não há evidência disso no material do anúncio.",
+      "evidencia": "Varredura das 20 fotos: só existe uma etiqueta costurada (foto_13). Não há tag pendurada, etiqueta de composição, nem marcação 'Official Licensed Product' em nenhum ângulo",
+      "fonte": "foto_1, foto_2, foto_3, foto_13",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal interno: é a ausência de etiqueta nas fotos do próprio anúncio, não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O emblema do peito é o escudo da Scuderia Ferrari, com as letras 'S F' na base, tricolor italiano no topo e cavallino preto sobre amarelo. É o emblema de corrida, não o cavallino corporativo isolado. Nas costas, o cavallino grande e a palavra 'Ferrari' são bordados, não estampados.",
+      "evidencia": "Escudo bordado no peito esquerdo com 'S F' legível na base; bordado em relevo do cavallino e do lettering nas costas",
+      "fonte": "foto_1, foto_2, foto_3",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "As letras SF no escudo significam Scuderia Ferrari; o escudo amarelo com cavallino e tricolor no topo é o emblema da equipe de corrida, usado pela Scuderia desde 1932 e aplicado aos carros de rua a partir de 1947.",
+        "fonte": "en.wikipedia.org/wiki/Prancing_Horse, logos-world.net/ferrari-scuderia-logo"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O desgaste declarado é real e visível. O vendedor escreve que há bolinhas (毛玉) na ribana do punho, da barra e da gola, e as fotos macro mostram exatamente isso: fiapos e superfície pilada na malha das ribanas. Dano declarado e visível é vendedor honesto, mas precisa aparecer na foto da oferta, não só na legenda.",
+      "evidencia": "Fiapos soltos e malha pilada na ribana da gola e da barra nos closes; nylon do corpo sem furo ou mancha visível",
+      "fonte": "descricao, foto_11, foto_12, foto_14, foto_15",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Comparação entre o texto do anúncio e as fotos do próprio anúncio.", "fonte": "" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "Das 20 fotos, só três servem pra post: costas (foto_1), frente no manequim (foto_2) e o close do escudo (foto_3). O resto é macro de tecido quase idêntico, forro amassado e duas fotos de fita métrica tiradas em cima da pia da cozinha, com produtos de casa no fundo. A peça vai precisar de foto nova antes de virar oferta.",
+      "evidencia": "Fotos 4 a 17 são closes repetidos de ribana, forro e costura; fotos 18, 19 e 20 são medições com fundo doméstico visível",
+      "fonte": "foto_4, foto_18, foto_19, foto_20",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Contagem direta das fotos do anúncio.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "O achado está na etiqueta, não na aparência: 'WORLD CHAMPIONSHIP TEAM' liga a peça ao universo de merch de paddock da era Marlboro/Ferrari, e o vendedor vende como blusão vermelho comum. Se o Caio comprar, pedir foto de qualquer outra etiqueta que exista dentro (composição, país de origem, código) antes de fechar, porque hoje não há nada que date a peça nem que prove licenciamento. Na legenda, escrever 'Scuderia Ferrari, consistente com vintage' e parar aí, sem ano e sem a palavra 'oficial'. E contar com refotografar: só três das vinte fotos são aproveitáveis.",
+  "o_que_nao_sei": [
+    "O ano da peça. Não há patrocinador, número de temporada, código de etiqueta ou licença que ancore data. Consistente com vintage, ano indeterminado.",
+    "Se esta etiqueta 'WORLD CHAMPIONSHIP TEAM' é a mesma linha das jaquetas Marlboro documentadas no mercado ou uma marcação parecida de outro fabricante. Achei a linha, não achei a ficha da etiqueta.",
+    "Se a peça é licenciada pela Ferrari. Nenhuma foto mostra selo de licenciamento, e ausência de foto não é ausência de etiqueta.",
+    "Se é peça de equipe/paddock ou merchandising de varejo. As duas existiram na era Marlboro e mudam muito o valor.",
+    "Autenticidade do bordado e do escudo. Não avaliei e não avalio: foto de celular não sustenta essa conclusão.",
+    "Se há mancha ou furo fora do enquadramento. Não há foto da frente inteira aberta nem das axilas."
+  ]
+}

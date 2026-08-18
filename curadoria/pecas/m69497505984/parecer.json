@@ -1,0 +1,71 @@
+{
+  "id": "m69497505984",
+  "titulo_vendedor": "Panasonic F1 ジャケット L パナソニック トヨタ レーシング",
+  "preco_jpy": 14000,
+  "vendedor": { "nome": "サボ", "avaliacoes_boas": 77, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A janela '2002〜2009年' do vendedor é larga demais e a própria peça a corta pela metade. Os dois ombros têm patch da MICHELIN, e a Toyota andou de Michelin de 2002 a 2005: em 2006 trocou pra Bridgestone e ficou com Bridgestone até fechar as portas em 2009. Com o patch da Michelin na peça, a janela é 2002-2005.",
+      "evidencia": "Patch bordado azul/branco 'MICHELIN' com o Bibendum, um em cada ombro, na parte cinza",
+      "fonte": "foto_1",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A Toyota competiu na F1 de 2002 a 2009. Fornecedor de pneu: Michelin 2002-2005, Bridgestone 2006-2009. O TF102 (2002) e o TF105 (2005) correram com Michelin; o TF107 (2007) com Bridgestone Potenza.",
+        "fonte": "en.wikipedia.org/wiki/Toyota_in_Formula_One · en.wikipedia.org/wiki/Toyota_TF102 · en.wikipedia.org/wiki/Toyota_TF105 · en.wikipedia.org/wiki/Toyota_TF107"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O conjunto de patrocinadores é coerente com a Panasonic Toyota Racing e não tem nada fora de lugar. Panasonic foi patrocinadora-título desde a estreia da equipe em 2002; a Magneti Marelli trabalhou com a Toyota de 2002 a 2009. Nada na peça contradiz a atribuição de equipe.",
+      "evidencia": "Peito com 'Panasonic TOYOTA' em grande, oval da Toyota no peito esquerdo, 'TOYOTA' no peito direito e na gola, costas com 'Panasonic TOYOTA'; nas mangas, patches de MICHELIN, Sparco, MAGNETI MARELLI e um oval vermelho",
+      "fonte": "foto_1, foto_2",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Panasonic foi patrocinadora-título da Toyota desde a primeira temporada, 2002. A Magneti Marelli consta como parceira da Toyota F1 de 2002 a 2009 e aparece no site oficial de arquivo da equipe.",
+        "fonte": "toyotagazooracing.com/archive/ms/en/F1archive/teamandpartners/magneti/ · en.wikipedia.org/wiki/Toyota_in_Formula_One"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O '正規品タグあり' está sustentado pela foto: a etiqueta de gola é tecida, com o logo 'Panasonic TOYOTA Racing' em cores sobre fundo escuro, e tem aba de tamanho 'L' separada mais uma etiqueta branca ao lado. É etiqueta de produto de marca, não etiqueta genérica.",
+      "evidencia": "Etiqueta de gola tecida com o 'T' estilizado, 'Panasonic' em azul, 'TOYOTA' em vermelho e 'Racing' em manuscrito, com aba 'L'",
+      "fonte": "foto_3, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto entre a declaração do vendedor e o que a foto da etiqueta mostra. Sinal interno.", "fonte": "" }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "O gancho de história dessa peça é o fracasso mais caro da F1 moderna, não a raridade que o vendedor anuncia. A Toyota entrou em 2002 com um dos maiores orçamentos do grid, ficou oito temporadas e saiu em 2009 sem NENHUMA vitória: 13 pódios, 3 poles, zero vitórias, melhor resultado um 4º lugar no mundial de construtores em 2005. A peça é do período Michelin, que é justamente o trecho em que a equipe chegou mais perto.",
+      "evidencia": "A peça é teamwear Panasonic Toyota Racing com patch Michelin, o que a coloca dentro de 2002-2005",
+      "fonte": "foto_1, foto_2",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Toyota na F1: 2002-2009, 0 vitórias, 13 pódios, 3 poles, melhor campanha em 2005 (4º entre construtores), com um dos maiores orçamentos da categoria e crítica pública pela falta de resultado.",
+        "fonte": "en.wikipedia.org/wiki/Toyota_in_Formula_One"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "Só existem 3 fotos, e nenhuma mostra punho, barra, forro, a peça fechada nem um close dos patches sem dobra. A condição declarada '目立った傷や汚れなし' não é nem sustentada nem contrariada por essa base. Não dá pra publicar 'impecável' com o que existe.",
+      "evidencia": "As 3 fotos são: frente pendurada na porta com o zíper aberto e o peito dobrado, costas pendurada, e um close da etiqueta de gola segurada com a mão. O campo image_urls do scrape lista 6 URLs, mas são as mesmas 3 repetidas.",
+      "fonte": "foto_1, foto_2, foto_3, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Contagem e cobertura das fotos do próprio anúncio. Sinal interno.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "Corrigir a janela antes de qualquer coisa: 2002-2005, não 2002-2009, e a prova é o patch da Michelin nos ombros. A história que vende essa peça é a Toyota do orçamento gigante que passou oito anos na F1 sem vencer uma corrida, o que é ao mesmo tempo verificável e bom de post. Antes de anunciar, pedir ao vendedor fotos de punho, barra, forro e da peça fechada: com 3 fotos e nenhuma de detalhe, a condição declarada fica no ar e a foto de venda fica fraca.",
+  "o_que_nao_sei": [
+    "O ano exato dentro de 2002-2005. Michelin fecha a janela em quatro temporadas e nada mais na peça estreita: não há código de produção, ano bordado nem etiqueta de fornecedor de teamwear nas fotos.",
+    "Que logo é o oval vermelho na manga. Termina em 'so' e tanto Denso quanto Esso foram parceiros da Toyota F1; a dobra da manga esconde as primeiras letras. Se fosse Denso, haveria uma pista extra (a Denso virou patrocinadora corporativa a partir de 2004), mas não dá pra ler na foto e não achei se o teamwear já trazia Denso antes disso.",
+    "Se é peça de equipe (uso de box/paddock) ou merchandising de varejo. A etiqueta é de marca, mas nenhuma foto mostra texto de licenciamento, número de item ou etiqueta de fornecedor.",
+    "Se a Sparco era a fornecedora de vestuário da equipe ou só patrocinadora técnica. Não achei fonte que feche isso pra Toyota F1.",
+    "O estado real da peça. Sem foto de punho, barra e forro, e sem close, a condição declarada é palavra do vendedor. O vendedor tem 77 avaliações boas e 0 ruins, que é reputação boa mas volume baixo comparado às outras peças do lote."
+  ]
+}

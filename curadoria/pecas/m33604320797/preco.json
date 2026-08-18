@@ -1,0 +1,27 @@
+{
+  "id": "m33604320797",
+  "source_url": "https://jp.mercari.com/item/m33604320797",
+  "vendido": false,
+  "conta": {
+    "produto_jpy": 22000.0,
+    "taxa_naomi_jpy": 7700,
+    "taxa_naomi_pct": 0.35,
+    "frete_jp_jpy": 1000,
+    "soma_jpy": 30700.0,
+    "classe_volume": "M",
+    "classe_justificativa": "camiseta",
+    "classe_e_fallback": false,
+    "margem_jpy": 4000,
+    "preco_jpy": 34700.0
+  },
+  "conversao": {
+    "a": 9.5311,
+    "b": 0.040396,
+    "rate": 30.5776,
+    "conferido_em": "2026-08-18T17:34:23",
+    "fonte": "api.wise.com/v3/comparisons (provider=wise)"
+  },
+  "preco_brl_bruto": 1192.52,
+  "preco_brl": 1200.0,
+  "calculado_em": "2026-08-18T17:34:23"
+}

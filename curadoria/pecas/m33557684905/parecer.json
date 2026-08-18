@@ -1,0 +1,128 @@
+{
+  "id": "m33557684905",
+  "titulo_vendedor": "希少 ミハエル・シューマッハ F1 フェラーリ DEKRA キャップ 帽子",
+  "preco_jpy": 3780,
+  "vendedor": { "nome": "Dachshund", "avaliacoes_boas": 2860, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A descrição diz que a lateral traz a bandeira da Alemanha (ドイツ国旗). Não traz. A bandeira bordada tem DUAS faixas horizontais, vermelha em cima e branca embaixo. A bandeira alemã tem TRÊS faixas: preto, vermelho e ouro. Vermelho sobre branco é Mônaco (ou Indonésia), não Alemanha. Ampliado 3x não há faixa preta nem faixa amarela: são duas faixas limpas, com contorno branco.",
+      "evidencia": "Patch bordado ao lado do logotipo Ferrari: campo superior vermelho, campo inferior branco, sem terceira faixa",
+      "fonte": "foto_3, foto_4, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "refuta",
+        "detalhe": "As listagens de referência desse mesmo modelo (vermelho, DEKRA na frente, Ferrari e assinatura na lateral, louros na aba, etiqueta Michael Schumacher Collection) descrevem o conjunto de bordados como 'DEKRA, Ferrari and German flag'. Existe também no mercado uma variante batizada 'Monaco'. Nos dois casos, a bandeira que a descrição promete (Alemanha) não é a que está nesta peça.",
+        "fonte": "vintageclubclothing.com/products/ferrari-dekra-michael-schumacher-racing-snapback-hat-1990s-osfa · etsy.com/listing/1033965545 ('Vintage FERRARI Michael Schumacher Collection Dekra Monaco')"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A peça se contradiz sozinha. A etiqueta interna 'MICHAEL SCHUMACHER COLLECTION' traz o capacete estilizado com as cores alemãs (preto, vermelho e amarelo) — a marca sabe qual é a bandeira do piloto. A bandeira bordada na lateral do mesmo boné é vermelho sobre branco. Dois símbolos nacionais diferentes, na mesma peça, para o mesmo piloto. É contradição lógica interna, não leitura de textura.",
+      "evidencia": "Etiqueta oval com capacete em preto/vermelho/amarelo (foto_6) contra o patch lateral de duas faixas vermelho/branco (foto_4)",
+      "fonte": "foto_6, foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Procurei foto legível da etiqueta interna de um exemplar reconhecidamente genuíno dessa família para comparar e não achei nenhuma nas listagens de eBay, Etsy, Worthpoint, Grailed ou collectors.com. A contradição, porém, é interna à peça e não depende de referência externa para ficar de pé.",
+        "fonte": "buscas em ebay.com, etsy.com, worthpoint.com, collectors.com, grailed.com (nenhuma listagem publica a etiqueta em resolução legível)"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A datação que o vendedor vende não fecha com o patrocinador. Ele escreve que é 'da época em que ele construía a fase de ouro na Ferrari' e marca #00s. A fase de ouro da Ferrari é 2000-2004, e a DEKRA já não estava no boné do Schumacher havia anos: foi parceira publicitária exclusiva dele de 1991 a 1995 e abandonou o lugar no boné no fim de 1996, quando renovar passou a custar mais de dez milhões de marcos por ano contra os cerca de dois milhões que pagava. Schumacher chegou à Ferrari em 1996. A interseção DEKRA × Ferrari é praticamente uma temporada só, 1996 — o primeiro ano dele na Ferrari, não a fase de ouro.",
+      "evidencia": "Descrição: '彼がフェラーリで黄金期を築いていた時代のアイテム' e hashtags '#90s #00s'; a peça carrega DEKRA na frente e Ferrari na lateral",
+      "fonte": "descricao, foto_1, foto_3",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Wikipédia alemã (Dekra SE): 'Zwischen 1991 und 1995 war Dekra exklusiver Werbepartner von Formel-1-Pilot Michael Schumacher'. A própria linha do tempo da DEKRA registra 1993 como o ano em que passou a patrocinar Schumacher e o logo apareceu em toda mídia. A reportagem 'Dekra läßt Vertrag mit Michael Schumacher auslaufen' registra que a empresa deixaria seu lugar no boné do piloto no fim daquele ano, com a renovação avaliada em mais de dez milhões de marcos anuais.",
+        "fonte": "de.wikipedia.org/wiki/Dekra_SE · dekra.com/en/dekra-history · new-business.de (rubric KOMMUNIKATION, nr=10879)"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "Nenhuma das duas etiquetas atribui licença da Ferrari, apesar de a peça estampar o logotipo Ferrari bordado na lateral. Só existe a oval 'MICHAEL SCHUMACHER COLLECTION' e uma etiqueta de composição: 'Polyester/Cotton Twill / One size fits all / Made in China'. Não há '©', não há 'Official Licensed Product', não há nome de licenciado. Na peça aprovada m71164960236, da mesma categoria e da mesma rodada, isso vinha impresso e legível: 'Official Licenced Product ©1997 Ferrari Spa / Under Licence to NICE MAN SPORTS'. A ausência é de texto, não de textura: dá pra ler o que está escrito e ver o que não está.",
+      "evidencia": "As duas etiquetas internas fotografadas e ampliadas: oval da Collection e etiqueta de composição, sem qualquer menção de licença ou copyright",
+      "fonte": "foto_6",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "A pergunta era como se apresenta a etiqueta de licença legítima dessa categoria. O único padrão documentado que consegui é o da própria rodada (Nice Man Sports, licenciada Ferrari, com © e a frase de licença impressos). Listagens de exemplares dessa família citam composição '65% poliéster / 35% algodão', enquanto esta traz apenas 'Polyester/Cotton Twill'. Não achei foto de etiqueta de um exemplar reconhecidamente genuíno para fechar a comparação. Fica registrado como lacuna, não como prova.",
+        "fonte": "pareceres.json (m71164960236) · listagens de referência em ebay.com e etsy.com citando 65% poliéster / 35% algodão para o modelo Ferrari-DEKRA-MSC"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "Se a peça passar pelas outras dúvidas, a datação é o ativo que o vendedor não está usando: a dupla DEKRA × Ferrari fecha uma janela de uma temporada, 1996, o ano de estreia do Schumacher na Ferrari e o último em que a DEKRA esteve no boné dele. É datação por combinação de patrocinador, o sinal mais barato e mais forte da categoria — muito melhor do que o vago '#90s #00s' do anúncio. Registro condicionado: com as contradições acima abertas, isso é potencial de história, não argumento de venda.",
+      "evidencia": "DEKRA bordada na frente + Ferrari bordada na lateral na mesma peça, contra a janela documentada do patrocínio",
+      "fonte": "foto_1, foto_3",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "O patrocínio DEKRA a Schumacher é documentado de 1991/1993 até o fim de 1996; a ida dele para a Ferrari é 1996. A interseção é 1996. Há vendedores anunciando exemplares como '98', mas alegação de vendedor não é âncora e não muda a janela documentada.",
+        "fonte": "de.wikipedia.org/wiki/Dekra_SE · dekra.com/en/dekra-history · new-business.de (nr=10879)"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O vendedor acerta ao chamar a DEKRA de patrocinadora pessoal do Schumacher. Não era patrocinadora de equipe: era acordo pessoal com o piloto, e o lugar contratado era exatamente o boné dele.",
+      "evidencia": "Descrição: 'パーソナルスポンサー「DEKRA」のロゴ'; DEKRA bordada em destaque na frente da peça",
+      "fonte": "descricao, foto_1, foto_2",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A DEKRA foi parceira publicitária exclusiva do piloto (não da Benetton nem da Ferrari) e a reportagem sobre o fim do contrato fala literalmente do 'lugar no boné' ('Platz auf der Mütze') do Schumacher.",
+        "fonte": "de.wikipedia.org/wiki/Dekra_SE · new-business.de (nr=10879)"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O defeito declarado existe e está na foto que o vendedor indicou. Ele avisa que falta um pino da régua do snapback e manda olhar a quinta imagem. Ampliada, a fileira mostra uma casa vazada sem o pino correspondente e um dos pinos livres truncado, mais curto que o vizinho. Vendedor honesto: apontou o defeito e indicou a foto exata.",
+      "evidencia": "Régua plástica vermelha do fecho: casa sem pino no meio da fileira e pino livre truncado à esquerda",
+      "fonte": "foto_5, descricao",
+      "checagem_externa": {
+        "feita": false,
+        "resultado": "nao_achei",
+        "detalhe": "Defeito declarado e visível na própria peça. Não pede fonte externa.",
+        "fonte": "-"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "Reputação do vendedor é dado bruto e é boa: 2860 avaliações positivas e nenhuma negativa. Isso diz que ele entrega o que anuncia; não diz nada sobre a peça em si.",
+      "evidencia": "Página do anúncio: 2860 avaliações boas, 0 ruins, envio de 静岡県, frete por conta do vendedor",
+      "fonte": "dados.json",
+      "checagem_externa": {
+        "feita": false,
+        "resultado": "nao_achei",
+        "detalhe": "Dado bruto da página, sem interpretação e sem necessidade de fonte externa.",
+        "fonte": "-"
+      }
+    }
+  ],
+  "recomendacao": "Não publicar. Não porque alguém carimbou a peça, mas porque ela tem três problemas abertos que o post não consegue contornar: a bandeira lateral não é a alemã que a descrição promete, a própria peça usa dois símbolos nacionais diferentes para o mesmo piloto (etiqueta em preto/vermelho/amarelo, bordado em vermelho/branco), e não há atribuição de licença Ferrari em lugar nenhum das etiquetas, num boné que estampa o logotipo Ferrari. Some a isso que a época vendida (fase de ouro, #00s) é refutada pela janela do patrocínio DEKRA, que fecha em 1996. Qualquer legenda honesta teria que dizer 'boné da Michael Schumacher Collection, era 1996, sem licença Ferrari declarada e com bandeira que não é a alemã' — e isso não é oferta, é aviso. Se o Bruno quiser insistir, o caminho é pedir ao vendedor foto frontal da bandeira em luz neutra e foto de qualquer etiqueta adicional dentro da faixa de suor. Sem isso, fica fora da vitrine.",
+  "o_que_nao_sei": [
+    "Se a peça é falsificada. Nada do que levantei prova isso. O que tenho é uma bandeira que não bate com a descrição nem com a etiqueta da própria marca, e uma ausência de atribuição de licença. São lacunas e contradições, não prova de falsificação — e a régua proíbe eu concluir autenticidade por foto de celular.",
+    "Qual bandeira é essa, afinal. Vermelho sobre branco é Mônaco e é Indonésia. Existe no mercado uma variante desse boné anunciada como 'Monaco', então a hipótese de edição de vitória em Mônaco não pode ser descartada — mas nada na peça diz Mônaco, e nenhuma foto ou texto do anúncio ancora isso.",
+    "Como é a etiqueta de um exemplar reconhecidamente genuíno dessa família. Não achei nenhuma foto legível. Sem esse padrão, não sei se 'Michael Schumacher Collection + Made in China, sem menção à Ferrari' é o normal do modelo ou é o desvio.",
+    "Se 'Made in China' é anômalo para 1996. Há listagens de uma versão 'Germany' e listagens que citam 65% poliéster / 35% algodão, mas nada que estabeleça o país de fabricação padrão do modelo.",
+    "O logotipo grande da frente (a seta da DEKRA) atravessa a costura central da copa, e a costura passa por dentro do bordado. Não sei se isso é normal para este modelo ou não — é leitura de construção em foto de celular, e a régua manda eu me calar sobre isso. Fica só registrado.",
+    "A janela exata do patrocínio. A Wikipédia alemã diz 1991-1995 como parceria exclusiva e a reportagem alemã diz que a saída do boné foi no fim de um ano em que ele já estava na Ferrari. As duas coisas convivem, mas a data exata da última corrida com DEKRA no boné não ficou fechada.",
+    "Se a área mais clara no painel esquerdo da copa (foto_4) é desbotamento real ou reflexo. Uma foto só, luz de teto, ângulo raso."
+  ],
+  "_controle_negativo": {
+    "gabarito": "reprovada pelo Caio em 2026-07-13 (registrada como PECA FALSA no acervo)",
+    "o_metodo_pegou": "parcial",
+    "como": "O método não escreveu 'é falsa' e, pela régua dele, não podia. Mas apontou para o lugar certo por dois caminhos que não dependem de olhar textura. O primeiro é a bandeira: a descrição promete a bandeira alemã, as listagens de referência do mesmo modelo descrevem bandeira alemã, e a peça traz duas faixas vermelho-sobre-branco. Mais forte ainda, a etiqueta interna da própria Michael Schumacher Collection traz o capacete em preto, vermelho e amarelo — ou seja, a peça carrega dois símbolos nacionais incompatíveis dentro de si. Errar a bandeira do próprio piloto é o tipo de defeito que um licenciado oficial não comete e um copiador comete. O segundo caminho é a ausência de qualquer atribuição de licença Ferrari nas etiquetas, num boné que estampa o logotipo Ferrari — exatamente o texto que a peça aprovada m71164960236 trazia impresso. Nenhum dos dois é prova, e é honesto dizer: se o gabarito não existisse, o parecer seria 'não publicar por descrição errada e licença não sustentada', não 'peça falsa'.",
+    "licao_para_o_metodo": "A régua estava certa ao proibir julgamento por textura de bordado, costura e etiqueta, e essa proibição continua de pé — nada aqui foi resolvido olhando ponto ou trama. O que faltava era uma classe de sinal que a rodada de n=5 não tinha como descobrir, porque todas as peças eram coerentes: a AUDITORIA DE SÍMBOLOS OFICIAIS. Bandeira nacional, escudo, número, wordmark, © e frase de licença são discretos e legíveis — contam-se faixas, leem-se palavras, compara-se com o que a peça diz de si mesma em outro lugar. Isso sobrevive à foto de celular do jeito que textura não sobrevive. Duas regras novas saem daqui: (1) todo símbolo com forma canônica entra na checagem, e bandeira se confere contando faixas e ordem, não 'batendo o olho'; (2) peça que estampa marca protegida sem nenhuma atribuição de licença nas etiquetas vira sinal próprio, com severidade de não publicar, porque a ausência de texto é observável mesmo quando a autenticidade não é. A Etapa 2 deveria rodar sobre mais peças recusadas exatamente para descobrir se o padrão de falha é sempre esse — símbolo errado e licença ausente — ou se este caso foi sorte."
+  }
+}

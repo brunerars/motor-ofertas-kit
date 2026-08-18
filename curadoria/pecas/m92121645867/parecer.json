@@ -1,0 +1,65 @@
+{
+  "id": "m92121645867",
+  "titulo_vendedor": "Ferrari フェラーリ レーシング アノラック ジャケット イエロー",
+  "preco_jpy": 32800,
+  "vendedor": { "nome": "ことり@値下げは金額提示＆プロフ必読", "avaliacoes_boas": 1182, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "O vendedor escreve '年代の詳細は不明' (época desconhecida) e manda o comprador julgar pela foto, mas a etiqueta interna que ele mesmo fotografou tem a âncora: 'Ferrari™ / Official Licenced Product / ©1997 Ferrari s.p.a. / Under licence to NICE MAN SPORTS'. É a mesma licenciada do boné da Etapa 1 (m71164960236). Nice Man Sports é licenciada de vestuário Ferrari documentada nos anos 90, com peças datadas circulando de 1995 a 1998. Ou seja, a peça vem da linha licenciada da era Nice Man e não é anterior a 1997.",
+      "evidencia": "Etiqueta branca interna, legível: 'Ferrari™ / Official Licenced Product / © 1997 Ferrari s.p.a. / Under licence to NICE MAN SPORTS'",
+      "fonte": "foto_14, foto_13",
+      "checagem_externa": { "feita": true, "resultado": "confirma", "detalhe": "Nice Man Sports aparece como licenciada oficial de vestuário Ferrari em várias peças de época com essa mesma etiqueta, com exemplos datados por vendedores como 1995, 1996 e 1998 (jaqueta acolchoada, polo, varsity de lã e couro).", "fonte": "listagens de peças Ferrari x Nice Man Sports em Poshmark, Grailed, eBay, Etsy e Subtle Flex Streetwear" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "©1997 é copyright do design, não ano de fabricação. É o mesmo erro que o vendedor do boné m71164960236 cometeu na Etapa 1, só que aqui invertido: lá o vendedor cravou '1997年製', aqui o vendedor não usou o dado nenhum. A leitura correta é 'linha licenciada Nice Man Sports, registro de design de 1997, produção em ano indeterminado'.",
+      "evidencia": "A etiqueta traz '© 1997 Ferrari s.p.a.' junto de 'Under licence to', que é fórmula de registro de licença, e não há nenhum código de produção em nenhuma das 15 fotos",
+      "fonte": "foto_14, foto_15",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Regra já travada no METODO a partir da Etapa 1: copyright de etiqueta não é data de fabricação. Não há fato externo novo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "Não há nada de F1 nesta peça. O título vende 'レーシング' e a descrição fala em 'レーシングデザイン' e estilo 'モータースポーツ系', mas em 15 fotos não aparece um patrocinador, um número de carro, um nome de piloto nem menção a equipe. O que existe é o escudo Ferrari bordado no peito, a etiqueta 'Ferrari' na gola, a fita interna tecida 'Ferrari' e uma etiqueta 'Ferrari' aplicada nas costas. É vestuário licenciado da marca Ferrari, linha lifestyle, não peça de Grand Prix.",
+      "evidencia": "Escudo Ferrari isolado no peito esquerdo; etiqueta bordada 'Ferrari' na gola e outra igual costurada nas costas; fita interna tecida 'Ferrari Ferrari' repetido; nenhum logo de patrocinador ou marcação de equipe em nenhuma foto",
+      "fonte": "foto_2, foto_4, foto_9, titulo, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Contraste entre o que o título promete e o que a peça carrega. Não depende de fato externo.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A construção declarada bate com a etiqueta e com as fotos: Shell 100% Polyester/PU e Lining 100% Polyester. A peça é anorak meio-zíper com capuz, forro em tela respirável, cordão de ajuste na barra e no capuz e painéis de ombro e peito em ripstop escuro. O vendedor não informa material nenhum na descrição.",
+      "evidencia": "Etiqueta de composição 'Shell 100% Polyester/PU / Lining 100% Polyester'; forro em tela visível; cordões com trava na barra; painéis ripstop no ombro e na faixa peitoral",
+      "fonte": "foto_15, foto_12, foto_5, foto_1",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Leitura de etiqueta contra fotos e contra a descrição. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A condição declarada é sustentada pelo que as fotos mostram, com um limite claro: nenhuma das 15 fotos exibe rasgo, furo ou mancha destacada, o que é coerente com '目立った大きな傷や汚れはありません'. Mas não existe uma foto do dorso inteiro nem das axilas, e o vendedor pede compreensão genérica com 'スレや使用感' de vintage sem apontar onde.",
+      "evidencia": "As 15 fotos cobrem frente, ombro, manga, capuz, gola, barra, forro e etiquetas; nenhuma mostra dano estruturado; não há foto da peça vista por trás por inteiro",
+      "fonte": "foto_1, foto_6, foto_9, foto_12",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Cobertura fotográfica do lote contra a condição declarada. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A marcação Ferrari aparece em cinco pontos independentes da peça, o que é coerente com um produto etiquetado de licenciado e não com aplicação avulsa: escudo bordado no peito, etiqueta bordada na gola, fita interna tecida, puxador de zíper gravado e etiqueta aplicada nas costas.",
+      "evidencia": "Escudo no peito (foto_2), etiqueta preta bordada 'Ferrari' na gola (foto_4), fita amarela tecida 'Ferrari Ferrari' acima dela (foto_4), puxador metálico gravado 'Ferrari' (foto_11), etiqueta 'Ferrari' aplicada sobre a faixa das costas (foto_9)",
+      "fonte": "foto_2, foto_4, foto_9, foto_11",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Inventário do que está escrito na peça. Não é, e não pode ser, conclusão sobre a peça ser original: o METODO proíbe julgar isso por textura de bordado ou etiqueta em foto de celular.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "É a peça mais cara das três (¥32.800) e a única em que o argumento que sustenta o preço está numa etiqueta que o próprio vendedor não leu. Vender como 'linha licenciada Ferrari, Nice Man Sports, registro de design de 1997' em vez de 'época desconhecida'. Ao mesmo tempo, tirar 'racing' e 'F1' da comunicação: a peça não carrega patrocinador nem piloto, e prometer Grand Prix aqui é a mesma armadilha do boné Honda da Etapa 1. Antes de fechar, pedir ao vendedor foto do dorso inteiro e da etiqueta de tamanho.",
+  "o_que_nao_sei": [
+    "O ano de fabricação. ©1997 é registro de design; a mesma etiqueta pode ter sido usada por anos.",
+    "Quando a licença da Nice Man Sports com a Ferrari começou e quando terminou. Achei peças de época com essa etiqueta datadas entre 1995 e 1998, mas nenhuma fonte sobre o período do contrato.",
+    "Se é linha de varejo, item de loja de fábrica ou brinde de evento. Nada na peça diz.",
+    "Por que a bandeira aplicada no peito e na barra usa azul-petróleo no lugar do verde da bandeira italiana. Não achei referência a essa variação e não vou inventar explicação.",
+    "O estado do dorso e das axilas: não há foto do corpo inteiro por trás.",
+    "Se o tamanho L declarado é grade japonesa ou europeia. As medidas do vendedor (身幅70, 着丈80) são de peça grande, mas a etiqueta de tamanho não aparece em nenhuma foto."
+  ]
+}

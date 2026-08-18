@@ -1,0 +1,72 @@
+{
+  "id": "m88172984233",
+  "titulo_vendedor": "Rothmans Williams RENAULT ジャンパー",
+  "preco_jpy": 4680,
+  "vendedor": { "nome": "WOLFPACK", "avaliacoes_boas": 733, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A peça é datável numa janela de quatro temporadas: 1994 a 1997. A tripla Rothmans × Williams × Renault existe só nesse intervalo. O vendedor não datou nada, escreveu apenas '年代物' (peça de época).",
+      "evidencia": "Bordado peitoral 'Rothmans / Williams RENAULT' com carro de F1 bordado acima, e a mesma tripla repetida na etiqueta de gola",
+      "fonte": "foto_1, foto_4, foto_5",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Rothmans foi patrocinadora-título da Williams de 1994 a 1997; em 1998 o patrocínio passou pra Winfield, marca-irmã. A Renault forneceu motor à Williams de 1989 até o fim de 1997 e saiu da F1 depois disso — em 1998 a Williams correu com Mecachrome (o mesmo motor rebatizado). Interseção Rothmans × Renault = 1994, 1995, 1996 e 1997.",
+        "fonte": "Wikipedia (Rothmans International; Williams Grand Prix Engineering; Supertec), grandprix.com 'Williams to use Mecachrome V10s'"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "Essa janela de 4 anos é densa de história e por isso é armadilha. 1994 é o ano em que Senna correu por esta equipe e morreu em Imola; 1996 e 1997 são os títulos de Damon Hill e Jacques Villeneuve. Serve como CONTEXTO na legenda e nunca como atribuição: não há piloto nenhum na peça, nem no título, nem na descrição.",
+      "evidencia": "Nenhum nome de piloto aparece bordado, impresso, no título ou na descrição do anúncio; o único conteúdo é a marca da equipe",
+      "fonte": "foto_1, foto_4, titulo, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16. Hill foi campeão em 1996 e Villeneuve em 1997, ambos pela Williams no período Rothmans.",
+        "fonte": "Wikipedia 'Death of Ayrton Senna', williamsdb.com 'The History of Williams – 1994', Wikipedia/Rothmans International"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O licenciamento declarado no anúncio ('公式ライセンス商品') aparece duas vezes na peça, em etiquetas independentes uma da outra.",
+      "evidencia": "Etiqueta de gola: 'Rothmans Williams RENAULT / OFFICIAL LICENSED PRODUCT' + selo GOODSPORTS. Segunda etiqueta, na aba do bolso frontal: 'GOODSPORTS / F-1 SPORTSWEAR / OFFICIAL LICENSED PRODUCT' bordada em dourado sobre azul, com bandeira quadriculada",
+      "fonte": "foto_5, foto_9",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A etiqueta 'GOODSPORTS F-1 Sportswear' aparece em outras peças vintage de F1 em circulação no mercado de segunda mão (listagens de jaquetas Grand Prix dos anos 90 no Grailed), ou seja, é um selo real da época e não um nome isolado. O que a busca NÃO respondeu foi quem era a empresa e quais licenças ela detinha.",
+        "fonte": "Grailed (listagens 'vintage F-1 grand prix goodsports sportswear jacket'), busca por 'Goodsports F1 sportswear'"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O furo declarado existe e é minúsculo, mas o vendedor aponta a foto errada. Ele escreve '9枚目の写真をご参照ください' (ver a foto 9) e a foto 9 é a etiqueta GOODSPORTS do bolso. O furo está na foto 11, onde o próprio vendedor põe o dedo ao lado dele.",
+      "evidencia": "Descrição: '1ミリに満たないくらい穴がございます ※9枚目の写真をご参照ください'. Foto 9 = etiqueta bordada na aba do bolso. Foto 11 = ponto escuro de menos de 1mm no painel frontal inferior, com dedo indicando",
+      "fonte": "descricao, foto_9, foto_11",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal interno: comparação entre o texto do anúncio e a ordem real das fotos coletadas. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "As 11 fotos são todas da peça, tiradas no mesmo ambiente, sem imagem de catálogo nem marca d'água de terceiro. As costas são completamente lisas, sem grafismo: toda a identidade está no peito.",
+      "evidencia": "Fundo de parede clara e cabide idênticos nas fotos de corpo inteiro; foto 10 mostra as costas inteiras em azul liso, sem estampa nem bordado",
+      "fonte": "foto_1, foto_2, foto_8, foto_10",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal puramente visual sobre o material do anúncio.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "Datar na legenda como '1994-1997, a era Rothmans da Williams-Renault' em vez de 'anos 90' — é ganho de precisão de graça, ancorado em patrocinador e motor. Não colocar nome de piloto em lugar nenhum: a peça não carrega nenhum, e Senna nessa janela é assunto que atrai o público que mais entende de F1 e menos perdoa erro; se entrar, entra como contexto histórico da equipe, nunca como 'peça do Senna'. Pedir ao vendedor uma foto do furo sob luz melhor e conferir com ele qual é a foto certa, porque a referência do anúncio está errada e isso vai virar reclamação se for repassada crua. Pra foto de venda, as fotos 1, 2 e 8 são as limpas; as costas lisas rendem pouco.",
+  "o_que_nao_sei": [
+    "O ano exato dentro da janela 1994-1997. Nada na peça desambigua: o carro bordado é estilizado demais pra ler geração de chassi, e não há código de produção nem selo de temporada.",
+    "Quem era a GOODSPORTS e qual o escopo da licença dela. A etiqueta aparece em outras peças de F1 da época, mas não achei nada sobre a empresa nem se ela produzia pro mercado japonês, europeu ou os dois.",
+    "Se é peça de equipe ou linha de varejo. A construção (azul liso com gola vermelha, sem patch de fornecedor, sem patrocinadores secundários) parece varejo, mas isso é impressão, não prova.",
+    "O que é 'AB013' no fim da descrição. Parece código interno de estoque do vendedor, não código de produto — não decodifiquei.",
+    "O estado real da cor. As fotos são de luz quente contra parede bege; não dá pra medir desbotamento do azul nem avaliar as '細かい汚れ' (sujeiras finas) que ele declara sem especificar onde.",
+    "Se o furo de menos de 1mm é o único. Só uma foto o registra e não há varredura das costas ou das mangas em detalhe."
+  ]
+}

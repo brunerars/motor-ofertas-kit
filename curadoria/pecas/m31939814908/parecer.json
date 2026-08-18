@@ -1,0 +1,103 @@
+{
+  "id": "m31939814908",
+  "titulo_vendedor": "極希少70s80s フェラーリ サテンレーシングジャケット USA 刺繍",
+  "preco_jpy": 38000,
+  "vendedor": { "nome": "★あもちゃん★", "avaliacoes_boas": 3477, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A datação '70s80s' do título está errada na metade dos anos 70. A etiqueta interna traz o telefone 818-705-1500, e o código de área 818 não existia antes de 7 de janeiro de 1984, quando foi separado do 213 pra atender o San Fernando Valley (Tarzana, endereço da empresa, está exatamente nessa área). Uma etiqueta impressa com telefone 818 não pode ter sido impressa antes de 1984. A peça é de 1984 ou depois.",
+      "evidencia": "Etiqueta interna: 'STYLE COMPANIES LTD. / 6005, YOLANDA AVE. / TARZANA CALIF 91356 / P.O. NO. / RN 59839 / PHONE: 818-705-1500'",
+      "fonte": "foto_12",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "O código de área 818 foi criado em 7 de janeiro de 1984, num split do 213, e atribuído ao San Fernando Valley e arredores. Antes dessa data, um telefone de Tarzana seria 213.",
+        "fonte": "Wikipedia 'Area codes 818 and 747'; relatório da CPUC da Califórnia sobre o 818"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "'MADE IN USA (アメリカ製 / RN59839)' apresenta o número RN como se fosse prova de fabricação nos EUA. Não é. O RN identifica uma empresa sediada nos EUA que fabrica, IMPORTA, distribui ou vende produtos têxteis — importador também tem RN. Ele diz quem responde pela peça, não onde ela foi costurada. E nas 13 fotos não existe nenhuma etiqueta com país de origem: nem 'MADE IN USA', nem outro país. A frase que o anúncio usa como prova é a única fonte da alegação.",
+      "evidencia": "Etiqueta 'RN 59839' sem nenhuma linha de país de origem; as outras três etiquetas internas trazem só composição, conservação e o aviso do Public Health Act de Ontário",
+      "fonte": "foto_9, foto_10, foto_11, foto_12",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Um Registered Identification Number é emitido pela FTC a 'a business residing in the United States that is engaged in the manufacture, importation, distribution, or sale of textile, wool, or fur products', e pode ser usado no lugar do nome da empresa na etiqueta. Não certifica país de fabricação.",
+        "fonte": "Wikipedia 'Registered identification number'; FTC, guia do RN Database"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O RN 59839 pertence à mesma empresa que está impressa logo acima dele na etiqueta: STYLE COMPANIES LTD., 6005 Yolanda Ave, Tarzana CA 91356. Ou seja, a marca STYLE AUTO da etiqueta de gola e do patch do peito é da Style Companies Ltd., e a história que o vendedor conta sobre o fabricante fecha nesse ponto. O que NÃO consegui foi confirmar isso na base da FTC.",
+      "evidencia": "A mesma etiqueta traz razão social, endereço, telefone e 'RN 59839' num bloco só; a etiqueta de gola e o patch do bolso do peito dizem 'STYLE AUTO ®' e 'STYLE AUTO 500'",
+      "fonte": "foto_5, foto_7, foto_12",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "A base de RN da FTC (rn.ftc.gov) é uma aplicação com consulta bloqueada pra acesso automatizado: as tentativas voltaram 403 e página vazia. Buscas por 'RN 59839' e por 'Style Companies' + Tarzana não devolveram o registro. Portanto o vínculo RN-empresa está sustentado pela PRÓPRIA etiqueta, não por consulta independente ao registro.",
+        "fonte": "rn.ftc.gov/Account/BasicSearch e www.ftc.gov/rn-search/rn-59839 (ambos inacessíveis); buscas web sem resultado"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "STYLE AUTO é marca americana real e conhecida de jaqueta de cetim com tema automobilístico dos anos 80, com peças catalogadas por lojas de vintage (Daytona, BMW e outras). Isso sustenta 'marca de época' e casa com a janela de 1984 pra frente que a etiqueta impõe.",
+      "evidencia": "Etiqueta de gola tecida com o wordmark STYLE AUTO em listras coloridas e o patch 'STYLE AUTO 500' no bolso zipado do peito",
+      "fonte": "foto_5, foto_7",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Lojas de vintage catalogam a marca como jaqueta de corrida americana dos anos 80 (ex.: 'Vintage 80s Daytona Racing Jacket Style Auto', 'Vintage BMW Style Auto Satin Jacket'), com linha própria de marca no acervo.",
+        "fonte": "theclothingvault.com/brand/style-auto/; rustyzipper.com; listagens Grailed e Poshmark da marca"
+      }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "Não há nenhuma etiqueta de licença Ferrari na peça. Em 13 fotos não aparece 'Official Licensed Product', nem '©Ferrari SpA', nem menção a licenciada — diferente, por exemplo, do boné com a etiqueta 'Official Licenced Product ©1997 Ferrari Spa / Under Licence to NICE MAN SPORTS' da rodada anterior. A peça é uma jaqueta da Style Auto que carrega marcas da Ferrari; não é produto da Ferrari nem da Scuderia. Publicar como 'oficial' ou 'de equipe' seria afirmar o que a peça não mostra. Crédito ao vendedor: ele também não afirma licença.",
+      "evidencia": "Bordado das costas 'Ferrari / cavallino em coroa de louros / SF / Campione del Mondo', mangas 'World Champion' e 'Ferrari', cavallino no peito — e nenhuma etiqueta de licenciamento em nenhuma das fotos internas",
+      "fonte": "foto_1, foto_6, foto_9, foto_10, foto_11, foto_12",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Buscas por acordo de licenciamento entre Ferrari e Style Auto / Style Companies Ltd. não devolveram nada. Não achei fonte que diga que a marca era licenciada nem que não era.",
+        "fonte": "buscas web por 'Style Auto Ferrari licensed', 'Style Companies Ltd Ferrari licence'"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O 'Campione del Mondo' bordado nas costas aponta pra trás, não pra frente. Com a etiqueta obrigando 1984 ou depois, os títulos mais recentes da Ferrari naquele momento eram os mundiais de construtores de 1982 e 1983 — e a Ferrari não ganharia mais nada até 1999, 16 anos de jejum. Ou seja, uma jaqueta 'Campione del Mondo' produzida a partir de 1984 está comemorando 82/83. Isso reforça meados dos anos 80, mas não crava ano: consistente com vintage dos anos 80, ano indeterminado.",
+      "evidencia": "Bordado das costas 'Campione del Mondo' com coroa de louros e 'SF'; mangas 'World Champion'",
+      "fonte": "foto_1",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A Ferrari venceu o mundial de construtores em 1982 e 1983 e só voltou a vencer em 1999, primeiro título depois de 16 anos.",
+        "fonte": "Wikipedia 1982 e 1999 Formula One World Championship; ferrari.com, histórico da Scuderia 1982 e 1983"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A composição declarada bate exatamente com a etiqueta: exterior 100% acetato, forro 100% náilon. As medidas também estão no anúncio, o que é bom sinal de vendedor cuidadoso.",
+      "evidencia": "Etiqueta '100% ACETATE / 100% NYLON' e etiqueta multilíngue 'OBERSTOFF / OUTER SHELL / EXTERIEUR — FUTTER / LINING / DOUBLURE'",
+      "fonte": "foto_9, foto_11",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto direto entre a descrição e o texto da etiqueta.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "A peça mais cara das três e a com a descrição mais frágil: dos três dados que o vendedor usa pra justificar 38.000 JPY (anos 70/80, MADE IN USA e o RN como prova), dois não se sustentam. Se o Caio for atrás, pedir a ele uma foto de qualquer etiqueta que traga país de origem antes de qualquer coisa — o vendedor tem 3477/0 e responde. Publicar, se publicar, como 'Style Auto, jaqueta de cetim Ferrari, anos 80' e nunca como 'anos 70', 'Made in USA' ou 'oficial'.",
+  "o_que_nao_sei": [
+    "O ano exato. A etiqueta dá o piso (1984 ou depois) e nada dá o teto. Consistente com anos 80, ano indeterminado.",
+    "Onde a jaqueta foi fabricada. Nenhuma etiqueta das fotos declara país de origem, e o RN não responde isso.",
+    "Se a Style Auto tinha licença da Ferrari. Não achei registro em nenhum sentido.",
+    "Se o marfim é a cor original ou cetim branco amarelado pelo tempo. O vendedor chama de 'アイボリーサテン' (cetim marfim), mas cetim de acetato amarela, e foto de celular com luz quente não separa as duas coisas.",
+    "O que são os pontinhos escuros na canela da manga na foto 4 — sujeira, marca de tempo ou artefato da foto. Pequenos demais pra fechar na imagem.",
+    "O que significa o '500' de 'STYLE AUTO 500'. Parece designação de linha da própria marca, mas não achei nada que decodifique."
+  ]
+}

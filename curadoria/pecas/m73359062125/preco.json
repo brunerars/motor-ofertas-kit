@@ -1,0 +1,27 @@
+{
+  "id": "m73359062125",
+  "source_url": "https://jp.mercari.com/item/m73359062125",
+  "vendido": false,
+  "conta": {
+    "produto_jpy": 14000.0,
+    "taxa_naomi_jpy": 4900,
+    "taxa_naomi_pct": 0.35,
+    "frete_jp_jpy": 1000,
+    "soma_jpy": 19900.0,
+    "classe_volume": "GG",
+    "classe_justificativa": "pluma (down 70%), 86cm — a peca mais volumosa do lote",
+    "classe_e_fallback": false,
+    "margem_jpy": 10000,
+    "preco_jpy": 29900.0
+  },
+  "conversao": {
+    "a": 9.5311,
+    "b": 0.040396,
+    "rate": 30.5776,
+    "conferido_em": "2026-08-18T17:34:23",
+    "fonte": "api.wise.com/v3/comparisons (provider=wise)"
+  },
+  "preco_brl_bruto": 1028.94,
+  "preco_brl": 1030.0,
+  "calculado_em": "2026-08-18T17:34:23"
+}

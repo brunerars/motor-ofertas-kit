@@ -1,0 +1,75 @@
+{
+  "id": "m73359062125",
+  "titulo_vendedor": "美品/ホンダレーシング/ダウンウェア",
+  "preco_jpy": 14000,
+  "vendedor": { "nome": "リアル", "avaliacoes_boas": 676, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "Não há nada de HRC nesta peça. O vendedor abre a descrição com 'ホンダ・レーシング(HRC)の商品です', mas as três marcações da peça dizem outra coisa: o bordado do peito é 'HONDA MOTOR SPORTS', a etiqueta de gola é 'HONDA COLLECTION' e a etiqueta de cuidados credita '企画・販売 (株)ホンダダイレクトマーケティング'. HRC não aparece em lugar nenhum.",
+      "evidencia": "Bordado peitoral 'HONDA MOTOR SPORTS' em branco; etiqueta de gola preta 'HONDA COLLECTION' tamanho M; etiqueta interna com logo HDC e o crédito de planejamento/venda",
+      "fonte": "foto_1, foto_3, foto_6, foto_11",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "HRC (Honda Racing Corporation) foi fundada em 01/09/1982 e nasceu responsável pelas atividades de MOTO da Honda — é a casa das vitórias da marca no mundial de motovelocidade/MotoGP. As atividades de automobilismo, incluindo o programa de F1, só entraram no escopo da HRC em 01/04/2022. Uma peça vintage marcada 'Honda Motor Sports / Honda Collection' não é produto HRC, e chamar de HRC aponta pro lado das motos.",
+        "fonte": "Wikipedia 'Honda Racing Corporation', honda.racing/page/history, hondaracingcorporation.com/about"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A peça não carrega nenhuma marca de Fórmula 1. Nem 'F1', nem equipe, nem piloto, nem temporada: só o wordmark 'HONDA MOTOR SPORTS', o logo H no ombro e a etiqueta 'HONDA COLLECTION'. Pra uma loja de memorabilia de F1, publicar isso como peça de F1 é inventar atribuição.",
+      "evidencia": "Varredura das 12 fotos: peito, ombro, costas (foto 12, totalmente lisa), gola, punhos e as três etiquetas internas. Nenhum grafismo de F1 em nenhuma delas",
+      "fonte": "foto_1, foto_2, foto_3, foto_6, foto_11, foto_12",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal interno: é a ausência de marcação na própria peça. Não há fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "É merchandise oficial da Honda com a cadeia inteira declarada na etiqueta: planejamento e venda pela Honda Direct Marketing, fabricação pela Onward Kashiyama, produzido na China.",
+      "evidencia": "Etiqueta de cuidados: logo 'HONDA HDC' + '企画・販売 (株)ホンダ ダイレクト マーケティング / 製造 (株)オンワード樫山 / MADE IN CHINA'. Etiqueta de plumagem separada: 'DOWN WEAR / 70% DOWN 30% FEATHER / HONDA DIRECT MARKETING CORP.'",
+      "fonte": "foto_7, foto_11",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A Onward Kashiyama é uma das maiores fabricantes de vestuário do Japão, fundada em 1927, com operação de licenciamento pra dezenas de marcas. É um fabricante real e de porte, o que sustenta que a peça saiu de uma cadeia oficial e não de produção informal. Não achei documentação da Honda Direct Marketing Corp em si.",
+        "fonte": "ONWARD HOLDINGS (onward-hd.co.jp, perfil da Onward Kashiyama), Dun & Bradstreet company profile"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "Tudo que o vendedor descreve de construção confere com as fotos e com as etiquetas: nylon 100% no exterior e no forro, enchimento 70% down / 30% feather, ribana interna no punho, e o refletivo bege-dourado atrás da gola.",
+      "evidencia": "Etiqueta 品質表示: '表地 ナイロン100% / ジャージ ナイロン100% / 中綿 ダウン70% フェザー30%'. Foto 9 mostra a ribana no punho (com a própria legenda do vendedor '袖裏にリブ編みニット付き'). Foto 12 mostra a faixa clara refletiva na parte de trás da gola",
+      "fonte": "foto_7, foto_9, foto_10, foto_12",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto entre texto do anúncio e as etiquetas/fotos da própria peça.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A ausência do capuz, declarada pelo vendedor, é visível e estrutural: a gola tem um zíper corrido por fora justamente onde o capuz encaixava. Não é peça que 'não tinha capuz', é peça com o capuz faltando.",
+      "evidencia": "Gola alta com zíper aparente correndo por toda a extensão e sem nada acoplado, nas fotos frontal e das costas",
+      "fonte": "descricao, foto_1, foto_12",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal visual sobre a construção da peça.", "fonte": "" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O 'M' da etiqueta não é o M que o cliente brasileiro espera. As medidas que o próprio vendedor informa são de peça grande: 68cm de largura de busto e 86-87cm de comprimento. Publicar 'tamanho M' sem as medidas gera troca e reclamação.",
+      "evidencia": "Etiqueta de gola marcada 'M'; descrição informa 着丈86〜87cm, 身幅/裾幅 68cm, manga 74〜75cm, ombro raglan",
+      "fonte": "foto_6, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto entre a etiqueta e as medidas declaradas. Fato interno da peça.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "Esta é a peça que mais depende de correção antes de publicar. Traduzir o título ao pé da letra entrega 'Honda Racing HRC' e vende duas coisas erradas de uma vez: a sigla aponta pro departamento de motos e a peça não tem marca nenhuma de F1. Se entrar na loja, entra como 'jaqueta de pena oficial Honda Motor Sports, linha Honda Collection', sem F1 e sem HRC no texto. Dizer o capuz faltando e as medidas na mesma linha, e publicar sem cravar ano. Vale perguntar ao vendedor se ele tem alguma referência de quando comprou, porque a 14.000 JPY o preço está apoiado num 'HRC' que a peça não sustenta.",
+  "o_que_nao_sei": [
+    "O ano. Não achei nada que date a peça: sem código de temporada, sem copyright, sem selo de data. 'Made in China' com fabricação Onward não estreita nada. Fica consistente com vintage, ano indeterminado.",
+    "Se HONDA COLLECTION e HONDA F-1 COLLECTION (a linha da peça m97609115294 e do boné m35956987972) eram a mesma linha comercial ou linhas irmãs. As duas creditam a Honda Direct Marketing e usam o mesmo logo HDC na etiqueta de cuidados, mas não achei catálogo nem documentação da estrutura dessas linhas.",
+    "O que exatamente 'HDC' designa na etiqueta. A leitura óbvia é Honda Direct... Corp, mas é inferência minha, não confirmação.",
+    "Se o capuz original existe avulso no mercado, e se a peça foi vendida com ele de fábrica ou como acessório.",
+    "Se '美品' (bom estado) se sustenta. As fotos são sobre cama e lençol, em luz quente e amarelada, e a peça é azul-marinho escuro: sujeira e desbotamento simplesmente não aparecem nessa condição de luz.",
+    "Se a peça tem qualquer relação com o programa de F1 da Honda. Nada nela liga a uma categoria específica de automobilismo — pode ter sido vendida em qualquer período em que a Honda usasse a marca 'Honda Motor Sports'."
+  ]
+}

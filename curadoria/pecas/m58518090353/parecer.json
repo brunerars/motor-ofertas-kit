@@ -1,0 +1,64 @@
+{
+  "id": "m58518090353",
+  "titulo_vendedor": "Ferrari F1 中綿ジャケット ミハエル・シューマッハ",
+  "preco_jpy": 9800,
+  "vendedor": { "nome": "ヨーグルッペおじさん", "avaliacoes_boas": 27, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A combinação de patrocinadores fecha o desenho da jaqueta na janela 2002-2006, e o anúncio não diz ano nenhum. Vodafone patrocinou a Ferrari de 2002 até o fim de 2006 e foi pra McLaren em 2007; a Shell voltou à Ferrari em 1996 e ficou; o Schumacher bordado nas costas correu pela Ferrari até o fim de 2006. A interseção das três é fechada: 2002-2006, o auge da era Schumacher.",
+      "evidencia": "Patch peitoral com Vodafone + concha da Shell sobre o wordmark 'Ferrari'; Vodafone repetido nos dois ombros e nas duas mangas; 'Michael Schumacher' bordado em cursivo nas costas",
+      "fonte": "foto_1, foto_2, foto_3",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Vodafone entrou na Ferrari em 2002 e o contrato foi até o fim de 2006; a troca pra McLaren foi anunciada em dezembro de 2005 e começou em 2007. A Shell está com a Ferrari desde 1996 (terceira fase da parceria). Schumacher correu pela Ferrari de 1996 a 2006 e anunciou a aposentadoria no GP da Itália de 2006.",
+        "fonte": "autosport.com (Vodafone title sponsor McLaren) · edition.cnn.com/2005/SPORT/12/14/vodafone.sponsorship · shell.com/innovation-in-motorsport/shell-and-ferrari · britannica.com/biography/Michael-Schumacher"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A atribuição ao Schumacher está na peça, não é keyword de SEO no título. O nome vem bordado em cursivo nas costas, acima do cavallino, e o vendedor descreve isso corretamente ('背面刺繍: Michael Schumacher').",
+      "evidencia": "Bordado 'Michael Schumacher' nas costas, em linha clara sobre o vermelho",
+      "fonte": "foto_3, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "O nome bordado é coerente com o resto da peça: Schumacher esteve na Ferrari em todo o período 2002-2006 que os patrocinadores marcam. Não há contradição interna entre o piloto e a janela de patrocínio.",
+        "fonte": "britannica.com/biography/Michael-Schumacher · planetf1.com (saída da Ferrari em 2006)"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O defeito declarado é real, visível e está na foto. O vendedor avisa que o zíper está quebrado por degradação e que quer comprador que consiga consertar; a foto mostra o carrinho no meio do curso com o lado esquerdo do zíper solto, sem engate. Vendedor honesto, mas a peça não fecha.",
+      "evidencia": "Zíper aberto com o cursor (pingente escudo Ferrari) parado no meio e as duas fileiras de dentes desalinhadas",
+      "fonte": "foto_5, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Defeito físico visível na foto, sem fato externo a conferir.", "fonte": "" }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O anúncio cadastra a marca como 'Ferrari', mas nenhuma foto mostra etiqueta de fabricante, licenciado, composição ou país. A única etiqueta fotografada é uma bandeirinha amarela com o cavallino e um 'XL' — não diz quem fabricou nem sob qual licença. Isso não é acusação de falsificação (por foto de celular não se julga isso), é uma lacuna: hoje não dá pra afirmar 'produto licenciado oficial' na legenda.",
+      "evidencia": "Etiqueta amarela com cavallino preto e tag branca 'XL' costurada no forro; nenhuma etiqueta de lavagem/composição aparece nas 5 fotos",
+      "fonte": "foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Procurei quem eram os licenciados de vestuário da Ferrari no período 2002-2006 e como são as etiquetas desse material, e não achei fonte que permita ler esta etiqueta. Sem isso, o licenciamento fica em aberto.",
+        "fonte": "buscas por licenciados/etiquetas de vestuário Ferrari F1 e por jaquetas Ferrari vintage (só retornaram lojas de réplica atuais)"
+      }
+    }
+  ],
+  "recomendacao": "A história é boa e é datável: jaqueta da era Schumacher na Ferrari, janela 2002-2006 pela combinação Vodafone + Shell. Antes de publicar, pedir ao vendedor foto da etiqueta de composição/lavagem (a interna, de tecido, normalmente na costura lateral) e um close do zíper aberto — as duas coisas que faltam. E o zíper quebrado precisa aparecer na foto da oferta, não só na legenda: é conserto de costureira, não detalhe estético. Reputação do vendedor é fina (27 avaliações, 0 negativas): número pequeno demais pra dizer alguma coisa, nem a favor nem contra.",
+  "o_que_nao_sei": [
+    "Quem fabricou a peça e sob qual licença. Nenhuma etiqueta nas fotos responde isso.",
+    "Se é peça de época (2002-2006) ou produção posterior com o mesmo desenho. A janela de patrocinadores data o DESENHO, não necessariamente a costura — e este modelo de bomber Ferrari bordado é replicado até hoje por lojas de réplica. Não dá pra separar as duas coisas por foto.",
+    "O patch branco com telhado vermelho e 'F-1' nas mangas. Parece o device da Marlboro sem o nome, prática conhecida em material de F1 sob restrição de publicidade de tabaco, mas não achei nenhuma fonte que confirme esse patch específico. Não usar como argumento até confirmar.",
+    "Autenticidade por bordado, costura ou etiqueta. Não julguei e não dá pra julgar com estas fotos.",
+    "A extensão real do dano no zíper: se é só o cursor (troca barata) ou se a fita/dentes estão comprometidos. A foto mostra o sintoma, não a causa.",
+    "Se há outros defeitos: as fotos cobrem frente, costas e dois detalhes, mas nenhuma mostra punhos, barra elástica de perto, forro interno ou axilas."
+  ]
+}

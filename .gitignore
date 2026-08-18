@@ -42,9 +42,16 @@ _verify_tmp.html
 Thumbs.db
 *.err
 
-# curadoria: material bruto do Mercari (fotos + scrape) fica local
-curadoria/pecas/
+# curadoria: o BRUTO do Mercari fica local (foto e dump da Firecrawl sao pesados
+# e o coletar.py os regenera). O JULGAMENTO vai pro git: parecer.json, preco.json,
+# traducao.json e dados.json custaram ~63k tokens de pericia por peca e nao se
+# regeneram. Sao 451 KB contra 28,4 MB de foto.
+curadoria/pecas/**/*.jpg
+curadoria/pecas/**/raw*.json
 
 # Worktrees do Claude Code: arvore de trabalho, nao codigo-fonte.
 # Sao centenas de MB e o conteudo ja vive nas branches do proprio remote.
 .claude/worktrees/
+
+__pycache__/
+*.pyc

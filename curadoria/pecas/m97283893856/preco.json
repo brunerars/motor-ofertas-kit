@@ -1,0 +1,27 @@
+{
+  "id": "m97283893856",
+  "source_url": "https://jp.mercari.com/item/m97283893856",
+  "vendido": false,
+  "conta": {
+    "produto_jpy": 39800.0,
+    "taxa_naomi_jpy": 13930,
+    "taxa_naomi_pct": 0.35,
+    "frete_jp_jpy": 1000,
+    "soma_jpy": 54730.0,
+    "classe_volume": "G",
+    "classe_justificativa": "jaqueta de nylon",
+    "classe_e_fallback": false,
+    "margem_jpy": 6000,
+    "preco_jpy": 60730.0
+  },
+  "conversao": {
+    "a": 9.5311,
+    "b": 0.040396,
+    "rate": 30.5776,
+    "conferido_em": "2026-08-18T17:34:23",
+    "fonte": "api.wise.com/v3/comparisons (provider=wise)"
+  },
+  "preco_brl_bruto": 2079.63,
+  "preco_brl": 2080.0,
+  "calculado_em": "2026-08-18T17:34:23"
+}

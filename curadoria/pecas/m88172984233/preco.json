@@ -1,0 +1,27 @@
+{
+  "id": "m88172984233",
+  "source_url": "https://jp.mercari.com/item/m88172984233",
+  "vendido": false,
+  "conta": {
+    "produto_jpy": 4680.0,
+    "taxa_naomi_jpy": 1638,
+    "taxa_naomi_pct": 0.35,
+    "frete_jp_jpy": 1000,
+    "soma_jpy": 7318.0,
+    "classe_volume": "G",
+    "classe_justificativa": "jumper/blusao, 76cm de comprimento",
+    "classe_e_fallback": false,
+    "margem_jpy": 6000,
+    "preco_jpy": 13318.0
+  },
+  "conversao": {
+    "a": 9.5311,
+    "b": 0.040396,
+    "rate": 30.5776,
+    "conferido_em": "2026-08-18T17:34:23",
+    "fonte": "api.wise.com/v3/comparisons (provider=wise)"
+  },
+  "preco_brl_bruto": 463.81,
+  "preco_brl": 470.0,
+  "calculado_em": "2026-08-18T17:34:23"
+}

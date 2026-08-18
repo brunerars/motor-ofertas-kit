@@ -1,0 +1,103 @@
+{
+  "id": "m24601571304",
+  "titulo_vendedor": "90s 公式　マルボロ　鈴鹿サーキット　F1　Marlboro モータースポーツ",
+  "preco_jpy": 13800,
+  "vendedor": { "nome": "カミサトカケル", "avaliacoes_boas": 285, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A etiqueta sustenta uma coisa concreta e boa: a camiseta é mercadoria do próprio circuito de Suzuka, vendida lá, com acordo da dona da Marlboro. O pendente diz literalmente 'este produto é comercializado pela Suzuka Circuitland mediante parceria com a Philip Morris', e o segundo pendente é etiqueta de preço do circuito, com código de barras 'SUZUKA CIRCUIT' e ¥3000. Isso é ponto de venda no autódromo, e é o argumento honesto pra usar na legenda.",
+      "evidencia": "Pendente 'Marlboro World Championship Team' com o texto 'この商品は、フィリップモリス社との提携により鈴鹿サーキットランドが、取扱っております。'; etiqueta de preço com logo SUZUKA CIRCUIT, código de barras e ¥3000",
+      "fonte": "foto_3, foto_10",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A Philip Morris é a dona da marca Marlboro. A 鈴鹿サーキットランド (Suzuka Circuitland) era a empresa do grupo Honda que operava o circuito de Suzuka; ela deixou de existir com esse nome em 1 de junho de 2006, ao se fundir com a Twin Ring Motegi e virar Mobilityland (hoje Honda Mobilityland).",
+        "fonte": "Wikipedia (ja) ホンダモビリティランド e 鈴鹿サーキット; Wikipedia Marlboro"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O que a etiqueta NÃO sustenta é o que o vendedor pendura nela. Ele escreve '紛れもない公式ライセンスタグ' (etiqueta de licença oficial, sem sombra de dúvida) e usa isso como resposta à própria ressalva dele sobre reimpressão e cópia. Mas o texto do pendente é uma declaração de distribuição — quem comercializa e sob qual parceria — e não uma marca de licenciamento de produto, do tipo 'Official Licensed Product © [titular] under licence to [licenciada]'. Distribuição no circuito não é o mesmo carimbo que licença de produto, e nenhuma etiqueta, vista em foto de celular, decide falsificação. Repetir 'etiqueta de licença oficial' na legenda seria emprestar à peça uma garantia que o papel não dá.",
+      "evidencia": "Texto integral do pendente é a frase de comercialização por Suzuka Circuitland em parceria com a Philip Morris; não há titular de copyright, número de licença nem nome de licenciada em nenhuma das 10 fotos",
+      "fonte": "foto_3, foto_4, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A tradução do texto do pendente confere com o papel da Suzuka Circuitland como operadora do circuito, ou seja, varejista/comercializadora, não licenciadora da marca Marlboro.",
+        "fonte": "Wikipedia (ja) ホンダモビリティランド, sobre a 鈴鹿サーキットランド"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A etiqueta dá uma âncora de data que o vendedor não usa: como o pendente traz o nome 鈴鹿サーキットランド, e essa empresa deixou de existir com esse nome em junho de 2006, a peça é de 2006 ou antes. É um teto real, checável, e é mais forte que o '90s' do título, que não tem âncora nenhuma no anúncio.",
+      "evidencia": "Razão social 鈴鹿サーキットランド impressa no pendente de licença/comercialização",
+      "fonte": "foto_3",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "鈴鹿サーキットランド e ツインリンクもてぎ se fundiram em 1 de junho de 2006, formando a 株式会社モビリティランド (renomeada ホンダモビリティランド em 2022). O nome antigo não é usado depois disso.",
+        "fonte": "Wikipedia (ja) ホンダモビリティランド"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A etiqueta de preço traz '92-01' acima do tamanho (フリー) e da cor (ホワイト). O formato é de código interno de item, e '92' é compatível com 1992, mas isso é leitura, não decodificação: não achei nenhuma fonte que explique o esquema de código do circuito. Não publicar '1992' com base nisso.",
+      "evidencia": "Etiqueta de preço manuscrita/impressa com '92-01', 'フリー', 'ホワイト' e ¥3000",
+      "fonte": "foto_4, foto_10",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Nenhuma fonte encontrada sobre o formato de código de produto das etiquetas de mercadoria do circuito de Suzuka nos anos 90. O '92' fica como hipótese não confirmada.",
+        "fonte": "buscas web por 鈴鹿サーキット 商品タグ 品番 / código de mercadoria do circuito"
+      }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A peça não nomeia equipe, piloto nem temporada. O carro da estampa das costas é um F1 vermelho e branco com 'Marlboro' no bico — o esquema de cor da Marlboro da época —, mas é ilustração genérica, sem número, sem logo de equipe. E 'Marlboro World Championship Team' é lockup de marca da Marlboro no automobilismo, cujo uso documentado como nome próprio de equipe foi a BRM de 1972 a 1974. Traduzir isso pra 'McLaren', 'Senna' ou 'BRM' inventaria atribuição. O vendedor não faz isso; o risco é nosso, na tradução.",
+      "evidencia": "Estampa das costas: bandeira quadriculada + carro vermelho e branco com 'Marlboro' na lateral + 'Marlboro Racing'; frente e etiqueta de gola só com o lockup 'Marlboro World Championship Team'",
+      "fonte": "foto_1, foto_2, foto_7, foto_8",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "'Marlboro World Championship Team' foi o nome da equipe BRM patrocinada pela Marlboro a partir de 1972, primeiro grande patrocínio da marca na F1; a Marlboro depois patrocinou McLaren (1974-1996) e Ferrari (1993-2017). Nenhuma dessas equipes aparece na peça.",
+        "fonte": "Wikipedia 'Marlboro World Championship Team' (redireciona para Marlboro); Motor Sport Magazine, 'Marlboro in Formula 1'"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "'未使用品 タグ付きデッドストック' se sustenta. Os dois pendentes continuam presos pelo fio original passado na costura da gola, a etiqueta interna está branca e sem amarelado de uso, e as fotos de manga e barra não mostram desgaste. A etiqueta de composição ainda acrescenta um dado que o anúncio não dá: 綿100% e 日本製 (algodão 100%, feita no Japão), coerente com mercadoria produzida pro circuito.",
+      "evidencia": "Fio original atravessando a costura da gola com os dois pendentes; etiqueta interna '綿 100% / K-OS 5118 / 日本製'; etiqueta tecida lateral 'Marlboro World Championship Team'",
+      "fonte": "foto_3, foto_4, foto_5, foto_10",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Comparação direta entre a condição declarada e o que as fotos mostram.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O argumento de escassez do vendedor está na direção certa, com uma correção de escopo. Ele diz que 'por autorregulação, nos anos 2000 parou de se usar design de imagem de tabaco em publicidade'. O que de fato aconteceu: a indústria japonesa de tabaco mantém autorregulação de publicidade desde abril de 1985, e o patrocínio de tabaco foi saindo da F1 ao longo dos anos 2000 (Williams/Winfield em 2000, McLaren/West em 2005, Renault/Mild Seven no fim de 2006, saída da BAT), com a UE proibindo publicidade de tabaco em evento esportivo. Isso torna esse tipo de peça não reprodutível hoje — mas é sobre publicidade e patrocínio, não sobre proibição de revender peça antiga.",
+      "evidencia": "Descrição: '自主規制により00年代にタバコ系イメージデザイン広告採用はされなくなっているので希少になっていく一方かと思われます'",
+      "fonte": "descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A associação japonesa do tabaco mantém critérios próprios de publicidade desde abril de 1985; nos anos 2000 as marcas de cigarro deixaram a F1 (Winfield/Williams em 2000, West/McLaren em 2005, Mild Seven/Renault ao fim de 2006) e a proibição europeia de publicidade de tabaco em eventos esportivos fechou o ciclo.",
+        "fonte": "一般社団法人日本たばこ協会 (tioj.or.jp), critérios de autorregulação; matérias japonesas sobre o fim dos patrocínios de tabaco na F1"
+      }
+    }
+  ],
+  "recomendacao": "Peça honesta e bem documentada pelo que a etiqueta realmente diz: mercadoria vendida no circuito de Suzuka, sob parceria com a Philip Morris, deadstock com os dois pendentes presos. Vender por aí, e não pela palavra 'licença': a legenda certa é 'camiseta oficial vendida no circuito de Suzuka, feita no Japão, deadstock com etiqueta' — sem piloto, sem equipe e sem ano cravado. Se o Caio quiser o ano, o caminho é perguntar ao vendedor se o pendente ou a nota trazem alguma referência de temporada; o '92-01' sozinho não fecha.",
+  "o_que_nao_sei": [
+    "O ano. O que está ancorado é o teto (2006 ou antes, pelo nome 鈴鹿サーキットランド). Os anos 90 do título são plausíveis e nada os contradiz, mas nada na peça os prova.",
+    "O que significa '92-01' na etiqueta de preço. Não achei o esquema de código do circuito.",
+    "Se a estampa foi mesmo desenhada em cima de um carro específico ou é ilustração genérica de F1 em cores Marlboro. Sem número e sem logo de equipe, a imagem não decide.",
+    "Se a peça é autêntica. O próprio vendedor levanta o tema de reimpressão e cópia nessa categoria, e essa é exatamente a pergunta que foto de celular não responde: nem etiqueta, nem estampa, nem costura sustentam esse julgamento por imagem. O método não pega falsificação, e aqui isso fica declarado.",
+    "O que é 'K-OS 5118' na etiqueta interna: parece código de fabricante ou de lote, não decodificado.",
+    "Quantas peças existiram. 'Souvenir de GP' não tem tiragem pública."
+  ]
+}

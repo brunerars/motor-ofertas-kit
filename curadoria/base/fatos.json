@@ -1,0 +1,1269 @@
+{
+  "_schema": "Base de fatos verificáveis destilada dos pareceres de curadoria. Cada fato carrega a peça de onde veio (visto_em) e a frase que o sustenta (frase_origem). Só entra o que passou por busca CONFIRMADA. É consultada por consultar.py para datar peça sem gastar modelo.",
+  "_como_crescer": "Cada rodada de curadoria gera fatos-propostos.json; um humano confere contra frase_origem e roda destila.py --promover. Fato visto em duas peças estreita a janela e vira confirmado.",
+  "_atualizado_em": "2026-08-18",
+  "_total": 83,
+  "fatos": [
+    {
+      "id": "codigo-area-818",
+      "tipo": "codigo",
+      "entidade": "Código de área 818 (EUA)",
+      "contraparte": null,
+      "de": 1984,
+      "ate": null,
+      "afirmacao": "O código de área telefônico 818 foi criado em 7 de janeiro de 1984, num split do 213, para o San Fernando Valley e arredores. Etiqueta impressa com telefone 818 não pode ser anterior a 1984; antes disso a região era 213.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m31939814908"
+      ],
+      "frase_origem": "o código de área 818 não existia antes de 7 de janeiro de 1984, quando foi separado do 213 pra atender o San Fernando Valley",
+      "detalhe_busca": "O código de área 818 foi criado em 7 de janeiro de 1984, num split do 213, e atribuído ao San Fernando Valley e arredores. Antes dessa data, um telefone de Tarzana seria 213."
+    },
+    {
+      "id": "copyright-ano-piso",
+      "tipo": "codigo",
+      "entidade": "Símbolo © com ano em etiqueta licenciada",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "O ano no símbolo © de uma etiqueta de produto licenciado funciona como piso de data: a peça não é anterior àquele ano.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m92121645867"
+      ],
+      "frase_origem": "Ou seja, a peça vem da linha licenciada da era Nice Man e não é anterior a 1997.",
+      "detalhe_busca": "Nice Man Sports aparece como licenciada oficial de vestuário Ferrari em várias peças de época com essa mesma etiqueta, com exemplos datados por vendedores como 1995, 1996 e 1998 (jaqueta acolchoada, polo, varsity de lã e couro)."
+    },
+    {
+      "id": "escudo-scuderia-ferrari",
+      "tipo": "codigo",
+      "entidade": "Escudo da Scuderia Ferrari (SF)",
+      "contraparte": null,
+      "de": 1932,
+      "ate": null,
+      "afirmacao": "As letras SF na base do escudo amarelo com cavallino e tricolor italiano no topo significam Scuderia Ferrari. É o emblema da equipe de corrida, usado pela Scuderia desde 1932 e aplicado aos carros de rua a partir de 1947, diferente do cavallino corporativo isolado.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m63912161183"
+      ],
+      "frase_origem": "O emblema do peito é o escudo da Scuderia Ferrari, com as letras 'S F' na base, tricolor italiano no topo e cavallino preto sobre amarelo. É o emblema de corrida, não o cavallino corporativo isolado.",
+      "detalhe_busca": "As letras SF no escudo significam Scuderia Ferrari; o escudo amarelo com cavallino e tricolor no topo é o emblema da equipe de corrida, usado pela Scuderia desde 1932 e aplicado aos carros de rua a partir de 1947."
+    },
+    {
+      "id": "hidrolise-poliuretano",
+      "tipo": "codigo",
+      "entidade": "加水分解 (hidrólise)",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "加水分解 é hidrólise: o poliuretano de revestimento, cola e fita de costura se decompõe com a umidade do ar, fica pegajoso, esfarela e descola. Uma vez iniciado o processo é irreversível, e só existe paliativo (talco ou bicarbonato), porque remover e reaplicar o revestimento é inviável técnica e economicamente.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "O '加水分解' declarado na condição é hidrólise: o poliuretano do forro/revestimento se decompõe com a umidade do ar ao longo dos anos, fica pegajoso, esfarela e descola em pó ou lascas. É irreversível.",
+      "detalhe_busca": "Fontes japonesas de outdoor e de brechó são unânimes: o poliuretano usado em revestimento, cola e fita de costura sofre 加水分解 pela umidade do ambiente, e uma vez iniciado o processo praticamente não se conserta — remover e reaplicar o revestimento é inviável técnica e economicamente. As saídas citadas são paliativas (talco de bebê, bicarbonato)."
+    },
+    {
+      "id": "rn-nao-prova-origem",
+      "tipo": "codigo",
+      "entidade": "RN (Registered Identification Number)",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "O RN é emitido pela FTC a empresa sediada nos EUA que fabrica, importa, distribui ou vende produto têxtil, e pode substituir o nome na etiqueta. Diz quem responde pela peça, não onde ela foi costurada: importador também tem RN, então RN nunca prova fabricação nos EUA.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m31939814908",
+        "m13668803753"
+      ],
+      "frase_origem": "O RN identifica uma empresa sediada nos EUA que fabrica, IMPORTA, distribui ou vende produtos têxteis — importador também tem RN. Ele diz quem responde pela peça, não onde ela foi costurada.",
+      "detalhe_busca": "Um Registered Identification Number é emitido pela FTC a 'a business residing in the United States that is engaged in the manufacture, importation, distribution, or sale of textile, wool, or fur products', e pode ser usado no lugar do nome da empresa na etiqueta. Não certifica país de fabricação. || A FTC confirma que o RN (Registered Identification Number) é emitido a empresa nos EUA que fabrica, importa, distribui ou comercializa produto têxtil, e pode substituir o nome na etiqueta. Não consegui, porém, resolver o RN 69079 pra um nome de empresa: a base da FTC não respondeu por busca e nenhum resultado público liga esse número a um fabricante."
+    },
+    {
+      "id": "associacao-japonesa-chapeus",
+      "tipo": "entidade_existencia",
+      "entidade": "全日本帽子協会",
+      "contraparte": null,
+      "de": 1972,
+      "ate": null,
+      "afirmacao": "A 全日本帽子協会 (Associação Japonesa de Chapéus) é entidade real da indústria japonesa, fundada em junho de 1972 e depois renomeada 日本帽子協会.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m56921610317"
+      ],
+      "frase_origem": "o registro '全日本帽子協会1201'",
+      "detalhe_busca": "A 全日本帽子協会 (Associação Japonesa de Chapéus) é entidade real da indústria japonesa, fundada em junho de 1972 e depois renomeada 日本帽子協会. Etiqueta com esse registro é marca de produção japonesa, coerente com o 日本製 declarado."
+    },
+    {
+      "id": "benetton-formula-1986-2001",
+      "tipo": "entidade_existencia",
+      "entidade": "Benetton Formula",
+      "contraparte": null,
+      "de": 1986,
+      "ate": 2001,
+      "afirmacao": "Benetton Formula foi a equipe de F1 do grupo Benetton, ativa do GP do Brasil de 1986 ao GP do Japão de 2001, quando virou Renault F1 Team.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m84409745896",
+        "m33604320797",
+        "m56921610317"
+      ],
+      "frase_origem": "A Benetton Formula correu na F1 de 1986 a 2001",
+      "detalhe_busca": "Confirma que a Benetton assumiu a equipe em 1986 e correu até 2001, e que o desenho de pinceladas é a identidade da fase de cores da marca, situada por fontes de livery entre 1986 e 1990. Atenção: isso data a IDENTIDADE VISUAL, não a fabricação desta camiseta. || 'Benetton Formula' é o nome real da equipe de F1 do grupo, ativa de 1986 (GP do Brasil) a 2001 (GP do Japão), quando virou Renault F1 Team. O patch usa o nome oficial da equipe, não uma inspiração genérica. || A Benetton Formula foi a equipe de F1 do grupo, do GP do Brasil de 1986 ao GP do Japão de 2001, quando virou Renault F1 Team. A Benetton Sportsystem (divisão de artigos esportivos do grupo nos anos 90, absorvida pela Playlife entre 1997 e 1999) produziu material licenciado da equipe, incluindo peças importadas do Japão. Ou seja, existe uma linha oficial 'Benetton Formula 1' de merchandising — o rótulo não é decorativo."
+    },
+    {
+      "id": "hrc-1982-motos",
+      "tipo": "entidade_existencia",
+      "entidade": "Honda Racing Corporation (HRC)",
+      "contraparte": null,
+      "de": 1982,
+      "ate": null,
+      "afirmacao": "A HRC foi fundada em 01/09/1982 e nasceu responsável pelas atividades de MOTO da Honda, a casa das vitórias da marca no mundial de motovelocidade.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m73359062125"
+      ],
+      "frase_origem": "Não há nada de HRC nesta peça.",
+      "detalhe_busca": "HRC (Honda Racing Corporation) foi fundada em 01/09/1982 e nasceu responsável pelas atividades de MOTO da Honda — é a casa das vitórias da marca no mundial de motovelocidade/MotoGP. As atividades de automobilismo, incluindo o programa de F1, só entraram no escopo da HRC em 01/04/2022. Uma peça vintage marcada 'Honda Motor Sports / Honda Collection' não é produto HRC, e chamar de HRC aponta pro lado das motos."
+    },
+    {
+      "id": "philip-morris-marlboro",
+      "tipo": "entidade_existencia",
+      "entidade": "Philip Morris",
+      "contraparte": "Marlboro",
+      "de": null,
+      "ate": null,
+      "afirmacao": "A Philip Morris é a dona da marca Marlboro.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m24601571304"
+      ],
+      "frase_origem": "com acordo da dona da Marlboro",
+      "detalhe_busca": "A Philip Morris é a dona da marca Marlboro. A 鈴鹿サーキットランド (Suzuka Circuitland) era a empresa do grupo Honda que operava o circuito de Suzuka; ela deixou de existir com esse nome em 1 de junho de 2006, ao se fundir com a Twin Ring Motegi e virar Mobilityland (hoje Honda Mobilityland)."
+    },
+    {
+      "id": "suzuka-circuitland",
+      "tipo": "entidade_existencia",
+      "entidade": "Suzuka Circuitland",
+      "contraparte": null,
+      "de": null,
+      "ate": 2006,
+      "afirmacao": "A Suzuka Circuitland era a empresa do grupo Honda que operava o circuito de Suzuka; deixou de existir com esse nome em 1 de junho de 2006, ao se fundir com a Twin Ring Motegi e virar Mobilityland, renomeada Honda Mobilityland em 2022. Nome na etiqueta indica peça de 2006 ou antes.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m24601571304"
+      ],
+      "frase_origem": "essa empresa deixou de existir com esse nome em junho de 2006",
+      "detalhe_busca": "鈴鹿サーキットランド e ツインリンクもてぎ se fundiram em 1 de junho de 2006, formando a 株式会社モビリティランド (renomeada ホンダモビリティランド em 2022). O nome antigo não é usado depois disso. || A Philip Morris é a dona da marca Marlboro. A 鈴鹿サーキットランド (Suzuka Circuitland) era a empresa do grupo Honda que operava o circuito de Suzuka; ela deixou de existir com esse nome em 1 de junho de 2006, ao se fundir com a Twin Ring Motegi e virar Mobilityland (hoje Honda Mobilityland)."
+    },
+    {
+      "id": "toyota-f1-2002-2009",
+      "tipo": "entidade_existencia",
+      "entidade": "Toyota F1",
+      "contraparte": null,
+      "de": 2002,
+      "ate": 2009,
+      "afirmacao": "A Toyota competiu na F1 de 2002 a 2009, oito temporadas, com um dos maiores orçamentos do grid e nenhuma vitória: 13 pódios, 3 poles, melhor resultado o 4º lugar no mundial de construtores em 2005.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m69497505984"
+      ],
+      "frase_origem": "A Toyota entrou em 2002 com um dos maiores orçamentos do grid, ficou oito temporadas e saiu em 2009 sem NENHUMA vitória: 13 pódios, 3 poles, zero vitórias, melhor resultado um 4º lugar no mundial de construtores em 2005.",
+      "detalhe_busca": "Toyota na F1: 2002-2009, 0 vitórias, 13 pódios, 3 poles, melhor campanha em 2005 (4º entre construtores), com um dos maiores orçamentos da categoria e crítica pública pela falta de resultado. || A Toyota competiu na F1 de 2002 a 2009. Fornecedor de pneu: Michelin 2002-2005, Bridgestone 2006-2009. O TF102 (2002) e o TF105 (2005) correram com Michelin; o TF107 (2007) com Bridgestone Potenza."
+    },
+    {
+      "id": "benetton-livery-pinceladas",
+      "tipo": "evento",
+      "entidade": "Benetton Formula",
+      "contraparte": null,
+      "de": 1986,
+      "ate": 1990,
+      "afirmacao": "O desenho de pinceladas coloridas é a identidade da fase de cores da Benetton Formula, situada por fontes de livery entre 1986 e 1990. Data a identidade visual, não a fabricação de uma peça.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m84409745896"
+      ],
+      "frase_origem": "o brasão 'Benetton Formula 1 RACING TEAM' com as pinceladas coloridas",
+      "detalhe_busca": "Confirma que a Benetton assumiu a equipe em 1986 e correu até 2001, e que o desenho de pinceladas é a identidade da fase de cores da marca, situada por fontes de livery entre 1986 e 1990. Atenção: isso data a IDENTIDADE VISUAL, não a fabricação desta camiseta."
+    },
+    {
+      "id": "benetton-titulos-94-95",
+      "tipo": "evento",
+      "entidade": "Benetton Formula",
+      "contraparte": null,
+      "de": 1994,
+      "ate": 1995,
+      "afirmacao": "A Benetton Formula ganhou dois títulos de piloto com Michael Schumacher, em 1994 e 1995, e o de construtores em 1995.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m84409745896"
+      ],
+      "frase_origem": "com dois títulos de piloto (Schumacher, 1994 e 1995) e o de construtores em 1995",
+      "detalhe_busca": "Confirma que a Benetton assumiu a equipe em 1986 e correu até 2001, e que o desenho de pinceladas é a identidade da fase de cores da marca, situada por fontes de livery entre 1986 e 1990. Atenção: isso data a IDENTIDADE VISUAL, não a fabricação desta camiseta."
+    },
+    {
+      "id": "ferrari-f2002",
+      "tipo": "evento",
+      "entidade": "Ferrari F2002",
+      "contraparte": null,
+      "de": 2002,
+      "ate": 2003,
+      "afirmacao": "O Ferrari F2002 competiu em 2002 e 2003, este último na versão F2002B, com Schumacher e Barrichello.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m18390786233"
+      ],
+      "frase_origem": "o F2002 só correu em 2002 e 2003, este último na versão F2002B",
+      "detalhe_busca": "A Wikipedia do Ferrari F2002 confirma que o carro competiu em 2002 e 2003 (versão F2002B), com Schumacher e Barrichello, e lista Vodafone, Shell, Marlboro e Bridgestone como patrocinadores. O acordo Vodafone x Ferrari foi anunciado em maio de 2001 para valer a partir de 2002, num contrato de três anos que se estendeu até 2006. A AMD aparece como patrocinadora da Ferrari desde 2002 em discussão de fórum, fonte fraca, então não usei a AMD como âncora, só a Vodafone."
+    },
+    {
+      "id": "ferrari-fase-de-ouro",
+      "tipo": "evento",
+      "entidade": "Ferrari",
+      "contraparte": null,
+      "de": 2000,
+      "ate": 2004,
+      "afirmacao": "A fase de ouro da Ferrari é o período de 2000 a 2004.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m33557684905"
+      ],
+      "frase_origem": "A fase de ouro da Ferrari é 2000-2004",
+      "detalhe_busca": "Wikipédia alemã (Dekra SE): 'Zwischen 1991 und 1995 war Dekra exklusiver Werbepartner von Formel-1-Pilot Michael Schumacher'. A própria linha do tempo da DEKRA registra 1993 como o ano em que passou a patrocinar Schumacher e o logo apareceu em toda mídia. A reportagem 'Dekra läßt Vertrag mit Michael Schumacher auslaufen' registra que a empresa deixaria seu lugar no boné do piloto no fim daquele ano, com a renovação avaliada em mais de dez milhões de marcos anuais."
+    },
+    {
+      "id": "ferrari-jejum-1983-1999",
+      "tipo": "evento",
+      "entidade": "Ferrari",
+      "contraparte": null,
+      "de": 1983,
+      "ate": 1999,
+      "afirmacao": "A Ferrari venceu o mundial de construtores em 1982 e 1983 e só voltou a vencer em 1999, depois de 16 anos de jejum.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m31939814908"
+      ],
+      "frase_origem": "os títulos mais recentes da Ferrari naquele momento eram os mundiais de construtores de 1982 e 1983",
+      "detalhe_busca": "A Ferrari venceu o mundial de construtores em 1982 e 1983 e só voltou a vencer em 1999, primeiro título depois de 16 anos."
+    },
+    {
+      "id": "goodyear-saida-f1-1998",
+      "tipo": "evento",
+      "entidade": "Goodyear",
+      "contraparte": null,
+      "de": null,
+      "ate": 1998,
+      "afirmacao": "A Goodyear saiu da F1 no fim de 1998, e foi essa saída que abriu espaço para a Bridgestone na Ferrari a partir de 1999.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m10933095707"
+      ],
+      "frase_origem": "a Bridgestone calçou a Ferrari de 1999 a 2010",
+      "detalhe_busca": "Vodafone deixou a Ferrari no fim de 2006 e assinou com a McLaren para 2007 (acordo anunciado em 14/12/2005). Bridgestone forneceu pneus à Ferrari de 1999, depois da saída da Goodyear no fim de 1998, até 2010. Shell é parceira desde 1996. O conjunto Marlboro/Bridgestone/Shell/Vodafone aparece listado como o de parceiros do Ferrari F2005."
+    },
+    {
+      "id": "hill-villeneuve-titulos",
+      "tipo": "evento",
+      "entidade": "Damon Hill e Jacques Villeneuve",
+      "contraparte": "Williams",
+      "de": 1996,
+      "ate": 1997,
+      "afirmacao": "Damon Hill foi campeão em 1996 e Jacques Villeneuve em 1997, ambos pela Williams no período Rothmans.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m88172984233"
+      ],
+      "frase_origem": "1996 e 1997 são os títulos de Damon Hill e Jacques Villeneuve",
+      "detalhe_busca": "Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16. Hill foi campeão em 1996 e Villeneuve em 1997, ambos pela Williams no período Rothmans."
+    },
+    {
+      "id": "hrc-automobilismo-2022",
+      "tipo": "evento",
+      "entidade": "Honda Racing Corporation (HRC)",
+      "contraparte": null,
+      "de": 2022,
+      "ate": null,
+      "afirmacao": "As atividades de automobilismo da Honda, incluindo o programa de F1, só entraram no escopo da HRC em 01/04/2022. Peça vintage de automobilismo marcada Honda Motor Sports ou Honda Collection não é produto HRC.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m73359062125"
+      ],
+      "frase_origem": "Não há nada de HRC nesta peça.",
+      "detalhe_busca": "HRC (Honda Racing Corporation) foi fundada em 01/09/1982 e nasceu responsável pelas atividades de MOTO da Honda — é a casa das vitórias da marca no mundial de motovelocidade/MotoGP. As atividades de automobilismo, incluindo o programa de F1, só entraram no escopo da HRC em 01/04/2022. Uma peça vintage marcada 'Honda Motor Sports / Honda Collection' não é produto HRC, e chamar de HRC aponta pro lado das motos."
+    },
+    {
+      "id": "mclaren-livery-1990-1992",
+      "tipo": "evento",
+      "entidade": "McLaren",
+      "contraparte": null,
+      "de": 1990,
+      "ate": 1992,
+      "afirmacao": "A pintura Marlboro vermelha e branca da McLaren é praticamente a mesma em 1990, 1991 e 1992, então a arte do carro confirma equipe e época mas não data a temporada.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97609115294"
+      ],
+      "frase_origem": "que é a pintura da McLaren da época",
+      "detalhe_busca": "A McLaren-Honda de 1991 correu com a pintura Marlboro vermelha e branca, pneus Goodyear e patrocínio Shell — o desenho bate. Ressalva: essa pintura é praticamente a mesma de 1990 e 1992, então a arte do carro CONFIRMA mas não data. Quem data é o texto do motor."
+    },
+    {
+      "id": "mp4-6-1991",
+      "tipo": "evento",
+      "entidade": "McLaren MP4/6",
+      "contraparte": null,
+      "de": 1991,
+      "ate": null,
+      "afirmacao": "Senna ganhou o terceiro título com o McLaren MP4/6 em 1991; o MP4/6 é o último campeão da F1 com motor V12 e o último com câmbio manual.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97609115294"
+      ],
+      "frase_origem": "O motor impresso nas costas, o RA121E V12, existiu numa única temporada, e a dupla de pilotos impressa logo acima dele bate com essa mesma temporada.",
+      "detalhe_busca": "O RA121E é o V12 3.5L de 60 graus que a Honda fez para o McLaren MP4/6 de 1991, com deslocamento de 3.493cc — bate com o número impresso na peça. Os pilotos do MP4/6 em 1991 foram Ayrton Senna e Gerhard Berger. Senna ganhou seu terceiro título nesse carro, e o MP4/6 é o último campeão da F1 com motor V12 e o último com câmbio manual. Berger foi companheiro do Senna na McLaren em 1990, 1991 e 1992, mas o V12 RA121E é exclusivo de 1991: em 1990 era o RA100E V10."
+    },
+    {
+      "id": "nannini-imola-1990",
+      "tipo": "evento",
+      "entidade": "Alessandro Nannini",
+      "contraparte": "Benetton",
+      "de": 1990,
+      "ate": null,
+      "afirmacao": "No GP de San Marino de 1990, em Imola, Alessandro Nannini terminou em 3º com o Benetton B190 e cravou a volta mais rápida da corrida.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m33604320797"
+      ],
+      "frase_origem": "em 1990, no GP de San Marino em Imola, Alessandro Nannini subiu ao pódio pela Benetton (3º lugar, com a volta mais rápida da corrida)",
+      "detalhe_busca": "GP de San Marino de 1990, em Imola: Nannini terminou em 3º com o Benetton B190 e cravou a volta mais rápida (1:27.156, volta 60)."
+    },
+    {
+      "id": "piquet-canada-1991",
+      "tipo": "evento",
+      "entidade": "Nelson Piquet",
+      "contraparte": "Benetton",
+      "de": 1991,
+      "ate": null,
+      "afirmacao": "Nelson Piquet venceu o GP do Canadá de 1991 em Montreal com o Benetton B191, única vitória do carro e 23ª e última vitória da carreira dele, herdada quando Mansell parou na última volta; Piquet se aposentou no fim daquela temporada.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m13668803753",
+        "m84409745896"
+      ],
+      "frase_origem": "Foi nesse carro que ele venceu o GP do Canadá de 1991, a única vitória do B191 e a última vitória do Piquet na F1. Ele se aposentou no fim daquela temporada.",
+      "detalhe_busca": "Em 1991 a Benetton alinhou o 19 (Roberto Moreno, depois Michael Schumacher a partir de Spa) e o 20 (Nelson Piquet). 'Nelson Piquet gave the B191 its only win at the 1991 Canadian Grand Prix'. || Confirma Piquet vencedor do GP do Canadá de 1991 em Montreal com a Benetton-Ford B191, última vitória da carreira dele, após a parada de Mansell na última volta; e Schumacher vencedor do GP do Canadá de 1994 pela Benetton-Ford, largando da pole, com Hill em segundo."
+    },
+    {
+      "id": "proibicao-tabaco-ue-esporte",
+      "tipo": "evento",
+      "entidade": "União Europeia",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "A União Europeia proibiu publicidade de tabaco em evento esportivo, o que fechou o ciclo de saída das marcas de cigarro da F1 nos anos 2000. A checagem não datou a proibição.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m24601571304"
+      ],
+      "frase_origem": "com a UE proibindo publicidade de tabaco em evento esportivo",
+      "detalhe_busca": "A associação japonesa do tabaco mantém critérios próprios de publicidade desde abril de 1985; nos anos 2000 as marcas de cigarro deixaram a F1 (Winfield/Williams em 2000, West/McLaren em 2005, Mild Seven/Renault ao fim de 2006) e a proibição europeia de publicidade de tabaco em eventos esportivos fechou o ciclo."
+    },
+    {
+      "id": "schumacher-canada-1994",
+      "tipo": "evento",
+      "entidade": "Michael Schumacher",
+      "contraparte": "Benetton",
+      "de": 1994,
+      "ate": null,
+      "afirmacao": "Michael Schumacher venceu o GP do Canadá de 1994 pela Benetton-Ford, largando da pole, com Hill em segundo.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m84409745896"
+      ],
+      "frase_origem": "e Michael Schumacher em 1994, saindo da pole",
+      "detalhe_busca": "Confirma Piquet vencedor do GP do Canadá de 1991 em Montreal com a Benetton-Ford B191, última vitória da carreira dele, após a parada de Mansell na última volta; e Schumacher vencedor do GP do Canadá de 1994 pela Benetton-Ford, largando da pole, com Hill em segundo."
+    },
+    {
+      "id": "schumacher-capacete-vermelho-2002",
+      "tipo": "evento",
+      "entidade": "Michael Schumacher",
+      "contraparte": "Ferrari",
+      "de": 2002,
+      "ate": null,
+      "afirmacao": "Em 2002 Schumacher passou a usar capacete predominantemente vermelho com faixa nas cores da bandeira alemã, para se diferenciar de Barrichello, que usava capacete branco com topo azul e confundia a TV.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m18390786233"
+      ],
+      "frase_origem": "Em 2002 Schumacher usava capacete vermelho justamente para se diferenciar do companheiro Barrichello, que tinha capacete predominantemente branco com topo azul.",
+      "detalhe_busca": "O capacete 2002 de Schumacher é descrito como vermelho candy com faixa lateral nas cores da bandeira alemã. A troca do branco pelo vermelho aconteceu porque Barrichello chegou à Ferrari com capacete predominantemente branco e topo azul, e a TV confundia os dois."
+    },
+    {
+      "id": "schumacher-estreia-1991",
+      "tipo": "evento",
+      "entidade": "Michael Schumacher",
+      "contraparte": null,
+      "de": 1991,
+      "ate": null,
+      "afirmacao": "Michael Schumacher estreou na F1 em agosto de 1991, pela Jordan em Spa, no lugar de Bertrand Gachot, e passou para a Benetton no GP da Itália do mesmo ano.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m33604320797"
+      ],
+      "frase_origem": "Schumacher só estreia na F1 em agosto de 1991, pela Jordan em Spa, e passa pra Benetton no GP da Itália do mesmo ano.",
+      "detalhe_busca": "Estreia de Schumacher no GP da Bélgica de 1991 pela Jordan, substituindo Bertrand Gachot; contratado pela Benetton dias depois, correndo pela equipe já no GP da Itália de 1991, no lugar de Roberto Moreno."
+    },
+    {
+      "id": "schumacher-primeira-vitoria-1992",
+      "tipo": "evento",
+      "entidade": "Michael Schumacher",
+      "contraparte": "Benetton",
+      "de": 1992,
+      "ate": null,
+      "afirmacao": "1992 foi o ano da primeira vitória de Michael Schumacher na F1, em Spa.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779"
+      ],
+      "frase_origem": "foi o ano da primeira vitória dele na F1, em Spa",
+      "detalhe_busca": "Schumacher e Brundle correram o B192 em 1992 (carros 19 e 20). A dupla e o ano batem, mas nada disso está impresso na peça."
+    },
+    {
+      "id": "schumacher-titulo-2002",
+      "tipo": "evento",
+      "entidade": "Michael Schumacher",
+      "contraparte": "Ferrari",
+      "de": 2002,
+      "ate": null,
+      "afirmacao": "Em 2002 Schumacher fechou o quinto título na 11ª das 17 corridas, no GP da França de 21 de julho, o título mais cedo da história até então, com 11 vitórias, pódio em todas as corridas do ano e 67 pontos de vantagem sobre o segundo colocado.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m18390786233"
+      ],
+      "frase_origem": "com o F2002, Schumacher fechou o quinto título na 11ª das 17 corridas, no GP da França em 21 de julho de 2002, o título mais cedo da história até então, e terminou TODAS as corridas do ano no pódio, com 67 pontos de vantagem sobre o segundo colocado",
+      "detalhe_busca": "Confirma o título selado na 11ª de 17 corridas, no GP da França de 21/07/2002, o mais cedo da história; Schumacher terminou todas as corridas no pódio, com 11 vitórias, e a maior margem de pontos para o segundo colocado até então."
+    },
+    {
+      "id": "senna-morte-1994",
+      "tipo": "evento",
+      "entidade": "Ayrton Senna",
+      "contraparte": null,
+      "de": 1994,
+      "ate": null,
+      "afirmacao": "Ayrton Senna morreu em 1º de maio de 1994, em Imola.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856",
+        "m88172984233"
+      ],
+      "frase_origem": "Senna morreu em 1º de maio de 1994.",
+      "detalhe_busca": "O site institucional da Y'S GEAR informa 設立 1997年1月20日 e capital 100% da Yamaha Motor Co., Ltd. O endereço da etiqueta (浜松市板屋町110-5) é anterior ao atual (浜松市中央区元城町115-10), o que é consistente com peça do fim dos anos 90 / começo dos 2000. || Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16. Hill foi campeão em 1996 e Villeneuve em 1997, ambos pela Williams no período Rothmans."
+    },
+    {
+      "id": "senna-williams-1994",
+      "tipo": "evento",
+      "entidade": "Ayrton Senna",
+      "contraparte": "Williams",
+      "de": 1994,
+      "ate": null,
+      "afirmacao": "Ayrton Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m88172984233",
+        "m97283893856"
+      ],
+      "frase_origem": "1994 é o ano em que Senna correu por esta equipe e morreu em Imola",
+      "detalhe_busca": "Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16. Hill foi campeão em 1996 e Villeneuve em 1997, ambos pela Williams no período Rothmans. || O site institucional da Y'S GEAR informa 設立 1997年1月20日 e capital 100% da Yamaha Motor Co., Ltd. O endereço da etiqueta (浜松市板屋町110-5) é anterior ao atual (浜松市中央区元城町115-10), o que é consistente com peça do fim dos anos 90 / começo dos 2000."
+    },
+    {
+      "id": "tabaco-autorregulacao-japao-1985",
+      "tipo": "evento",
+      "entidade": "Indústria japonesa de tabaco",
+      "contraparte": null,
+      "de": 1985,
+      "ate": null,
+      "afirmacao": "A indústria japonesa de tabaco mantém critérios próprios de autorregulação de publicidade desde abril de 1985.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m24601571304"
+      ],
+      "frase_origem": "a indústria japonesa de tabaco mantém autorregulação de publicidade desde abril de 1985",
+      "detalhe_busca": "A associação japonesa do tabaco mantém critérios próprios de publicidade desde abril de 1985; nos anos 2000 as marcas de cigarro deixaram a F1 (Winfield/Williams em 2000, West/McLaren em 2005, Mild Seven/Renault ao fim de 2006) e a proibição europeia de publicidade de tabaco em eventos esportivos fechou o ciclo."
+    },
+    {
+      "id": "honda-direct-marketing",
+      "tipo": "fabricante",
+      "entidade": "Honda Direct Marketing",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "A Honda Direct Marketing (株式会社ホンダダイレクトマーケティング) responde pelo planejamento e venda de merchandise oficial da Honda. A busca não achou documentação da empresa em si.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m73359062125"
+      ],
+      "frase_origem": "planejamento e venda pela Honda Direct Marketing",
+      "detalhe_busca": "A Onward Kashiyama é uma das maiores fabricantes de vestuário do Japão, fundada em 1927, com operação de licenciamento pra dezenas de marcas. É um fabricante real e de porte, o que sustenta que a peça saiu de uma cadeia oficial e não de produção informal. Não achei documentação da Honda Direct Marketing Corp em si."
+    },
+    {
+      "id": "onward-kashiyama",
+      "tipo": "fabricante",
+      "entidade": "Onward Kashiyama",
+      "contraparte": null,
+      "de": 1927,
+      "ate": null,
+      "afirmacao": "A Onward Kashiyama é uma das maiores fabricantes de vestuário do Japão, fundada em 1927, com operação de licenciamento para dezenas de marcas.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m73359062125"
+      ],
+      "frase_origem": "fabricação pela Onward Kashiyama",
+      "detalhe_busca": "A Onward Kashiyama é uma das maiores fabricantes de vestuário do Japão, fundada em 1927, com operação de licenciamento pra dezenas de marcas. É um fabricante real e de porte, o que sustenta que a peça saiu de uma cadeia oficial e não de produção informal. Não achei documentação da Honda Direct Marketing Corp em si."
+    },
+    {
+      "id": "style-auto",
+      "tipo": "fabricante",
+      "entidade": "STYLE AUTO",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "STYLE AUTO é marca americana real de jaqueta de cetim com tema automobilístico dos anos 80, catalogada por lojas de vintage (Daytona, BMW e outras). A checagem não deu anos exatos de atividade.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m31939814908"
+      ],
+      "frase_origem": "STYLE AUTO é marca americana real e conhecida de jaqueta de cetim com tema automobilístico dos anos 80",
+      "detalhe_busca": "Lojas de vintage catalogam a marca como jaqueta de corrida americana dos anos 80 (ex.: 'Vintage 80s Daytona Racing Jacket Style Auto', 'Vintage BMW Style Auto Satin Jacket'), com linha própria de marca no acervo."
+    },
+    {
+      "id": "ys-gear-1997",
+      "tipo": "fabricante",
+      "entidade": "Y'S GEAR",
+      "contraparte": null,
+      "de": 1997,
+      "ate": null,
+      "afirmacao": "A Y'S GEAR, subsidiária 100% da Yamaha Motor que cuida de acessórios e vestuário, foi constituída em 20 de janeiro de 1997. Peça com Y'S GEAR na etiqueta não pode ser anterior a 1997. O endereço 浜松市板屋町110-5 é anterior ao atual e é consistente com fim dos anos 90 e começo dos 2000.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "A Y'S GEAR foi constituída em 20 de janeiro de 1997.",
+      "detalhe_busca": "O site institucional da Y'S GEAR informa 設立 1997年1月20日 e capital 100% da Yamaha Motor Co., Ltd. O endereço da etiqueta (浜松市板屋町110-5) é anterior ao atual (浜松市中央区元城町115-10), o que é consistente com peça do fim dos anos 90 / começo dos 2000."
+    },
+    {
+      "id": "benetton-sportsystem-merchandising",
+      "tipo": "licenciado",
+      "entidade": "Benetton Sportsystem",
+      "contraparte": "Benetton Formula",
+      "de": null,
+      "ate": 1999,
+      "afirmacao": "Existe uma linha oficial de merchandising Benetton Formula 1, produzida pela Benetton Sportsystem, divisão de artigos esportivos do grupo nos anos 90, absorvida pela Playlife entre 1997 e 1999. A linha incluía peças importadas do Japão.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m56921610317"
+      ],
+      "frase_origem": "é a linha de merchandising da equipe de F1, não roupa esportiva genérica da Benetton",
+      "detalhe_busca": "A Benetton Formula foi a equipe de F1 do grupo, do GP do Brasil de 1986 ao GP do Japão de 2001, quando virou Renault F1 Team. A Benetton Sportsystem (divisão de artigos esportivos do grupo nos anos 90, absorvida pela Playlife entre 1997 e 1999) produziu material licenciado da equipe, incluindo peças importadas do Japão. Ou seja, existe uma linha oficial 'Benetton Formula 1' de merchandising — o rótulo não é decorativo."
+    },
+    {
+      "id": "fila-ferrari-vestuario",
+      "tipo": "licenciado",
+      "entidade": "Fila",
+      "contraparte": "Ferrari",
+      "de": null,
+      "ate": 2004,
+      "afirmacao": "A Fila respondia pelo vestuário oficial da Ferrari até 2004; peças team issue de 2002 a 2004 circulam com etiqueta Fila.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m10933095707"
+      ],
+      "frase_origem": "o vestuário oficial da Ferrari saía pela Fila (até 2004) e pela Puma (de 2005 em diante)",
+      "detalhe_busca": "A Puma assumiu a licença de vestuário da Ferrari a partir de 2005, substituindo a Fila, que era a fornecedora do período anterior; peças team issue de 2002 a 2004 circulam com etiqueta Fila."
+    },
+    {
+      "id": "goodsports-f1-sportswear",
+      "tipo": "licenciado",
+      "entidade": "GOODSPORTS F-1 Sportswear",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "GOODSPORTS F-1 Sportswear é um selo real de vestuário de F1 da época, que aparece em outras peças vintage dos anos 90 em circulação. Quem era a empresa e quais licenças ela detinha não foi respondido pela busca.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m88172984233"
+      ],
+      "frase_origem": "O licenciamento declarado no anúncio ('公式ライセンス商品') aparece duas vezes na peça, em etiquetas independentes uma da outra.",
+      "detalhe_busca": "A etiqueta 'GOODSPORTS F-1 Sportswear' aparece em outras peças vintage de F1 em circulação no mercado de segunda mão (listagens de jaquetas Grand Prix dos anos 90 no Grailed), ou seja, é um selo real da época e não um nome isolado. O que a busca NÃO respondeu foi quem era a empresa e quais licenças ela detinha."
+    },
+    {
+      "id": "marlboro-wct-vestuario",
+      "tipo": "licenciado",
+      "entidade": "Marlboro World Championship Team",
+      "contraparte": null,
+      "de": null,
+      "ate": null,
+      "afirmacao": "Marlboro World Championship Team é também uma linha documentada de vestuário de F1 dos anos 90 (jaquetas, corta-ventos, couro), que circula no mercado de segunda mão. Qual licenciado a fabricou não foi confirmado.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m63912161183"
+      ],
+      "frase_origem": "'World Championship Team' é a marcação usada em uma linha documentada de merchandising de F1 dos anos 90 ligada à Marlboro",
+      "detalhe_busca": "Confirma que 'Marlboro World Championship Team' existe como linha de vestuário de F1 vintage (jaquetas, corta-ventos, couro) circulando em eBay, Etsy, Grailed e lojas de vintage, e que a Marlboro é parceira da Ferrari desde 1973, virando patrocinadora principal de 1997 a 2022. O que NÃO consegui confirmar em fonte não-comercial é o desenho exato desta etiqueta nem qual licenciado a fabricou."
+    },
+    {
+      "id": "nice-man-sports",
+      "tipo": "licenciado",
+      "entidade": "Nice Man Sports",
+      "contraparte": "Ferrari",
+      "de": 1995,
+      "ate": 1998,
+      "afirmacao": "A Nice Man Sports foi licenciada oficial de vestuário Ferrari nos anos 90, com peças datadas circulando de 1995 a 1998.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m92121645867"
+      ],
+      "frase_origem": "Nice Man Sports é licenciada de vestuário Ferrari documentada nos anos 90, com peças datadas circulando de 1995 a 1998.",
+      "detalhe_busca": "Nice Man Sports aparece como licenciada oficial de vestuário Ferrari em várias peças de época com essa mesma etiqueta, com exemplos datados por vendedores como 1995, 1996 e 1998 (jaqueta acolchoada, polo, varsity de lã e couro)."
+    },
+    {
+      "id": "puma-ferrari-vestuario",
+      "tipo": "licenciado",
+      "entidade": "Puma",
+      "contraparte": "Ferrari",
+      "de": 2005,
+      "ate": null,
+      "afirmacao": "A Puma assumiu a licença de vestuário da Ferrari a partir de 2005, no lugar da Fila.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m10933095707"
+      ],
+      "frase_origem": "o vestuário oficial da Ferrari saía pela Fila (até 2004) e pela Puma (de 2005 em diante)",
+      "detalhe_busca": "A Puma assumiu a licença de vestuário da Ferrari a partir de 2005, substituindo a Fila, que era a fornecedora do período anterior; peças team issue de 2002 a 2004 circulam com etiqueta Fila."
+    },
+    {
+      "id": "ford-benetton",
+      "tipo": "motor",
+      "entidade": "Ford",
+      "contraparte": "Benetton",
+      "de": 1990,
+      "ate": 1992,
+      "afirmacao": "A Benetton usou motor Ford de 1990 a 1992: HB V8 no B190 de 1990, HBA5 no B191 de 1991 e HBA7 no B192 de 1992. Janela fechada em 1992 na conferencia: e ate onde a checagem sustenta.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779",
+        "m13668803753",
+        "m33604320797"
+      ],
+      "frase_origem": "A interseção Camel x Ford x Mobil 1 x Goodyear x Technogym existe em 1992 e em nenhum outro ano.",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992. || O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito. || A Benetton correu a temporada de 1990 com o B190 (motor Ford HB V8), pilotos Nelson Piquet e Alessandro Nannini, depois Roberto Moreno. O par equipe×ano existe e a equipe estava ativa. Em 1990 a Benetton ainda não tinha patrocinador-título; a Camel só assume em 1991 — o que é coerente com uma estampa sem patrocinador de tabaco."
+    },
+    {
+      "id": "ford-mclaren-1993",
+      "tipo": "motor",
+      "entidade": "Ford",
+      "contraparte": "McLaren",
+      "de": 1993,
+      "ate": 1993,
+      "afirmacao": "Em 1993 a McLaren de Senna correu com motor Ford.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "com motor Honda até 1992 e Ford em 1993",
+      "detalhe_busca": "A própria Yamaha Motor lista sua passagem pela F1 como fornecedora de motor de 1989 a 1997: Zakspeed (1989), Brabham (1991), Jordan (1992), Tyrrell (1993-1996) e Arrows (1996-1997), em 116 corridas. A McLaren não aparece em nenhuma lista, e Senna não correu por nenhuma dessas equipes."
+    },
+    {
+      "id": "honda-mclaren-motor",
+      "tipo": "motor",
+      "entidade": "Honda",
+      "contraparte": "McLaren",
+      "de": null,
+      "ate": 1992,
+      "afirmacao": "A McLaren de Senna usou motor Honda até 1992. A checagem não datou o início.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "com motor Honda até 1992 e Ford em 1993",
+      "detalhe_busca": "A própria Yamaha Motor lista sua passagem pela F1 como fornecedora de motor de 1989 a 1997: Zakspeed (1989), Brabham (1991), Jordan (1992), Tyrrell (1993-1996) e Arrows (1996-1997), em 116 corridas. A McLaren não aparece em nenhuma lista, e Senna não correu por nenhuma dessas equipes."
+    },
+    {
+      "id": "honda-ra121e-1991",
+      "tipo": "motor",
+      "entidade": "Honda RA121E V12",
+      "contraparte": "McLaren",
+      "de": 1991,
+      "ate": 1991,
+      "afirmacao": "O Honda RA121E, V12 3.5L de 60 graus e 3.493cc, foi feito para o McLaren MP4/6 e existiu numa única temporada, 1991; em 1990 o motor era o RA100E V10.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97609115294"
+      ],
+      "frase_origem": "O motor impresso nas costas, o RA121E V12, existiu numa única temporada",
+      "detalhe_busca": "O RA121E é o V12 3.5L de 60 graus que a Honda fez para o McLaren MP4/6 de 1991, com deslocamento de 3.493cc — bate com o número impresso na peça. Os pilotos do MP4/6 em 1991 foram Ayrton Senna e Gerhard Berger. Senna ganhou seu terceiro título nesse carro, e o MP4/6 é o último campeão da F1 com motor V12 e o último com câmbio manual. Berger foi companheiro do Senna na McLaren em 1990, 1991 e 1992, mas o V12 RA121E é exclusivo de 1991: em 1990 era o RA100E V10."
+    },
+    {
+      "id": "mecachrome-williams-1998",
+      "tipo": "motor",
+      "entidade": "Mecachrome",
+      "contraparte": "Williams",
+      "de": 1998,
+      "ate": null,
+      "afirmacao": "Em 1998 a Williams correu com motor Mecachrome, o Renault rebatizado.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m88172984233"
+      ],
+      "frase_origem": "A tripla Rothmans × Williams × Renault existe só nesse intervalo.",
+      "detalhe_busca": "Rothmans foi patrocinadora-título da Williams de 1994 a 1997; em 1998 o patrocínio passou pra Winfield, marca-irmã. A Renault forneceu motor à Williams de 1989 até o fim de 1997 e saiu da F1 depois disso — em 1998 a Williams correu com Mecachrome (o mesmo motor rebatizado). Interseção Rothmans × Renault = 1994, 1995, 1996 e 1997."
+    },
+    {
+      "id": "renault-williams-motor",
+      "tipo": "motor",
+      "entidade": "Renault",
+      "contraparte": "Williams",
+      "de": 1989,
+      "ate": 1997,
+      "afirmacao": "A Renault forneceu motor à Williams de 1989 até o fim de 1997 e saiu da F1 depois disso.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m88172984233"
+      ],
+      "frase_origem": "A tripla Rothmans × Williams × Renault existe só nesse intervalo.",
+      "detalhe_busca": "Rothmans foi patrocinadora-título da Williams de 1994 a 1997; em 1998 o patrocínio passou pra Winfield, marca-irmã. A Renault forneceu motor à Williams de 1989 até o fim de 1997 e saiu da F1 depois disso — em 1998 a Williams correu com Mecachrome (o mesmo motor rebatizado). Interseção Rothmans × Renault = 1994, 1995, 1996 e 1997."
+    },
+    {
+      "id": "yamaha-motor-f1",
+      "tipo": "motor",
+      "entidade": "Yamaha",
+      "contraparte": "Zakspeed, Brabham, Jordan, Tyrrell e Arrows",
+      "de": 1989,
+      "ate": 1997,
+      "afirmacao": "A Yamaha forneceu motor de F1 de 1989 a 1997, em 116 corridas, para Zakspeed (1989), Brabham (1991), Jordan (1992), Tyrrell (1993-1996) e Arrows (1996-1997). Nunca para a McLaren, e nunca para um carro que Senna dirigiu.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "A Yamaha forneceu motor de F1 de 1989 a 1997 para Zakspeed, Brabham, Jordan, Tyrrell e Arrows. Nunca para a McLaren, e nunca para um carro que o Senna dirigiu.",
+      "detalhe_busca": "A própria Yamaha Motor lista sua passagem pela F1 como fornecedora de motor de 1989 a 1997: Zakspeed (1989), Brabham (1991), Jordan (1992), Tyrrell (1993-1996) e Arrows (1996-1997), em 116 corridas. A McLaren não aparece em nenhuma lista, e Senna não correu por nenhuma dessas equipes."
+    },
+    {
+      "id": "autopolis-benetton",
+      "tipo": "patrocinio",
+      "entidade": "Autopolis",
+      "contraparte": "Benetton",
+      "de": 1990,
+      "ate": null,
+      "afirmacao": "A Autopolis, circuito japonês do Tsurumaki, entrou como patrocinadora da Benetton em 1990 e sumiu quando a Nippon Tri-Trust quebrou no estouro da bolha; a entrada foi para garantir a presença do time na inauguração do circuito. O ano de saída não foi datado pela checagem.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m13668803753"
+      ],
+      "frase_origem": "O patrocínio da Autopolis, o circuito japonês do Tsurumaki, entra em 1990 e some quando a Nippon Tri-Trust quebra na estouro da bolha",
+      "detalhe_busca": "O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito."
+    },
+    {
+      "id": "camel-benetton",
+      "tipo": "patrocinio",
+      "entidade": "Camel",
+      "contraparte": "Benetton",
+      "de": 1991,
+      "ate": 1993,
+      "afirmacao": "A Camel foi patrocinadora-título da Benetton de 1991 a 1993; o B193 de 1993 é descrito como o último carro de F1 com a Camel como patrocinadora principal.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779"
+      ],
+      "frase_origem": "Camel foi patrocinadora-título da Benetton apenas de 1991 a 1993",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992."
+    },
+    {
+      "id": "camel-lotus",
+      "tipo": "patrocinio",
+      "entidade": "Camel",
+      "contraparte": "Lotus",
+      "de": null,
+      "ate": 1990,
+      "afirmacao": "A Camel saiu da Lotus no fim de 1990. A checagem não datou o início.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779"
+      ],
+      "frase_origem": "saiu da Lotus no fim de 1990",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992."
+    },
+    {
+      "id": "dekra-schumacher",
+      "tipo": "patrocinio",
+      "entidade": "DEKRA",
+      "contraparte": "Michael Schumacher",
+      "de": 1991,
+      "ate": 1996,
+      "afirmacao": "A DEKRA foi parceira publicitária exclusiva de Michael Schumacher, acordo pessoal com o piloto e não com a equipe, de 1991 a 1995, e deixou o lugar contratado no boné dele no fim de 1996, quando a renovação passou a custar mais de dez milhões de marcos por ano.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m33557684905"
+      ],
+      "frase_origem": "foi parceira publicitária exclusiva dele de 1991 a 1995 e abandonou o lugar no boné no fim de 1996",
+      "detalhe_busca": "Wikipédia alemã (Dekra SE): 'Zwischen 1991 und 1995 war Dekra exklusiver Werbepartner von Formel-1-Pilot Michael Schumacher'. A própria linha do tempo da DEKRA registra 1993 como o ano em que passou a patrocinar Schumacher e o logo apareceu em toda mídia. A reportagem 'Dekra läßt Vertrag mit Michael Schumacher auslaufen' registra que a empresa deixaria seu lugar no boné do piloto no fim daquele ano, com a renovação avaliada em mais de dez milhões de marcos anuais. || O patrocínio DEKRA a Schumacher é documentado de 1991/1993 até o fim de 1996; a ida dele para a Ferrari é 1996. A interseção é 1996. Há vendedores anunciando exemplares como '98', mas alegação de vendedor não é âncora e não muda a janela documentada. || A DEKRA foi parceira publicitária exclusiva do piloto (não da Benetton nem da Ferrari) e a reportagem sobre o fim do contrato fala literalmente do 'lugar no boné' ('Platz auf der Mütze') do Schumacher."
+    },
+    {
+      "id": "elf-benetton",
+      "tipo": "patrocinio",
+      "entidade": "Elf",
+      "contraparte": "Benetton",
+      "de": 1993,
+      "ate": null,
+      "afirmacao": "Em 1993 a Benetton trocou a Mobil pela Elf como parceira de combustível.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779"
+      ],
+      "frase_origem": "em 1993 a Benetton passou pra Elf",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992."
+    },
+    {
+      "id": "magneti-marelli-ferrari",
+      "tipo": "patrocinio",
+      "entidade": "Magneti Marelli",
+      "contraparte": "Ferrari",
+      "de": null,
+      "ate": null,
+      "afirmacao": "A Magneti Marelli é fornecedora e patrocinadora de longa data da Ferrari na F1, e aparece na lista de patrocinadores da Ferrari de 1995 ao lado de Agip, Marlboro, Pioneer, Fiat e Telecom Italia. A checagem não fechou janela.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m88760510115"
+      ],
+      "frase_origem": "É peça de patrocinador, com o escudo Ferrari citado como quem foi patrocinado.",
+      "detalhe_busca": "Magneti Marelli é fornecedora e patrocinadora da Ferrari em F1 de longa data e aparece na lista de patrocinadores da Ferrari de 1995, ao lado de Agip, Marlboro, Pioneer, Fiat e Telecom Italia. A leitura 'equipe patrocinada pela Magneti Marelli' bate com o papel real da empresa."
+    },
+    {
+      "id": "magneti-marelli-toyota",
+      "tipo": "patrocinio",
+      "entidade": "Magneti Marelli",
+      "contraparte": "Toyota",
+      "de": 2002,
+      "ate": 2009,
+      "afirmacao": "A Magneti Marelli foi parceira da Toyota F1 de 2002 a 2009.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m69497505984"
+      ],
+      "frase_origem": "a Magneti Marelli trabalhou com a Toyota de 2002 a 2009",
+      "detalhe_busca": "Panasonic foi patrocinadora-título da Toyota desde a primeira temporada, 2002. A Magneti Marelli consta como parceira da Toyota F1 de 2002 a 2009 e aparece no site oficial de arquivo da equipe."
+    },
+    {
+      "id": "marlboro-brm",
+      "tipo": "patrocinio",
+      "entidade": "Marlboro",
+      "contraparte": "BRM",
+      "de": 1972,
+      "ate": 1974,
+      "afirmacao": "Marlboro World Championship Team foi o nome próprio da equipe BRM patrocinada pela Marlboro de 1972 a 1974, primeiro grande patrocínio da marca na F1.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m24601571304"
+      ],
+      "frase_origem": "'Marlboro World Championship Team' é lockup de marca da Marlboro no automobilismo, cujo uso documentado como nome próprio de equipe foi a BRM de 1972 a 1974",
+      "detalhe_busca": "'Marlboro World Championship Team' foi o nome da equipe BRM patrocinada pela Marlboro a partir de 1972, primeiro grande patrocínio da marca na F1; a Marlboro depois patrocinou McLaren (1974-1996) e Ferrari (1993-2017). Nenhuma dessas equipes aparece na peça."
+    },
+    {
+      "id": "marlboro-ferrari",
+      "tipo": "patrocinio",
+      "entidade": "Marlboro",
+      "contraparte": "Ferrari",
+      "de": 1973,
+      "ate": 2017,
+      "afirmacao": "A Marlboro foi parceira da Ferrari num intervalo longo. As checagens divergem no recorte: uma da 1993 a 2017, outra da parceria desde 1973 com patrocinio principal de 1997 em diante. Janela gravada ampla (1973 a 2017) de proposito, pra nao excluir data valida enquanto a divergencia nao for resolvida.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m63912161183",
+        "m24601571304"
+      ],
+      "frase_origem": "ligada à Marlboro, patrocinadora histórica da Ferrari",
+      "detalhe_busca": "Confirma que 'Marlboro World Championship Team' existe como linha de vestuário de F1 vintage (jaquetas, corta-ventos, couro) circulando em eBay, Etsy, Grailed e lojas de vintage, e que a Marlboro é parceira da Ferrari desde 1973, virando patrocinadora principal de 1997 a 2022. O que NÃO consegui confirmar em fonte não-comercial é o desenho exato desta etiqueta nem qual licenciado a fabricou. || 'Marlboro World Championship Team' foi o nome da equipe BRM patrocinada pela Marlboro a partir de 1972, primeiro grande patrocínio da marca na F1; a Marlboro depois patrocinou McLaren (1974-1996) e Ferrari (1993-2017). Nenhuma dessas equipes aparece na peça."
+    },
+    {
+      "id": "mclaren-patrocinadores-1992",
+      "tipo": "patrocinio",
+      "entidade": "Marlboro, Shell, Honda, Courtaulds, Hugo Boss e TAG Heuer",
+      "contraparte": "McLaren",
+      "de": 1992,
+      "ate": 1992,
+      "afirmacao": "Em 1992 o conjunto de patrocinadores da McLaren incluía Marlboro, Shell, Honda, Courtaulds, Hugo Boss e TAG Heuer.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "Esse é o conjunto de patrocinadores da McLaren do início dos anos 90.",
+      "detalhe_busca": "Marlboro patrocinou a McLaren de 1974 a 1996; em 1992 os patrocinadores da McLaren incluíam Marlboro, Shell, Honda, Courtaulds, Boss e TAG Heuer. O banco brasileiro Nacional foi patrocinador pessoal do Senna por nove temporadas, associado ao capacete amarelo dele. Senna esteve na McLaren de 1988 a 1993."
+    },
+    {
+      "id": "mild-seven-benetton-renault",
+      "tipo": "patrocinio",
+      "entidade": "Mild Seven",
+      "contraparte": "Benetton / Renault",
+      "de": 1994,
+      "ate": 2006,
+      "afirmacao": "A Mild Seven substituiu a Camel como patrocinadora-título da Benetton em 1994 e ficou até o fim de 2006, já com a equipe rebatizada Renault.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779",
+        "m24601571304"
+      ],
+      "frase_origem": "foi substituída pela Mild Seven em 1994",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992. || A associação japonesa do tabaco mantém critérios próprios de publicidade desde abril de 1985; nos anos 2000 as marcas de cigarro deixaram a F1 (Winfield/Williams em 2000, West/McLaren em 2005, Mild Seven/Renault ao fim de 2006) e a proibição europeia de publicidade de tabaco em eventos esportivos fechou o ciclo."
+    },
+    {
+      "id": "mobil-benetton",
+      "tipo": "patrocinio",
+      "entidade": "Mobil",
+      "contraparte": "Benetton",
+      "de": 1991,
+      "ate": 1992,
+      "afirmacao": "A Mobil foi a parceira de combustível da Benetton em 1991 e 1992.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779"
+      ],
+      "frase_origem": "a Mobil era a parceira de combustível em 1991 e 1992",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992."
+    },
+    {
+      "id": "nacional-senna",
+      "tipo": "patrocinio",
+      "entidade": "Banco Nacional",
+      "contraparte": "Ayrton Senna",
+      "de": null,
+      "ate": null,
+      "afirmacao": "O banco brasileiro Nacional foi patrocinador pessoal de Ayrton Senna por nove temporadas, associado ao capacete amarelo dele. A checagem não deu os anos.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "NACIONAL (o Banco Nacional, patrocinador pessoal do Senna)",
+      "detalhe_busca": "Marlboro patrocinou a McLaren de 1974 a 1996; em 1992 os patrocinadores da McLaren incluíam Marlboro, Shell, Honda, Courtaulds, Boss e TAG Heuer. O banco brasileiro Nacional foi patrocinador pessoal do Senna por nove temporadas, associado ao capacete amarelo dele. Senna esteve na McLaren de 1988 a 1993."
+    },
+    {
+      "id": "panasonic-toyota",
+      "tipo": "patrocinio",
+      "entidade": "Panasonic",
+      "contraparte": "Toyota",
+      "de": 2002,
+      "ate": null,
+      "afirmacao": "A Panasonic foi patrocinadora-título da Toyota desde a estreia da equipe, em 2002. A checagem não datou o fim.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m69497505984"
+      ],
+      "frase_origem": "Panasonic foi patrocinadora-título desde a estreia da equipe em 2002",
+      "detalhe_busca": "Panasonic foi patrocinadora-título da Toyota desde a primeira temporada, 2002. A Magneti Marelli consta como parceira da Toyota F1 de 2002 a 2009 e aparece no site oficial de arquivo da equipe."
+    },
+    {
+      "id": "rothmans-williams",
+      "tipo": "patrocinio",
+      "entidade": "Rothmans",
+      "contraparte": "Williams",
+      "de": 1994,
+      "ate": 1997,
+      "afirmacao": "A Rothmans foi patrocinadora-título da Williams de 1994 a 1997.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m88172984233"
+      ],
+      "frase_origem": "A peça é datável numa janela de quatro temporadas: 1994 a 1997. A tripla Rothmans × Williams × Renault existe só nesse intervalo.",
+      "detalhe_busca": "Rothmans foi patrocinadora-título da Williams de 1994 a 1997; em 1998 o patrocínio passou pra Winfield, marca-irmã. A Renault forneceu motor à Williams de 1989 até o fim de 1997 e saiu da F1 depois disso — em 1998 a Williams correu com Mecachrome (o mesmo motor rebatizado). Interseção Rothmans × Renault = 1994, 1995, 1996 e 1997."
+    },
+    {
+      "id": "shell-ferrari",
+      "tipo": "patrocinio",
+      "entidade": "Shell",
+      "contraparte": "Ferrari",
+      "de": 1996,
+      "ate": null,
+      "afirmacao": "A Shell voltou a ser parceira da Ferrari em 1996 e ficou; a checagem trata a fase iniciada em 1996 como a terceira da parceria.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m58518090353",
+        "m10933095707"
+      ],
+      "frase_origem": "a Shell voltou à Ferrari em 1996 e ficou",
+      "detalhe_busca": "Vodafone entrou na Ferrari em 2002 e o contrato foi até o fim de 2006; a troca pra McLaren foi anunciada em dezembro de 2005 e começou em 2007. A Shell está com a Ferrari desde 1996 (terceira fase da parceria). Schumacher correu pela Ferrari de 1996 a 2006 e anunciou a aposentadoria no GP da Itália de 2006. || Vodafone deixou a Ferrari no fim de 2006 e assinou com a McLaren para 2007 (acordo anunciado em 14/12/2005). Bridgestone forneceu pneus à Ferrari de 1999, depois da saída da Goodyear no fim de 1998, até 2010. Shell é parceira desde 1996. O conjunto Marlboro/Bridgestone/Shell/Vodafone aparece listado como o de parceiros do Ferrari F2005."
+    },
+    {
+      "id": "technogym-benetton",
+      "tipo": "patrocinio",
+      "entidade": "Technogym",
+      "contraparte": "Benetton",
+      "de": 1992,
+      "ate": null,
+      "afirmacao": "A Technogym virou patrocinadora da Benetton em 1992.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779"
+      ],
+      "frase_origem": "a Technogym vira patrocinadora em 1992",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992."
+    },
+    {
+      "id": "vodafone-ferrari",
+      "tipo": "patrocinio",
+      "entidade": "Vodafone",
+      "contraparte": "Ferrari",
+      "de": 2002,
+      "ate": 2006,
+      "afirmacao": "Vodafone patrocinou a Ferrari de 2002 ao fim de 2006 e foi para a McLaren em 2007; o acordo com a McLaren foi anunciado em dezembro de 2005.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m10933095707",
+        "m18390786233",
+        "m58518090353"
+      ],
+      "frase_origem": "a Vodafone patrocinou a Ferrari de 2002 até o fim de 2006 e foi para a McLaren em 2007",
+      "detalhe_busca": "Vodafone deixou a Ferrari no fim de 2006 e assinou com a McLaren para 2007 (acordo anunciado em 14/12/2005). Bridgestone forneceu pneus à Ferrari de 1999, depois da saída da Goodyear no fim de 1998, até 2010. Shell é parceira desde 1996. O conjunto Marlboro/Bridgestone/Shell/Vodafone aparece listado como o de parceiros do Ferrari F2005. || A Wikipedia do Ferrari F2002 confirma que o carro competiu em 2002 e 2003 (versão F2002B), com Schumacher e Barrichello, e lista Vodafone, Shell, Marlboro e Bridgestone como patrocinadores. O acordo Vodafone x Ferrari foi anunciado em maio de 2001 para valer a partir de 2002, num contrato de três anos que se estendeu até 2006. A AMD aparece como patrocinadora da Ferrari desde 2002 em discussão de fórum, fonte fraca, então não usei a AMD como âncora, só a Vodafone. || Vodafone entrou na Ferrari em 2002 e o contrato foi até o fim de 2006; a troca pra McLaren foi anunciada em dezembro de 2005 e começou em 2007. A Shell está com a Ferrari desde 1996 (terceira fase da parceria). Schumacher correu pela Ferrari de 1996 a 2006 e anunciou a aposentadoria no GP da Itália de 2006."
+    },
+    {
+      "id": "west-mclaren",
+      "tipo": "patrocinio",
+      "entidade": "West",
+      "contraparte": "McLaren",
+      "de": null,
+      "ate": 2005,
+      "afirmacao": "A West deixou de patrocinar a McLaren em 2005. A checagem não datou o início.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m24601571304"
+      ],
+      "frase_origem": "McLaren/West em 2005",
+      "detalhe_busca": "A associação japonesa do tabaco mantém critérios próprios de publicidade desde abril de 1985; nos anos 2000 as marcas de cigarro deixaram a F1 (Winfield/Williams em 2000, West/McLaren em 2005, Mild Seven/Renault ao fim de 2006) e a proibição europeia de publicidade de tabaco em eventos esportivos fechou o ciclo."
+    },
+    {
+      "id": "winfield-williams",
+      "tipo": "patrocinio",
+      "entidade": "Winfield",
+      "contraparte": "Williams",
+      "de": 1998,
+      "ate": 2000,
+      "afirmacao": "A Winfield, marca-irmã da Rothmans, assumiu o patrocínio-título da Williams em 1998 e saiu em 2000.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m24601571304",
+        "m88172984233"
+      ],
+      "frase_origem": "Williams/Winfield em 2000",
+      "detalhe_busca": "A associação japonesa do tabaco mantém critérios próprios de publicidade desde abril de 1985; nos anos 2000 as marcas de cigarro deixaram a F1 (Winfield/Williams em 2000, West/McLaren em 2005, Mild Seven/Renault ao fim de 2006) e a proibição europeia de publicidade de tabaco em eventos esportivos fechou o ciclo. || Rothmans foi patrocinadora-título da Williams de 1994 a 1997; em 1998 o patrocínio passou pra Winfield, marca-irmã. A Renault forneceu motor à Williams de 1989 até o fim de 1997 e saiu da F1 depois disso — em 1998 a Williams correu com Mecachrome (o mesmo motor rebatizado). Interseção Rothmans × Renault = 1994, 1995, 1996 e 1997."
+    },
+    {
+      "id": "benetton-1990-pilotos",
+      "tipo": "piloto_equipe",
+      "entidade": "Nelson Piquet e Alessandro Nannini",
+      "contraparte": "Benetton",
+      "de": 1990,
+      "ate": 1990,
+      "afirmacao": "Em 1990 a Benetton correu com o B190 e alinhou Nelson Piquet e Alessandro Nannini, depois Roberto Moreno.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m33604320797"
+      ],
+      "frase_origem": "em 1990, no GP de San Marino em Imola, Alessandro Nannini subiu ao pódio pela Benetton",
+      "detalhe_busca": "GP de San Marino de 1990, em Imola: Nannini terminou em 3º com o Benetton B190 e cravou a volta mais rápida (1:27.156, volta 60). || A Benetton correu a temporada de 1990 com o B190 (motor Ford HB V8), pilotos Nelson Piquet e Alessandro Nannini, depois Roberto Moreno. O par equipe×ano existe e a equipe estava ativa. Em 1990 a Benetton ainda não tinha patrocinador-título; a Camel só assume em 1991 — o que é coerente com uma estampa sem patrocinador de tabaco."
+    },
+    {
+      "id": "benetton-1991-numeros",
+      "tipo": "piloto_equipe",
+      "entidade": "Benetton",
+      "contraparte": null,
+      "de": 1991,
+      "ate": 1991,
+      "afirmacao": "Em 1991 a Benetton alinhou o carro 19, de Roberto Moreno e depois de Michael Schumacher a partir de Spa, e o carro 20, de Nelson Piquet.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m13668803753"
+      ],
+      "frase_origem": "O carro bordado é o 20, do Piquet, não o 19 do Schumacher.",
+      "detalhe_busca": "Schumacher estreou pela Benetton no GP da Bélgica de 1991 no carro 19, substituindo Roberto Moreno. O 20 foi do Piquet a temporada inteira."
+    },
+    {
+      "id": "berger-mclaren",
+      "tipo": "piloto_equipe",
+      "entidade": "Gerhard Berger",
+      "contraparte": "McLaren",
+      "de": 1990,
+      "ate": 1992,
+      "afirmacao": "Gerhard Berger foi companheiro de Senna na McLaren em 1990, 1991 e 1992; a dupla do MP4/6 em 1991 era Senna e Berger.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97609115294"
+      ],
+      "frase_origem": "a dupla de pilotos impressa logo acima dele bate com essa mesma temporada",
+      "detalhe_busca": "O RA121E é o V12 3.5L de 60 graus que a Honda fez para o McLaren MP4/6 de 1991, com deslocamento de 3.493cc — bate com o número impresso na peça. Os pilotos do MP4/6 em 1991 foram Ayrton Senna e Gerhard Berger. Senna ganhou seu terceiro título nesse carro, e o MP4/6 é o último campeão da F1 com motor V12 e o último com câmbio manual. Berger foi companheiro do Senna na McLaren em 1990, 1991 e 1992, mas o V12 RA121E é exclusivo de 1991: em 1990 era o RA100E V10."
+    },
+    {
+      "id": "piquet-benetton-1991",
+      "tipo": "piloto_equipe",
+      "entidade": "Nelson Piquet",
+      "contraparte": "Benetton",
+      "de": 1991,
+      "ate": 1991,
+      "afirmacao": "Nelson Piquet correu o carro 20 da Benetton em 1991, o B191, a temporada inteira.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m13668803753"
+      ],
+      "frase_origem": "o 20 é o Benetton B191 do Nelson Piquet em 1991",
+      "detalhe_busca": "Em 1991 a Benetton alinhou o 19 (Roberto Moreno, depois Michael Schumacher a partir de Spa) e o 20 (Nelson Piquet). 'Nelson Piquet gave the B191 its only win at the 1991 Canadian Grand Prix'. || Schumacher estreou pela Benetton no GP da Bélgica de 1991 no carro 19, substituindo Roberto Moreno. O 20 foi do Piquet a temporada inteira."
+    },
+    {
+      "id": "schumacher-brundle-benetton-1992",
+      "tipo": "piloto_equipe",
+      "entidade": "Michael Schumacher e Martin Brundle",
+      "contraparte": "Benetton",
+      "de": 1992,
+      "ate": 1992,
+      "afirmacao": "Em 1992 a dupla da Benetton era Michael Schumacher e Martin Brundle, nos carros 19 e 20 do B192.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779"
+      ],
+      "frase_origem": "Em 1992 a Benetton era a equipe do Michael Schumacher (com Martin Brundle)",
+      "detalhe_busca": "Schumacher e Brundle correram o B192 em 1992 (carros 19 e 20). A dupla e o ano batem, mas nada disso está impresso na peça."
+    },
+    {
+      "id": "schumacher-ferrari",
+      "tipo": "piloto_equipe",
+      "entidade": "Michael Schumacher",
+      "contraparte": "Ferrari",
+      "de": 1996,
+      "ate": 2006,
+      "afirmacao": "Michael Schumacher correu pela Ferrari de 1996 ao fim de 2006, e anunciou a aposentadoria no GP da Itália de 2006.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m10933095707",
+        "m58518090353"
+      ],
+      "frase_origem": "o Schumacher correu pela Ferrari até 2006",
+      "detalhe_busca": "Vodafone deixou a Ferrari no fim de 2006 e assinou com a McLaren para 2007 (acordo anunciado em 14/12/2005). Bridgestone forneceu pneus à Ferrari de 1999, depois da saída da Goodyear no fim de 1998, até 2010. Shell é parceira desde 1996. O conjunto Marlboro/Bridgestone/Shell/Vodafone aparece listado como o de parceiros do Ferrari F2005. || Schumacher correu pela Ferrari de 1996 a 2006, o que contém inteira a janela 2002-2006 dada pelos patrocinadores. || Vodafone entrou na Ferrari em 2002 e o contrato foi até o fim de 2006; a troca pra McLaren foi anunciada em dezembro de 2005 e começou em 2007. A Shell está com a Ferrari desde 1996 (terceira fase da parceria). Schumacher correu pela Ferrari de 1996 a 2006 e anunciou a aposentadoria no GP da Itália de 2006."
+    },
+    {
+      "id": "senna-mclaren",
+      "tipo": "piloto_equipe",
+      "entidade": "Ayrton Senna",
+      "contraparte": "McLaren",
+      "de": 1988,
+      "ate": 1993,
+      "afirmacao": "Ayrton Senna correu pela McLaren de 1988 a 1993.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "frase_origem": "Senna correu pela McLaren de 1988 a 1993",
+      "detalhe_busca": "A própria Yamaha Motor lista sua passagem pela F1 como fornecedora de motor de 1989 a 1997: Zakspeed (1989), Brabham (1991), Jordan (1992), Tyrrell (1993-1996) e Arrows (1996-1997), em 116 corridas. A McLaren não aparece em nenhuma lista, e Senna não correu por nenhuma dessas equipes. || Marlboro patrocinou a McLaren de 1974 a 1996; em 1992 os patrocinadores da McLaren incluíam Marlboro, Shell, Honda, Courtaulds, Boss e TAG Heuer. O banco brasileiro Nacional foi patrocinador pessoal do Senna por nove temporadas, associado ao capacete amarelo dele. Senna esteve na McLaren de 1988 a 1993."
+    },
+    {
+      "id": "bridgestone-ferrari",
+      "tipo": "pneu",
+      "entidade": "Bridgestone",
+      "contraparte": "Ferrari",
+      "de": 1999,
+      "ate": 2010,
+      "afirmacao": "A Bridgestone forneceu pneus à Ferrari de 1999 a 2010, entrando depois da saída da Goodyear.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m10933095707"
+      ],
+      "frase_origem": "a Bridgestone calçou a Ferrari de 1999 a 2010",
+      "detalhe_busca": "Vodafone deixou a Ferrari no fim de 2006 e assinou com a McLaren para 2007 (acordo anunciado em 14/12/2005). Bridgestone forneceu pneus à Ferrari de 1999, depois da saída da Goodyear no fim de 1998, até 2010. Shell é parceira desde 1996. O conjunto Marlboro/Bridgestone/Shell/Vodafone aparece listado como o de parceiros do Ferrari F2005."
+    },
+    {
+      "id": "bridgestone-toyota",
+      "tipo": "pneu",
+      "entidade": "Bridgestone",
+      "contraparte": "Toyota",
+      "de": 2006,
+      "ate": 2009,
+      "afirmacao": "A Toyota trocou para Bridgestone em 2006 e ficou com Bridgestone até fechar as portas em 2009.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m69497505984"
+      ],
+      "frase_origem": "em 2006 trocou pra Bridgestone e ficou com Bridgestone até fechar as portas em 2009",
+      "detalhe_busca": "A Toyota competiu na F1 de 2002 a 2009. Fornecedor de pneu: Michelin 2002-2005, Bridgestone 2006-2009. O TF102 (2002) e o TF105 (2005) correram com Michelin; o TF107 (2007) com Bridgestone Potenza."
+    },
+    {
+      "id": "goodyear-benetton-1990",
+      "tipo": "pneu",
+      "entidade": "Goodyear",
+      "contraparte": "Benetton",
+      "de": 1990,
+      "ate": 1990,
+      "afirmacao": "A Benetton correu com pneu Goodyear em 1990, antes de trocar pela Pirelli em 1991.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m13668803753"
+      ],
+      "frase_origem": "(Goodyear em 1990 e Goodyear de novo em 1992)",
+      "detalhe_busca": "O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito."
+    },
+    {
+      "id": "goodyear-benetton-1992",
+      "tipo": "pneu",
+      "entidade": "Goodyear",
+      "contraparte": "Benetton",
+      "de": 1992,
+      "ate": null,
+      "afirmacao": "A Benetton voltou ao pneu Goodyear em 1992 e seguiu com Goodyear em 1993.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m93339067779",
+        "m13668803753"
+      ],
+      "frase_origem": "o pneu Goodyear só entra em 1992 (em 1991 a Benetton corria com Pirelli)",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992. || O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito."
+    },
+    {
+      "id": "goodyear-mclaren-1991",
+      "tipo": "pneu",
+      "entidade": "Goodyear",
+      "contraparte": "McLaren",
+      "de": 1991,
+      "ate": 1991,
+      "afirmacao": "A McLaren-Honda de 1991 correu com pneus Goodyear e patrocínio Shell.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m97609115294"
+      ],
+      "frase_origem": "a arte do carro nas costas em vermelho e branco Marlboro com Shell e Goodyear",
+      "detalhe_busca": "A McLaren-Honda de 1991 correu com a pintura Marlboro vermelha e branca, pneus Goodyear e patrocínio Shell — o desenho bate. Ressalva: essa pintura é praticamente a mesma de 1990 e 1992, então a arte do carro CONFIRMA mas não data. Quem data é o texto do motor."
+    },
+    {
+      "id": "michelin-toyota",
+      "tipo": "pneu",
+      "entidade": "Michelin",
+      "contraparte": "Toyota",
+      "de": 2002,
+      "ate": 2005,
+      "afirmacao": "A Toyota correu com pneu Michelin de 2002 a 2005.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m69497505984"
+      ],
+      "frase_origem": "a Toyota andou de Michelin de 2002 a 2005",
+      "detalhe_busca": "A Toyota competiu na F1 de 2002 a 2009. Fornecedor de pneu: Michelin 2002-2005, Bridgestone 2006-2009. O TF102 (2002) e o TF105 (2005) correram com Michelin; o TF107 (2007) com Bridgestone Potenza."
+    },
+    {
+      "id": "pirelli-benetton-1991",
+      "tipo": "pneu",
+      "entidade": "Pirelli",
+      "contraparte": "Benetton",
+      "de": 1991,
+      "ate": 1991,
+      "afirmacao": "A Benetton correu com pneu Pirelli em 1991, e só em 1991.",
+      "confianca": "confirmado",
+      "visto_em": [
+        "m13668803753"
+      ],
+      "frase_origem": "a Benetton usou Pirelli em 1991 e só em 1991",
+      "detalhe_busca": "O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito."
+    }
+  ]
+}

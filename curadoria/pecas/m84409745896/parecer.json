@@ -1,0 +1,88 @@
+{
+  "id": "m84409745896",
+  "titulo_vendedor": "激レア！90s BENETTON F1 Montreal Tシャツ 伊製 M",
+  "preco_jpy": 22000,
+  "vendedor": { "nome": "ヤマ", "avaliacoes_boas": 494, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A foto_5 não é da peça. É uma montagem 2x2 com QUATRO camisetas diferentes: 'MonteCarlo', 'Montreal', 'Mexico' e 'IMOLA'. Só a Montreal está à venda. Usar essa imagem no post da NSC anuncia três peças que não existem no anúncio, e ainda entra com imagem de origem não rastreada, o mesmo problema aberto do s5.jpg.",
+      "evidencia": "Grade de quatro camisetas distintas, cada uma com faixa de cor e nome de circuito diferentes, no mesmo fundo de madeira da foto_1",
+      "fonte": "foto_5",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal visual interno: basta comparar a foto_5 com a foto_1 do próprio anúncio.", "fonte": "" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "O título crava '90s' e '激レア' (super raro), e nada na peça ancora nem a década nem a raridade. A etiqueta traz só 'MADE IN ITALY / UNITED COLORS OF BENETTON / REGISTERED TRADE MARK' e o tamanho M: sem ano, sem código de datação, sem licença. A busca externa também não achou registro do modelo 'Montreal' como peça de época da linha de F1 da Benetton.",
+      "evidencia": "Etiqueta de gola sem qualquer marcação de data ou código; título do anúncio afirmando '90s' e '激レア'",
+      "fonte": "titulo, foto_3",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Buscas em inglês e em japonês por camiseta Benetton F1 'Montreal' e pela série de circuitos (Montreal / Monte Carlo / Mexico / Imola) não devolveram nenhum registro do modelo. O que aparece é camiseta Benetton Formula 1 genérica dos anos 90 em Etsy, eBay, Grailed e lojas de vintage, nenhuma com esse desenho. 'Não achei' não prova que não existiu, mas impede afirmar a década.",
+        "fonte": "buscas em ebay.com, etsy.com, grailed.com, templeofnostalgia.com e mercari/Yahoo Auctions Japão"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A peça carrega a identidade da equipe Benetton Formula, não só a marca de roupa: o brasão 'Benetton Formula 1 RACING TEAM' com as pinceladas coloridas aparece estampado no peito e bordado como patch na manga. A Benetton Formula correu na F1 de 1986 a 2001, com dois títulos de piloto (Schumacher, 1994 e 1995) e o de construtores em 1995. Isso dá o teto histórico do desenho, e é a história que sustenta o post.",
+      "evidencia": "Brasão amarelo com pinceladas vermelha, amarela, verde e azul e o texto 'Benetton Formula 1 RACING TEAM' estampado no peito e bordado no patch da manga direita",
+      "fonte": "foto_1, foto_2, foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Confirma que a Benetton assumiu a equipe em 1986 e correu até 2001, e que o desenho de pinceladas é a identidade da fase de cores da marca, situada por fontes de livery entre 1986 e 1990. Atenção: isso data a IDENTIDADE VISUAL, não a fabricação desta camiseta.",
+        "fonte": "en.wikipedia.org/wiki/Benetton_Formula, f1colours.wordpress.com/2011/08/11/livery-histories-3-benetton"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "'Montreal' é o GP do Canadá, e a Benetton venceu lá duas vezes: Nelson Piquet em 1991, a 23ª e última vitória da carreira dele, herdada quando o Mansell parou na última volta liderando por quase um minuto; e Michael Schumacher em 1994, saindo da pole. É pauta de feed pronta. Mas a camiseta não comemora corrida nenhuma: os patrocinadores estampados ('UCB POWER', '500HP', 'Ucb Team', 'PRIZE WINNER') são gráficos de moda inventados, não marcas reais do carro.",
+      "evidencia": "Faixa vermelha central com 'Montreal' e blocos 'PRIZE WINNER', 'UC', 'UCB POWER Racing Team', 'UNITED COLORS RACING TEAM Benetton' na frente",
+      "fonte": "foto_1, foto_2, titulo",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Confirma Piquet vencedor do GP do Canadá de 1991 em Montreal com a Benetton-Ford B191, última vitória da carreira dele, após a parada de Mansell na última volta; e Schumacher vencedor do GP do Canadá de 1994 pela Benetton-Ford, largando da pole, com Hill em segundo.",
+        "fonte": "en.wikipedia.org/wiki/1991_Canadian_Grand_Prix, en.wikipedia.org/wiki/1994_Canadian_Grand_Prix, cars.bonhams.com (lote do B191 vencedor de 1991)"
+      }
+    },
+    {
+      "classe": "ATRIBUICAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O bloco de hashtags é SEO puro e contradiz a própria peça: traz #USA製 (feito nos EUA), #シングルステッチ (costura simples), #THEFARSIDE, #GaryLarson, #CaribbeanSoul, #ナイキ, #アディダス, #カーハート numa camiseta italiana da Benetton. É prática padrão de vendedor japonês, não fraude, mas nada nesse bloco descreve a peça e nada dele pode migrar pra legenda da NSC.",
+      "evidencia": "Bloco final da descrição com dezenas de hashtags de marcas e temas sem relação com o item, incluindo '#USA製' logo abaixo de 'イタリア製' escrito no corpo do anúncio",
+      "fonte": "descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Contradição interna entre dois trechos do mesmo anúncio.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A etiqueta de gola confirma o 'イタリア製' declarado: 'MADE IN ITALY / UNITED COLORS OF BENETTON / REGISTERED TRADE MARK', com etiqueta de tamanho M costurada abaixo. O que o vendedor afirma sobre origem e tamanho de etiqueta bate com a peça.",
+      "evidencia": "Etiqueta de gola fotografada de perto, texto legível em verde e vermelho, tamanho M em etiqueta separada",
+      "fonte": "foto_3, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Comparação entre a etiqueta fotografada e o que o anúncio declara.", "fonte": "" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "O estado declarado não tem prova visual. São só quatro fotos reais e nenhuma mostra as costas, as axilas, a barra ou a gola por dentro. Pior: o campo de condição do Mercari diz '目立った傷や汚れなし' (sem danos visíveis) enquanto o boilerplate da descrição diz que há '多少の使用感、汚れダメージ、ゆがみ' (algum uso, sujeira, dano e deformação). Camiseta branca de 22.000 JPY sem foto das costas é risco.",
+      "evidencia": "Fotos 1 a 4 mostram só a frente e um close da gola; campo condicao e texto da descricao dizendo coisas diferentes sobre dano",
+      "fonte": "foto_1, foto_2, foto_3, foto_4, condicao, descricao",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Contradição entre o campo estruturado e o texto do próprio anúncio, mais contagem de fotos.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "A história é boa e o vendedor tem reputação limpa (494/0), mas esta peça sai do padrão das outras em dois pontos que pedem ação antes de qualquer coisa. Primeiro: pedir ao vendedor foto das costas, das axilas e da barra, porque camiseta branca a 22.000 JPY sem essas fotos é compra às cegas. Segundo: perguntar direto o que é a foto_5, já que ela mostra quatro camisetas e só uma está à venda, e essa imagem não pode entrar em post nenhum. Na legenda, escrever 'Benetton Formula, consistente com vintage' e não repetir o '90s' do título nem o '激レア', porque não há âncora pra nenhum dos dois.",
+  "o_que_nao_sei": [
+    "O ano da peça. Sem patrocinador real, código ou licença que ancore, é consistente com vintage e ano indeterminado. O '90s' do título é afirmação do vendedor, não evidência.",
+    "Se o modelo 'Montreal' é peça de época da linha F1 da Benetton ou desenho posterior no estilo. A busca não achou registro do modelo, e não achar não é o mesmo que não existir.",
+    "O que é a foto_5. Se é catálogo do próprio vendedor, imagem de terceiro ou material de uma coleção, e portanto se há problema de licenciamento nela.",
+    "Se o corte largo é o boxy dos anos 90 ou de uma peça moderna. Ombro 56 cm e peito 58 cm numa etiqueta M é bem folgado, mas medida sozinha não decide isso.",
+    "Autenticidade da estampa, da costura ou da etiqueta. Não avaliei: resolução e luz de foto de celular não sustentam essa conclusão, e errar aqui com confiança é o pior resultado possível.",
+    "O estado real das costas, axilas e barra. Não há foto de nenhuma das três."
+  ]
+}

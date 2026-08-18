@@ -1,0 +1,27 @@
+{
+  "id": "m13668803753",
+  "source_url": "https://jp.mercari.com/item/m13668803753",
+  "vendido": false,
+  "conta": {
+    "produto_jpy": 9500.0,
+    "taxa_naomi_jpy": 3325,
+    "taxa_naomi_pct": 0.35,
+    "frete_jp_jpy": 1000,
+    "soma_jpy": 13825.0,
+    "classe_volume": "G",
+    "classe_justificativa": "jaqueta de algodao com forro de acetato",
+    "classe_e_fallback": false,
+    "margem_jpy": 6000,
+    "preco_jpy": 19825.0
+  },
+  "conversao": {
+    "a": 9.5311,
+    "b": 0.040396,
+    "rate": 30.5776,
+    "conferido_em": "2026-08-18T17:34:23",
+    "fonte": "api.wise.com/v3/comparisons (provider=wise)"
+  },
+  "preco_brl_bruto": 685.58,
+  "preco_brl": 690.0,
+  "calculado_em": "2026-08-18T17:34:23"
+}

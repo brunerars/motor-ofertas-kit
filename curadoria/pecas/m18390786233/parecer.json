@@ -1,0 +1,93 @@
+{
+  "id": "m18390786233",
+  "titulo_vendedor": "【古着】フェラーリ Tシャツ F1 シューマッハ オフィシャルライセンス 00s",
+  "preco_jpy": 3200,
+  "vendedor": { "nome": "エムエム", "avaliacoes_boas": 7911, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "A estampa data a peça em 2002 ou 2003, contra o '00s' vago do título e o 'おそらく当時物' (provavelmente da época) da descrição. O carro estampado carrega Vodafone no sidepod e no endplate da asa traseira, além de Shell, Bridgestone, Marlboro e AMD no bico. A Vodafone só passou a patrocinar a Ferrari em 2002, e o F2002 só correu em 2002 e 2003, este último na versão F2002B. Dupla motor/carro x patrocinador fecha a janela em dois anos.",
+      "evidencia": "Estampa frontal: monoposto vermelho com roundel 'vodafone' no sidepod e 'vodafone' no endplate traseiro, adesivos empilhados 'Shell / Bridgestone / AMD' no bico e código de barras Marlboro na ponta",
+      "fonte": "foto_1, foto_4, descricao",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A Wikipedia do Ferrari F2002 confirma que o carro competiu em 2002 e 2003 (versão F2002B), com Schumacher e Barrichello, e lista Vodafone, Shell, Marlboro e Bridgestone como patrocinadores. O acordo Vodafone x Ferrari foi anunciado em maio de 2001 para valer a partir de 2002, num contrato de três anos que se estendeu até 2006. A AMD aparece como patrocinadora da Ferrari desde 2002 em discussão de fórum, fonte fraca, então não usei a AMD como âncora, só a Vodafone.",
+        "fonte": "en.wikipedia.org/wiki/Ferrari_F2002, crash.net/f1/news/38781, grandprix.com/news/vodafone-and-ferrari-2.html"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A atribuição a Schumacher não é keyword de título: o rosto dele está na estampa, dentro de um capacete predominantemente vermelho com faixa branca. Em 2002 Schumacher usava capacete vermelho justamente para se diferenciar do companheiro Barrichello, que tinha capacete predominantemente branco com topo azul. Ou seja, o piloto estampado é o Schumacher, não o companheiro de equipe.",
+      "evidencia": "Rosto humano em close dentro de capacete vermelho com faixa branca, ocupando o canto direito da estampa, acima do monoposto",
+      "fonte": "foto_1, foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "O capacete 2002 de Schumacher é descrito como vermelho candy com faixa lateral nas cores da bandeira alemã. A troca do branco pelo vermelho aconteceu porque Barrichello chegou à Ferrari com capacete predominantemente branco e topo azul, e a TV confundia os dois.",
+        "fonte": "cmhelmets.com (réplica capacete Schumacher 2002), 123helmets.com/michael-schumacher-helmets"
+      }
+    },
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "O ano que a peça carrega é o de maior domínio da carreira: com o F2002, Schumacher fechou o quinto título na 11ª das 17 corridas, no GP da França em 21 de julho de 2002, o título mais cedo da história até então, e terminou TODAS as corridas do ano no pódio, com 67 pontos de vantagem sobre o segundo colocado. Post de feed pronto, e o vendedor não escreve uma linha sobre isso.",
+      "evidencia": "Descrição do vendedor identificando o carro como 'チャンピオンマシンF2002' sem nenhum dado da temporada; estampa mostrando o F2002",
+      "fonte": "descricao, foto_1, foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "Confirma o título selado na 11ª de 17 corridas, no GP da França de 21/07/2002, o mais cedo da história; Schumacher terminou todas as corridas no pódio, com 11 vitórias, e a maior margem de pontos para o segundo colocado até então.",
+        "fonte": "en.wikipedia.org/wiki/2002_Formula_One_World_Championship, f1chronicle.com/the-ferrari-f2002-formula-1-history, autoevolution.com"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "O licenciamento declarado no título tem etiqueta física correspondente: 'Ferrari OFFICIAL LICENSED PRODUCT' com o número 03828158, e etiqueta de composição separada com '100% COTTON' e 'MADE IN BANGLADESH'. A peça se apresenta como licenciada, e isso está na etiqueta, não só no título.",
+      "evidencia": "Etiqueta interna branca com lettering 'Ferrari' e o texto 'OFFICIAL LICENSED PRODUCT / 03828158'; segunda etiqueta com instruções de lavagem e país de fabricação",
+      "fonte": "foto_9, foto_8, titulo",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Não achei nenhuma fonte que explique o formato do número de 8 dígitos da etiqueta licenciada Ferrari nem que permita extrair ano ou licenciado dele. Então a etiqueta confirma o licenciamento declarado e não data nada.",
+        "fonte": "buscas por etiqueta 'Ferrari Official Licensed Product' em ebay.com e etsy.com, sem documentação do código"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "A foto_1 tem um letreiro preto 'Ferrari F2002' sobreposto pelo vendedor, ocupando o topo da imagem. É arte do anúncio, não da peça. Essa foto não pode ser reusada crua no post da NSC, e é justamente a melhor foto da estampa.",
+      "evidencia": "Faixa de texto preto 'Ferrari F2002' em fonte pesada cobrindo o terço superior da primeira foto",
+      "fonte": "foto_1",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal visual interno: o letreiro está sobreposto à foto do próprio anúncio.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "A condição declarada 'やや傷や汚れあり' (algum dano ou sujeira) é coerente com o que as fotos mostram: um close dedicado a uma marca pequena perto da barra e leve craquelado na estampa. Não aparece furo, rasgo ou mancha grande em nenhum ângulo, incluindo a foto das costas, que é lisa e limpa.",
+      "evidencia": "Close de uma marca discreta na malha logo acima da barra; estampa com craquelado leve nas áreas claras; costas fotografadas inteiras sem dano visível",
+      "fonte": "condicao, foto_7, foto_4, foto_6",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Comparação entre a condição declarada e as fotos do próprio anúncio.", "fonte": "" }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "Não existe etiqueta de tamanho. O vendedor declara 'サイズ表記: 不明 (実寸XL位)', ou seja, o tamanho é estimativa dele a partir da medida, e nenhuma das duas etiquetas fotografadas traz tamanho. A linha de Tam da legenda tem que sair como medida (peito 60, comprimento 74, ombro 56), nunca como 'XL' cravado.",
+      "evidencia": "Descrição declarando tamanho desconhecido e medindo no plano; etiquetas de composição e de licenciamento fotografadas, nenhuma com indicação de tamanho",
+      "fonte": "descricao, foto_8, foto_9",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Contraste entre o texto do anúncio e as etiquetas fotografadas.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "É a peça mais bem documentada das três: etiqueta de licenciamento na foto, estampa que se data sozinha em 2002-2003 pela Vodafone, rosto do Schumacher na arte e vendedor com 7911 avaliações boas e nenhuma ruim. O trabalho aqui é de legenda, não de investigação: trocar o '00s' por 'F2002, temporada 2002-2003', usar o quinto título selado no GP da França como gancho de feed, escrever Tam como medida e não como XL, e refotografar ou recortar a foto_1 por causa do letreiro do vendedor. Se o Caio quiser fechar a data em um ano só, pedir foto de qualquer marcação adicional dentro da barra ou da manga.",
+  "o_que_nao_sei": [
+    "Se é de 2002 ou de 2003. O F2002 correu nas duas temporadas e a estampa não desambigua entre elas.",
+    "O que significa o código 03828158 da etiqueta licenciada, e qual empresa foi a licenciada. Procurei e não achei documentação do formato.",
+    "Se era merch de circuito ou de loja Ferrari, ou varejo licenciado genérico. As duas coisas existiam e mudam o valor.",
+    "O tamanho real de etiqueta. Só existem as medidas de plano feitas pelo vendedor, com a margem de erro que ele mesmo declara.",
+    "Autenticidade da estampa e da etiqueta. Não avaliei e não avalio por foto de celular.",
+    "Se a foto_1 está apenas com letreiro sobreposto ou também tratada em cor. A camiseta parece mais saturada nela do que nas fotos 2, 5 e 6."
+  ]
+}

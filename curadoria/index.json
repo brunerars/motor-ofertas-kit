@@ -1,0 +1,583 @@
+{
+  "_schema": "Indice da rodada de curadoria. DERIVADO: apagar e rodar indexar.py devolve igual. A verdade de cada peca esta em pecas/<id>/. Sem nota agregada — ver METODO.md.",
+  "_rodada": "etapa-2",
+  "_gerado_em": "2026-08-18T18:49:54",
+  "_resumo": {
+    "corrigir_antes_de_publicar": 11,
+    "achado_de_valor": 8
+  },
+  "_total": 19,
+  "pecas": [
+    {
+      "id": "m10933095707",
+      "source_url": "https://jp.mercari.com/item/m10933095707",
+      "title_pt": "Jaqueta de corrida Ferrari Schumacher acolchoada com logos de patrocinadores F1",
+      "vendido": false,
+      "preco_jpy_anuncio": 15700,
+      "classe_volume": "GG",
+      "preco_brl": 1110.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "CORRECAO": 2,
+        "VALOR": 2,
+        "ATRIBUICAO": 1,
+        "CONFIRMACAO": 2
+      },
+      "bloqueios": [
+        "O próprio vendedor declara que é RÉPLICA, e isso não aparece nem no título nem no campo de marca. A descrição termina o bloco 【商品】 com 'F1 レプリカ', mas ",
+        "Duas das 20 fotos do anúncio não são a peça na mão do vendedor, e ainda estão duplicadas. As fotos 1 e 3 são o mesmo arquivo (md5 idêntico), e as foto"
+      ],
+      "achados_de_valor": [
+        "O desenho copia um livery Ferrari de 2002 a 2006, e o vendedor não data nada. A combinação Vodafone + Bridgestone + Shell só existe junta nessas cinco"
+      ],
+      "checagem_externa": {
+        "sinais": 7,
+        "com_busca": 4,
+        "confirma": 3,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 7,
+      "controle_negativo": false
+    },
+    {
+      "id": "m18390786233",
+      "source_url": "https://jp.mercari.com/item/m18390786233",
+      "title_pt": "Camiseta Ferrari F1 Schumacher licença oficial, anos 2000",
+      "vendido": false,
+      "preco_jpy_anuncio": 3200,
+      "classe_volume": "M",
+      "preco_brl": 330.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "VALOR": 2,
+        "CONFIRMACAO": 3,
+        "CORRECAO": 2
+      },
+      "bloqueios": [
+        "A foto_1 tem um letreiro preto 'Ferrari F2002' sobreposto pelo vendedor, ocupando o topo da imagem. É arte do anúncio, não da peça. Essa foto não pode"
+      ],
+      "achados_de_valor": [
+        "A estampa data a peça em 2002 ou 2003, contra o '00s' vago do título e o 'おそらく当時物' (provavelmente da época) da descrição. O carro estampado carrega Vo",
+        "O ano que a peça carrega é o de maior domínio da carreira: com o F2002, Schumacher fechou o quinto título na 11ª das 17 corridas, no GP da França em 2"
+      ],
+      "checagem_externa": {
+        "sinais": 7,
+        "com_busca": 4,
+        "confirma": 3,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m31939814908",
+      "source_url": "https://jp.mercari.com/item/m31939814908",
+      "title_pt": "Jaqueta de corrida de cetim Ferrari 70s/80s extremamente rara, fabricada nos EUA, bordada",
+      "vendido": false,
+      "preco_jpy_anuncio": 38000,
+      "classe_volume": "G",
+      "preco_brl": 2000.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "CORRECAO": 2,
+        "CONFIRMACAO": 3,
+        "ATRIBUICAO": 1,
+        "VALOR": 1
+      },
+      "bloqueios": [
+        "A datação '70s80s' do título está errada na metade dos anos 70. A etiqueta interna traz o telefone 818-705-1500, e o código de área 818 não existia an",
+        "'MADE IN USA (アメリカ製 / RN59839)' apresenta o número RN como se fosse prova de fabricação nos EUA. Não é. O RN identifica uma empresa sediada nos EUA qu"
+      ],
+      "achados_de_valor": [],
+      "checagem_externa": {
+        "sinais": 7,
+        "com_busca": 6,
+        "confirma": 4,
+        "refuta": 0,
+        "nao_achei": 2
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m33557684905",
+      "source_url": "https://jp.mercari.com/item/m33557684905",
+      "title_pt": "Bone Michael Schumacher Ferrari DEKRA (CONTROLE NEGATIVO - nao traduzir para venda)",
+      "vendido": false,
+      "preco_jpy_anuncio": 3780,
+      "classe_volume": "M",
+      "preco_brl": 360.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "CORRECAO": 4,
+        "VALOR": 1,
+        "CONFIRMACAO": 3
+      },
+      "bloqueios": [
+        "A descrição diz que a lateral traz a bandeira da Alemanha (ドイツ国旗). Não traz. A bandeira bordada tem DUAS faixas horizontais, vermelha em cima e branca",
+        "A peça se contradiz sozinha. A etiqueta interna 'MICHAEL SCHUMACHER COLLECTION' traz o capacete estilizado com as cores alemãs (preto, vermelho e amar",
+        "A datação que o vendedor vende não fecha com o patrocinador. Ele escreve que é 'da época em que ele construía a fase de ouro na Ferrari' e marca #00s.",
+        "Nenhuma das duas etiquetas atribui licença da Ferrari, apesar de a peça estampar o logotipo Ferrari bordado na lateral. Só existe a oval 'MICHAEL SCHU"
+      ],
+      "achados_de_valor": [
+        "Se a peça passar pelas outras dúvidas, a datação é o ativo que o vendedor não está usando: a dupla DEKRA × Ferrari fecha uma janela de uma temporada, "
+      ],
+      "checagem_externa": {
+        "sinais": 8,
+        "com_busca": 6,
+        "confirma": 3,
+        "refuta": 1,
+        "nao_achei": 2
+      },
+      "incertezas": 7,
+      "controle_negativo": true
+    },
+    {
+      "id": "m69497505984",
+      "source_url": "https://jp.mercari.com/item/m69497505984",
+      "title_pt": "Jaqueta Panasonic F1 L, Panasonic Toyota Racing",
+      "vendido": false,
+      "preco_jpy_anuncio": 14000,
+      "classe_volume": "G",
+      "preco_brl": 900.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "CORRECAO": 1,
+        "CONFIRMACAO": 3,
+        "VALOR": 1
+      },
+      "bloqueios": [
+        "A janela '2002〜2009年' do vendedor é larga demais e a própria peça a corta pela metade. Os dois ombros têm patch da MICHELIN, e a Toyota andou de Miche"
+      ],
+      "achados_de_valor": [
+        "O gancho de história dessa peça é o fracasso mais caro da F1 moderna, não a raridade que o vendedor anuncia. A Toyota entrou em 2002 com um dos maiore"
+      ],
+      "checagem_externa": {
+        "sinais": 5,
+        "com_busca": 3,
+        "confirma": 3,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 5,
+      "controle_negativo": false
+    },
+    {
+      "id": "m73359062125",
+      "source_url": "https://jp.mercari.com/item/m73359062125",
+      "title_pt": "Pluma Honda Racing, em bom estado",
+      "vendido": false,
+      "preco_jpy_anuncio": 14000,
+      "classe_volume": "GG",
+      "preco_brl": 1030.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "ATRIBUICAO": 1,
+        "CORRECAO": 2,
+        "CONFIRMACAO": 3
+      },
+      "bloqueios": [
+        "Não há nada de HRC nesta peça. O vendedor abre a descrição com 'ホンダ・レーシング(HRC)の商品です', mas as três marcações da peça dizem outra coisa: o bordado do pe",
+        "A peça não carrega nenhuma marca de Fórmula 1. Nem 'F1', nem equipe, nem piloto, nem temporada: só o wordmark 'HONDA MOTOR SPORTS', o logo H no ombro "
+      ],
+      "achados_de_valor": [],
+      "checagem_externa": {
+        "sinais": 6,
+        "com_busca": 2,
+        "confirma": 2,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m84409745896",
+      "source_url": "https://jp.mercari.com/item/m84409745896",
+      "title_pt": "Camiseta 90s Benetton F1 Montreal, fabricada na Itália, M",
+      "vendido": false,
+      "preco_jpy_anuncio": 22000,
+      "classe_volume": "M",
+      "preco_brl": 1200.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "CORRECAO": 3,
+        "VALOR": 2,
+        "ATRIBUICAO": 1,
+        "CONFIRMACAO": 1
+      },
+      "bloqueios": [
+        "A foto_5 não é da peça. É uma montagem 2x2 com QUATRO camisetas diferentes: 'MonteCarlo', 'Montreal', 'Mexico' e 'IMOLA'. Só a Montreal está à venda. ",
+        "O título crava '90s' e '激レア' (super raro), e nada na peça ancora nem a década nem a raridade. A etiqueta traz só 'MADE IN ITALY / UNITED COLORS OF BEN"
+      ],
+      "achados_de_valor": [
+        "A peça carrega a identidade da equipe Benetton Formula, não só a marca de roupa: o brasão 'Benetton Formula 1 RACING TEAM' com as pinceladas coloridas",
+        "'Montreal' é o GP do Canadá, e a Benetton venceu lá duas vezes: Nelson Piquet em 1991, a 23ª e última vitória da carreira dele, herdada quando o Manse"
+      ],
+      "checagem_externa": {
+        "sinais": 7,
+        "com_busca": 3,
+        "confirma": 2,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m88760510115",
+      "source_url": "https://jp.mercari.com/item/m88760510115",
+      "title_pt": "Jaqueta Harrington 90s Magneti Marelli Ferrari",
+      "vendido": false,
+      "preco_jpy_anuncio": 11800,
+      "classe_volume": "G",
+      "preco_brl": 800.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "ATRIBUICAO": 1,
+        "CORRECAO": 3,
+        "VALOR": 1,
+        "CONFIRMACAO": 2
+      },
+      "bloqueios": [
+        "A marca da peça é MAGNETI MARELLI, não Ferrari. O brasão do peito diz, na ordem: MAGNETI MARELLI em cima, o escudo com o cavallino no meio e 'GRAND PR",
+        "O '90s' do título não tem âncora. Aqui o método da combinação patrocinador x temporada NÃO funciona: a Magneti Marelli está ligada à Ferrari por décad"
+      ],
+      "achados_de_valor": [
+        "A etiqueta interna é a peça de informação que o vendedor não usou: além do código FO-500, ela repete o mesmo carimbo do brasão, 'MAGNETI MARELLI / Fer"
+      ],
+      "checagem_externa": {
+        "sinais": 7,
+        "com_busca": 2,
+        "confirma": 1,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m92121645867",
+      "source_url": "https://jp.mercari.com/item/m92121645867",
+      "title_pt": "Jaqueta anorak Ferrari racing amarela",
+      "vendido": false,
+      "preco_jpy_anuncio": 32800,
+      "classe_volume": "G",
+      "preco_brl": 1760.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "VALOR": 1,
+        "CORRECAO": 1,
+        "ATRIBUICAO": 1,
+        "CONFIRMACAO": 3
+      },
+      "bloqueios": [
+        "©1997 é copyright do design, não ano de fabricação. É o mesmo erro que o vendedor do boné m71164960236 cometeu na Etapa 1, só que aqui invertido: lá o",
+        "Não há nada de F1 nesta peça. O título vende 'レーシング' e a descrição fala em 'レーシングデザイン' e estilo 'モータースポーツ系', mas em 15 fotos não aparece um patrocinad"
+      ],
+      "achados_de_valor": [
+        "O vendedor escreve '年代の詳細は不明' (época desconhecida) e manda o comprador julgar pela foto, mas a etiqueta interna que ele mesmo fotografou tem a âncora:"
+      ],
+      "checagem_externa": {
+        "sinais": 6,
+        "com_busca": 1,
+        "confirma": 1,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m97283893856",
+      "source_url": "https://jp.mercari.com/item/m97283893856",
+      "title_pt": "Jaqueta de corrida 90s Yamaha F1 vermelha",
+      "vendido": false,
+      "preco_jpy_anuncio": 39800,
+      "classe_volume": "G",
+      "preco_brl": 2080.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "CORRECAO": 2,
+        "ATRIBUICAO": 2,
+        "CONFIRMACAO": 2
+      },
+      "bloqueios": [
+        "A peça não pode ser da era Senna, e quem prova isso é a etiqueta dela mesma. O rótulo de composição traz '発売元 株式会社ワイズギア' (Y'S GEAR), a subsidiária 100",
+        "O título cola YAMAHA em Ayrton Senna, Honda e McLaren, e essas coisas nunca se encontraram. Senna correu pela McLaren de 1988 a 1993, com motor Honda ",
+        "O campo de marca do anúncio diz 'VINTAGE' e o vendedor escreveu '【生産国、素材】画像参照' (veja nas imagens), então ele nunca declarou a origem em texto. As imag"
+      ],
+      "achados_de_valor": [],
+      "checagem_externa": {
+        "sinais": 6,
+        "com_busca": 4,
+        "confirma": 4,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m97609115294",
+      "source_url": "https://jp.mercari.com/item/m97609115294",
+      "title_pt": "Blusão Honda F1 Collection McLaren Senna Berger RA121E V12",
+      "vendido": false,
+      "preco_jpy_anuncio": 12500,
+      "classe_volume": "G",
+      "preco_brl": 830.0,
+      "flag": "corrigir_antes_de_publicar",
+      "sinais_por_classe": {
+        "VALOR": 1,
+        "CORRECAO": 2,
+        "CONFIRMACAO": 2
+      },
+      "bloqueios": [
+        "Duas das doze fotos não são fotos limpas da peça e não podem entrar num post da loja como estão. A foto 1 é uma capa montada pelo vendedor, com 'SENNA"
+      ],
+      "achados_de_valor": [
+        "Dá pra apertar a datação de '1991年前後' (por volta de 1991) para uma temporada só: 1991. O motor impresso nas costas, o RA121E V12, existiu numa única t"
+      ],
+      "checagem_externa": {
+        "sinais": 5,
+        "com_busca": 3,
+        "confirma": 2,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m13668803753",
+      "source_url": "https://jp.mercari.com/item/m13668803753",
+      "title_pt": "Jaqueta de corrida 90s Benetton F1, fabricada nos EUA, L",
+      "vendido": false,
+      "preco_jpy_anuncio": 9500,
+      "classe_volume": "G",
+      "preco_brl": 690.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "VALOR": 3,
+        "CONFIRMACAO": 2,
+        "ATRIBUICAO": 1,
+        "CORRECAO": 1
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A peça não é genericamente '90s': ela data de UMA temporada, 1991. O carro bordado nas costas carrega Pirelli nos quatro pneus e AUTOPOLIS no pontão, ",
+        "O carro bordado é identificável por número: o 20 é o Benetton B191 do Nelson Piquet em 1991. Foi nesse carro que ele venceu o GP do Canadá de 1991, a ",
+        "O vendedor não sabe o que tem. O título e a descrição param em '90s Benetton F1' e tratam Pirelli, Mobil 1, Ford e CAMEL como 'detalhes que simbolizam"
+      ],
+      "checagem_externa": {
+        "sinais": 7,
+        "com_busca": 4,
+        "confirma": 4,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 5,
+      "controle_negativo": false
+    },
+    {
+      "id": "m24601571304",
+      "source_url": "https://jp.mercari.com/item/m24601571304",
+      "title_pt": "Camiseta oficial 90s Marlboro circuito de Suzuka F1 motorsport",
+      "vendido": false,
+      "preco_jpy_anuncio": 13800,
+      "classe_volume": "M",
+      "preco_brl": 820.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "CONFIRMACAO": 4,
+        "CORRECAO": 1,
+        "VALOR": 1,
+        "ATRIBUICAO": 1
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A etiqueta dá uma âncora de data que o vendedor não usa: como o pendente traz o nome 鈴鹿サーキットランド, e essa empresa deixou de existir com esse nome em jun"
+      ],
+      "checagem_externa": {
+        "sinais": 7,
+        "com_busca": 6,
+        "confirma": 5,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m33604320797",
+      "source_url": "https://jp.mercari.com/item/m33604320797",
+      "title_pt": "Camiseta Benetton F1 IMOLA, fabricada na Itália, M",
+      "vendido": false,
+      "preco_jpy_anuncio": 22000,
+      "classe_volume": "M",
+      "preco_brl": 1200.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "CONFIRMACAO": 3,
+        "VALOR": 1,
+        "CORRECAO": 1
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A camiseta é de circuito e o circuito tem história pra contar naquele mesmo ano: em 1990, no GP de San Marino em Imola, Alessandro Nannini subiu ao pó"
+      ],
+      "checagem_externa": {
+        "sinais": 5,
+        "com_busca": 4,
+        "confirma": 4,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m56921610317",
+      "source_url": "https://jp.mercari.com/item/m56921610317",
+      "title_pt": "Boné vintage 90s Benetton F1 racing",
+      "vendido": false,
+      "preco_jpy_anuncio": 9100,
+      "classe_volume": "M",
+      "preco_brl": 600.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "VALOR": 1,
+        "CORRECAO": 1,
+        "CONFIRMACAO": 2
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A etiqueta interna diz 'Benetton Formula 1' — é a linha de merchandising da equipe de F1, não roupa esportiva genérica da Benetton. O vendedor não usa"
+      ],
+      "checagem_externa": {
+        "sinais": 4,
+        "com_busca": 3,
+        "confirma": 2,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m58518090353",
+      "source_url": "https://jp.mercari.com/item/m58518090353",
+      "title_pt": "Jaqueta acolchoada Ferrari F1 Michael Schumacher",
+      "vendido": false,
+      "preco_jpy_anuncio": 9800,
+      "classe_volume": "GG",
+      "preco_brl": 840.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "VALOR": 1,
+        "CONFIRMACAO": 2,
+        "ATRIBUICAO": 1
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A combinação de patrocinadores fecha o desenho da jaqueta na janela 2002-2006, e o anúncio não diz ano nenhum. Vodafone patrocinou a Ferrari de 2002 a"
+      ],
+      "checagem_externa": {
+        "sinais": 4,
+        "com_busca": 3,
+        "confirma": 2,
+        "refuta": 0,
+        "nao_achei": 1
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m63912161183",
+      "source_url": "https://jp.mercari.com/item/m63912161183",
+      "title_pt": "Blusão jaqueta Ferrari vermelho",
+      "vendido": false,
+      "preco_jpy_anuncio": 20000,
+      "classe_volume": "G",
+      "preco_brl": 1170.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "VALOR": 1,
+        "CORRECAO": 2,
+        "CONFIRMACAO": 2
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A etiqueta interna não é de moda genérica: diz 'WORLD CHAMPIONSHIP TEAM', com uma seta branca sobre campo vermelho, e etiqueta de tamanho L costurada "
+      ],
+      "checagem_externa": {
+        "sinais": 5,
+        "com_busca": 2,
+        "confirma": 2,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m88172984233",
+      "source_url": "https://jp.mercari.com/item/m88172984233",
+      "title_pt": "Jaqueta Rothmans Williams Renault",
+      "vendido": false,
+      "preco_jpy_anuncio": 4680,
+      "classe_volume": "G",
+      "preco_brl": 470.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "VALOR": 2,
+        "CONFIRMACAO": 3
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A peça é datável numa janela de quatro temporadas: 1994 a 1997. A tripla Rothmans × Williams × Renault existe só nesse intervalo. O vendedor não datou"
+      ],
+      "checagem_externa": {
+        "sinais": 5,
+        "com_busca": 3,
+        "confirma": 3,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 6,
+      "controle_negativo": false
+    },
+    {
+      "id": "m93339067779",
+      "source_url": "https://jp.mercari.com/item/m93339067779",
+      "title_pt": "Jaqueta de corrida Benetton Formula 1 rara, equivalente a L",
+      "vendido": true,
+      "preco_jpy_anuncio": 31200,
+      "classe_volume": "G",
+      "preco_brl": 1690.0,
+      "flag": "achado_de_valor",
+      "sinais_por_classe": {
+        "VALOR": 2,
+        "ATRIBUICAO": 1,
+        "CONFIRMACAO": 2,
+        "CORRECAO": 1
+      },
+      "bloqueios": [],
+      "achados_de_valor": [
+        "A jaqueta é datável em 1992, contra o '90s' do vendedor. O conjunto de patrocinadores fecha numa temporada só: Camel foi patrocinadora-título da Benet",
+        "O vendedor não sabe o que está vendendo. A descrição inteira trata a peça como roupa vintage de brechó: fala de silhueta larga, de 'garota do vintage'"
+      ],
+      "checagem_externa": {
+        "sinais": 6,
+        "com_busca": 2,
+        "confirma": 2,
+        "refuta": 0,
+        "nao_achei": 0
+      },
+      "incertezas": 4,
+      "controle_negativo": false
+    }
+  ]
+}

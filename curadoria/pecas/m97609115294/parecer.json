@@ -1,0 +1,72 @@
+{
+  "id": "m97609115294",
+  "titulo_vendedor": "ホンダ F1 コレクション マクラーレン セナ ベルガー RA121E V12",
+  "preco_jpy": 12500,
+  "vendedor": { "nome": "メガネママ", "avaliacoes_boas": 196, "avaliacoes_ruins": 0 },
+  "sinais": [
+    {
+      "classe": "VALOR",
+      "severidade": "achado_principal",
+      "afirmacao": "Dá pra apertar a datação de '1991年前後' (por volta de 1991) para uma temporada só: 1991. O motor impresso nas costas, o RA121E V12, existiu numa única temporada, e a dupla de pilotos impressa logo acima dele bate com essa mesma temporada. O vendedor está certo, mas vende a peça mais vaga do que ela é.",
+      "evidencia": "Impressão das costas, bloco ENGINE: 'HONDA RA-121E / TYPE: 60 DEGREE V-12 NA / DISPLACEMENT: 3,493cc / MAXIMUM POWER: OVER 650PS', logo abaixo de 'DRIVERS AYRTON SENNA · GERHARD BERGER' e 'TEAM McLaren · HONDA'",
+      "fonte": "foto_8, foto_4",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "O RA121E é o V12 3.5L de 60 graus que a Honda fez para o McLaren MP4/6 de 1991, com deslocamento de 3.493cc — bate com o número impresso na peça. Os pilotos do MP4/6 em 1991 foram Ayrton Senna e Gerhard Berger. Senna ganhou seu terceiro título nesse carro, e o MP4/6 é o último campeão da F1 com motor V12 e o último com câmbio manual. Berger foi companheiro do Senna na McLaren em 1990, 1991 e 1992, mas o V12 RA121E é exclusivo de 1991: em 1990 era o RA100E V10.",
+        "fonte": "global.honda/en/F1/machine/1991_McLarenHondaMP46, Wikipedia/Fandom 'McLaren MP4/6', mclaren.com (Gerhard Berger heritage)"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "É merchandise oficial da Honda vendido direto ao público, não peça de equipe. A etiqueta de gola credita a HONDA DIRECT MARKETING CORP. como quem desenhou, e a etiqueta interna repete o crédito de planejamento e venda com o código de produto. Nada indica uso de boxe.",
+      "evidencia": "Etiqueta de gola: 'HONDA F-1 COLLECTION / designed by HONDA DIRECT MARKETING CORP.', tamanho F. Etiqueta interna: logo HDC + '企画・販売 (株)ホンダダイレクトマーケティング / C-TK500', e uma terceira com 'NO. BCMB / サイズ F'",
+      "fonte": "foto_5, foto_9",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "nao_achei",
+        "detalhe": "Não achei documentação da Honda Direct Marketing Corp, nem catálogo da linha HONDA F-1 COLLECTION, nem decodificação dos códigos C-TK500 e BCMB. A leitura de que 'direct marketing' é canal de venda direta ao consumidor vem do nome e do próprio crédito de 企画・販売 (planejou e vendeu), não de fonte externa.",
+        "fonte": "buscas por ホンダダイレクトマーケティング / HONDA F-1 COLLECTION não retornaram fonte primária"
+      }
+    },
+    {
+      "classe": "CORRECAO",
+      "severidade": "nao_publicar_assim",
+      "afirmacao": "Duas das doze fotos não são fotos limpas da peça e não podem entrar num post da loja como estão. A foto 1 é uma capa montada pelo vendedor, com 'SENNA BERGER', 'HONDA McLaren' e '黄金期' queimados por cima da imagem. A foto 9 é uma colagem de três painéis diferentes num quadro só.",
+      "evidencia": "Foto 1: quatro blocos de texto sobrepostos em branco e vermelho com contorno, sobre a foto das costas. Foto 9: grade de 3 imagens (etiqueta de gola em cima, etiqueta de composição e etiqueta de tamanho embaixo)",
+      "fonte": "foto_1, foto_9",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Sinal visual sobre o material do anúncio. Nenhuma delas tem marca d'água de terceiro — a montagem é do próprio vendedor.", "fonte": "" }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "usar_como_prova",
+      "afirmacao": "A peça é internamente coerente do peito às costas e à etiqueta: patch peitoral 'GRAND-PRIX RACINGTEAM / McLaren HONDA', patch H da Honda na manga, e a arte do carro nas costas em vermelho e branco Marlboro com Shell e Goodyear, que é a pintura da McLaren da época.",
+      "evidencia": "Patch retangular preto no peito direito; patch bordado quadrado com o H no ombro esquerdo; desenho do carro impresso acima do bloco TEAM nas costas",
+      "fonte": "foto_5, foto_7, foto_8",
+      "checagem_externa": {
+        "feita": true,
+        "resultado": "confirma",
+        "detalhe": "A McLaren-Honda de 1991 correu com a pintura Marlboro vermelha e branca, pneus Goodyear e patrocínio Shell — o desenho bate. Ressalva: essa pintura é praticamente a mesma de 1990 e 1992, então a arte do carro CONFIRMA mas não data. Quem data é o texto do motor.",
+        "fonte": "global.honda (1991 McLaren Honda MP4/6), Wikipedia 'McLaren MP4/6'"
+      }
+    },
+    {
+      "classe": "CONFIRMACAO",
+      "severidade": "atencao_na_legenda",
+      "afirmacao": "As manchas declaradas existem e o vendedor foi honesto ao apontar as fotos, mas elas aparecem muito de leve: na foto 10 dá pra ver traços finos e curvos de caneta no painel frontal, na foto 11 uma área levemente mais escura no meio da manga, e na foto 12 a boca do bolso quase não mostra sujeira. O risco aqui é o inverso do normal — a peça pode chegar pior do que a foto sugere.",
+      "evidencia": "Descrição: 'ブルゾンの前面にボールペン汚れ、袖に薄いシミ、ポケット口に薄汚れあり(画像10.11.12)'. As três fotos existem e correspondem às regiões citadas, com marcas de baixo contraste",
+      "fonte": "descricao, foto_10, foto_11, foto_12",
+      "checagem_externa": { "feita": false, "resultado": "nao_achei", "detalhe": "Confronto entre a condição declarada e o que as fotos mostram.", "fonte": "" }
+    }
+  ],
+  "recomendacao": "A peça mais bem ancorada das três: a datação não depende de olhar costura, ela está impressa como ficha técnica nas costas e bate com fonte externa. Vender como '1991, a temporada do terceiro título do Senna e o último carro campeão de F1 com V12 e câmbio manual', e dizer com todas as letras que é item oficial da linha HONDA F-1 COLLECTION, merchandise da Honda, não uniforme de equipe — senão 'jaqueta McLaren Honda do Senna' vira peça de boxe na cabeça de quem compra. Não usar as fotos 1 e 9 no post (montagem e colagem); as fotos 2, 4 e 8 são as boas. Antes de fechar, pedir foto das manchas sob luz neutra: as fotos do anúncio estão com a laranja muito saturada, e saturação come sujeira clara.",
+  "o_que_nao_sei": [
+    "O ano de fabricação da jaqueta. O conteúdo dela descreve a temporada de 1991, o que não é a mesma coisa: a linha pode ter produzido a peça em 1991 ou depois. Nada na etiqueta traz data.",
+    "Se a peça é da temporada ou uma reedição posterior da mesma linha. Não achei catálogo da HONDA F-1 COLLECTION pra comparar.",
+    "O que significam os códigos C-TK500 e NO. BCMB. Podem ser código de modelo e de lote, mas não decodifiquei nenhum dos dois.",
+    "O nível real de desbotamento do print. O vendedor declara 'ロゴプリントの薄れが少しあり(画像5.8)', mas as fotos 5 e 8 estão com contraste e saturação puxados, o que esconde exatamente esse tipo de defeito.",
+    "Se as manchas de caneta saem. O vendedor já lavou em casa e o que restou é o que ficou depois disso, o que sugere que o fácil já saiu.",
+    "Se a Honda Direct Marketing Corp era subsidiária, divisão interna ou parceira licenciada da Honda. Buscas não retornaram fonte primária sobre a empresa."
+  ]
+}
