@@ -93,4 +93,4 @@ Mesmo com o Advantage+ abrindo o público no automático, começar com sementes 
 - [ ] (Se for repetir por loja) bakear a skill `/brief-campanha` que gera este documento a partir do design system + acervo + logística.
 
 ## Relacionado
-[[motor-ofertas-nsc]] · [[caio-logistica-japao]] · [[producao-conteudo-direcao]] · [[lp-mobile-first-standard]]
+`motor-ofertas-nsc` · [[caio-logistica-japao]] · producao-conteudo-direcao · lp-mobile-first-standard

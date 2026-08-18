@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<!-- impeccable-disable tight-leading repeated-section-kickers -- Anton condensed (~1.28x); tight leading intencional (waiver do V1). Este arquivo é um GABARITO de teste, não um post. -->
+<meta name="viewport" content="width=1080, initial-scale=1"/>
+<title>NSC formatos de post</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* NIPPON SPEED CO. GABARITOS DE FORMATO · design system V1
+   Não é post: é régua. Cada slide é um tamanho.
+   Padrão do feed (2026) = 3:4 1080x1440: sobe inteiro e bate com a grade. */
+:root{
+  --ink:#111111; --paper:#f5f5f5; --white:#ffffff; --whitesmoke:#f0efec;
+  --red:#e60000; --mid:#676763; --hair:#ddddd7;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{ font-family:"Archivo", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+
+.slide{ position:relative; overflow:hidden; display:none; flex-direction:column;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--whitesmoke) 100%); color:var(--ink); }
+.slide:target{ display:flex; }
+/* Sem :target (abrir o arquivo sem #) mostra o primeiro, pra conferir no navegador. */
+body:not(:has(.slide:target)) .slide:first-of-type{ display:flex; }
+
+#s1{ width:1080px; height:1440px; }   /* 3:4  padrão do feed: sobe inteiro, bate com a grade */
+#s2{ width:1080px; height:1350px; }   /* 4:5  antigo: ainda vale, mas a grade corta topo/base */
+#s3{ width:1080px; height:1080px; }   /* 1:1  quadrado legado, só comparação */
+#s4{ width:1080px; height:1920px; }   /* 9:16 stories / destaques */
+
+/* --- ZONA SEGURA (só no 4:5) -------------------------------------------
+   O 3:4 bate exato com a grade: sem corte, sem zona. Só o 4:5 é recortado
+   pela grade (1080x1350 numa janela 3:4 perde ~30px em cima e embaixo).
+   Marcado no slide do 4:5 pra mostrar o que a grade come. */
+.zona{ position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
+  height:1080px; border-top:3px dashed var(--red); border-bottom:3px dashed var(--red);
+  pointer-events:none; }
+.zona::after{ content:"O QUE A GRADE MOSTRA (3:4)"; position:absolute; top:22px; left:50%;
+  transform:translateX(-50%); font-size:19px; font-weight:800; letter-spacing:.14em;
+  color:var(--red); white-space:nowrap; }
+
+.topo{ padding:64px 72px 0; }
+.marca{ display:flex; align-items:center; gap:16px; font-family:"Anton",sans-serif;
+  font-size:34px; letter-spacing:.02em; text-transform:uppercase; }
+.disco{ width:26px; height:26px; border-radius:50%; background:var(--red); flex:0 0 26px; }
+.marca span{ color:var(--red); }
+
+.miolo{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:40px 72px; position:relative; z-index:1; }
+.ratio{ font-family:"Anton",sans-serif; font-size:220px; line-height:.9; letter-spacing:.01em; }
+.px{ font-family:"Anton",sans-serif; font-size:76px; line-height:1.1; margin-top:18px; color:var(--red); }
+.papel{ font-size:31px; line-height:1.5; margin-top:34px; max-width:780px; color:var(--mid); }
+.papel strong{ color:var(--ink); font-weight:700; }
+
+.selo{ display:inline-block; margin-top:40px; padding:14px 32px; border-radius:9999px;
+  font-size:23px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+.usar{ background:var(--ink); color:var(--paper); }
+.nao{ background:transparent; color:var(--mid); border:3px solid var(--hair); }
+
+/* Réguas de canto: dão escala real e mostram se a plataforma comeu borda. */
+.regua{ position:absolute; width:70px; height:70px; border:4px solid var(--ink); opacity:.28; z-index:2; }
+.r1{ top:34px; left:34px; border-right:0; border-bottom:0; }
+.r2{ top:34px; right:34px; border-left:0; border-bottom:0; }
+.r3{ bottom:34px; left:34px; border-right:0; border-top:0; }
+.r4{ bottom:34px; right:34px; border-left:0; border-top:0; }
+
+.rodape{ padding:0 72px 60px; text-align:center; font-size:22px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--mid); position:relative; z-index:1; }
+</style>
+</head>
+<body>
+
+<section class="slide" id="s1">
+  <i class="regua r1"></i><i class="regua r2"></i><i class="regua r3"></i><i class="regua r4"></i>
+  <div class="topo"><div class="marca"><i class="disco"></i>Nippon <span>Speed Co.</span></div></div>
+  <div class="miolo">
+    <div class="ratio">3:4</div>
+    <div class="px">1080 × 1440</div>
+    <p class="papel">O <strong>post do feed</strong>. Desde 2026 o Instagram aceita o 3:4 inteiro:
+      é o que <strong>ocupa mais tela</strong> no celular e o que <strong>bate exato com a grade</strong>
+      do perfil, sem corte nenhum.</p>
+    <div class="selo usar">Usar no feed</div>
+  </div>
+  <div class="rodape">Formato 1 de 4 · nosso padrão</div>
+</section>
+
+<section class="slide" id="s2">
+  <i class="regua r1"></i><i class="regua r2"></i><i class="regua r3"></i><i class="regua r4"></i>
+  <div class="zona"></div>
+  <div class="topo"><div class="marca"><i class="disco"></i>Nippon <span>Speed Co.</span></div></div>
+  <div class="miolo">
+    <div class="ratio">4:5</div>
+    <div class="px">1080 × 1350</div>
+    <p class="papel">O <strong>padrão antigo</strong>. Ainda funciona no feed, mas na
+      <strong>grade do perfil</strong> ele é recortado pra 3:4: o que ficar fora das linhas
+      vermelhas some na miniatura. Por isso preferimos o 3:4.</p>
+    <div class="selo nao">Padrão antigo</div>
+  </div>
+  <div class="rodape">Formato 2 de 4 · compara com o 3:4 na grade</div>
+</section>
+
+<section class="slide" id="s3">
+  <i class="regua r1"></i><i class="regua r2"></i><i class="regua r3"></i><i class="regua r4"></i>
+  <div class="topo"><div class="marca"><i class="disco"></i>Nippon <span>Speed Co.</span></div></div>
+  <div class="miolo">
+    <div class="ratio">1:1</div>
+    <div class="px">1080 × 1080</div>
+    <p class="papel">O <strong>quadrado legado</strong>. Ainda sobe, mas ocupa
+      <strong>bem menos tela no celular</strong> que o 3:4, ou seja, menos atenção por rolagem.
+      Está aqui só pra comparar.</p>
+    <div class="selo nao">Aposentado</div>
+  </div>
+  <div class="rodape">Formato 3 de 4 · referência de comparação</div>
+</section>
+
+<section class="slide" id="s4">
+  <i class="regua r1"></i><i class="regua r2"></i><i class="regua r3"></i><i class="regua r4"></i>
+  <div class="topo"><div class="marca"><i class="disco"></i>Nippon <span>Speed Co.</span></div></div>
+  <div class="miolo">
+    <div class="ratio">9:16</div>
+    <div class="px">1080 × 1920</div>
+    <p class="papel">Tela cheia: <strong>stories, destaques e reels</strong>.
+      Outra superfície, outra regra. Não é feed: é o formato dos nossos
+      <strong>cartões de peça</strong> e dos destaques fixados.</p>
+    <div class="selo usar">Usar em stories</div>
+  </div>
+  <div class="rodape">Formato 4 de 4 · superfície diferente do feed</div>
+</section>
+
+</body>
+</html>

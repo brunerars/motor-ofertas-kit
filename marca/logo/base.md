@@ -34,7 +34,7 @@ Nenhum HTML do projeto referencia arquivo de logo. `lp/assets/img/logo-branco.pn
 
 ## Exploração (`exploracao/`)
 
-8 direções de símbolo geradas com `/nanobanana` em **image-to-image**, a partir de `fontes/simbolo-original.png`. Regra dura em todo prompt: **zero texto** (IA erra letra), paleta preto/branco/vermelho, fundo branco sólido (pedir transparência devolve xadrez fake, ver [[nanobanana-cutout-fundo-branco]]).
+8 direções de símbolo geradas com `/nanobanana` em **image-to-image**, a partir de `fontes/simbolo-original.png`. Regra dura em todo prompt: **zero texto** (IA erra letra), paleta preto/branco/vermelho, fundo branco sólido (pedir transparência devolve xadrez fake, ver `nanobanana-cutout-fundo-branco`).
 
 Para cada símbolo há três arquivos: o original, o `-alpha.png` (fundo recortado por flood fill a partir das bordas, o que preserva o branco interno do xadrez) e o `-dark.png` (preto e branco invertidos, vermelho preservado).
 
