@@ -137,14 +137,24 @@ h1,h2{ font-family:"Anton",sans-serif; font-weight:400; margin:0; text-transform
 
 /* ---- MÓDULO .seam · a costura: o conflito cromático É a história ----
    Metade de cada cor; o ano cai em cima da emenda e troca de cor no meio.
-   USAR SÓ quando dois lados opostos são o assunto do slide. */
-.seam{ flex:0 0 330px; position:relative; overflow:hidden;
-  background:linear-gradient(90deg, var(--era-b) 0 50%, var(--paper) 50% 100%); }
-.seam-yr{ position:absolute; left:0; right:0; top:30px;
-  text-align:center; font-family:"Anton",sans-serif; font-size:240px; line-height:.82;
+   USAR SÓ quando dois lados opostos são o assunto do slide.
+
+   A emenda é a FRONTEIRA entre os dois campos, não uma coordenada: cada metade
+   carrega metade do ano ({{ANO_A}}/{{ANO_B}}), encostada na borda. O corte cai
+   entre os dígitos por construção, seja qual for a largura deles.
+   NÃO voltar a centralizar o ano inteiro e cortar com clip-path em 50%: o "1" do
+   Anton tem 70px contra 111px dos outros dígitos, então o meio do texto não é o
+   meio de "19|90" — no Suzuka isso errava 17px e deixava faixa branca no 2º "9". */
+.seam{ flex:0 0 330px; position:relative; overflow:hidden; display:flex; }
+.seam-half{ flex:1 1 0; display:flex; align-items:flex-start; padding-top:30px; }
+.seam-l{ background:var(--era-b); justify-content:flex-end; }
+.seam-r{ background:var(--paper); justify-content:flex-start; }
+.seam-yr{ font-family:"Anton",sans-serif; font-size:240px; line-height:.82;
   letter-spacing:-.01em; margin:0; }
-.seam-a{ color:var(--paper); clip-path:inset(0 50% 0 0); }
-.seam-b{ color:var(--era-b); clip-path:inset(0 0 0 50%); }
+/* devolve o letter-spacing negativo que sobra depois do último glifo — sem isso o
+   último dígito da esquerda transborda ~2px por cima da emenda */
+.seam-l .seam-yr{ color:var(--paper); margin-right:.01em; }
+.seam-r .seam-yr{ color:var(--era-b); }
 .seam-tags{ position:absolute; left:0; right:0; bottom:30px; display:flex; }
 .seam-tag{ flex:1 1 0; font-size:28px; font-weight:800; letter-spacing:.1em; }
 .seam-tag-l{ padding-left:88px; color:var(--paper); }
@@ -258,6 +268,8 @@ h1, h2, .cover-ttl, .ttl, .piece-name{ line-height:1.16; }
 <!-- ══ SLIDE 4 · CLÍMAX · com MÓDULO .seam ══════════════════════════════════
      A virada. Alinhar o eixo da costura com o eixo da foto (se na foto o lado
      A está à esquerda, a metade A da costura fica à esquerda).
+     O ano entra PARTIDO em duas metades ({{ANO_A}}="19" + {{ANO_B}}="90"): cada
+     lado encosta na emenda, e a divisão cai entre os dígitos sozinha.
      Post de período único: trocar .seam por um .field normal. -->
 <section class="slide" id="s4">
   <header class="strip"><span class="wordmark">Nippon<span class="disc"></span>Speed Co<span class="sq"></span></span></header>
@@ -266,8 +278,8 @@ h1, h2, .cover-ttl, .ttl, .piece-name{ line-height:1.16; }
     <img src="s4.jpg" style="object-position:center 45%" alt="{{ALT}}"/>
   </figure>
   <div class="seam">
-    <p class="seam-yr seam-a">{{ANO}}</p>
-    <p class="seam-yr seam-b">{{ANO}}</p>
+    <div class="seam-half seam-l"><span class="seam-yr">{{ANO_A}}</span></div>
+    <div class="seam-half seam-r"><span class="seam-yr">{{ANO_B}}</span></div>
     <div class="seam-tags">
       <span class="seam-tag seam-tag-l">{{LADO_A}}</span>
       <span class="seam-tag seam-tag-r">{{LADO_B}}</span>

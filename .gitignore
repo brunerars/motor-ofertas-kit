@@ -44,3 +44,7 @@ Thumbs.db
 
 # curadoria: material bruto do Mercari (fotos + scrape) fica local
 curadoria/pecas/
+
+# Worktrees do Claude Code: arvore de trabalho, nao codigo-fonte.
+# Sao centenas de MB e o conteudo ja vive nas branches do proprio remote.
+.claude/worktrees/
