@@ -44,7 +44,7 @@ def escreve(fila, fora, caminho):
     L = []
     L.append("---")
     L.append("tipo: fila")
-    L.append("frente: Nippon-Speed")
+    L.append("frente: nippon")
     L.append("data: %s" % time.strftime("%Y-%m-%d"))
     L.append("---")
     L.append("")

@@ -1,6 +1,6 @@
 ---
 tipo: prova
-frente: Nippon-Speed
+frente: nippon
 data: 2026-08-19
 ---
 

@@ -2,7 +2,8 @@
 tipo: projeto
 faixa: low-ticket
 papel: hub de ESTADO da frente NSC / Motor de Ofertas (no vault)
-atualizado: 2026-07-21
+frente: nippon
+atualizado: 2026-08-19
 aliases: ["motor-ofertas", "nsc"]
 ---
 #foco
@@ -150,14 +151,26 @@ não é só consumidor da base — é auditor dela.**
   ¥170.000. Devolve `sem base` onde importaria, e está certo em fazer isso.
 - **O filtro sinaliza, não corta.** 7 descartes em 384, todos por dedup. O `teto_brl` nasce
   `null` em [[buscas]] porque é número do Bruno, não meu.
-- **84% dos cards não recebem flag nenhuma** — é o tamanho da base (62 entidades), não falha
-  do filtro.
+- **41 dos 377 recebem algum sinal; 336 não recebem nenhum** — é o tamanho da base
+  (62 entidades), não falha do filtro.
 
-> [!ABERTO]+ teto-de-preco-da-varredura · 2026-08-19
+**O mapa visual da esteira, dos 4 degraus e dos 3 gates:** [[HERMES]].
+**Onde auditar os candidatos:** `curadoria/varredura/FILA.md`, que lista os sinalizados
+inteiros e os descartes com motivo. Foi ele que faltou na primeira rodada — eu tinha
+entregue só JSON, e o Bruno não conseguiu ver peça nenhuma do processo.
+
+> [!FECHADO]- teto-de-preco-da-varredura · 2026-08-19
 > Qual o preço final em R$ acima do qual a varredura descarta sozinha? Referência: as 19
 > peças da Etapa 2 saíram entre R$ 330 e R$ 2.080, e a varredura crua trouxe candidato de
 > R$ 72.950 (jaqueta Honda com autógrafo do Senna).
 > destrava: o filtro passar de fila de leitura a cortador de volume.
+> fechado: 19/08 — **não existe teto, e não vai existir.** O Bruno: *"se achar um item como
+> uma jaqueta de Honda Senna autografada vale mostrar para nós com certeza, só não deve ser o
+> foco porque vender um item desse exige confiança, logística e cuidado."* Descartar por preço
+> esconderia justamente o achado raro, que é o que a curadoria caça. Virou a flag
+> `peixe_grande` (≥ R$ 2.500, a borda da faixa já operada): a peça aparece marcada e nunca
+> some. São 18 na varredura. Consequência: **o corte de volume terá de vir de resolução de
+> datação, não de preço.**
 
 **Próximo passo:** o número a perseguir não é acurácia, é **resolução de datação**. Enquanto
 o título não estreitar a janela, o comparável não fala e o filtro só sinaliza. Cada rodada de
