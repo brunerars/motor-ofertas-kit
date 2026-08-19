@@ -120,6 +120,49 @@ esteira do `pulse`, chamado pelo n8n na entrada do garimpo). O único buraco que
 de falha é sempre símbolo errado + licença ausente, ou se foi sorte. A regra travada segue:
 **o agente instrui, o Bruno decide**.
 
+## Estado (19/08) — a varredura existe, e ela audita a base
+
+Os degraus 2 e 3 do Hermes saíram do papel. `varrer.py` lê **página de busca** do Mercari
+(o repo inteiro só sabia ler item), `fila.py` filtra e `comparaveis.py` agrupa os vendidos.
+Prova com números crus em [[PROVA]].
+
+**O que passou:**
+- **384 cards únicos por 40 créditos** — ~0,10 crédito cada, contra 5 por item aberto (~52×).
+  `status=sold_out` foi provado antes de tudo: interseção zero contra o ativo, e 3 de 3 ids
+  confirmaram `sold=true` no item.
+- **Falso negativo em `COMPRAR`: 0 de 13.** E a datação por título **contradiz** a do parecer
+  em **0 de 17**, contendo a janela dele em 16. O sinal barato é impreciso, nunca errado — e é
+  essa propriedade, não a precisão, que torna seguro descartar por título.
+- **A cegueira em japonês caiu de 37% para 4%.** O `normaliza()` era `[^a-z0-9]+` e apagava
+  japonês inteiro; `base/aliases.json` resolve com 32 entradas, todas apontando pra entidade
+  que já existe na base.
+
+**O achado que não estava no plano: a varredura barata achou 2 erros na base cara.**
+Um anúncio *"Mild Seven Benetton Ford 1994"* deu contradição porque `ford-benetton` ia só
+até 1992 — janela que eu mesmo fechei apertada demais ao readmitir o fato. E
+`senna-williams-1994` **existia, tipado como `evento`**, que é excluído da datação: não
+faltava fato, faltava tipo. Os dois confirmados por busca antes de entrar. **O funil barato
+não é só consumidor da base — é auditor dela.**
+
+**O que NÃO passou, e importa:**
+- **O comparável ainda não fala.** 232 vendidos, 20 baldes, **6 com n≥5 e todos com janela
+  indefinida**. O único balde com amostra é *"jaqueta Ferrari, qualquer época"*: ¥800 a
+  ¥170.000. Devolve `sem base` onde importaria, e está certo em fazer isso.
+- **O filtro sinaliza, não corta.** 7 descartes em 384, todos por dedup. O `teto_brl` nasce
+  `null` em [[buscas]] porque é número do Bruno, não meu.
+- **84% dos cards não recebem flag nenhuma** — é o tamanho da base (62 entidades), não falha
+  do filtro.
+
+> [!ABERTO]+ teto-de-preco-da-varredura · 2026-08-19
+> Qual o preço final em R$ acima do qual a varredura descarta sozinha? Referência: as 19
+> peças da Etapa 2 saíram entre R$ 330 e R$ 2.080, e a varredura crua trouxe candidato de
+> R$ 72.950 (jaqueta Honda com autógrafo do Senna).
+> destrava: o filtro passar de fila de leitura a cortador de volume.
+
+**Próximo passo:** o número a perseguir não é acurácia, é **resolução de datação**. Enquanto
+o título não estreitar a janela, o comparável não fala e o filtro só sinaliza. Cada rodada de
+curadoria engorda a base, e é ela que move os dois.
+
 ## 🔴 Ação imediata / pendências críticas
 - **Reimportar os 2 workflows no n8n** — os arquivos estão consertados (commit `cccb488`, local), **produção não** → todo lead novo ainda cai na peça errada. Ver `baserow-filtro-vazio-tabela-inteira` (`.claude`).
 - **`BASEROW_TOKEN` vazado (15/07) sem rotacionar** — em 3 workflows. Pendência mais velha e séria.
