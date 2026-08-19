@@ -50,20 +50,21 @@ entre ativo e vendido, e **3 de 3** ids sorteados do conjunto vendido confirmara
 **Falso negativo em `COMPRAR`: 0 de 13.** É o número que manda, e ele passou.
 
 Mas o outro lado é honesto: **o filtro descartou 7 de 384 cards**, e os 7 foram por
-dedup (já estão em `pecas/`). Nada mais foi cortado, porque o **teto de preço está `null`**
-— e ele é número do Bruno, não meu. Enquanto ficar assim, o poder de corte do funil é
-essencialmente zero.
+dedup (já estão em `pecas/`). Nada mais foi cortado — e depois da decisão de 19/08 (ver o
+adendo no fim) sabe-se que **nada será cortado por preço**, porque teto de preço esconderia
+o achado raro. O poder de corte do funil é, hoje, essencialmente zero.
 
 **Onde está o valor, então: nas flags.** Numa varredura crua de 377 cards:
 
 | flag | cards | o que quer dizer |
 |---|---|---|
-| *(nenhuma)* | 316 | a base não reconhece nada de útil no título |
+| *(nenhuma)* | 336 | a base não reconhece nada de útil no título |
 | `sem_ancora` | 34 | nenhuma entidade conhecida: vai pro fim da fila |
 | `datavel` | 23 | janela de ≤12 temporadas, com os fatos anexados |
+| `peixe_grande` | 18 | acima da faixa já operada — aparece marcado, nunca some |
 | `piloto_sem_vinculo` | 8 | piloto ao lado de equipe que a base não liga a ele |
 
-**84% dos cards não recebem flag nenhuma.** Isso não é falha do filtro — é o tamanho real
+**41 dos 377 recebem algum sinal; os outros 336 não recebem nenhum.** Isso não é falha do filtro — é o tamanho real
 da base. Ela conhece 62 entidades; o Mercari tem muito mais.
 
 ---
