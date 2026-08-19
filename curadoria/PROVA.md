@@ -173,9 +173,24 @@ morte). Só esse um estava no tipo errado.
 |---|---|
 | varredura | **entra**. Barata, provada, com o estado vindo da consulta |
 | filtro como **fila de leitura** | **entra**. Não corta compra boa e as flags acertam |
-| filtro como **cortador de volume** | **não entra ainda**. Falta o Bruno cravar o teto |
+| filtro como **cortador de volume** | **não vai existir por preço**. Ver abaixo |
 | comparável | **não entra**. n insuficiente onde importa; devolve `sem base` e está certo |
 | base como coisa **auto-corrigível** | **entra**, e é o achado do dia |
+
+## Adendo de 19/08 — não existe teto de preço, por decisão
+
+Perguntado sobre o teto, o Bruno respondeu que **não há um**: *"se achar um item como uma jaqueta
+de Honda Senna autografada vale mostrar para nós com certeza, só não deve ser o foco porque vender
+um item desse exige confiança, logística e cuidado."*
+
+Isso muda o desenho pra melhor. Descartar por preço esconderia **justamente o achado raro**, que é
+o que a curadoria caça. O portão virou a flag `peixe_grande` (acima de R$ 2.500, a borda da faixa
+que a loja já operou): a peça aparece, marcada, e nunca some. Na varredura, 18 peças caem aí —
+incluindo a Honda/Senna autografada a R$ 72.950 e uma Ferrari a R$ 460 mil que quase certamente é
+anúncio furado, e que agora dá pra ver em vez de sumir.
+
+Consequência honesta: **o filtro segue sem cortar volume**, e agora sabe-se que não vai cortar por
+preço. O corte real terá de vir de resolução de datação — o mesmo gargalo do item 6.
 
 **O próximo número a perseguir** não é acurácia — é **resolução de datação**. Enquanto o
 título não estreitar a janela, o comparável não fala e o filtro só sinaliza. Cada rodada de

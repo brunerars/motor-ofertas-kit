@@ -146,7 +146,7 @@ def contexto(cal=None, checar_ja_visto=True):
     if checar_ja_visto and os.path.isdir(PECAS):
         vistos = {d for d in os.listdir(PECAS) if d.startswith("m")}
     return {"fatos": fatos, "aliases": aliases, "termos": termos,
-            "teto_brl": buscas.get("teto_brl"), "vistos": vistos,
+            "peixe_grande_brl": buscas.get("peixe_grande_brl"), "vistos": vistos,
             "cal": cal if cal is not None else cotacao_gravada()}
 
 
@@ -184,10 +184,17 @@ def avalia(card, ctx):
         out["preco_brl_estimado"] = final
         out["conta"] = conta
         out["preco_e_estimado_porque"] = "a classe de volume saiu do titulo, nao de medida"
-        if ctx["teto_brl"] and final > ctx["teto_brl"]:
-            return None, {"id": card.get("id"), "motivo": "acima_do_teto",
-                          "detalhe": "R$ %s acima do teto R$ %s" % (final, ctx["teto_brl"]),
-                          "conta": conta, "titulo_ja": tit}
+        if ctx["peixe_grande_brl"] and final >= ctx["peixe_grande_brl"]:
+            # FLAG, nunca descarte. Decisao do Bruno em 19/08: uma jaqueta Honda do
+            # Senna autografada a ~R$ 73 mil vale ser mostrada com certeza -- ela so
+            # nao pode ser o foco, porque vender peca desse porte exige confianca,
+            # logistica e cuidado que a operacao ainda nao tem. Descartar por preco
+            # esconderia justamente o achado raro, que e o que a curadoria caca.
+            out["flags"].append("peixe_grande")
+            out["por_que_peixe_grande"] = (
+                "R$ %s, acima da faixa de R$ %s que a loja ja operou. Mostrar sim; "
+                "so nao tratar como fluxo normal: exige confianca, logistica e cuidado."
+                % (final, ctx["peixe_grande_brl"]))
 
     ents = CS.entidades_do_texto(tit, ctx["fatos"], ctx["aliases"])
     out["hipoteses"]["entidades"] = {"valores": ents, "origem": "titulo",
@@ -235,6 +242,7 @@ def ordena(linhas):
     def chave(x):
         f = x.get("flags") or []
         return (0 if "contradicao_de_datacao" in f else 1,
+                1 if "peixe_grande" in f else 0,
                 (x.get("datacao") or {}).get("temporadas", 9999),
                 0 if "datavel" in f else 1,
                 1 if "sem_ancora" in f else 0,
@@ -301,7 +309,10 @@ def main():
                              "escolhendo produto. Cada linha traz o motivo e o titulo."),
                    "_total": len(fora), "descartados": fora},
                   fh, ensure_ascii=False, indent=2)
+    md = os.path.join(VARRED, "FILA.md")
+    _mod("fmd", "fila_md.py").escreve(fila, fora, md)
     print("cards: %d | fila: %d | descartados: %d" % (len(cards), len(fila), len(fora)))
+    print("pra ler: %s" % md)
     return 0
 
 

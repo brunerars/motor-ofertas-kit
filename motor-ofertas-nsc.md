@@ -164,7 +164,16 @@ o título não estreitar a janela, o comparável não fala e o filtro só sinali
 curadoria engorda a base, e é ela que move os dois.
 
 ## 🔴 Ação imediata / pendências críticas
-- **Reimportar os 2 workflows no n8n** — os arquivos estão consertados (commit `cccb488`, local), **produção não** → todo lead novo ainda cai na peça errada. Ver `baserow-filtro-vazio-tabela-inteira` (`.claude`).
+- **Reimportar `nsc-lead-inbound.json` no n8n — MINA, não incêndio (reclassificado em 19/08).**
+  O conserto é de **um** workflow, não dois: o `cccb488` tocou 4 linhas de `n8n/nsc-lead-inbound.json`
+  (a nota antiga dizia "os 2 workflows" e estava errada). O defeito é real — filtro vazio no Baserow
+  devolve a tabela inteira e o `results[0]` carimba o lead na 1ª linha, uma peça real e errada
+  (`baserow-filtro-vazio-tabela-inteira`). **Mas o gatilho é webhook de mensagem recebida no WhatsApp**,
+  e com a esteira parada desde 05/08 não sai `wa.me` novo, logo não entra lead novo: o raio de
+  explosão hoje é ~zero. Chamar de *"todo lead novo cai na peça errada"* é correto como condicional e
+  enganoso como urgência — foi o Bruno quem pegou isso em 19/08 (*"um mês depois?"*), e ele estava
+  certo: um crítico que ninguém sentiu em um mês não era crítico. **Gatilho real: consertar antes de
+  religar a esteira, não antes disso.**
 - **`BASEROW_TOKEN` vazado (15/07) sem rotacionar** — em 3 workflows. Pendência mais velha e séria.
 - Decidir onde consertar o "Tam: Tam:" · curadoria (Suzuka=reedição 2018, Honda=furo) · formato do feed 3:4.
 

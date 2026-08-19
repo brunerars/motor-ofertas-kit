@@ -2,8 +2,6 @@
   "_schema": "As buscas que a varredura roda no Mercari. Este arquivo e FRONTEIRA HUMANA, no mesmo status do volumes.json: o agente nunca inventa uma busca. Quem acrescenta, tira ou aperta uma busca aqui e o Bruno.",
   "_por_que_humano": "A regra travada da NSC diz que a IA nunca descobre nem escolhe produto. Se o agente pudesse escrever a propria consulta, ele estaria escolhendo o universo de onde a oferta sai -- que e escolher produto um passo antes. Deixando a consulta aqui, o que o agente faz e so descartar dentro de um universo que o humano delimitou.",
   "_estados": "Cada busca roda em dois estados: on_sale (candidato) e sold_out (comparavel). O parametro status foi provado em 19/08: interseccao ZERO entre os dois, e 3 de 3 ids do sold_out confirmaram sold=true na pagina do item.",
-  "_teto_brl": "Preco final acima disto e descartado com a conta inteira anexada. E a NOSSA curva de custo (35% + frete + margem + Wise), nunca preco de mercado. null = nao descarta por preco, e e o padrao ate o Bruno cravar um numero. Referencia: as 19 pecas da Etapa 2 sairam entre R$ 330 e R$ 2.080.",
-  "teto_brl": null,
   "_atualizado_em": "2026-08-19",
   "buscas": [
     {
@@ -26,5 +24,8 @@
       "keyword": "ウィリアムズ F1 ジャケット",
       "porque": "Rothmans 1994-1997 e Renault 1989-2006 dao janela fechada; a Rothmans Williams m88172984233 foi COMPRAR no gabarito"
     }
-  ]
+  ],
+  "_peixe_grande_brl": "Acima disto a peca ganha a flag `peixe_grande` -- e NUNCA e descartada. Decisao do Bruno em 19/08: uma jaqueta Honda do Senna autografada a ~R$ 73 mil vale ser mostrada com certeza; ela so nao pode ser o foco, porque vender peca desse porte exige confianca, logistica e cuidado que a operacao ainda nao tem. O numero e a borda da faixa que a loja ja operou: as 19 pecas da Etapa 2 sairam entre R$ 330 e R$ 2.080.",
+  "peixe_grande_brl": 2500,
+  "_nao_existe_teto": "Nao ha teto de descarte por preco, de proposito. Descartar por preco esconderia justamente o achado raro, que e o que a curadoria caca."
 }

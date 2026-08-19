@@ -190,65 +190,6 @@
       }
     },
     {
-      "id": "m65304139227",
-      "url": "https://jp.mercari.com/item/m65304139227",
-      "titulo_ja": "闇*狗様 94‘ ロスマンズ　ウィリアムズルノー ハーフコート　good spo",
-      "preco_jpy": 60000,
-      "moeda": "JPY",
-      "busca": "williams-jaqueta",
-      "achado_em": [
-        "williams-jaqueta"
-      ],
-      "vendido": true,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
-      "hipoteses": {
-        "tipo": {
-          "valor": null,
-          "classe_volume": "M",
-          "origem": "titulo",
-          "texto_origem": null,
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Williams",
-            "Renault",
-            "Rothmans"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "mecachrome-williams-1998",
-        "mild-seven-benetton-renault",
-        "renault-williams-motor",
-        "rothmans-williams",
-        "senna-williams-1994",
-        "winfield-williams"
-      ],
-      "flags": [
-        "datavel"
-      ],
-      "preco_brl_estimado": 2950.0,
-      "conta": {
-        "produto_jpy": 60000.0,
-        "taxa_naomi_jpy": 21000,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 82000.0,
-        "classe_volume": "M",
-        "margem_jpy": 4000,
-        "preco_jpy": 86000.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1994-1997",
-        "temporadas": 4,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m65733086981",
       "url": "https://jp.mercari.com/item/m65733086981",
       "titulo_ja": "[値下げ]英国製 94’ ロスマンズ ウィリアムズ ルノー F1 ジャケット",
@@ -371,66 +312,6 @@
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
       "datacao": {
         "janela": "1990-1994",
-        "temporadas": 5,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
-      "id": "m47031733642",
-      "url": "https://jp.mercari.com/item/m47031733642",
-      "titulo_ja": "F1 ホンダ ジャンパー アイルトンセナ 直筆サイン 本田宗一郎 直筆サイン",
-      "preco_jpy": 1580000,
-      "moeda": "JPY",
-      "busca": "mclaren-honda-jaqueta",
-      "achado_em": [
-        "mclaren-honda-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%9E%E3%82%AF%E3%83%A9%E3%83%BC%E3%83%AC%E3%83%B3%20%E3%83%9B%E3%83%B3%E3%83%80%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャンパー",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ayrton Senna",
-            "Honda"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        },
-        "por_que_suspeita": "o titulo poe Ayrton Senna ao lado de Honda, e a base nao liga o piloto a essa(s) entidade(s). Foi assim que a m97283893856 vendeu Senna numa Yamaha. E hipotese de titulo: pode ser so vinculo que a base ainda nao tem."
-      },
-      "fatos_usados": [
-        "honda-mclaren-motor",
-        "honda-ra121e-1991",
-        "mclaren-patrocinadores-1992",
-        "nacional-senna",
-        "senna-mclaren",
-        "senna-williams-1994"
-      ],
-      "flags": [
-        "datavel",
-        "piloto_sem_vinculo"
-      ],
-      "preco_brl_estimado": 72950.0,
-      "conta": {
-        "produto_jpy": 1580000.0,
-        "taxa_naomi_jpy": 553000,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 2134000.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 2140000.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1988-1992",
         "temporadas": 5,
         "confianca": "hipotese_de_titulo"
       }
@@ -560,74 +441,6 @@
       }
     },
     {
-      "id": "m12372672574",
-      "url": "https://jp.mercari.com/item/m12372672574",
-      "titulo_ja": "Mclaren Marlboro oficial ジャケット。アイルトンセナ",
-      "preco_jpy": 150000,
-      "moeda": "JPY",
-      "busca": "mclaren-honda-jaqueta",
-      "achado_em": [
-        "mclaren-honda-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%9E%E3%82%AF%E3%83%A9%E3%83%BC%E3%83%AC%E3%83%B3%20%E3%83%9B%E3%83%B3%E3%83%80%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ayrton Senna",
-            "McLaren",
-            "Marlboro"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        },
-        "por_que_suspeita": "o titulo poe Ayrton Senna ao lado de Marlboro, e a base nao liga o piloto a essa(s) entidade(s). Foi assim que a m97283893856 vendeu Senna numa Yamaha. E hipotese de titulo: pode ser so vinculo que a base ainda nao tem."
-      },
-      "fatos_usados": [
-        "berger-mclaren",
-        "ford-mclaren-1993",
-        "goodyear-mclaren-1991",
-        "honda-mclaren-motor",
-        "honda-ra121e-1991",
-        "marlboro-brm",
-        "marlboro-ferrari",
-        "marlboro-wct-vestuario",
-        "mclaren-patrocinadores-1992",
-        "nacional-senna",
-        "senna-mclaren",
-        "senna-williams-1994",
-        "west-mclaren"
-      ],
-      "flags": [
-        "datavel",
-        "piloto_sem_vinculo"
-      ],
-      "preco_brl_estimado": 7150.0,
-      "conta": {
-        "produto_jpy": 150000.0,
-        "taxa_naomi_jpy": 52500,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 203500.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 209500.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1988-1994",
-        "temporadas": 7,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m18864436357",
       "url": "https://jp.mercari.com/item/m18864436357",
       "titulo_ja": "【中古】アイルトン・セナ～音速の彼方へ　コレクターズ・エディション（初回生産限定）[Blu-ray]",
@@ -673,72 +486,6 @@
         "classe_volume": "M",
         "margem_jpy": 4000,
         "preco_jpy": 11599.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1988-1994",
-        "temporadas": 7,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
-      "id": "m22130623525",
-      "url": "https://jp.mercari.com/item/m22130623525",
-      "titulo_ja": "ミッレミリア アイルトンセナ マンセル エンツォフェラーリ直筆サイン ジャケット",
-      "preco_jpy": 780000,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ayrton Senna",
-            "Ferrari"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        },
-        "por_que_suspeita": "o titulo poe Ayrton Senna ao lado de Ferrari, e a base nao liga o piloto a essa(s) entidade(s). Foi assim que a m97283893856 vendeu Senna numa Yamaha. E hipotese de titulo: pode ser so vinculo que a base ainda nao tem."
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-ferrari",
-        "nacional-senna",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "senna-mclaren",
-        "senna-williams-1994",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [
-        "datavel",
-        "piloto_sem_vinculo"
-      ],
-      "preco_brl_estimado": 36140.0,
-      "conta": {
-        "produto_jpy": 780000.0,
-        "taxa_naomi_jpy": 273000,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 1054000.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 1060000.0
       },
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
       "datacao": {
@@ -1539,71 +1286,6 @@
         "classe_volume": "M",
         "margem_jpy": 4000,
         "preco_jpy": 22550.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1994-2006",
-        "temporadas": 13,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
-      "id": "m82316952223",
-      "url": "https://jp.mercari.com/item/m82316952223",
-      "titulo_ja": "【希少】イタリア製　F1 ベネトンフォーミュラ1 マイルドセブン ジャケット",
-      "preco_jpy": 59200,
-      "moeda": "JPY",
-      "busca": "benetton-jaqueta",
-      "achado_em": [
-        "benetton-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%99%E3%83%8D%E3%83%88%E3%83%B3%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Benetton",
-            "Mild Seven"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "autopolis-benetton",
-        "benetton-1990-pilotos",
-        "benetton-1991-numeros",
-        "benetton-sportsystem-merchandising",
-        "camel-benetton",
-        "elf-benetton",
-        "ford-benetton",
-        "goodyear-benetton-1990",
-        "goodyear-benetton-1992",
-        "mild-seven-benetton-renault",
-        "mobil-benetton",
-        "piquet-benetton-1991",
-        "pirelli-benetton-1991",
-        "schumacher-brundle-benetton-1992",
-        "technogym-benetton"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 2980.0,
-      "conta": {
-        "produto_jpy": 59200.0,
-        "taxa_naomi_jpy": 20720,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 80920.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 86920.0
       },
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
       "datacao": {
@@ -2917,68 +2599,6 @@
       }
     },
     {
-      "id": "m15172010728",
-      "url": "https://jp.mercari.com/item/m15172010728",
-      "titulo_ja": "激レア　Ferrari フェラーリ　チームジャケット　支給品　Marlboro",
-      "preco_jpy": 59800,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": true,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari",
-            "Marlboro"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-brm",
-        "marlboro-ferrari",
-        "marlboro-wct-vestuario",
-        "mclaren-patrocinadores-1992",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 3000.0,
-      "conta": {
-        "produto_jpy": 59800.0,
-        "taxa_naomi_jpy": 20930,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 81730.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 87730.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1972-2017",
-        "temporadas": 46,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m23807715070",
       "url": "https://jp.mercari.com/item/m23807715070",
       "titulo_ja": "【訳あり】フェラーリ/マルボロ/F1/レーシングジャケット/黒/L",
@@ -3032,68 +2652,6 @@
         "classe_volume": "G",
         "margem_jpy": 6000,
         "preco_jpy": 18948.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1972-2017",
-        "temporadas": 46,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
-      "id": "m26248646095",
-      "url": "https://jp.mercari.com/item/m26248646095",
-      "titulo_ja": "F1 フェラーリ　希少　非売品　ジャケット マルボロ　レア　極美品",
-      "preco_jpy": 89999,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari",
-            "Marlboro"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-brm",
-        "marlboro-ferrari",
-        "marlboro-wct-vestuario",
-        "mclaren-patrocinadores-1992",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 4390.0,
-      "conta": {
-        "produto_jpy": 89999.0,
-        "taxa_naomi_jpy": 31500,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 122499.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 128499.0
       },
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
       "datacao": {
@@ -7545,60 +7103,6 @@
       }
     },
     {
-      "id": "m15704063130",
-      "url": "https://jp.mercari.com/item/m15704063130",
-      "titulo_ja": "激レア90s キャノンウィリアムズ F1 アラン・プロスト メモリアルジャケット",
-      "preco_jpy": 49800,
-      "moeda": "JPY",
-      "busca": "williams-jaqueta",
-      "achado_em": [
-        "williams-jaqueta"
-      ],
-      "vendido": true,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Williams"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "mecachrome-williams-1998",
-        "renault-williams-motor",
-        "rothmans-williams",
-        "senna-williams-1994",
-        "winfield-williams"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 2540.0,
-      "conta": {
-        "produto_jpy": 49800.0,
-        "taxa_naomi_jpy": 17430,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 68230.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 74230.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1989+",
-        "temporadas": 112,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m18869025113",
       "url": "https://jp.mercari.com/item/m18869025113",
       "titulo_ja": "ウィリアムズＦ１ダウンベスト支給品McGREGOR製ナイロン（訳あり）",
@@ -11515,64 +11019,6 @@
       }
     },
     {
-      "id": "m25416750112",
-      "url": "https://jp.mercari.com/item/m25416750112",
-      "titulo_ja": "ナイジェルマンセル マリオアンドレッティ エンツォフェラーリ 直筆サイン 上着",
-      "preco_jpy": 1380000,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": null,
-          "classe_volume": "M",
-          "origem": "titulo",
-          "texto_origem": null,
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-ferrari",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 63680.0,
-      "conta": {
-        "produto_jpy": 1380000.0,
-        "taxa_naomi_jpy": 483000,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 1864000.0,
-        "classe_volume": "M",
-        "margem_jpy": 4000,
-        "preco_jpy": 1868000.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1890+",
-        "temporadas": 211,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m25711907743",
       "url": "https://jp.mercari.com/item/m25711907743",
       "titulo_ja": "Ferrari F1ジャケット 黒/赤",
@@ -14459,64 +13905,6 @@
       }
     },
     {
-      "id": "m51126246737",
-      "url": "https://jp.mercari.com/item/m51126246737",
-      "titulo_ja": "開幕記念値下げ【F1チーム支給品】2025年フェラーリLH本人用ハーフジップ",
-      "preco_jpy": 108000,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": null,
-          "classe_volume": "M",
-          "origem": "titulo",
-          "texto_origem": null,
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-ferrari",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 5150.0,
-      "conta": {
-        "produto_jpy": 108000.0,
-        "taxa_naomi_jpy": 37800,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 146800.0,
-        "classe_volume": "M",
-        "margem_jpy": 4000,
-        "preco_jpy": 150800.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1890+",
-        "temporadas": 211,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m51403359878",
       "url": "https://jp.mercari.com/item/m51403359878",
       "titulo_ja": "チーム支給品 2017年仕様フェラーリF1 ハーフジッププルオーバージャケット",
@@ -15345,64 +14733,6 @@
         "classe_volume": "G",
         "margem_jpy": 6000,
         "preco_jpy": 23200.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1890+",
-        "temporadas": 211,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
-      "id": "m56865321778",
-      "url": "https://jp.mercari.com/item/m56865321778",
-      "titulo_ja": "80s Ferrari ナイロン ジャケット ネオンカラー VINTAGE F1",
-      "preco_jpy": 9999999,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-ferrari",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 460340.0,
-      "conta": {
-        "produto_jpy": 9999999.0,
-        "taxa_naomi_jpy": 3500000,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 13500999.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 13506999.0
       },
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
       "datacao": {
@@ -17299,64 +16629,6 @@
       }
     },
     {
-      "id": "m73695328656",
-      "url": "https://jp.mercari.com/item/m73695328656",
-      "titulo_ja": "【F1チーム支給品】フェラーリ2024マイアミGPドライバー用ジャケット",
-      "preco_jpy": 170000,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": true,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャケット",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-ferrari",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 8070.0,
-      "conta": {
-        "produto_jpy": 170000.0,
-        "taxa_naomi_jpy": 59500,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 230500.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 236500.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1890+",
-        "temporadas": 211,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m73815080265",
       "url": "https://jp.mercari.com/item/m73815080265",
       "titulo_ja": "Ferrari レーシングジャケット F1 ブルゾン",
@@ -18279,64 +17551,6 @@
       }
     },
     {
-      "id": "m82857998082",
-      "url": "https://jp.mercari.com/item/m82857998082",
-      "titulo_ja": "昭和レトロ★70年代★イタリア製★当時物 FERRARI フェラーリ ジャージ",
-      "preco_jpy": 95000,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": null,
-          "classe_volume": "M",
-          "origem": "titulo",
-          "texto_origem": null,
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-ferrari",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 4560.0,
-      "conta": {
-        "produto_jpy": 95000.0,
-        "taxa_naomi_jpy": 33250,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 129250.0,
-        "classe_volume": "M",
-        "margem_jpy": 4000,
-        "preco_jpy": 133250.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1890+",
-        "temporadas": 211,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
       "id": "m82995452927",
       "url": "https://jp.mercari.com/item/m82995452927",
       "titulo_ja": "Ferrari F1 ナイロンジャケット Mサイズ ブラック",
@@ -19044,64 +18258,6 @@
         "classe_volume": "M",
         "margem_jpy": 4000,
         "preco_jpy": 18500.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": {
-        "janela": "1890+",
-        "temporadas": 211,
-        "confianca": "hipotese_de_titulo"
-      }
-    },
-    {
-      "id": "m88787834244",
-      "url": "https://jp.mercari.com/item/m88787834244",
-      "titulo_ja": "【HUGO BOSS製 】Agip Ferrari F1 スタッフジャンパー",
-      "preco_jpy": 114000,
-      "moeda": "JPY",
-      "busca": "ferrari-jaqueta",
-      "achado_em": [
-        "ferrari-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": "jaqueta",
-          "classe_volume": "G",
-          "origem": "titulo",
-          "texto_origem": "ジャンパー",
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [
-            "Ferrari"
-          ],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [
-        "bridgestone-ferrari",
-        "fila-ferrari-vestuario",
-        "magneti-marelli-ferrari",
-        "marlboro-ferrari",
-        "nice-man-sports",
-        "puma-ferrari-vestuario",
-        "schumacher-ferrari",
-        "shell-ferrari",
-        "vodafone-ferrari"
-      ],
-      "flags": [],
-      "preco_brl_estimado": 5500.0,
-      "conta": {
-        "produto_jpy": 114000.0,
-        "taxa_naomi_jpy": 39900,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 154900.0,
-        "classe_volume": "G",
-        "margem_jpy": 6000,
-        "preco_jpy": 160900.0
       },
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
       "datacao": {
@@ -21003,94 +20159,6 @@
       "datacao": null
     },
     {
-      "id": "m48657034667",
-      "url": "https://jp.mercari.com/item/m48657034667",
-      "titulo_ja": "Tanto38様 リクエスト 3点 まとめ商品",
-      "preco_jpy": 57300,
-      "moeda": "JPY",
-      "busca": "williams-jaqueta",
-      "achado_em": [
-        "williams-jaqueta"
-      ],
-      "vendido": true,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
-      "hipoteses": {
-        "tipo": {
-          "valor": null,
-          "classe_volume": "M",
-          "origem": "titulo",
-          "texto_origem": null,
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [],
-      "flags": [
-        "sem_ancora"
-      ],
-      "preco_brl_estimado": 2820.0,
-      "conta": {
-        "produto_jpy": 57300.0,
-        "taxa_naomi_jpy": 20055,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 78355.0,
-        "classe_volume": "M",
-        "margem_jpy": 4000,
-        "preco_jpy": 82355.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": null
-    },
-    {
-      "id": "m52046765643",
-      "url": "https://jp.mercari.com/item/m52046765643",
-      "titulo_ja": "市川美織様 リクエスト 2点 まとめ商品",
-      "preco_jpy": 114800,
-      "moeda": "JPY",
-      "busca": "williams-jaqueta",
-      "achado_em": [
-        "williams-jaqueta"
-      ],
-      "vendido": true,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
-      "hipoteses": {
-        "tipo": {
-          "valor": null,
-          "classe_volume": "M",
-          "origem": "titulo",
-          "texto_origem": null,
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [],
-      "flags": [
-        "sem_ancora"
-      ],
-      "preco_brl_estimado": 5470.0,
-      "conta": {
-        "produto_jpy": 114800.0,
-        "taxa_naomi_jpy": 40180,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 155980.0,
-        "classe_volume": "M",
-        "margem_jpy": 4000,
-        "preco_jpy": 159980.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": null
-    },
-    {
       "id": "m52055452565",
       "url": "https://jp.mercari.com/item/m52055452565",
       "titulo_ja": "F1 2024 Stake ザウバー ボッタス 周冠宇 フルジップ パーカー M",
@@ -21394,50 +20462,6 @@
         "classe_volume": "M",
         "margem_jpy": 4000,
         "preco_jpy": 14963.0
-      },
-      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
-      "datacao": null
-    },
-    {
-      "id": "m72434736065",
-      "url": "https://jp.mercari.com/item/m72434736065",
-      "titulo_ja": "【フォロワー様は割引可能‼️】ビリオネア ロゴ刺繍Vネックニット ブラウン",
-      "preco_jpy": 150000,
-      "moeda": "JPY",
-      "busca": "benetton-jaqueta",
-      "achado_em": [
-        "benetton-jaqueta"
-      ],
-      "vendido": false,
-      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%99%E3%83%8D%E3%83%88%E3%83%B3%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
-      "hipoteses": {
-        "tipo": {
-          "valor": null,
-          "classe_volume": "M",
-          "origem": "titulo",
-          "texto_origem": null,
-          "estimada": true
-        },
-        "entidades": {
-          "valores": [],
-          "origem": "titulo",
-          "e_hipotese": true
-        }
-      },
-      "fatos_usados": [],
-      "flags": [
-        "sem_ancora"
-      ],
-      "preco_brl_estimado": 7090.0,
-      "conta": {
-        "produto_jpy": 150000.0,
-        "taxa_naomi_jpy": 52500,
-        "taxa_naomi_pct": 0.35,
-        "frete_jp_jpy": 1000,
-        "soma_jpy": 203500.0,
-        "classe_volume": "M",
-        "margem_jpy": 4000,
-        "preco_jpy": 207500.0
       },
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
       "datacao": null
@@ -21841,6 +20865,1026 @@
       "datacao": null
     },
     {
+      "id": "m65304139227",
+      "url": "https://jp.mercari.com/item/m65304139227",
+      "titulo_ja": "闇*狗様 94‘ ロスマンズ　ウィリアムズルノー ハーフコート　good spo",
+      "preco_jpy": 60000,
+      "moeda": "JPY",
+      "busca": "williams-jaqueta",
+      "achado_em": [
+        "williams-jaqueta"
+      ],
+      "vendido": true,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
+      "hipoteses": {
+        "tipo": {
+          "valor": null,
+          "classe_volume": "M",
+          "origem": "titulo",
+          "texto_origem": null,
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Williams",
+            "Renault",
+            "Rothmans"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "mecachrome-williams-1998",
+        "mild-seven-benetton-renault",
+        "renault-williams-motor",
+        "rothmans-williams",
+        "senna-williams-1994",
+        "winfield-williams"
+      ],
+      "flags": [
+        "peixe_grande",
+        "datavel"
+      ],
+      "preco_brl_estimado": 2950.0,
+      "conta": {
+        "produto_jpy": 60000.0,
+        "taxa_naomi_jpy": 21000,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 82000.0,
+        "classe_volume": "M",
+        "margem_jpy": 4000,
+        "preco_jpy": 86000.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 2950.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1994-1997",
+        "temporadas": 4,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m47031733642",
+      "url": "https://jp.mercari.com/item/m47031733642",
+      "titulo_ja": "F1 ホンダ ジャンパー アイルトンセナ 直筆サイン 本田宗一郎 直筆サイン",
+      "preco_jpy": 1580000,
+      "moeda": "JPY",
+      "busca": "mclaren-honda-jaqueta",
+      "achado_em": [
+        "mclaren-honda-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%9E%E3%82%AF%E3%83%A9%E3%83%BC%E3%83%AC%E3%83%B3%20%E3%83%9B%E3%83%B3%E3%83%80%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャンパー",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ayrton Senna",
+            "Honda"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        },
+        "por_que_suspeita": "o titulo poe Ayrton Senna ao lado de Honda, e a base nao liga o piloto a essa(s) entidade(s). Foi assim que a m97283893856 vendeu Senna numa Yamaha. E hipotese de titulo: pode ser so vinculo que a base ainda nao tem."
+      },
+      "fatos_usados": [
+        "honda-mclaren-motor",
+        "honda-ra121e-1991",
+        "mclaren-patrocinadores-1992",
+        "nacional-senna",
+        "senna-mclaren",
+        "senna-williams-1994"
+      ],
+      "flags": [
+        "peixe_grande",
+        "datavel",
+        "piloto_sem_vinculo"
+      ],
+      "preco_brl_estimado": 72950.0,
+      "conta": {
+        "produto_jpy": 1580000.0,
+        "taxa_naomi_jpy": 553000,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 2134000.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 2140000.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 72950.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1988-1992",
+        "temporadas": 5,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m12372672574",
+      "url": "https://jp.mercari.com/item/m12372672574",
+      "titulo_ja": "Mclaren Marlboro oficial ジャケット。アイルトンセナ",
+      "preco_jpy": 150000,
+      "moeda": "JPY",
+      "busca": "mclaren-honda-jaqueta",
+      "achado_em": [
+        "mclaren-honda-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%9E%E3%82%AF%E3%83%A9%E3%83%BC%E3%83%AC%E3%83%B3%20%E3%83%9B%E3%83%B3%E3%83%80%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ayrton Senna",
+            "McLaren",
+            "Marlboro"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        },
+        "por_que_suspeita": "o titulo poe Ayrton Senna ao lado de Marlboro, e a base nao liga o piloto a essa(s) entidade(s). Foi assim que a m97283893856 vendeu Senna numa Yamaha. E hipotese de titulo: pode ser so vinculo que a base ainda nao tem."
+      },
+      "fatos_usados": [
+        "berger-mclaren",
+        "ford-mclaren-1993",
+        "goodyear-mclaren-1991",
+        "honda-mclaren-motor",
+        "honda-ra121e-1991",
+        "marlboro-brm",
+        "marlboro-ferrari",
+        "marlboro-wct-vestuario",
+        "mclaren-patrocinadores-1992",
+        "nacional-senna",
+        "senna-mclaren",
+        "senna-williams-1994",
+        "west-mclaren"
+      ],
+      "flags": [
+        "peixe_grande",
+        "datavel",
+        "piloto_sem_vinculo"
+      ],
+      "preco_brl_estimado": 7150.0,
+      "conta": {
+        "produto_jpy": 150000.0,
+        "taxa_naomi_jpy": 52500,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 203500.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 209500.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 7150.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1988-1994",
+        "temporadas": 7,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m22130623525",
+      "url": "https://jp.mercari.com/item/m22130623525",
+      "titulo_ja": "ミッレミリア アイルトンセナ マンセル エンツォフェラーリ直筆サイン ジャケット",
+      "preco_jpy": 780000,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ayrton Senna",
+            "Ferrari"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        },
+        "por_que_suspeita": "o titulo poe Ayrton Senna ao lado de Ferrari, e a base nao liga o piloto a essa(s) entidade(s). Foi assim que a m97283893856 vendeu Senna numa Yamaha. E hipotese de titulo: pode ser so vinculo que a base ainda nao tem."
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-ferrari",
+        "nacional-senna",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "senna-mclaren",
+        "senna-williams-1994",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande",
+        "datavel",
+        "piloto_sem_vinculo"
+      ],
+      "preco_brl_estimado": 36140.0,
+      "conta": {
+        "produto_jpy": 780000.0,
+        "taxa_naomi_jpy": 273000,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 1054000.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 1060000.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 36140.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1988-1994",
+        "temporadas": 7,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m82316952223",
+      "url": "https://jp.mercari.com/item/m82316952223",
+      "titulo_ja": "【希少】イタリア製　F1 ベネトンフォーミュラ1 マイルドセブン ジャケット",
+      "preco_jpy": 59200,
+      "moeda": "JPY",
+      "busca": "benetton-jaqueta",
+      "achado_em": [
+        "benetton-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%99%E3%83%8D%E3%83%88%E3%83%B3%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Benetton",
+            "Mild Seven"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "autopolis-benetton",
+        "benetton-1990-pilotos",
+        "benetton-1991-numeros",
+        "benetton-sportsystem-merchandising",
+        "camel-benetton",
+        "elf-benetton",
+        "ford-benetton",
+        "goodyear-benetton-1990",
+        "goodyear-benetton-1992",
+        "mild-seven-benetton-renault",
+        "mobil-benetton",
+        "piquet-benetton-1991",
+        "pirelli-benetton-1991",
+        "schumacher-brundle-benetton-1992",
+        "technogym-benetton"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 2980.0,
+      "conta": {
+        "produto_jpy": 59200.0,
+        "taxa_naomi_jpy": 20720,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 80920.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 86920.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 2980.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1994-2006",
+        "temporadas": 13,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m15172010728",
+      "url": "https://jp.mercari.com/item/m15172010728",
+      "titulo_ja": "激レア　Ferrari フェラーリ　チームジャケット　支給品　Marlboro",
+      "preco_jpy": 59800,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": true,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari",
+            "Marlboro"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-brm",
+        "marlboro-ferrari",
+        "marlboro-wct-vestuario",
+        "mclaren-patrocinadores-1992",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 3000.0,
+      "conta": {
+        "produto_jpy": 59800.0,
+        "taxa_naomi_jpy": 20930,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 81730.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 87730.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 3000.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1972-2017",
+        "temporadas": 46,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m26248646095",
+      "url": "https://jp.mercari.com/item/m26248646095",
+      "titulo_ja": "F1 フェラーリ　希少　非売品　ジャケット マルボロ　レア　極美品",
+      "preco_jpy": 89999,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari",
+            "Marlboro"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-brm",
+        "marlboro-ferrari",
+        "marlboro-wct-vestuario",
+        "mclaren-patrocinadores-1992",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 4390.0,
+      "conta": {
+        "produto_jpy": 89999.0,
+        "taxa_naomi_jpy": 31500,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 122499.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 128499.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 4390.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1972-2017",
+        "temporadas": 46,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m15704063130",
+      "url": "https://jp.mercari.com/item/m15704063130",
+      "titulo_ja": "激レア90s キャノンウィリアムズ F1 アラン・プロスト メモリアルジャケット",
+      "preco_jpy": 49800,
+      "moeda": "JPY",
+      "busca": "williams-jaqueta",
+      "achado_em": [
+        "williams-jaqueta"
+      ],
+      "vendido": true,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Williams"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "mecachrome-williams-1998",
+        "renault-williams-motor",
+        "rothmans-williams",
+        "senna-williams-1994",
+        "winfield-williams"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 2540.0,
+      "conta": {
+        "produto_jpy": 49800.0,
+        "taxa_naomi_jpy": 17430,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 68230.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 74230.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 2540.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1989+",
+        "temporadas": 112,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m25416750112",
+      "url": "https://jp.mercari.com/item/m25416750112",
+      "titulo_ja": "ナイジェルマンセル マリオアンドレッティ エンツォフェラーリ 直筆サイン 上着",
+      "preco_jpy": 1380000,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": null,
+          "classe_volume": "M",
+          "origem": "titulo",
+          "texto_origem": null,
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-ferrari",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 63680.0,
+      "conta": {
+        "produto_jpy": 1380000.0,
+        "taxa_naomi_jpy": 483000,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 1864000.0,
+        "classe_volume": "M",
+        "margem_jpy": 4000,
+        "preco_jpy": 1868000.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 63680.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1890+",
+        "temporadas": 211,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m51126246737",
+      "url": "https://jp.mercari.com/item/m51126246737",
+      "titulo_ja": "開幕記念値下げ【F1チーム支給品】2025年フェラーリLH本人用ハーフジップ",
+      "preco_jpy": 108000,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": null,
+          "classe_volume": "M",
+          "origem": "titulo",
+          "texto_origem": null,
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-ferrari",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 5150.0,
+      "conta": {
+        "produto_jpy": 108000.0,
+        "taxa_naomi_jpy": 37800,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 146800.0,
+        "classe_volume": "M",
+        "margem_jpy": 4000,
+        "preco_jpy": 150800.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 5150.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1890+",
+        "temporadas": 211,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m56865321778",
+      "url": "https://jp.mercari.com/item/m56865321778",
+      "titulo_ja": "80s Ferrari ナイロン ジャケット ネオンカラー VINTAGE F1",
+      "preco_jpy": 9999999,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-ferrari",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 460340.0,
+      "conta": {
+        "produto_jpy": 9999999.0,
+        "taxa_naomi_jpy": 3500000,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 13500999.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 13506999.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 460340.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1890+",
+        "temporadas": 211,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m73695328656",
+      "url": "https://jp.mercari.com/item/m73695328656",
+      "titulo_ja": "【F1チーム支給品】フェラーリ2024マイアミGPドライバー用ジャケット",
+      "preco_jpy": 170000,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": true,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャケット",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-ferrari",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 8070.0,
+      "conta": {
+        "produto_jpy": 170000.0,
+        "taxa_naomi_jpy": 59500,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 230500.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 236500.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 8070.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1890+",
+        "temporadas": 211,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m82857998082",
+      "url": "https://jp.mercari.com/item/m82857998082",
+      "titulo_ja": "昭和レトロ★70年代★イタリア製★当時物 FERRARI フェラーリ ジャージ",
+      "preco_jpy": 95000,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": null,
+          "classe_volume": "M",
+          "origem": "titulo",
+          "texto_origem": null,
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-ferrari",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 4560.0,
+      "conta": {
+        "produto_jpy": 95000.0,
+        "taxa_naomi_jpy": 33250,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 129250.0,
+        "classe_volume": "M",
+        "margem_jpy": 4000,
+        "preco_jpy": 133250.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 4560.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1890+",
+        "temporadas": 211,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m88787834244",
+      "url": "https://jp.mercari.com/item/m88787834244",
+      "titulo_ja": "【HUGO BOSS製 】Agip Ferrari F1 スタッフジャンパー",
+      "preco_jpy": 114000,
+      "moeda": "JPY",
+      "busca": "ferrari-jaqueta",
+      "achado_em": [
+        "ferrari-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%95%E3%82%A7%E3%83%A9%E3%83%BC%E3%83%AA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": "jaqueta",
+          "classe_volume": "G",
+          "origem": "titulo",
+          "texto_origem": "ジャンパー",
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [
+            "Ferrari"
+          ],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [
+        "bridgestone-ferrari",
+        "fila-ferrari-vestuario",
+        "magneti-marelli-ferrari",
+        "marlboro-ferrari",
+        "nice-man-sports",
+        "puma-ferrari-vestuario",
+        "schumacher-ferrari",
+        "shell-ferrari",
+        "vodafone-ferrari"
+      ],
+      "flags": [
+        "peixe_grande"
+      ],
+      "preco_brl_estimado": 5500.0,
+      "conta": {
+        "produto_jpy": 114000.0,
+        "taxa_naomi_jpy": 39900,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 154900.0,
+        "classe_volume": "G",
+        "margem_jpy": 6000,
+        "preco_jpy": 160900.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 5500.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": {
+        "janela": "1890+",
+        "temporadas": 211,
+        "confianca": "hipotese_de_titulo"
+      }
+    },
+    {
+      "id": "m48657034667",
+      "url": "https://jp.mercari.com/item/m48657034667",
+      "titulo_ja": "Tanto38様 リクエスト 3点 まとめ商品",
+      "preco_jpy": 57300,
+      "moeda": "JPY",
+      "busca": "williams-jaqueta",
+      "achado_em": [
+        "williams-jaqueta"
+      ],
+      "vendido": true,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
+      "hipoteses": {
+        "tipo": {
+          "valor": null,
+          "classe_volume": "M",
+          "origem": "titulo",
+          "texto_origem": null,
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [],
+      "flags": [
+        "peixe_grande",
+        "sem_ancora"
+      ],
+      "preco_brl_estimado": 2820.0,
+      "conta": {
+        "produto_jpy": 57300.0,
+        "taxa_naomi_jpy": 20055,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 78355.0,
+        "classe_volume": "M",
+        "margem_jpy": 4000,
+        "preco_jpy": 82355.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 2820.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": null
+    },
+    {
+      "id": "m52046765643",
+      "url": "https://jp.mercari.com/item/m52046765643",
+      "titulo_ja": "市川美織様 リクエスト 2点 まとめ商品",
+      "preco_jpy": 114800,
+      "moeda": "JPY",
+      "busca": "williams-jaqueta",
+      "achado_em": [
+        "williams-jaqueta"
+      ],
+      "vendido": true,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%82%BA%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=sold_out",
+      "hipoteses": {
+        "tipo": {
+          "valor": null,
+          "classe_volume": "M",
+          "origem": "titulo",
+          "texto_origem": null,
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [],
+      "flags": [
+        "peixe_grande",
+        "sem_ancora"
+      ],
+      "preco_brl_estimado": 5470.0,
+      "conta": {
+        "produto_jpy": 114800.0,
+        "taxa_naomi_jpy": 40180,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 155980.0,
+        "classe_volume": "M",
+        "margem_jpy": 4000,
+        "preco_jpy": 159980.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 5470.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": null
+    },
+    {
+      "id": "m72434736065",
+      "url": "https://jp.mercari.com/item/m72434736065",
+      "titulo_ja": "【フォロワー様は割引可能‼️】ビリオネア ロゴ刺繍Vネックニット ブラウン",
+      "preco_jpy": 150000,
+      "moeda": "JPY",
+      "busca": "benetton-jaqueta",
+      "achado_em": [
+        "benetton-jaqueta"
+      ],
+      "vendido": false,
+      "vendido_fonte": "https://jp.mercari.com/search?keyword=%E3%83%99%E3%83%8D%E3%83%88%E3%83%B3%20F1%20%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&sort=created_time&order=desc&status=on_sale",
+      "hipoteses": {
+        "tipo": {
+          "valor": null,
+          "classe_volume": "M",
+          "origem": "titulo",
+          "texto_origem": null,
+          "estimada": true
+        },
+        "entidades": {
+          "valores": [],
+          "origem": "titulo",
+          "e_hipotese": true
+        }
+      },
+      "fatos_usados": [],
+      "flags": [
+        "peixe_grande",
+        "sem_ancora"
+      ],
+      "preco_brl_estimado": 7090.0,
+      "conta": {
+        "produto_jpy": 150000.0,
+        "taxa_naomi_jpy": 52500,
+        "taxa_naomi_pct": 0.35,
+        "frete_jp_jpy": 1000,
+        "soma_jpy": 203500.0,
+        "classe_volume": "M",
+        "margem_jpy": 4000,
+        "preco_jpy": 207500.0
+      },
+      "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 7090.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
+      "datacao": null
+    },
+    {
       "id": "m97203311361",
       "url": "https://jp.mercari.com/item/m97203311361",
       "titulo_ja": "バルトロメオ様 リクエスト 3点 まとめ商品",
@@ -21868,6 +21912,7 @@
       },
       "fatos_usados": [],
       "flags": [
+        "peixe_grande",
         "sem_ancora"
       ],
       "preco_brl_estimado": 3180.0,
@@ -21882,6 +21927,7 @@
         "preco_jpy": 92750.0
       },
       "preco_e_estimado_porque": "a classe de volume saiu do titulo, nao de medida",
+      "por_que_peixe_grande": "R$ 3180.0, acima da faixa de R$ 2500 que a loja ja operou. Mostrar sim; so nao tratar como fluxo normal: exige confianca, logistica e cuidado.",
       "datacao": null
     }
   ]
