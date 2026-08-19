@@ -1,0 +1,246 @@
+{
+  "_schema": "Mapa de forma japonesa -> nome da entidade em base/fatos.json. O normaliza() do consultar.py e [^a-z0-9]+, entao ele APAGA japones: sem este mapa, um titulo em katakana nunca casa com o fato. Medido em 19/08: 9 de 24 titulos das pecas ja curadas nao devolviam entidade nenhuma.",
+  "_regra": "O valor de `entidade` TEM que existir em fatos.json -- alias que aponta pra nome inexistente e lixo e o gate recusa. `visto_em` e computado dos titulos reais das pecas, nunca afirmado a mao. origem=transliteracao_padrao significa que a forma ainda nao apareceu no nosso corpus: entra por transliteracao conhecida, e o primeiro titulo que a use passa a constar em visto_em.",
+  "_hipotese": "Entidade reconhecida em TITULO e HIPOTESE, nunca fato. Titulo de Mercari e SEO: a peca m35956987972 tem 'Senna' no titulo e nenhum vinculo com ele. Quem consome isto tem que carregar a marca de hipotese ate o fim.",
+  "_ambiguo": "Alias cuja forma tambem e palavra comum ganha um regex de contexto que DESCARTA o casamento. Mesma familia do '100% COTTON SHELL' que casava com a Shell petrolifera. Caso vivo: piqu-e (o tecido) e Piquet (o piloto) se escrevem igual.",
+  "_atualizado_em": "2026-08-19",
+  "_total": 32,
+  "aliases": [
+    {
+      "ja": "フェラーリ",
+      "entidade": "Ferrari",
+      "visto_em": [
+        "m18390786233",
+        "m31939814908",
+        "m33557684905",
+        "m71164960236",
+        "m92121645867"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "ベネトン",
+      "entidade": "Benetton",
+      "visto_em": [
+        "m33604320797",
+        "m56921610317",
+        "m93339067779"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "マクラーレン",
+      "entidade": "McLaren",
+      "visto_em": [
+        "m97609115294"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "ウィリアムズ",
+      "entidade": "Williams",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ホンダ",
+      "entidade": "Honda",
+      "visto_em": [
+        "m35956987972",
+        "m73359062125",
+        "m97283893856",
+        "m97609115294"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "トヨタ",
+      "entidade": "Toyota",
+      "visto_em": [
+        "m69497505984"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "ヤマハ",
+      "entidade": "Yamaha",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ロータス",
+      "entidade": "Lotus",
+      "visto_em": [
+        "m53001823873"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "マルボロ",
+      "entidade": "Marlboro",
+      "visto_em": [
+        "m24601571304"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "キャメル",
+      "entidade": "Camel",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ロスマンズ",
+      "entidade": "Rothmans",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "マイルドセブン",
+      "entidade": "Mild Seven",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ミハエル・シューマッハ",
+      "entidade": "Michael Schumacher",
+      "visto_em": [
+        "m33557684905",
+        "m58518090353",
+        "m71164960236"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "シューマッハ",
+      "entidade": "Michael Schumacher",
+      "visto_em": [
+        "m10933095707",
+        "m18390786233",
+        "m33557684905",
+        "m58518090353",
+        "m71164960236"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "アイルトンセナ",
+      "entidade": "Ayrton Senna",
+      "visto_em": [
+        "m97283893856"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "セナ",
+      "entidade": "Ayrton Senna",
+      "visto_em": [
+        "m35956987972",
+        "m97283893856",
+        "m97609115294"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "ネルソン・ピケ",
+      "entidade": "Nelson Piquet",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ピケ",
+      "entidade": "Nelson Piquet",
+      "visto_em": [],
+      "origem": "transliteracao_padrao",
+      "ambiguo": "ピケ(生地|織|地|シャツ|ポロ|素材)"
+    },
+    {
+      "ja": "ベルガー",
+      "entidade": "Gerhard Berger",
+      "visto_em": [
+        "m97609115294"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "グッドイヤー",
+      "entidade": "Goodyear",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ピレリ",
+      "entidade": "Pirelli",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ブリヂストン",
+      "entidade": "Bridgestone",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ミシュラン",
+      "entidade": "Michelin",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "パナソニック",
+      "entidade": "Panasonic",
+      "visto_em": [
+        "m69497505984"
+      ],
+      "origem": "titulo_de_peca"
+    },
+    {
+      "ja": "ボーダフォン",
+      "entidade": "Vodafone",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "モービル",
+      "entidade": "Mobil",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "エルフ",
+      "entidade": "Elf",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "フォード",
+      "entidade": "Ford",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "ルノー",
+      "entidade": "Renault",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "プーマ",
+      "entidade": "Puma",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "フィラ",
+      "entidade": "Fila",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    },
+    {
+      "ja": "マネッティマレリ",
+      "entidade": "Magneti Marelli",
+      "visto_em": [],
+      "origem": "transliteracao_padrao"
+    }
+  ]
+}

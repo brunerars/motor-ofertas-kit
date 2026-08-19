@@ -27,6 +27,7 @@ import sys
 BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 PECAS = os.path.join(BASE, "pecas")
 FATOS = os.path.join(BASE, "base", "fatos.json")
+ALIASES = os.path.join(BASE, "base", "aliases.json")
 
 ANO_MIN, ANO_MAX = 1890, 2100
 # tipos que carregam janela de temporada e por isso servem pra datar.
@@ -97,11 +98,71 @@ def casa(fato, termo):
     return False
 
 
+def carrega_aliases():
+    """Le base/aliases.json. Ausente = lista vazia, e o casamento segue so em latim."""
+    if not os.path.exists(ALIASES):
+        return []
+    return ler(ALIASES).get("aliases") or []
+
+
+def expande(texto, aliases):
+    """Titulo em japones -> os nomes latinos que a base conhece, colados no texto.
+
+    normaliza() e [^a-z0-9]+, ou seja, APAGA japones. Um titulo em katakana nunca
+    casa com um fato. Expandir ANTES de normalizar e o que torna um card de busca
+    do Mercari legivel pelo mesmo matcher que ja le parecer.
+
+    Devolve (texto_expandido, nomes_acrescentados).
+    """
+    achados = []
+    for a in aliases:
+        ja = a.get("ja")
+        if not ja or ja not in texto:
+            continue
+        amb = a.get("ambiguo")
+        if amb and re.search(amb, texto):
+            continue                      # o vizinho entrega o outro sentido
+        nome = a.get("entidade")
+        if nome and nome not in achados:
+            achados.append(nome)
+    if not achados:
+        return texto, []
+    return texto + " " + " ".join(achados), achados
+
+
+def entidades_do_texto(texto, fatos, aliases=None):
+    """Nomes que a base conhece dentro de um texto qualquer.
+
+    Deliberately conservative: only names the base already carries, so a piece is
+    never dated by a word nobody verified.
+    """
+    if aliases:
+        texto, _ = expande(texto, aliases)
+    tn = normaliza(texto)
+    cru = texto.lower()
+    achados = []
+    for f in fatos:
+        if f.get("tipo") not in TIPOS_DATAM:
+            continue
+        for campo in ("entidade", "contraparte"):
+            v = f.get(campo)
+            if not v or len(normaliza(v)) < 4 or normaliza(v) not in tn:
+                continue
+            padrao = AMBIGUOS.get(normaliza(v))
+            if padrao and re.search(padrao, cru):
+                continue                  # o vizinho entrega que nao e a marca
+            if v not in achados:
+                achados.append(v)
+    return achados
+
+
 def entidades_da_peca(item_id, fatos):
     """Pesca do parecer os termos que a base ja conhece.
 
-    Deliberately conservative: only names the base already carries, so a piece
-    is never dated by a word nobody verified.
+    Roda SEM aliases de proposito. O parecer e prosa em portugues ja periciada, e
+    o resultado atual (17 de 19 pecas datadas, com as 6 confereiveis batendo com a
+    pericia) foi verificado assim. Expandir aqui mudaria numero ja provado sem
+    necessidade: quem precisa do japones e o titulo de card, nao o parecer.
     """
     caminho = os.path.join(PECAS, item_id, "parecer.json")
     if not os.path.exists(caminho):
@@ -116,22 +177,8 @@ def entidades_da_peca(item_id, fatos):
     sinais = [s for s in d.get("sinais") or []
               if s.get("classe") in ("VALOR", "CONFIRMACAO")]
     texto = " ".join(s.get("evidencia") or "" for s in sinais)
-    tn = normaliza(texto)
-    cru = " ".join(s.get("evidencia") or "" for s in sinais).lower()
-    achados = []
-    for f in fatos:
-        if f.get("tipo") not in TIPOS_DATAM:
-            continue
-        for campo in ("entidade", "contraparte"):
-            v = f.get(campo)
-            if not v or len(normaliza(v)) < 4 or normaliza(v) not in tn:
-                continue
-            padrao = AMBIGUOS.get(normaliza(v))
-            if padrao and re.search(padrao, cru):
-                continue  # o vizinho entrega que nao e a marca
-            if v not in achados:
-                achados.append(v)
-    return achados
+    return entidades_do_texto(texto, fatos)
+
 
 
 def fmt(conjunto):
