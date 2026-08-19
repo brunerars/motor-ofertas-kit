@@ -1,6 +1,6 @@
 ---
 tipo: doc-de-venda
-frente: nippon
+frente: nippon-speed
 papel: FONTE de copy pra conteúdo sobre o Borda — o brief de venda do /post-from-idea consulta este doc antes de escrever qualquer peça
 status: RASCUNHO (Claude, 06/08) — aguardando revisão do Bruno antes de virar fonte
 fontes: borda/README.md · docs/borda-hub-caio.md · lib/caption.ts · PecaLida.tsx · docs/baserow-disparador-schema.md · PRODUCT.md · diario 17/07 e 20/07

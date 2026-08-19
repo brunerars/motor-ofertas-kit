@@ -1,6 +1,6 @@
 ---
 tipo: fila
-frente: nippon
+frente: nippon-speed
 data: 2026-08-19
 ---
 

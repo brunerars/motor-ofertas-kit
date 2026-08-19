@@ -1,5 +1,5 @@
 ---
-frente: nippon
+frente: nippon-speed
 ---
 
 # Curadoria de peça — o método, descoberto sobre 5 peças e endurecido sobre 19

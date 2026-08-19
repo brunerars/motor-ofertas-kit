@@ -1,7 +1,7 @@
 ---
 aliases: ["Hermes", "arquitetura do Hermes"]
 resumo: "O mapa da esteira da NSC em três diagramas: o que existe e o que não existe hoje, os 4 degraus até o agente de garimpo, e os 3 gates que separam varredura de perícia e de oferta. O gate 2 é o único que falta, e o número dele é do Bruno."
-frente: nippon
+frente: nippon-speed
 atualizado: 2026-08-19
 ---
 

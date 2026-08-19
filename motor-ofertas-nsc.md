@@ -2,7 +2,7 @@
 tipo: projeto
 faixa: low-ticket
 papel: hub de ESTADO da frente NSC / Motor de Ofertas (no vault)
-frente: nippon
+frente: nippon-speed
 atualizado: 2026-08-19
 aliases: ["motor-ofertas", "nsc"]
 ---

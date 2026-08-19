@@ -1,5 +1,5 @@
 ---
-frente: nippon
+frente: nippon-speed
 papel: resultado da rodada de curadoria (DERIVADO — rode relatorio.py, nao edite na mao)
 atualizado: 2026-08-18
 ---
