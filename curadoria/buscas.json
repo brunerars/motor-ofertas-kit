@@ -1,0 +1,30 @@
+{
+  "_schema": "As buscas que a varredura roda no Mercari. Este arquivo e FRONTEIRA HUMANA, no mesmo status do volumes.json: o agente nunca inventa uma busca. Quem acrescenta, tira ou aperta uma busca aqui e o Bruno.",
+  "_por_que_humano": "A regra travada da NSC diz que a IA nunca descobre nem escolhe produto. Se o agente pudesse escrever a propria consulta, ele estaria escolhendo o universo de onde a oferta sai -- que e escolher produto um passo antes. Deixando a consulta aqui, o que o agente faz e so descartar dentro de um universo que o humano delimitou.",
+  "_estados": "Cada busca roda em dois estados: on_sale (candidato) e sold_out (comparavel). O parametro status foi provado em 19/08: interseccao ZERO entre os dois, e 3 de 3 ids do sold_out confirmaram sold=true na pagina do item.",
+  "_teto_brl": "Preco final acima disto e descartado com a conta inteira anexada. E a NOSSA curva de custo (35% + frete + margem + Wise), nunca preco de mercado. null = nao descarta por preco, e e o padrao ate o Bruno cravar um numero. Referencia: as 19 pecas da Etapa 2 sairam entre R$ 330 e R$ 2.080.",
+  "teto_brl": null,
+  "_atualizado_em": "2026-08-19",
+  "buscas": [
+    {
+      "slug": "ferrari-jaqueta",
+      "keyword": "フェラーリ F1 ジャケット",
+      "porque": "16 das 24 pecas ja curadas trazem o breadcrumb FERRARI (brand_id=3199); e onde o comparavel tem mais chance de bater n>=5"
+    },
+    {
+      "slug": "benetton-jaqueta",
+      "keyword": "ベネトン F1 ジャケット",
+      "porque": "10 pecas ja curadas; e a marca com a datacao mais fina que a base sabe fazer (Pirelli so em 1991, Camel 1991-1993)"
+    },
+    {
+      "slug": "mclaren-honda-jaqueta",
+      "keyword": "マクラーレン ホンダ F1 ジャケット",
+      "porque": "a dupla motor+equipe que data o MP4/6 em 1991 cravado; tambem e onde mora a armadilha do Senna de SEO"
+    },
+    {
+      "slug": "williams-jaqueta",
+      "keyword": "ウィリアムズ F1 ジャケット",
+      "porque": "Rothmans 1994-1997 e Renault 1989-2006 dao janela fechada; a Rothmans Williams m88172984233 foi COMPRAR no gabarito"
+    }
+  ]
+}

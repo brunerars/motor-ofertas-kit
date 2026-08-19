@@ -1,0 +1,198 @@
+{
+  "_schema": "Vocabulario fechado de tipo de peca. Serve DUAS vezes: e o eixo `tipo` da chave de comparavel, e o palpite de classe de ocupacao (P/M/G/GG) que alimenta a formula do precificar.py quando so temos o titulo de um card.",
+  "_ordem": "A ordem da lista IMPORTA: o primeiro termo que casar vence, e por isso o mais especifico vem antes. Sem isso 'ダウンジャケット' (pluma, GG) casaria com 'ジャケット' (jaqueta, G) e a margem sairia 4.000 ienes menor.",
+  "_classe_e_palpite": "A classe daqui e ESTIMADA, nunca medida. A regua e a mesma do _regua do volumes.json, que o proprio Bruno escreveu, e ele corrige antes de qualquer preco virar oferta. Quem consome tem que carregar a marca de estimada ate o fim.",
+  "_atualizado_em": "2026-08-19",
+  "termos": [
+    {
+      "termo": "ダウンジャケット",
+      "tipo": "jaqueta_pluma",
+      "classe": "GG"
+    },
+    {
+      "termo": "レーシングスーツ",
+      "tipo": "macacao",
+      "classe": "GG"
+    },
+    {
+      "termo": "ヘルメット",
+      "tipo": "capacete",
+      "classe": "GG"
+    },
+    {
+      "termo": "中綿",
+      "tipo": "jaqueta_pluma",
+      "classe": "GG"
+    },
+    {
+      "termo": "ダウン",
+      "tipo": "jaqueta_pluma",
+      "classe": "GG"
+    },
+    {
+      "termo": "ナイロンジャケット",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "レーシングジャケット",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "ハリントン",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "アノラック",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "ブルゾン",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "ジャンパー",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "スタジャン",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "ジャケット",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "スウェット",
+      "tipo": "moletom",
+      "classe": "G"
+    },
+    {
+      "termo": "トレーナー",
+      "tipo": "moletom",
+      "classe": "G"
+    },
+    {
+      "termo": "パーカー",
+      "tipo": "moletom",
+      "classe": "G"
+    },
+    {
+      "termo": "ポロシャツ",
+      "tipo": "polo",
+      "classe": "M"
+    },
+    {
+      "termo": "Tシャツ",
+      "tipo": "camiseta",
+      "classe": "M"
+    },
+    {
+      "termo": "ティーシャツ",
+      "tipo": "camiseta",
+      "classe": "M"
+    },
+    {
+      "termo": "シャツ",
+      "tipo": "camisa",
+      "classe": "M"
+    },
+    {
+      "termo": "キャップ",
+      "tipo": "bone",
+      "classe": "M"
+    },
+    {
+      "termo": "帽子",
+      "tipo": "bone",
+      "classe": "M"
+    },
+    {
+      "termo": "ハット",
+      "tipo": "bone",
+      "classe": "M"
+    },
+    {
+      "termo": "バッグ",
+      "tipo": "bolsa",
+      "classe": "M"
+    },
+    {
+      "termo": "マフラー",
+      "tipo": "cachecol",
+      "classe": "P"
+    },
+    {
+      "termo": "ワッペン",
+      "tipo": "patch",
+      "classe": "P"
+    },
+    {
+      "termo": "ステッカー",
+      "tipo": "adesivo",
+      "classe": "P"
+    },
+    {
+      "termo": "キーホルダー",
+      "tipo": "chaveiro",
+      "classe": "P"
+    },
+    {
+      "termo": "ピンバッジ",
+      "tipo": "pin",
+      "classe": "P"
+    },
+    {
+      "termo": "jacket",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "blouson",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "jumper",
+      "tipo": "jaqueta",
+      "classe": "G"
+    },
+    {
+      "termo": "t-shirt",
+      "tipo": "camiseta",
+      "classe": "M"
+    },
+    {
+      "termo": "tee",
+      "tipo": "camiseta",
+      "classe": "M"
+    },
+    {
+      "termo": "polo",
+      "tipo": "polo",
+      "classe": "M"
+    },
+    {
+      "termo": "cap",
+      "tipo": "bone",
+      "classe": "M"
+    },
+    {
+      "termo": "hat",
+      "tipo": "bone",
+      "classe": "M"
+    },
+    {
+      "termo": "patch",
+      "tipo": "patch",
+      "classe": "P"
+    }
+  ]
+}

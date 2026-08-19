@@ -105,6 +105,36 @@ def carregar_volumes():
         return json.load(fh)
 
 
+def calcula(produto_jpy, classe, cal):
+    """A formula, isolada de onde o dado veio.
+
+    Extracted so the cheap funnel can price a SEARCH CARD -- which has a title and
+    a price and nothing else -- with the exact same arithmetic that prices a fully
+    scraped piece. Two prices that come from different code paths would diverge
+    silently, and the funnel would be arguing with the pipeline it feeds.
+
+    Devolve (conta, bruto_brl, final_brl). A ordem dos campos da conta e a mesma
+    de sempre: mexer aqui muda preco.json, e o diff tem que ser vazio.
+    """
+    produto = float(produto_jpy)
+    taxa = round(produto * TAXA_NAOMI)
+    soma = produto + taxa + FRETE_JP_JPY
+    margem = MARGENS_JPY[classe]
+    preco_jpy = soma + margem
+    bruto = brl_para(preco_jpy, cal)
+    conta = {
+        "produto_jpy": produto,
+        "taxa_naomi_jpy": taxa,
+        "taxa_naomi_pct": TAXA_NAOMI,
+        "frete_jp_jpy": FRETE_JP_JPY,
+        "soma_jpy": soma,
+        "classe_volume": classe,
+        "margem_jpy": margem,
+        "preco_jpy": preco_jpy,
+    }
+    return conta, bruto, arredonda(bruto)
+
+
 def precificar(item_id, volumes, cal):
     destino = os.path.join(PECAS, item_id)
     caminho = os.path.join(destino, "dados.json")
@@ -123,29 +153,27 @@ def precificar(item_id, volumes, cal):
     if classe not in MARGENS_JPY:
         return None, "classe de volume invalida: %s" % classe
 
-    taxa = round(produto * TAXA_NAOMI)
-    soma = produto + taxa + FRETE_JP_JPY
-    margem = MARGENS_JPY[classe]
-    preco_jpy = soma + margem
-    bruto = brl_para(preco_jpy, cal)
-    final = arredonda(bruto)
+    base_conta, bruto, final = calcula(produto, classe, cal)
+    # remontada na ordem original de proposito: preco.json ja esta versionado, e
+    # trocar a ordem das chaves produziria diff sem trocar um so numero.
+    conta = {
+        "produto_jpy": base_conta["produto_jpy"],
+        "taxa_naomi_jpy": base_conta["taxa_naomi_jpy"],
+        "taxa_naomi_pct": base_conta["taxa_naomi_pct"],
+        "frete_jp_jpy": base_conta["frete_jp_jpy"],
+        "soma_jpy": base_conta["soma_jpy"],
+        "classe_volume": base_conta["classe_volume"],
+        "classe_justificativa": entrada.get("porque", "(nao classificada)"),
+        "classe_e_fallback": item_id not in volumes,
+        "margem_jpy": base_conta["margem_jpy"],
+        "preco_jpy": base_conta["preco_jpy"],
+    }
 
     preco = {
         "id": item_id,
         "source_url": dados.get("source_url"),
         "vendido": bool(dados.get("sold")),
-        "conta": {
-            "produto_jpy": produto,
-            "taxa_naomi_jpy": taxa,
-            "taxa_naomi_pct": TAXA_NAOMI,
-            "frete_jp_jpy": FRETE_JP_JPY,
-            "soma_jpy": soma,
-            "classe_volume": classe,
-            "classe_justificativa": entrada.get("porque", "(nao classificada)"),
-            "classe_e_fallback": item_id not in volumes,
-            "margem_jpy": margem,
-            "preco_jpy": preco_jpy,
-        },
+        "conta": conta,
         "conversao": cal,
         "preco_brl_bruto": round(bruto, 2),
         "preco_brl": final,
