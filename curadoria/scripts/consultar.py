@@ -24,6 +24,13 @@ import os
 import re
 import sys
 
+# O console do Windows e cp1252: uma seta ou um acento na saida derruba o
+# script com UnicodeEncodeError. Foi assim que o caminho de CONTRADICAO --
+# justamente o mais util -- morria antes de imprimir o diagnostico.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+
 BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 PECAS = os.path.join(BASE, "pecas")
 FATOS = os.path.join(BASE, "base", "fatos.json")

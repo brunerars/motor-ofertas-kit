@@ -55,3 +55,8 @@ curadoria/pecas/**/raw*.json
 
 __pycache__/
 *.pyc
+
+# varredura: o dump bruto da Firecrawl fica local (regeneravel e pesado).
+# O cards.json normalizado ENTRA no git: e a serie historica, e sem ela o
+# comparavel nasce sem memoria a cada rodada.
+curadoria/varredura/**/raw*.json

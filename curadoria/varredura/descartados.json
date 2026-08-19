@@ -1,0 +1,48 @@
+{
+  "_nota": "Descartar e escolher. Filtro que nao se audita E a IA escolhendo produto. Cada linha traz o motivo e o titulo.",
+  "_total": 7,
+  "descartados": [
+    {
+      "id": "m93339067779",
+      "motivo": "ja_visto",
+      "detalhe": "ja existe em curadoria/pecas/",
+      "titulo_ja": "【BENETTON】希少 ベネトンフォーミュラ1 レーシングジャケット L相当"
+    },
+    {
+      "id": "m13668803753",
+      "motivo": "ja_visto",
+      "detalhe": "ja existe em curadoria/pecas/",
+      "titulo_ja": "【USA製】90s Benetton F1 レーシングジャケット L"
+    },
+    {
+      "id": "m10933095707",
+      "motivo": "ja_visto",
+      "detalhe": "ja existe em curadoria/pecas/",
+      "titulo_ja": "Ferrari　シューマッハ　レーシングジャケット　中綿　企業ロゴ　F1"
+    },
+    {
+      "id": "m58518090353",
+      "motivo": "ja_visto",
+      "detalhe": "ja existe em curadoria/pecas/",
+      "titulo_ja": "Ferrari F1 中綿ジャケット ミハエル・シューマッハ"
+    },
+    {
+      "id": "m88760510115",
+      "motivo": "ja_visto",
+      "detalhe": "ja existe em curadoria/pecas/",
+      "titulo_ja": "90s MAGNETI MARELLI FERRARI ハリントンジャケット"
+    },
+    {
+      "id": "m97283893856",
+      "motivo": "ja_visto",
+      "detalhe": "ja existe em curadoria/pecas/",
+      "titulo_ja": "90s YAMAHA レーシングジャケット F1 アイルトンセナ ホンダ レッド"
+    },
+    {
+      "id": "m97609115294",
+      "motivo": "ja_visto",
+      "detalhe": "ja existe em curadoria/pecas/",
+      "titulo_ja": "ホンダ F1 コレクション マクラーレン セナ ベルガー RA121E V12"
+    }
+  ]
+}

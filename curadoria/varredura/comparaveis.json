@@ -1,0 +1,486 @@
+{
+  "_o_que_isto_e": "Contagem de anuncios OBSERVADOS que sairam do Mercari, agrupados por chave equipe x janela x tipo. Cada numero vem com os ids que o produziram.",
+  "_o_que_isto_nao_e": "Nao e quanto a peca vale, nao e preco-alvo, e nao serve pra justificar preco ao cliente: o comparavel e do mercado onde COMPRAMOS (Japao), nao daquele onde vendemos (Brasil). A chave sai de titulo e e HIPOTESE.",
+  "_ressalva_do_selo": "'Saiu do Mercari' inclui cancelamento e retirada, nao so venda. E a mesma limitacao do campo sold do nosso Baserow, e ela nao melhora por estar aqui.",
+  "_preco_e_o_do_anuncio": "O preco e o que estava anunciado quando o item saiu. Sem serie historica nao da pra saber se houve reducao antes -- uma varredura recorrente resolve, e e por isso que cada rodada grava num arquivo com data propria.",
+  "_n_minimo": 5,
+  "_total_vendidos_lidos": 232,
+  "_sem_chave": 55,
+  "_baldes": 20,
+  "_baldes_com_base": 6,
+  "baldes": [
+    {
+      "chave": {
+        "equipe": "Ferrari",
+        "janela": "indefinida",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 78,
+      "ids": [
+        "m25718772397",
+        "m79074372287",
+        "m11889038626",
+        "m15172010728",
+        "m23807715070",
+        "m12354953988",
+        "m18148032944",
+        "m18908389170",
+        "m20093919606",
+        "m23019465655",
+        "m23663376571",
+        "m30364839463",
+        "m35024629723",
+        "m36015620189",
+        "m59991338339",
+        "m60263891957",
+        "m68964994256",
+        "m80798333687",
+        "m88318689588",
+        "m88837538208",
+        "m10729019014",
+        "m11401528357",
+        "m14528735701",
+        "m17039503451",
+        "m17705450278",
+        "m19956478856",
+        "m20787852627",
+        "m21029568821",
+        "m23203070476",
+        "m23872866609",
+        "m24313930131",
+        "m24602969089",
+        "m24746422907",
+        "m25711907743",
+        "m26952101037",
+        "m27997680191",
+        "m33954676895",
+        "m37105503366",
+        "m37520469689",
+        "m39402009019",
+        "m40131002437",
+        "m47948472409",
+        "m49095026769",
+        "m49277514195",
+        "m53706352295",
+        "m54424364778",
+        "m54497625835",
+        "m55032734991",
+        "m55724581264",
+        "m56824366512",
+        "m57022697082",
+        "m58894480867",
+        "m59365958100",
+        "m60632495868",
+        "m62938667601",
+        "m67323917950",
+        "m68927751253",
+        "m69777563255",
+        "m70842786641",
+        "m70965898280",
+        "m73147982950",
+        "m73695328656",
+        "m73815080265",
+        "m73831603272",
+        "m75468826459",
+        "m79407744345",
+        "m82995452927",
+        "m87102278788",
+        "m88011514626",
+        "m88220807263",
+        "m90170591671",
+        "m91061987492",
+        "m92936205571",
+        "m93742021671",
+        "m94650428785",
+        "m94784168046",
+        "m95004310781",
+        "m95063836835"
+      ],
+      "anunciado_quando_saiu_jpy": {
+        "min": 800,
+        "p25": 5500,
+        "mediana": 7199,
+        "p75": 11100,
+        "max": 170000
+      }
+    },
+    {
+      "chave": {
+        "equipe": "Williams",
+        "janela": "indefinida",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 28,
+      "ids": [
+        "m30056447663",
+        "m37351200469",
+        "m68354811310",
+        "m91635163285",
+        "m15296041852",
+        "m15704063130",
+        "m22522758898",
+        "m27285724586",
+        "m31088237077",
+        "m35507730883",
+        "m54630772635",
+        "m56636230625",
+        "m56958497707",
+        "m60846824514",
+        "m63528111639",
+        "m65376189432",
+        "m65546514104",
+        "m65756592562",
+        "m67119315020",
+        "m69919751146",
+        "m70979321968",
+        "m73692867061",
+        "m74733942288",
+        "m75803962668",
+        "m80619578833",
+        "m85005814317",
+        "m97602460411",
+        "m99406463528"
+      ],
+      "anunciado_quando_saiu_jpy": {
+        "min": 3499,
+        "p25": 7700,
+        "mediana": 17500,
+        "p75": 24980,
+        "max": 49800
+      }
+    },
+    {
+      "chave": {
+        "equipe": "Benetton",
+        "janela": "indefinida",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 18,
+      "ids": [
+        "m35656095853",
+        "m10962428895",
+        "m37651137347",
+        "m12687718451",
+        "m12694347411",
+        "m16925482015",
+        "m42160708622",
+        "m48599452090",
+        "m51100993580",
+        "m57779714260",
+        "m60052216351",
+        "m61456003985",
+        "m62130360599",
+        "m72967909974",
+        "m80437656442",
+        "m85397025634",
+        "m92161305679",
+        "m94955315626"
+      ],
+      "anunciado_quando_saiu_jpy": {
+        "min": 1600,
+        "p25": 5000,
+        "mediana": 6120,
+        "p75": 13900,
+        "max": 30000
+      }
+    },
+    {
+      "chave": {
+        "equipe": "McLaren",
+        "janela": "indefinida",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 13,
+      "ids": [
+        "m62527574677",
+        "m30187049579",
+        "m53946299698",
+        "m96195267732",
+        "m10746911909",
+        "m26027204154",
+        "m34345222803",
+        "m37987713369",
+        "m39607059021",
+        "m50995233688",
+        "m52310725806",
+        "m59446917001",
+        "m44445533073"
+      ],
+      "anunciado_quando_saiu_jpy": {
+        "min": 3000,
+        "p25": 4700,
+        "mediana": 7920,
+        "p75": 10300,
+        "max": 40000
+      }
+    },
+    {
+      "chave": {
+        "equipe": "Ferrari",
+        "janela": "indefinida",
+        "tipo": "jaqueta_pluma"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 12,
+      "ids": [
+        "m57895971972",
+        "m19104538224",
+        "m82115451371",
+        "m92658401002",
+        "m17570025940",
+        "m37282467352",
+        "m38208088480",
+        "m46045205273",
+        "m48531775674",
+        "m48551137004",
+        "m85526442157",
+        "m97721080206"
+      ],
+      "anunciado_quando_saiu_jpy": {
+        "min": 3200,
+        "p25": 7000,
+        "mediana": 11000,
+        "p75": 12000,
+        "max": 19800
+      }
+    },
+    {
+      "chave": {
+        "equipe": "Benetton Formula",
+        "janela": "indefinida",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 6,
+      "ids": [
+        "m13688497492",
+        "m16773833018",
+        "m49502167542",
+        "m76671125296",
+        "m83618463554",
+        "m97683633990"
+      ],
+      "anunciado_quando_saiu_jpy": {
+        "min": 3500,
+        "p25": 4300,
+        "mediana": 4980,
+        "p75": 5600,
+        "max": 44500
+      }
+    },
+    {
+      "chave": {
+        "equipe": "Ferrari",
+        "janela": "indefinida",
+        "tipo": "moletom"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 3,
+      "ids": [
+        "m21897371697",
+        "m90107192131",
+        "m93703277664"
+      ],
+      "sem_base": "n=3 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Ferrari",
+        "janela": "indefinida",
+        "tipo": "bone"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 3,
+      "ids": [
+        "m23590885526",
+        "m73725398130",
+        "m12005643850"
+      ],
+      "sem_base": "n=3 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Williams",
+        "janela": "indefinida",
+        "tipo": "jaqueta_pluma"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 3,
+      "ids": [
+        "m18869025113",
+        "m64038952293",
+        "m79694372274"
+      ],
+      "sem_base": "n=3 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Williams",
+        "janela": "1994-1997",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 2,
+      "ids": [
+        "m45506465034",
+        "m65733086981"
+      ],
+      "sem_base": "n=2 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Benetton Formula",
+        "janela": "indefinida",
+        "tipo": "jaqueta_pluma"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 2,
+      "ids": [
+        "m11830074441",
+        "m29531149223"
+      ],
+      "sem_base": "n=2 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Benetton",
+        "janela": "1994",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m86616487098"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Benetton",
+        "janela": "1990-1994",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m37837888913"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Williams",
+        "janela": "1989-1994",
+        "tipo": "camiseta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m69729335505"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Ferrari",
+        "janela": "2002-2009",
+        "tipo": "jaqueta"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m99820571275"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Williams",
+        "janela": "indefinida",
+        "tipo": "moletom"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m54486845035"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Ferrari",
+        "janela": "indefinida",
+        "tipo": "camisa"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m65768467840"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "McLaren",
+        "janela": "indefinida",
+        "tipo": "bone"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m33569473782"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Benetton",
+        "janela": "indefinida",
+        "tipo": "jaqueta_pluma"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m24269349538"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    },
+    {
+      "chave": {
+        "equipe": "Benetton Formula",
+        "janela": "indefinida",
+        "tipo": "camisa"
+      },
+      "chave_origem": "titulo",
+      "chave_confianca": "hipotese",
+      "n": 1,
+      "ids": [
+        "m75840813216"
+      ],
+      "sem_base": "n=1 abaixo do minimo de 5: com esta amostra o numero seria anedota com cara de estatistica"
+    }
+  ]
+}

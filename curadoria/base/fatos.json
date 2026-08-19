@@ -1,7 +1,7 @@
 {
   "_schema": "Base de fatos verificáveis destilada dos pareceres de curadoria. Cada fato carrega a peça de onde veio (visto_em) e a frase que o sustenta (frase_origem). Só entra o que passou por busca CONFIRMADA. É consultada por consultar.py para datar peça sem gastar modelo.",
   "_como_crescer": "Cada rodada de curadoria gera fatos-propostos.json; um humano confere contra frase_origem e roda destila.py --promover. Fato visto em duas peças estreita a janela e vira confirmado.",
-  "_atualizado_em": "2026-08-18",
+  "_atualizado_em": "2026-08-19",
   "_total": 83,
   "fatos": [
     {
@@ -461,19 +461,22 @@
     },
     {
       "id": "senna-williams-1994",
-      "tipo": "evento",
+      "tipo": "piloto_equipe",
       "entidade": "Ayrton Senna",
       "contraparte": "Williams",
       "de": 1994,
-      "ate": null,
-      "afirmacao": "Ayrton Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16.",
+      "ate": 1994,
+      "afirmacao": "Ayrton Senna foi piloto da Williams-Renault na temporada de 1994, com patrocinio-titulo Rothmans e Damon Hill de companheiro. Assinou em 11/10/1993 e morreu em Imola em 1o de maio de 1994, dentro da temporada. Correu por ela SO em 1994.",
       "confianca": "confirmado",
       "visto_em": [
+        "m60087699739",
         "m88172984233",
         "m97283893856"
       ],
-      "frase_origem": "1994 é o ano em que Senna correu por esta equipe e morreu em Imola",
-      "detalhe_busca": "Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16. Hill foi campeão em 1996 e Villeneuve em 1997, ambos pela Williams no período Rothmans. || O site institucional da Y'S GEAR informa 設立 1997年1月20日 e capital 100% da Yamaha Motor Co., Ltd. O endereço da etiqueta (浜松市板屋町110-5) é anterior ao atual (浜松市中央区元城町115-10), o que é consistente com peça do fim dos anos 90 / começo dos 2000."
+      "frase_origem": "Senna signed with the Williams-Renault team on 11 October 1993; Williams' new sponsorship from Rothmans; teammate Damon Hill; both driving the Williams FW16 in 1994",
+      "detalhe_busca": "Senna correu pela Rothmans Williams Renault em 1994, disputou três GPs pela equipe e morreu no terceiro, em Imola, em 01/05/1994, no FW16. Hill foi campeão em 1996 e Villeneuve em 1997, ambos pela Williams no período Rothmans. || O site institucional da Y'S GEAR informa 設立 1997年1月20日 e capital 100% da Yamaha Motor Co., Ltd. O endereço da etiqueta (浜松市板屋町110-5) é anterior ao atual (浜松市中央区元城町115-10), o que é consistente com peça do fim dos anos 90 / começo dos 2000.",
+      "fonte": "busca externa 19/08 (williamsdb, senna.com, formulanerds)",
+      "corrigido_em": "19/08: estava tipado como `evento`, e evento e excluido de TIPOS_DATAM de proposito (evento e pontual e nao delimita periodo). So que isto nao e um evento, e uma relacao de temporada: Senna FOI piloto da Williams em 1994. Tipado errado, o fato existia e era invisivel pra datacao. Achado por uma varredura do Mercari: 'アイルトンセナ ロスマンズ' dava CONTRADICAO porque a base so ligava Senna a McLaren ate 1993."
     },
     {
       "id": "tabaco-autorregulacao-japao-1985",
@@ -646,16 +649,19 @@
       "entidade": "Ford",
       "contraparte": "Benetton",
       "de": 1990,
-      "ate": 1992,
-      "afirmacao": "A Benetton usou motor Ford de 1990 a 1992: HB V8 no B190 de 1990, HBA5 no B191 de 1991 e HBA7 no B192 de 1992. Janela fechada em 1992 na conferencia: e ate onde a checagem sustenta.",
+      "ate": 1994,
+      "afirmacao": "A Benetton foi a equipe de fabrica da Ford de 1990 a 1994: HB V8 no B190, HBA5 no B191/B192, e o EC Zetec-R V8 no B194 do titulo do Schumacher. Em 1995 o B195 troca o Ford pelo V10 Renault.",
       "confianca": "confirmado",
       "visto_em": [
         "m93339067779",
         "m13668803753",
-        "m33604320797"
+        "m33604320797",
+        "m86616487098"
       ],
-      "frase_origem": "A interseção Camel x Ford x Mobil 1 x Goodyear x Technogym existe em 1992 e em nenhum outro ano.",
-      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992. || O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito. || A Benetton correu a temporada de 1990 com o B190 (motor Ford HB V8), pilotos Nelson Piquet e Alessandro Nannini, depois Roberto Moreno. O par equipe×ano existe e a equipe estava ativa. Em 1990 a Benetton ainda não tinha patrocinador-título; a Camel só assume em 1991 — o que é coerente com uma estampa sem patrocinador de tabaco."
+      "frase_origem": "Benetton B194 (1994) powered by a Ford EC Zetec-R V8, the team remaining as the factory works Ford engines team; the only difference to the B195 was the Ford engine replaced with a V10 Renault",
+      "detalhe_busca": "Camel assume a Benetton em 1991 e o B193 de 1993 é descrito como 'o último carro de F1 a ter a Camel como patrocinadora principal'. B191 (1991): combustível Mobil, pneus Pirelli. B192 (1992): motor Ford HBA7, combustível Mobil, pneus Goodyear. B193 (1993): combustível Elf, pneus Goodyear. A Technogym entra como patrocinadora da Benetton em 1992. || O B191 correu 1991 com pneu Pirelli e motor Ford HBA5; o B191B de 1992 já rodou com Goodyear. Fonte separada confirma que o B190 foi adaptado pra Pirelli e recebeu Camel + Nippon Autopolis pra 1991, e que a Autopolis entrou como patrocinadora da Benetton pra garantir presença do time na inauguração do circuito. || A Benetton correu a temporada de 1990 com o B190 (motor Ford HB V8), pilotos Nelson Piquet e Alessandro Nannini, depois Roberto Moreno. O par equipe×ano existe e a equipe estava ativa. Em 1990 a Benetton ainda não tinha patrocinador-título; a Camel só assume em 1991 — o que é coerente com uma estampa sem patrocinador de tabaco.",
+      "fonte": "busca externa 19/08 (Wikipedia Benetton B194, Goodwood, f1chronicle)",
+      "corrigido_em": "19/08: a janela estava 1990-1992. O buraco apareceu numa varredura do Mercari: um anuncio \"Mild Seven Benetton Ford 1994\" dava CONTRADICAO. E a mesma licao de sempre -- fechar janela no que as nossas pecas mostram deixa o resto do mundo virar contradicao."
     },
     {
       "id": "ford-mclaren-1993",

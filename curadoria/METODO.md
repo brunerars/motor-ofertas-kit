@@ -96,8 +96,22 @@ não tem como conferir sozinho.
 código de etiqueta ou licença que ancore, o agente diz *consistente com vintage, ano
 indeterminado* — e para.
 
-**Faixa de preço de mercado.** Exigiria base de comparáveis que não existe no vault.
-Fora do escopo até haver histórico próprio de vendas.
+**Faixa de preço de mercado — reescrita em 19/08, não levantada.** O agente **não afirma
+quanto uma peça vale**, e isso continua valendo inteiro. O que passou a existir é outra
+coisa: `varredura/comparaveis.json` **conta anúncios observados** — quantos anúncios com a
+mesma chave (equipe × janela × tipo) saíram do Mercari, quando, e a que preço estavam
+quando saíram, cada número com os ids que o produziram. É contagem de fato observado, não
+avaliação.
+
+**Continua proibido**: dizer que a peça vale X, publicar faixa como preço-alvo, ou usar
+comparável pra justificar preço ao cliente. O comparável é do mercado onde **compramos**
+(Japão), não daquele onde **vendemos** (Brasil, WhatsApp) — usar um pelo outro é erro de
+categoria, não imprecisão. Abaixo de 5 anúncios na chave, a saída é `sem base`, nunca um
+número. E a chave é **hipótese**: sai de título, que é SEO do vendedor.
+
+> Estado real em 19/08: sobre 232 vendidos, só 6 baldes chegam a n≥5 e **todos com janela
+> indefinida**. Na prática o comparável **ainda não fala**, e o que destrava não é mais
+> dado bruto, é **resolução de datação**. Ver [[PROVA]].
 
 **Se a peça vale a pena comprar.** É julgamento do dono da loja. O agente instrui a
 decisão, não a toma — a regra travada da NSC (*"quem decide o que desqualifica é o

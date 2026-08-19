@@ -34,6 +34,13 @@ import sys
 import time
 import importlib.util
 
+# O console do Windows e cp1252: uma seta ou um acento na saida derruba o
+# script com UnicodeEncodeError. Foi assim que o caminho de CONTRADICAO --
+# justamente o mais util -- morria antes de imprimir o diagnostico.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+
 BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 PECAS = os.path.join(BASE, "pecas")
 VARRED = os.path.join(BASE, "varredura")
@@ -151,7 +158,13 @@ def avalia(card, ctx):
         "url": card.get("url"),
         "titulo_ja": tit,
         "preco_jpy": card.get("preco_jpy"),
+        "moeda": card.get("moeda"),
         "busca": card.get("busca"),
+        "achado_em": card.get("achado_em") or [card.get("busca")],
+        # o estado vem da CONSULTA (status=sold_out), com a URL como evidencia:
+        # e fato sobre a requisicao, nao julgamento de modelo
+        "vendido": bool(card.get("vendido")),
+        "vendido_fonte": card.get("vendido_fonte"),
         "hipoteses": {},
         "fatos_usados": [],
         "flags": [],
@@ -230,13 +243,32 @@ def ordena(linhas):
 
 
 def carrega_cards():
-    cards = []
+    """Todos os cards varridos, DEDUPLICADOS por id.
+
+    O mesmo anuncio cai em mais de uma busca -- uma camiseta "Williams Ayrton
+    Senna" aparece na varredura da Williams e na da McLaren-Honda. Sem dedup ele
+    entrava duas vezes na fila, e o humano revisaria a mesma peca duas vezes
+    achando que sao duas. As buscas que o acharam viram lista: essa informacao
+    interessa, e perde-la seria pior que a duplicata.
+    """
+    por_id = {}
     if os.path.isdir(VARRED):
-        for raiz, _, arqs in os.walk(VARRED):
-            if "cards.json" in arqs:
-                d = ler(os.path.join(raiz, "cards.json")) or {}
-                cards += d.get("cards") or []
-    return cards
+        for raiz, _, arqs in sorted(os.walk(VARRED)):
+            if "cards.json" not in arqs:
+                continue
+            d = ler(os.path.join(raiz, "cards.json")) or {}
+            for c in d.get("cards") or []:
+                cid = c.get("id")
+                if cid in por_id:
+                    achado = por_id[cid]
+                    buscas = achado.setdefault("achado_em", [achado.get("busca")])
+                    if c.get("busca") not in buscas:
+                        buscas.append(c.get("busca"))
+                    # vendido em qualquer varredura vence: o item saiu do ar
+                    achado["vendido"] = achado.get("vendido") or c.get("vendido")
+                    continue
+                por_id[cid] = dict(c)
+    return list(por_id.values())
 
 
 def main():
